@@ -1,0 +1,103 @@
+package com.autotboxdatasystem.demo.entity;
+
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+
+@MappedSuperclass
+public class BaseEntity {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    @Column(nullable=false, columnDefinition="int comment 'ID'")
+    private Integer id;
+    @Column(nullable=false, columnDefinition="varchar(5) comment '启用状态'")
+    private String isActivated;
+    @Column(nullable=false, columnDefinition="varchar(5) comment '删除状态'")
+    private String isDeleted;
+    @Column(columnDefinition = "varchar(5) comment '状态'")
+    private String status;
+    @Column(columnDefinition = "varchar(30) comment '备注'")
+    private String remark;
+    @Column(columnDefinition = "varchar(20) comment '创建人'")
+    private String createdBy;
+    @Column(columnDefinition = "TIMESTAMP comment '创建时间'")
+    private String createdDate;
+    @Column(columnDefinition = "varchar(20) comment '最后修改人'")
+    private String lastUpdatedBy;
+    @Column(columnDefinition = "TIMESTAMP comment '最后修改日期'")
+    private String lastUpdatedDate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getIsActivated() {
+        return isActivated;
+    }
+
+    public void setIsActivated(String isActivated) {
+        this.isActivated = isActivated;
+    }
+
+    public String getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public String getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(String lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+}
