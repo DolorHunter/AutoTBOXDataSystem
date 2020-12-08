@@ -1,0 +1,278 @@
+<h1>Auto TBOX Data System</h1>
+
+----
+
+= 汽车TBOX数据采集及分析系统设计与实现 =
+
+= 0 背景 =
+
+= 1 后端设计与实现 =
+
+== 1.1 Entity实体类设计 ==
+
+=== 1.1.1 BaseEntity ===
+
+基础实体类, 用于让其他类继承一些基础属性.
+
+<table>
+  <tr><th colspan="4" align="center">BaseEntity</th></tr>
+  <tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td>Integer</td><td>int</td><td>id</td><td>ID</td></tr>
+  <tr><td>String</td><td>varchar(5)</td><td>isActivated</td><td>启用状态</td></tr>
+  <tr><td>String</td><td>varchar(5)</td><td>isDeleted</td><td>删除状态</td></tr>
+  <tr><td>String</td><td>varchar(5)</td><td>status</td><td>状态</td></tr>
+  <tr><td>String</td><td>varchar(30)</td><td>remark</td><td>备注</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>createdBy</td><td>创建人</td></tr>
+  <tr><td>String</td><td>timestamp</td><td>createdDate</td><td>创建日期</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>lastUpdatedBy</td><td>最后修改人</td></tr>
+  <tr><td>String</td><td>timestamp</td><td>lastUpdatedDate</td><td>最后修改日期</td></tr>
+</table>
+
+=== 1.1.2 PageEntity ===
+
+页面实体类, 用于实现Pager功能. 无对应表.
+
+<table>
+  <tr><th colspan="4" align="center">PageEntity</th></tr>
+  <tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td>Integer</td><td>-</td><td>pageIndex</td><td>当前页面</td></tr>
+  <tr><td>Integer</td><td>-</td><td>pageSize</td><td>页面容量</td></tr>
+</table>
+
+=== 1.1.3 UserEntity ===
+
+用户实体类. 关联表user_entity.
+
+<table>
+  <tr><th colspan="4" align="center">UserEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>password</td><td>密码</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>email</td><td>邮箱</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>phone</td><td>电话</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>avatar</td><td>头像</td></tr>
+</table>
+
+=== 1.1.4 RoleEntity ===
+
+角色实体类. 关联表role_entity.
+
+<table>
+  <tr><th colspan="4" align="center">RoleEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>roleName</td><td>角色名</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>roleType</td><td>角色类型</td></tr>
+  <tr><td>Integer</td><td>int</td><td>fatherRoleId</td><td>父角色ID</td></tr>
+</table>
+
+=== 1.1.5 MenuEntity ===
+
+菜单实体类. 关联表menu_entity.
+
+<table>
+  <tr><th colspan="4" align="center">MenuEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>menuName</td><td>菜单名</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>menuType</td><td>菜单类型</td></tr>
+  <tr><td>Integer</td><td>int</td><td>fatherMenuId</td><td>父菜单ID</td></tr>
+</table>
+
+=== 1.1.6 UserRoleEntity ===
+
+用户角色类, 关联用户与角色. 关联表user_role_entity.
+
+不同用户赋予不同角色, 角色有不同菜单.
+
+<table>
+  <tr><th colspan="4" align="center">UserRoleEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>Integer</td><td>int</td><td>userId</td><td>用户ID</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
+  <tr><td>Integer</td><td>int</td><td>roleId</td><td>角色ID</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>roleName</td><td>角色名</td></tr>
+</table>
+
+=== 1.1.7 RoleMenuEntity ===
+
+角色菜单类, 关联角色和菜单. 关联表role_menu_entity.
+
+不同用户赋予不同角色, 角色有不同菜单.
+
+<table>
+  <tr><th colspan="4" align="center">RoleMenuEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>Integer</td><td>int</td><td>roleId</td><td>角色ID</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>roleName</td><td>角色名</td></tr>
+  <tr><td>Integer</td><td>int</td><td>menuId</td><td>菜单ID</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>menuName</td><td>菜单名</td></tr>
+</table>
+
+== 1.2 Controller控制类设计 ==
+
+=== 1.2.1 UserController ===
+
+用户控制类.
+
+<table>
+  <tr><th colspan="5" align="center">UserController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addUser</td><td>/User/addUser</td><td>userEntity</td><td>x</td><td>添加用户</td></tr>
+  <tr><td>hardDeleteUserById</td><td>/User/hardDeleteUserById</td><td>userEntity</td><td>x</td><td>硬删除用户</td></tr>
+  <tr><td>softDeleteUserById</td><td>/User/softDeleteUserById</td><td>userEntity</td><td>x</td><td>软删除用户</td></tr>
+  <tr><td>restoreUserById</td><td>/User/restoreUserById</td><td>userEntity</td><td>x</td><td>恢复软删除用户</td></tr>
+  <tr><td>activateUserById</td><td>/User/activateUserById</td><td>userEntity</td><td>x</td><td>激活用户</td></tr>
+  <tr><td>deactivateUserById</td><td>/User/deactivateUserById</td><td>userEntity</td><td>x</td><td>禁用用户</td></tr>
+  <tr><td>updateUsernameById</td><td>/User/updateUsernameById</td><td>userEntity</td><td>x</td><td>更新用户名</td></tr>
+  <tr><td>updateEmailById</td><td>/User/updateEmailById</td><td>userEntity</td><td>x</td><td>更新邮箱</td></tr>
+  <tr><td>updatePhoneById</td><td>/User/updatePhoneById</td><td>userEntity</td><td>x</td><td>更新电话</td></tr>
+  <tr><td>updatePasswordById</td><td>/User/updatePasswordById</td><td>userEntity</td><td>x</td><td>更新密码</td></tr>
+  <tr><td>updateAvatarById</td><td>/User/updateAvatarById</td><td>userEntity</td><td>x</td><td>更新头像</td></tr>
+  <tr><td>resetPasswordById</td><td>/User/resetPasswordById</td><td>userEntity</td><td>x</td><td>重置用户密码</td></tr>
+  <tr><td>searchUserById</td><td>/User/searchUserById</td><td>userEntity</td><td>x</td><td>ID查找用户</td></tr>
+  <tr><td>searchUserByUsername</td><td>/User/searchUserByUsername</td><td>userEntity</td><td>x</td><td>用户名查找用户</td></tr>
+  <tr><td>searchActivedUser</td><td>/User/searchActivedUser</td><td>pageEntity</td><td>x</td><td>查找激活用户</td></tr>
+  <tr><td>searchAllUser</td><td>/User/searchAllUser</td><td>pageEntity</td><td>x</td><td>查找全部用户</td></tr>
+</table>
+
+=== 1.2.2 RoleController ===
+
+角色控制类.
+
+<table>
+  <tr><th colspan="5" align="center">RoleController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addRole</td><td>/Role/addRole</td><td>roleEntity</td><td>x</td><td>添加角色</td></tr>
+  <tr><td>hardDeleteRoleById</td><td>/Role/hardDeleteRoleById</td><td>roleEntity</td><td>x</td><td>硬删除角色</td></tr>
+  <tr><td>softDeleteRoleById</td><td>/Role/softDeleteRoleById</td><td>roleEntity</td><td>x</td><td>软删除角色</td></tr>
+  <tr><td>restoreRoleById</td><td>/Role/restoreRoleById</td><td>roleEntity</td><td>x</td><td>恢复软删除角色</td></tr>
+  <tr><td>activateRoleById</td><td>/Role/activateRoleById</td><td>roleEntity</td><td>x</td><td>激活角色</td></tr>
+  <tr><td>deactivateRoleById</td><td>/Role/deactivateRoleById</td><td>roleEntity</td><td>x</td><td>禁用角色</td></tr>
+  <tr><td>updateRoleById</td><td>/Role/updateRoleById</td><td>roleEntity</td><td>x</td><td>更新角色信息</td></tr>
+  <tr><td>searchRoleById</td><td>/Role/searchRoleById</td><td>roleEntity</td><td>x</td><td>ID查找角色</td></tr>
+  <tr><td>searchRoleByRoleName</td><td>/Role/searchRoleByRoleName</td><td>roleEntity</td><td>x</td><td>角色名查找角色</td></tr>
+  <tr><td>searchActivedRole</td><td>/Role/searchActivedRole</td><td>pageEntity</td><td>x</td><td>查找激活角色</td></tr>
+  <tr><td>searchAllRole</td><td>/Role/searchAllRole</td><td>pageEntity</td><td>x</td><td>查找全部角色</td></tr>
+</table>
+
+=== 1.2.3 MenuController ===
+
+菜单控制类.
+
+<table>
+  <tr><th colspan="5" align="center">MenuController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addMenu</td><td>/Menu/addMenu</td><td>menuEntity</td><td>x</td><td>添加菜单</td></tr>
+  <tr><td>hardDeleteMenuById</td><td>/Menu/hardDeleteMenuById</td><td>menuEntity</td><td>x</td><td>硬删除菜单</td></tr>
+  <tr><td>softDeleteMenuById</td><td>/Menu/softDeleteMenuById</td><td>menuEntity</td><td>x</td><td>软删除菜单</td></tr>
+  <tr><td>restoreMenuById</td><td>/Menu/restoreMenuById</td><td>menuEntity</td><td>x</td><td>恢复软删除菜单</td></tr>
+  <tr><td>activateMenuById</td><td>/Menu/activateMenuById</td><td>menuEntity</td><td>x</td><td>激活菜单</td></tr>
+  <tr><td>deactivateMenuById</td><td>/Menu/deactivateMenuById</td><td>menuEntity</td><td>x</td><td>禁用菜单</td></tr>
+  <tr><td>updateMenuById</td><td>/Menu/updateMenuById</td><td>menuEntity</td><td>x</td><td>更新菜单信息</td></tr>
+  <tr><td>searchMenuById</td><td>/Menu/searchMenuById</td><td>menuEntity</td><td>x</td><td>ID查找菜单</td></tr>
+  <tr><td>searchMenuByMenuName</td><td>/Menu/searchMenuByMenuName</td><td>menuEntity</td><td>x</td><td>菜单名查找菜单</td></tr>
+  <tr><td>searchActivedMenu</td><td>/Menu/searchActivedMenu</td><td>pageEntity</td><td>x</td><td>查找激活菜单</td></tr>
+  <tr><td>searchAllMenu</td><td>/Menu/searchAllMenu</td><td>pageEntity</td><td>x</td><td>查找全部菜单</td></tr>
+</table>
+
+=== 1.2.4 UserRoleController ===
+
+用户角色控制类.
+
+<table>
+  <tr><th colspan="5" align="center">UserRoleController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addRole2User</td><td>/UserRole/addRole2User</td><td>userRoleEntity</td><td>x</td><td>为用户添加角色</td></tr>
+  <tr><td>deleteUserRoleByUserId</td><td>/UserRole/deleteUserRoleByUserId</td><td>userRoleEntity</td><td>x</td><td>用户ID硬删除用户角色</td></tr>
+  <tr><td>deleteUserRoleByUsername</td><td>/UserRole/deleteUserRoleByUsername</td><td>userRoleEntity</td><td>x</td><td>用户名硬删除用户角色</td></tr>
+  <tr><td>deleteUserRoleByRoleId</td><td>/UserRole/deleteUserRoleByRoleId</td><td>userRoleEntity</td><td>x</td><td>角色ID硬删除用户角色</td></tr>
+  <tr><td>deleteUserRoleByRoleName</td><td>/UserRole/deleteUserRoleByRoleName</td><td>userRoleEntity</td><td>x</td><td>角色名硬删除用户角色</td></tr>
+  <tr><td>searchUserRoleById</td><td>/UserRole/searchUserRoleById</td><td>userRoleEntity</td><td>x</td><td>ID查找角用户角色</td></tr>
+  <tr><td>searchUserRoleByUserId</td><td>/UserRole/searchUserRoleByUserId</td><td>userRoleEntity</td><td>x</td><td>用户ID查找用户角色</td></tr>
+  <tr><td>searchUserRoleByUsername</td><td>/UserRole/searchUserRoleByUsername</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色</td></tr>
+  <tr><td>searchUserRoleByRoleId</td><td>/UserRole/searchUserRoleByRoleId</td><td>userRoleEntity</td><td>x</td><td>角色ID查找用户角色</td></tr>
+  <tr><td>searchUserRoleByRoleName</td><td>/UserRole/searchUserRoleByRoleName</td><td>userRoleEntity</td><td>x</td><td>角色名查找用户角色</td></tr>
+  <tr><td>searchAllUserRole</td><td>/UserRole/searchAllUserRole</td><td>pageEntity</td><td>x</td><td>查找全部用户角色</td></tr>
+</table>
+
+=== 1.2.5 RoleMenuController ===
+
+角色菜单控制类.
+
+<table>
+  <tr><th colspan="5" align="center">RoleMenuController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addMenu2Role</td><td>/RoleMenu/addMenu2Role</td><td>roleMenuEntity</td><td>x</td><td>为角色添加菜单</td></tr>
+  <tr><td>deleteRoleMenuByRoleId</td><td>/RoleMenu/deleteRoleMenuByRoleId</td><td>roleMenuEntity</td><td>x</td><td>角色ID硬删除角色菜单</td></tr>
+  <tr><td>deleteRoleMenuByRoleName</td><td>/RoleMenu/deleteRoleMenuByRoleName</td><td>roleMenuEntity</td><td>x</td><td>角色名硬删除角色菜单</td></tr>
+  <tr><td>deleteRoleMenuByMenuId</td><td>/RoleMenu/deleteRoleMenuByMenuId</td><td>roleMenuEntity</td><td>x</td><td>菜单ID硬删除角色菜单</td></tr>
+  <tr><td>deleteRoleMenuByMenuName</td><td>/RoleMenu/deleteRoleMenuByMenuName</td><td>roleMenuEntity</td><td>x</td><td>菜单名硬删除角色菜单</td></tr>
+  <tr><td>searchRoleMenuById</td><td>/RoleMenu/searchRoleMenuById</td><td>roleMenuEntity</td><td>x</td><td>ID查找角色菜单</td></tr>
+  <tr><td>searchRoleMenuByRoleId</td><td>/RoleMenu/searchRoleMenuByRoleId</td><td>roleMenuEntity</td><td>x</td><td>角色ID查找角色菜单</td></tr>
+  <tr><td>searchRoleMenuByRoleName</td><td>/RoleMenu/searchRoleMenuByRoleName</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单</td></tr>
+  <tr><td>searchRoleMenuByMenuId</td><td>/RoleMenu/searchRoleMenuByMenuId</td><td>roleMenuEntity</td><td>x</td><td>菜单ID查找角色菜单</td></tr>
+  <tr><td>searchRoleMenuByMenuName</td><td>/RoleMenu/searchRoleMenuByMenuName</td><td>roleMenuEntity</td><td>x</td><td>菜单名查找角色菜单</td></tr>
+  <tr><td>searchAllRoleMenu</td><td>/RoleMenu/searchAllRoleMenu</td><td>pageEntity</td><td>x</td><td>查找全部角色菜单</td></tr>
+</table>
+
+== 1.3 开发相关资料 ==
+
+=== 1.3.1 Spring ===
+
+安装环境, 搭建Spring框架
+
+* IDEA创建Spring应用 [https://www.jetbrains.com/help/idea/your-first-spring-application.html Tutorial: Create your first Spring application]
+* Spring配置生成器 [https://start.spring.io/ Spring initializr]
+* Maven代理配置(proxy缩进需要调整,可用IDEA打开调试) [https://Integerellij-support.jetbrains.com/hc/en-us/community/posts/206200819-Using-Maven-behind-proxy jetbrains-Using Maven behind proxy]
+* Spring pom.xml配置载入 [https://blog.csdn.net/lteffp/article/details/89505338 CSDN-idea注解爆红解决]
+* Spring配置MySQL [https://spring.io/guides/gs/accessing-data-mysql/ Spring guides-Accessing data with MySQL]
+
+数据库相关部分: JPA, Hibernate
+
+* JPA和Hibernate实体类注释 [https://vladmihalcea.com/how-to-inherit-properties-from-a-base-class-entity-using-mappedsuperclass-with-jpa-and-hibernate/ VladMihalcea-How to inherit properties from a base class entity using @MappedSuperclass with JPA and Hibernate]
+* 数据库表注释/字段注释 [https://blog.csdn.net/qq_39996837/article/details/84717748 CSDN-Spring boot 搭配 JPA 生成表注释 和 字段注释]
+* JPA之Entity注解说明 [https://sites.google.com/site/hzg139/home/orm-jihibernate/jpaentity 不發光的螢火蟲-JPA之Entity注解说明]
+
+=== 1.3.2 MySQL ===
+
+如果你有一台VPS(虚拟服务器), 可以在服务器上安装MySQL, 之后通过本地的Navicat或其他软件连接此服务器.
+
+root登录
+
+<code>
+> mysql --user=root -p
+</code>
+
+安装MySQL, 创建用户, 授予权限
+
+* 可视化操作数据库 [https://www.cnblogs.com/poloyy/p/12231357.html Navicat Premium 15 永久激活版安装教程]
+* 在VPS上安装MySQL服务器 [https://www.cyberciti.biz/faq/how-to-install-mysql-server-on-debian-10-linux/=Installing_MySQL How to install MySQL server on Debian 10 Linux]
+* (可选)调整ufw防火墙策略 打开3306端口 [https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9 How To Set Up a Firewall with UFW on Debian 9]
+* MySQL指令速查 [https://www.begtut.com/mysql/ begtut-MySQL教程]
+* 创建用户&授予/撤销权限 [https://www.jianshu.com/p/d7b9c468f20d 简书-MySQL创建用户与授权]
+* Spring配置MySQL [https://spring.io/guides/gs/accessing-data-mysql/ Spring guides-Accessing data with MySQL]
+
+创建表格使用Spring的JPA, 详见 [[#131_Spring]] 部分.
+
+=== 1.3.3 Java ===
+
+数据编码与加密: MD5, Base64
+
+* MD5编码(哈希散列加密不可解) 用于加密密码 [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/DigestUtils.html DigestUtils (Spring Framework 5.3.1 API)]
+* Base64编码(可解) 用于上传图片的转化 [https://docs.oracle.com/javase/8/docs/api/java/util/Base64.Encoder.html Oracle-Base64-Encoder (Java Platform SE 8)]
+
+正则化: 用户名, 密码, 邮箱, 电话
+
+* Java正则判断示例 [https://howtodoinjava.com/java-regular-expression-tutorials/ HowToJava-Java Regex Tutorial]
+
+=== 1.3.4 JSON ===
+
+* 多对象接受方法 [https://www.cnblogs.com/mahuan2/p/6008832.html spring接收json格式的多对象参数两种方法]
+* 阿里巴巴的开源JSON解析库 [https://github.com/alibaba/fastjson/wiki/Quick-Start-CN alibaba/fastjson]
+
+=== 1.3.5 Code Lib ===
+
+* 代码示例在线查询 [https://www.codota.com/code codota]
+
+=== 1.3.6 WikiText ===
+
+* Wikitext语法 [https://en.wikipedia.org/wiki/Help:Wikitext Wiki-Help:Wikitext]

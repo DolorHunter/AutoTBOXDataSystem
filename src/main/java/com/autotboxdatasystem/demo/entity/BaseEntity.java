@@ -8,25 +8,25 @@ import javax.persistence.Column;
 
 @MappedSuperclass
 public class BaseEntity {
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(nullable=false, columnDefinition="int comment 'ID'")
+    @Column(nullable = false, columnDefinition = "int comment 'ID'")
     private Integer id;
-    @Column(nullable=false, columnDefinition="varchar(5) comment '启用状态'")
+    @Column(nullable = false, columnDefinition = "varchar(5) comment '启用状态'")
     private String isActivated;
-    @Column(nullable=false, columnDefinition="varchar(5) comment '删除状态'")
+    @Column(nullable = false, columnDefinition = "varchar(5) comment '删除状态'")
     private String isDeleted;
     @Column(columnDefinition = "varchar(5) comment '状态'")
     private String status;
     @Column(columnDefinition = "varchar(30) comment '备注'")
     private String remark;
-    @Column(columnDefinition = "varchar(20) comment '创建人'")
+    @Column(nullable = false, columnDefinition = "varchar(20) comment '创建人'")
     private String createdBy;
-    @Column(columnDefinition = "TIMESTAMP comment '创建时间'")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP comment '创建时间'")
     private String createdDate;
-    @Column(columnDefinition = "varchar(20) comment '最后修改人'")
+    @Column(nullable = false, columnDefinition = "varchar(20) comment '最后修改人'")
     private String lastUpdatedBy;
-    @Column(columnDefinition = "TIMESTAMP comment '最后修改日期'")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP comment '最后修改日期'")
     private String lastUpdatedDate;
 
     public Integer getId() {

@@ -1,18 +1,17 @@
 package com.autotboxdatasystem.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
-
 import com.autotboxdatasystem.demo.entity.UserEntity;
 import com.autotboxdatasystem.demo.entity.PageEntity;
 import com.autotboxdatasystem.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path="/User")
+@RequestMapping(path = "/User")
 public class UserController {
     private final UserService userService;
 
@@ -21,72 +20,169 @@ public class UserController {
         this.userService = userService;
     }
 
+    // 注册
+
+    // 登入
+
+    // 登出
+
     // 添加用户
-    @PostMapping(path="/addUser")
-    public @ResponseBody ResponseEntity<String> addUser (@RequestBody UserEntity userEntity){
-        if (!userService.addUser(userEntity)){
-            return new ResponseEntity<>("Add User Failed. Email & Phone was taken.", HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    @PostMapping(path = "/addUser")
+    public @ResponseBody
+    ResponseEntity<String> addUser(@RequestBody UserEntity userEntity) {
+        Integer ans = userService.addUser(userEntity);
+        if (ans != 0) {
+            if (ans == -1) {
+                return new ResponseEntity<>("Add User Failed. Username or Password is null.", HttpStatus.OK);
+            }else if(ans == -10){
+                return new ResponseEntity<>("Add User Failed. Username was taken.", HttpStatus.OK);
+            }else if (ans == -11){
+                return new ResponseEntity<>("Add User Failed. Email was taken.", HttpStatus.OK);
+            }else if (ans == -12){
+                return new ResponseEntity<>("Add User Failed. Phone was taken.", HttpStatus.OK);
+            }else if (ans == -20){
+                return new ResponseEntity<>("Add User Failed. Username illegal.", HttpStatus.OK);
+            }else if (ans == -21){
+                return new ResponseEntity<>("Add User Failed. Password illegal.", HttpStatus.OK);
+            }else if (ans == -22){
+                return new ResponseEntity<>("Add User Failed. Email illegal.", HttpStatus.OK);
+            }else if (ans == -23){
+                return new ResponseEntity<>("Add User Failed. Phone illegal", HttpStatus.OK);
+            }
         }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 硬删除用户
-    @PostMapping(path="/hardDeleteUserById")
-    public @ResponseBody ResponseEntity<String> hardDeleteUserById (@RequestBody UserEntity userEntity){
+    @PostMapping(path = "/hardDeleteUserById")
+    public @ResponseBody
+    ResponseEntity<String> hardDeleteUserById(@RequestBody UserEntity userEntity) {
         userService.hardDeleteUserById(userEntity);
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 软删除用户
-    @PostMapping(path="/softDeleteUserById")
-    public @ResponseBody ResponseEntity<String> softDeleteUserById (@RequestBody UserEntity userEntity){
+    @PostMapping(path = "/softDeleteUserById")
+    public @ResponseBody
+    ResponseEntity<String> softDeleteUserById(@RequestBody UserEntity userEntity) {
         userService.softDeleteUserById(userEntity);
         userService.deactivateUserById(userEntity);
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 恢复软删除用户
-    @PostMapping(path="/restoreUserById")
-    public @ResponseBody ResponseEntity<String> restoreUserById (@RequestBody UserEntity userEntity){
+    @PostMapping(path = "/restoreUserById")
+    public @ResponseBody
+    ResponseEntity<String> restoreUserById(@RequestBody UserEntity userEntity) {
         userService.restoreUserById(userEntity);
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 激活用户
-    @PostMapping(path="/activateUserById")
-    public @ResponseBody ResponseEntity<String> activateUserById (@RequestBody UserEntity userEntity){
+    @PostMapping(path = "/activateUserById")
+    public @ResponseBody
+    ResponseEntity<String> activateUserById(@RequestBody UserEntity userEntity) {
         userService.activateUserById(userEntity);
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 禁用用户
-    @PostMapping(path="/deactivateUserById")
-    public @ResponseBody ResponseEntity<String> deactivateUserById (@RequestBody UserEntity userEntity){
+    @PostMapping(path = "/deactivateUserById")
+    public @ResponseBody
+    ResponseEntity<String> deactivateUserById(@RequestBody UserEntity userEntity) {
         userService.deactivateUserById(userEntity);
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 更新用户信息
-    @PostMapping(path="/updateUserById")
-    public @ResponseBody ResponseEntity<String> updateUserById (@RequestBody UserEntity userEntity){
-        userService.updateUserById(userEntity);
+    // 更新用户名
+    @PostMapping(path = "/updateUsernameById")
+    public @ResponseBody
+    ResponseEntity<String> updateUsernameById(@RequestBody UserEntity userEntity) {
+        if (!userService.updateUsernameById(userEntity)) {
+            return new ResponseEntity<>("Update Username Failed. Username was token, illegal or none.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新邮箱
+    @PostMapping(path = "/updateEmailById")
+    public @ResponseBody
+    ResponseEntity<String> updateEmailById(@RequestBody UserEntity userEntity) {
+        if (!userService.updateEmailById(userEntity)) {
+            return new ResponseEntity<>("Update Email Failed. Email was not email or token, illegal or none.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新电话
+    @PostMapping(path = "/updatePhoneById")
+    public @ResponseBody
+    ResponseEntity<String> updatePhoneById(@RequestBody UserEntity userEntity) {
+        if (!userService.updatePhoneById(userEntity)) {
+            return new ResponseEntity<>("Update Phone Failed. Phone was token, illegal or none.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新密码
+    @PostMapping(path = "/updatePasswordById")
+    public @ResponseBody
+    ResponseEntity<String> updatePasswordById(@RequestBody UserEntity userEntity) {
+        if (!userService.updatePasswordById(userEntity)) {
+            return new ResponseEntity<>("Update Password Failed. Password was illegal or none.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新头像
+    @PostMapping(path = "/updateAvatarById")
+    public @ResponseBody
+    ResponseEntity<String> updateAvatarById(@RequestBody UserEntity userEntity) {
+        if (!userService.updateAvatarById(userEntity)) {
+            return new ResponseEntity<>("Update Avatar Failed. Avatar was none.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 重置用户密码
+    @PostMapping(path = "/resetPasswordById")
+    public @ResponseBody
+    ResponseEntity<String> resetPasswordById(@RequestBody UserEntity userEntity) {
+        userService.resetPasswordById(userEntity);
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // ID查找用户
-    @PostMapping(path="/searchUserById")
-    public @ResponseBody UserEntity searchUserById (@RequestBody UserEntity userEntity){
+    @PostMapping(path = "/searchUserById")
+    public @ResponseBody
+    UserEntity searchUserById(@RequestBody UserEntity userEntity) {
         return userService.searchUserById(userEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // 用户名查找用户
+    @PostMapping(path = "/searchUserByUsername")
+    public @ResponseBody
+    UserEntity searchUserByUsername(@RequestBody UserEntity userEntity) {
+        return userService.searchUserByUsername(userEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 查找激活用户
+    @PostMapping(path = "/searchActivedUser")
+    public @ResponseBody
+    Page<UserEntity> searchActivedUser(@RequestBody PageEntity pageEntity) {
+        Integer pageIndex = pageEntity.getPageIndex();
+        Integer pageSize = pageEntity.getPageSize();
+        return userService.searchActivedUser(pageIndex, pageSize);
+    }
+
     // 查找全部用户
-    @PostMapping(path="/searchAllUser")
-    public @ResponseBody Page<UserEntity> searchAllUser (@RequestBody PageEntity pageEntity){
+    @PostMapping(path = "/searchAllUser")
+    public @ResponseBody
+    Page<UserEntity> searchAllUser(@RequestBody PageEntity pageEntity) {
         Integer pageIndex = pageEntity.getPageIndex();
         Integer pageSize = pageEntity.getPageSize();
         return userService.searchAllUser(pageIndex, pageSize);
     }
-
 }

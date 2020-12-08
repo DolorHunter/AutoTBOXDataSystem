@@ -4,16 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 
 @Entity
-public class UserEntity extends BaseEntity{
-    @Column(nullable=false, columnDefinition="VARCHAR(20) comment '用户名'")
+public class UserEntity extends BaseEntity {
+    @Column(nullable = false, columnDefinition = "VARCHAR(20) comment '用户名'")
     private String username;
-    @Column(nullable=false, columnDefinition="VARCHAR(50) comment '密码'")
+    @Column(nullable = false, columnDefinition = "VARCHAR(50) comment '密码'")
     private String password;
-    @Column(columnDefinition="VARCHAR(20) comment '邮箱'")
+    @Column(columnDefinition = "VARCHAR(20) comment '邮箱'")
     private String email;
-    @Column(columnDefinition="VARCHAR(20) comment '电话'")
+    @Column(columnDefinition = "VARCHAR(20) comment '电话'")
     private String phone;
-    @Column(columnDefinition="VARCHAR(20) comment '头像'")
+    @Column(columnDefinition = "VARCHAR(20) comment '头像'")
     private String avatar;
 
     public String getUsername() {
