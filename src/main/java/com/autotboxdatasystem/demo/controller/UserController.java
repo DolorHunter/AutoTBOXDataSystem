@@ -30,25 +30,9 @@ public class UserController {
     @PostMapping(path = "/addUser")
     public @ResponseBody
     ResponseEntity<String> addUser(@RequestBody UserEntity userEntity) {
-        Integer ans = userService.addUser(userEntity);
-        if (ans != 0) {
-            if (ans == -1) {
-                return new ResponseEntity<>("Add User Failed. Username or Password is null.", HttpStatus.OK);
-            }else if(ans == -10){
-                return new ResponseEntity<>("Add User Failed. Username was taken.", HttpStatus.OK);
-            }else if (ans == -11){
-                return new ResponseEntity<>("Add User Failed. Email was taken.", HttpStatus.OK);
-            }else if (ans == -12){
-                return new ResponseEntity<>("Add User Failed. Phone was taken.", HttpStatus.OK);
-            }else if (ans == -20){
-                return new ResponseEntity<>("Add User Failed. Username illegal.", HttpStatus.OK);
-            }else if (ans == -21){
-                return new ResponseEntity<>("Add User Failed. Password illegal.", HttpStatus.OK);
-            }else if (ans == -22){
-                return new ResponseEntity<>("Add User Failed. Email illegal.", HttpStatus.OK);
-            }else if (ans == -23){
-                return new ResponseEntity<>("Add User Failed. Phone illegal", HttpStatus.OK);
-            }
+        String ans = userService.addUser(userEntity);
+        if (!ans.equals("")) {
+            return new ResponseEntity<>("Add User Failed. " + ans, HttpStatus.OK);
         }
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }

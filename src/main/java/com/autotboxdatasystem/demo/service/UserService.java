@@ -4,7 +4,7 @@ import com.autotboxdatasystem.demo.entity.UserEntity;
 import org.springframework.data.domain.Page;
 
 public interface UserService {
-    Integer addUser(UserEntity userEntity);
+    String addUser(UserEntity userEntity);
 
     void activateUserById(UserEntity userEntity);
 

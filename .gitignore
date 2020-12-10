@@ -34,3 +34,6 @@ build/
 
 ### Git ###
 .git
+
+### Design Docs ###
+entity.xlsx

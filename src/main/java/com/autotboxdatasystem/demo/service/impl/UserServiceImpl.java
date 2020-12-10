@@ -33,35 +33,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer addUser(UserEntity userEntity) {
+    public String addUser(UserEntity userEntity) {
         String username = userEntity.getUsername();
         String password = userEntity.getPassword();
         String phone = userEntity.getPhone();
         String email = userEntity.getEmail();
 
         if (username == null || password == null) {
-            return -1;
+            return "Username or Password is null.";
+        } else {
+            if (!RegexUtil.isUsername(username)) {
+                return "Username illegal.";
+            }
+            if (!RegexUtil.isPassword(password)) {
+                return "Password illegal.";
+            }
+            if (userDAO.findByUsername(username) != null) {
+                return "Username was taken.";
+            }
         }
-        if (userDAO.findByUsername(username) != null) {
-            return -10;
+        if (email != null){
+            if (!RegexUtil.isEmail(email)) {
+                return "Email illegal.";
+            }
+            if (userDAO.findByEmail(email) != null) {
+                return "Email was taken.";
+            }
         }
-        if (userDAO.findByEmail(email) != null) {
-            return -11;
-        }
-        if (userDAO.findByPhone(phone) != null) {
-            return -12;
-        }
-        if (!RegexUtil.isUsername(username)) {
-            return -20;
-        }
-        if (!RegexUtil.isPassword(password)) {
-            return -21;
-        }
-        if (email != null && !RegexUtil.isEmail(email)) {
-            return -22;
-        }
-        if (phone != null && !RegexUtil.isPhone(phone)) {
-            return -23;
+        if (phone != null){
+            if (!RegexUtil.isPhone(phone)) {
+                return "Phone illegal.";
+            }
+            if (userDAO.findByPhone(phone) != null) {
+                return "Phone was taken.";
+            }
         }
 
         userEntity.setIsActivated("1");
@@ -76,7 +81,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setLastUpdatedDate(DateUtil.getCurDateTime());
 
         userDAO.save(userEntity);
-        return 0;
+        return "";
     }
 
     @Override
