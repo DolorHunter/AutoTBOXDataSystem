@@ -13,6 +13,8 @@ public interface MenuDAO extends PagingAndSortingRepository<MenuEntity, Integer>
 
     MenuEntity findByMenuName(String menuName);
 
+    List<MenuEntity> findByFatherMenuId(Integer fatherMenuId);
+
     List<MenuEntity> findByCreatedBy(String username);
 
     List<MenuEntity> findByLastUpdatedBy(String username);

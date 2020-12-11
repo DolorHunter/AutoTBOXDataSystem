@@ -25,7 +25,9 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public boolean addRole2User(UserRoleEntity userRoleEntity) {
-        UserRoleEntity userRole = userRoleDAO.findByUserIdAndRoleId(userRoleEntity.getUserId(), userRoleEntity.getRoleId());
+        Integer userId=  userRoleEntity.getUserId();
+        Integer roleId = userRoleEntity.getRoleId();
+        UserRoleEntity userRole = userRoleDAO.findByUserIdAndRoleId(userId, roleId);
         if (userRole != null) {
             return false;
         }

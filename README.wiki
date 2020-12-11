@@ -116,6 +116,8 @@
 <table>
   <tr><th colspan="5" align="center">UserController</th></tr>
   <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>register</td><td>/User/register</td><td>userEntity</td><td>x</td><td>用户注册</td></tr>
+  <tr><td>login</td><td>/User/login</td><td>userEntity</td><td>x</td><td>用户登录</td></tr>
   <tr><td>addUser</td><td>/User/addUser</td><td>userEntity</td><td>x</td><td>添加用户</td></tr>
   <tr><td>hardDeleteUserById</td><td>/User/hardDeleteUserById</td><td>userEntity</td><td>x</td><td>硬删除用户</td></tr>
   <tr><td>softDeleteUserById</td><td>/User/softDeleteUserById</td><td>userEntity</td><td>x</td><td>软删除用户</td></tr>

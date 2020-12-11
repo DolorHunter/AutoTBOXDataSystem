@@ -21,10 +21,25 @@ public class UserController {
     }
 
     // 注册
+    @PostMapping(path = "/register")
+    public @ResponseBody
+    ResponseEntity<String> register(@RequestBody UserEntity userEntity) {
+        String ans = userService.addUser(userEntity);
+        if (!ans.equals("")) {
+            return new ResponseEntity<>("Register Failed. " + ans, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
 
     // 登入
-
-    // 登出
+    @PostMapping(path = "/login")
+    public @ResponseBody
+    ResponseEntity<String> login(@RequestBody UserEntity userEntity) {
+        if (!userService.login(userEntity)) {
+            return new ResponseEntity<>("Incorrect Username or Password.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
 
     // 添加用户
     @PostMapping(path = "/addUser")

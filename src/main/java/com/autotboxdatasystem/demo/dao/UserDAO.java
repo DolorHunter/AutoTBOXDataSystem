@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface UserDAO extends PagingAndSortingRepository<UserEntity, Integer> {
 
+    UserEntity findByUsernameAndPassword(String username, String password);
+
     UserEntity findByUsername(String username);
 
     UserEntity findByPhone(String phone);
