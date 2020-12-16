@@ -69,6 +69,22 @@ public class RoleController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // 更新状态
+    @PostMapping(path = "/updateStatusById")
+    public @ResponseBody
+    ResponseEntity<String> updateStatusById(@RequestBody RoleEntity roleEntity) {
+        roleService.updateStatusById(roleEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新备注
+    @PostMapping(path = "/updateRemarkById")
+    public @ResponseBody
+    ResponseEntity<String> updateRemarkById(@RequestBody RoleEntity roleEntity) {
+        roleService.updateRemarkById(roleEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
     // 更新角色信息
     @PostMapping(path = "/updateRoleById")
     public @ResponseBody

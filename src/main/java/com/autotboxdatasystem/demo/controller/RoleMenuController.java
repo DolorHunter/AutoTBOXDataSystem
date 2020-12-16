@@ -63,6 +63,22 @@ public class RoleMenuController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // 更新状态
+    @PostMapping(path = "/updateStatusById")
+    public @ResponseBody
+    ResponseEntity<String> updateStatusById(@RequestBody RoleMenuEntity roleMenuEntity) {
+        roleMenuService.updateStatusById(roleMenuEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新备注
+    @PostMapping(path = "/updateRemarkById")
+    public @ResponseBody
+    ResponseEntity<String> updateRemarkById(@RequestBody RoleMenuEntity roleMenuEntity) {
+        roleMenuService.updateRemarkById(roleMenuEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
     // ID查找角色菜单
     @PostMapping(path = "/searchRoleMenuById")
     public @ResponseBody

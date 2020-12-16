@@ -18,6 +18,10 @@ public interface MenuService {
 
     void updateMenuById(MenuEntity menuEntity);
 
+    boolean updateStatusById(MenuEntity menuEntity);
+
+    boolean updateRemarkById(MenuEntity menuEntity);
+
     MenuEntity searchMenuById(MenuEntity menuEntity);
 
     MenuEntity searchMenuByMenuName(MenuEntity menuEntity);

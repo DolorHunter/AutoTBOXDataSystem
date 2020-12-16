@@ -93,6 +93,22 @@ public class UserController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // 更新状态
+    @PostMapping(path = "/updateStatusById")
+    public @ResponseBody
+    ResponseEntity<String> updateStatusById(@RequestBody UserEntity userEntity) {
+        userService.updateStatusById(userEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新备注
+    @PostMapping(path = "/updateRemarkById")
+    public @ResponseBody
+    ResponseEntity<String> updateRemarkById(@RequestBody UserEntity userEntity) {
+        userService.updateRemarkById(userEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
     // 更新用户名
     @PostMapping(path = "/updateUsernameById")
     public @ResponseBody

@@ -63,6 +63,22 @@ public class UserRoleController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // 更新状态
+    @PostMapping(path = "/updateStatusById")
+    public @ResponseBody
+    ResponseEntity<String> updateStatusById(@RequestBody UserRoleEntity userRoleEntity) {
+        userRoleService.updateStatusById(userRoleEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 更新备注
+    @PostMapping(path = "/updateRemarkById")
+    public @ResponseBody
+    ResponseEntity<String> updateRemarkById(@RequestBody UserRoleEntity userRoleEntity) {
+        userRoleService.updateRemarkById(userRoleEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
     // ID查找角用户角色
     @PostMapping(path = "/searchUserRoleById")
     public @ResponseBody

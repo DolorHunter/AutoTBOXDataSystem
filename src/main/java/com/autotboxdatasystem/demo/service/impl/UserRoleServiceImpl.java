@@ -25,7 +25,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public boolean addRole2User(UserRoleEntity userRoleEntity) {
-        Integer userId=  userRoleEntity.getUserId();
+        Integer userId = userRoleEntity.getUserId();
         Integer roleId = userRoleEntity.getRoleId();
         UserRoleEntity userRole = userRoleDAO.findByUserIdAndRoleId(userId, roleId);
         if (userRole != null) {
@@ -60,6 +60,34 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public void deleteUserRoleByRoleName(UserRoleEntity userRoleEntity) {
         userRoleDAO.deleteAllByRoleName(userRoleEntity.getRoleName());
+    }
+
+    @Override
+    public boolean updateStatusById(UserRoleEntity userRoleEntity) {
+        UserRoleEntity userRole = userRoleDAO.findById(userRoleEntity.getId()).get();
+        String status = userRoleEntity.getStatus();
+        if (status != null) {
+            userRole.setStatus(status);
+            userRole.setLastUpdatedBy(userRoleEntity.getLastUpdatedBy());
+            userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
+            userRoleDAO.save(userRole);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateRemarkById(UserRoleEntity userRoleEntity) {
+        UserRoleEntity userRole = userRoleDAO.findById(userRoleEntity.getId()).get();
+        String remark = userRoleEntity.getRemark();
+        if (remark != null) {
+            userRole.setRemark(remark);
+            userRole.setLastUpdatedBy(userRoleEntity.getLastUpdatedBy());
+            userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
+            userRoleDAO.save(userRole);
+            return true;
+        }
+        return false;
     }
 
     @Override

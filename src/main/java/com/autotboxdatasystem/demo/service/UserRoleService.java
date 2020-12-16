@@ -16,6 +16,10 @@ public interface UserRoleService {
 
     void deleteUserRoleByRoleName(UserRoleEntity userRoleEntity);
 
+    boolean updateStatusById(UserRoleEntity userRoleEntity);
+
+    boolean updateRemarkById(UserRoleEntity userRoleEntity);
+
     UserRoleEntity searchUserRoleById(UserRoleEntity userRoleEntity);
 
     List<UserRoleEntity> searchUserRoleByUserId(UserRoleEntity userRoleEntity);

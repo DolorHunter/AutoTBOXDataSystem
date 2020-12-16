@@ -52,6 +52,8 @@ public class RoleServiceImpl implements RoleService {
         if (userRoleList != null) {
             for (UserRoleEntity userRole : userRoleList) {
                 userRole.setIsActivated("1");
+                userRole.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
                 userRoleDAO.save(userRole);
             }
         }
@@ -60,12 +62,15 @@ public class RoleServiceImpl implements RoleService {
         if (roleMenuList != null) {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("1");
+                roleMenu.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
                 roleMenuDAO.save(roleMenu);
             }
         }
 
         RoleEntity role = roleDAO.findById(roleEntity.getId()).get();
         role.setIsActivated("1");
+        role.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
         role.setLastUpdatedDate(DateUtil.getCurDateTime());
         roleDAO.save(role);
     }
@@ -76,6 +81,8 @@ public class RoleServiceImpl implements RoleService {
         if (userRoleList != null) {
             for (UserRoleEntity userRole : userRoleList) {
                 userRole.setIsActivated("0");
+                userRole.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
                 userRoleDAO.save(userRole);
             }
         }
@@ -84,12 +91,15 @@ public class RoleServiceImpl implements RoleService {
         if (roleMenuList != null) {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("0");
+                roleMenu.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
                 roleMenuDAO.save(roleMenu);
             }
         }
 
         RoleEntity role = roleDAO.findById(roleEntity.getId()).get();
         role.setIsActivated("0");
+        role.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
         role.setLastUpdatedDate(DateUtil.getCurDateTime());
         roleDAO.save(role);
     }
@@ -101,6 +111,8 @@ public class RoleServiceImpl implements RoleService {
             for (UserRoleEntity userRole : userRoleList) {
                 userRole.setIsActivated("0");
                 userRole.setIsDeleted("1");
+                userRole.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
                 userRoleDAO.save(userRole);
             }
         }
@@ -110,6 +122,8 @@ public class RoleServiceImpl implements RoleService {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("0");
                 roleMenu.setIsDeleted("1");
+                roleMenu.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
                 roleMenuDAO.save(roleMenu);
             }
         }
@@ -117,6 +131,7 @@ public class RoleServiceImpl implements RoleService {
         RoleEntity role = roleDAO.findById(roleEntity.getId()).get();
         role.setIsActivated("0");
         role.setIsDeleted("1");
+        role.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
         role.setLastUpdatedDate(DateUtil.getCurDateTime());
         roleDAO.save(role);
     }
@@ -128,6 +143,8 @@ public class RoleServiceImpl implements RoleService {
             for (UserRoleEntity userRole : userRoleList) {
                 userRole.setIsActivated("1");
                 userRole.setIsDeleted("0");
+                userRole.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
                 userRoleDAO.save(userRole);
             }
         }
@@ -137,6 +154,8 @@ public class RoleServiceImpl implements RoleService {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("1");
                 roleMenu.setIsDeleted("0");
+                roleMenu.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
                 roleMenuDAO.save(roleMenu);
             }
         }
@@ -144,6 +163,7 @@ public class RoleServiceImpl implements RoleService {
         RoleEntity role = roleDAO.findById(roleEntity.getId()).get();
         role.setIsActivated("1");
         role.setIsDeleted("0");
+        role.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
         role.setLastUpdatedDate(DateUtil.getCurDateTime());
         roleDAO.save(role);
     }
@@ -153,6 +173,34 @@ public class RoleServiceImpl implements RoleService {
         userRoleDAO.deleteAllByRoleId(roleEntity.getId());
         roleMenuDAO.deleteAllByRoleId(roleEntity.getId());
         roleDAO.deleteById(roleEntity.getId());
+    }
+
+    @Override
+    public boolean updateStatusById(RoleEntity roleEntity) {
+        RoleEntity role = roleDAO.findById(roleEntity.getId()).get();
+        String status = roleEntity.getStatus();
+        if (status != null) {
+            role.setStatus(status);
+            role.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+            role.setLastUpdatedDate(DateUtil.getCurDateTime());
+            roleDAO.save(role);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateRemarkById(RoleEntity roleEntity) {
+        RoleEntity role = roleDAO.findById(roleEntity.getId()).get();
+        String remark = roleEntity.getRemark();
+        if (remark != null) {
+            role.setRemark(remark);
+            role.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+            role.setLastUpdatedDate(DateUtil.getCurDateTime());
+            roleDAO.save(role);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -166,6 +214,8 @@ public class RoleServiceImpl implements RoleService {
             if (userRoleList != null) {
                 for (UserRoleEntity userRole : userRoleList) {
                     userRole.setRoleName(roleName);
+                    userRole.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                    userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
                     userRoleDAO.save(userRole);
                 }
             }
@@ -173,6 +223,8 @@ public class RoleServiceImpl implements RoleService {
             if (roleMenuList != null) {
                 for (RoleMenuEntity roleMenu : roleMenuList) {
                     roleMenu.setRoleName(roleName);
+                    roleMenu.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
+                    roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
                     roleMenuDAO.save(roleMenu);
                 }
             }
@@ -185,6 +237,7 @@ public class RoleServiceImpl implements RoleService {
             role.setFatherRoleId(fatherRoleId);
         }
 
+        role.setLastUpdatedBy(roleEntity.getLastUpdatedBy());
         role.setLastUpdatedDate(DateUtil.getCurDateTime());
         roleDAO.save(role);
     }

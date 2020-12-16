@@ -1,6 +1,5 @@
 package com.autotboxdatasystem.demo.dao;
 
-import com.autotboxdatasystem.demo.entity.RoleMenuEntity;
 import com.autotboxdatasystem.demo.entity.UserRoleEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

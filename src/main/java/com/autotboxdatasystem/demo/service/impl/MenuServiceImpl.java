@@ -54,6 +54,7 @@ public class MenuServiceImpl implements MenuService {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("0");
                 roleMenu.setIsDeleted("1");
+                roleMenu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
                 roleMenuDAO.save(roleMenu);
             }
         }
@@ -61,6 +62,7 @@ public class MenuServiceImpl implements MenuService {
         MenuEntity menu = menuDAO.findById(menuEntity.getId()).get();
         menu.setIsActivated("0");
         menu.setIsDeleted("1");
+        menu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
         menu.setLastUpdatedDate(DateUtil.getCurDateTime());
         menuDAO.save(menu);
     }
@@ -72,6 +74,7 @@ public class MenuServiceImpl implements MenuService {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("1");
                 roleMenu.setIsDeleted("0");
+                roleMenu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
                 roleMenuDAO.save(roleMenu);
             }
         }
@@ -79,6 +82,7 @@ public class MenuServiceImpl implements MenuService {
         MenuEntity menu = menuDAO.findById(menuEntity.getId()).get();
         menu.setIsActivated("1");
         menu.setIsDeleted("0");
+        menu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
         menu.setLastUpdatedDate(DateUtil.getCurDateTime());
         menuDAO.save(menu);
     }
@@ -89,12 +93,14 @@ public class MenuServiceImpl implements MenuService {
         if (roleMenuList != null) {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("1");
+                roleMenu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
                 roleMenuDAO.save(roleMenu);
             }
         }
 
         MenuEntity menu = menuDAO.findById(menuEntity.getId()).get();
         menu.setIsActivated("1");
+        menu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
         menu.setLastUpdatedDate(DateUtil.getCurDateTime());
         menuDAO.save(menu);
     }
@@ -105,12 +111,14 @@ public class MenuServiceImpl implements MenuService {
         if (roleMenuList != null) {
             for (RoleMenuEntity roleMenu : roleMenuList) {
                 roleMenu.setIsActivated("0");
+                roleMenu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
                 roleMenuDAO.save(roleMenu);
             }
         }
 
         MenuEntity menu = menuDAO.findById(menuEntity.getId()).get();
         menu.setIsActivated("0");
+        menu.setLastUpdatedBy(menu.getLastUpdatedBy());
         menu.setLastUpdatedDate(DateUtil.getCurDateTime());
         menuDAO.save(menu);
     }
@@ -121,11 +129,15 @@ public class MenuServiceImpl implements MenuService {
         String menuName = menuEntity.getMenuName();
         String menuType = menuEntity.getMenuType();
         Integer fatherMenuId = menuEntity.getFatherMenuId();
+        String status = menuEntity.getStatus();
+        String remark = menuEntity.getRemark();
         if (menuName != null) {
             List<RoleMenuEntity> roleMenuList = roleMenuDAO.findByMenuName(menuName);
             if (roleMenuList != null) {
                 for (RoleMenuEntity roleMenu : roleMenuList) {
                     roleMenu.setMenuName(menuName);
+                    roleMenu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
+                    roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
                     roleMenuDAO.save(roleMenu);
                 }
             }
@@ -137,9 +149,44 @@ public class MenuServiceImpl implements MenuService {
         if (fatherMenuId != null) {
             menu.setFatherMenuId(fatherMenuId);
         }
+        if (status != null) {
+            menu.setStatus(status);
+        }
+        if (remark != null) {
+            menu.setRemark(remark);
+        }
 
+        menu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
         menu.setLastUpdatedDate(DateUtil.getCurDateTime());
         menuDAO.save(menu);
+    }
+
+    @Override
+    public boolean updateStatusById(MenuEntity menuEntity) {
+        MenuEntity menu = menuDAO.findById(menuEntity.getId()).get();
+        String status = menuEntity.getStatus();
+        if (status != null) {
+            menu.setStatus(status);
+            menu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
+            menu.setLastUpdatedDate(DateUtil.getCurDateTime());
+            menuDAO.save(menu);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateRemarkById(MenuEntity menuEntity) {
+        MenuEntity menu = menuDAO.findById(menuEntity.getId()).get();
+        String remark = menuEntity.getRemark();
+        if (remark != null) {
+            menu.setRemark(remark);
+            menu.setLastUpdatedBy(menuEntity.getLastUpdatedBy());
+            menu.setLastUpdatedDate(DateUtil.getCurDateTime());
+            menuDAO.save(menu);
+            return true;
+        }
+        return false;
     }
 
     @Override

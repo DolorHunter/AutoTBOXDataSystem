@@ -130,6 +130,34 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
+    public boolean updateStatusById(RoleMenuEntity roleMenuEntity) {
+        RoleMenuEntity roleMenu = roleMenuDAO.findById(roleMenuEntity.getId()).get();
+        String status = roleMenuEntity.getStatus();
+        if (status != null) {
+            roleMenu.setStatus(status);
+            roleMenu.setLastUpdatedBy(roleMenuEntity.getLastUpdatedBy());
+            roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
+            roleMenuDAO.save(roleMenu);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateRemarkById(RoleMenuEntity roleMenuEntity) {
+        RoleMenuEntity roleMenu = roleMenuDAO.findById(roleMenuEntity.getId()).get();
+        String remark = roleMenuEntity.getRemark();
+        if (remark != null) {
+            roleMenu.setRemark(remark);
+            roleMenu.setLastUpdatedBy(roleMenuEntity.getLastUpdatedBy());
+            roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
+            roleMenuDAO.save(roleMenu);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public RoleMenuEntity searchRoleMenuById(RoleMenuEntity roleMenuEntity) {
         return roleMenuDAO.findById(roleMenuEntity.getId()).get();
     }

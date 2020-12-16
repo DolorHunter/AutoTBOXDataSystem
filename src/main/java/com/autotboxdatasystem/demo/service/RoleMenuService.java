@@ -16,6 +16,10 @@ public interface RoleMenuService {
 
     void deleteRoleMenuByMenuName(RoleMenuEntity roleMenuEntity);
 
+    boolean updateStatusById(RoleMenuEntity roleMenuEntity);
+
+    boolean updateRemarkById(RoleMenuEntity roleMenuEntity);
+
     RoleMenuEntity searchRoleMenuById(RoleMenuEntity roleMenuEntity);
 
     List<RoleMenuEntity> searchRoleMenuByRoleId(RoleMenuEntity roleMenuEntity);

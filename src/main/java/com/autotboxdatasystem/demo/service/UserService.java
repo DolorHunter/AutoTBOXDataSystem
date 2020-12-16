@@ -18,6 +18,10 @@ public interface UserService {
 
     void hardDeleteUserById(UserEntity userEntity);
 
+    boolean updateStatusById(UserEntity userEntity);
+
+    boolean updateRemarkById(UserEntity userEntity);
+
     boolean updateUsernameById(UserEntity userEntity);
 
     boolean updateEmailById(UserEntity userEntity);

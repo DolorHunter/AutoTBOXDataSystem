@@ -107,6 +107,99 @@
   <tr><td>String</td><td>varchar(20)</td><td>menuName</td><td>菜单名</td></tr>
 </table>
 
+=== 1.1.8 CarEntity ===
+
+车辆实体类. 关联表car_entity.
+
+<table>
+  <tr><th colspan="4" align="center">CarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>String</td><td>varchar(50)</td><td>carName</td><td>车辆名</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>carBody</td><td>车身</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>transmission</td><td>变速箱</td></tr>
+  <tr><td>Integer</td><td>int</td><td>seatsNumber</td><td>座位数</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>firstYearOfProduction</td><td>首次生产年份</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>lastYearOfProduction</td><td>最后生产年份</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>drive</td><td>驱动</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>engineType</td><td>引擎类型</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>fuel</td><td>燃料</td></tr>
+  <tr><td>Integer</td><td>int</td><td>totalMaximumPower</td><td>最大功率</td></tr>
+  <tr><td>Integer</td><td>int</td><td>totalMaximumTorque</td><td>最大扭矩</td></tr>
+  <tr><td>Integer</td><td>int</td><td>cylindersNumber</td><td>气缸数量</td></tr>
+  <tr><td>Integer</td><td>int</td><td>cylinderValves</td><td>每缸气门</td></tr>
+  <tr><td>Integer</td><td>int</td><td>cylinderCapacity</td><td>气缸容量</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>boreXStroke</td><td>气缸x行程</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>compressionRatio</td><td>压缩率</td></tr>
+  <tr><td>Integer</td><td>int</td><td>maxPower</td><td>最大功率</td></tr>
+  <tr><td>Integer</td><td>int</td><td>maxPowerRPM</td><td>最大功率转速</td></tr>
+  <tr><td>Integer</td><td>int</td><td>maxTorque</td><td>最大扭矩</td></tr>
+  <tr><td>Integer</td><td>int</td><td>maxTorqueRPM</td><td>最大扭矩转速</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>fuelSystem</td><td>燃油系统</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>valveControl</td><td>阀门控制</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>turbo</td><td>涡轮增压</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>catalyst</td><td>催化剂</td></tr>
+  <tr><td>Integer</td><td>int</td><td>fuelTank</td><td>燃料容量</td></tr>
+  <tr><td>Integer</td><td>int</td><td>electroEnginesNumber</td><td>电动引擎数量</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>batteryType</td><td>电池类型</td></tr>
+  <tr><td>Integer</td><td>int</td><td>batteryCapacity</td><td>电池容量</td></tr>
+  <tr><td>Integer</td><td>int</td><td>batteryVoltage</td><td>电池电压</td></tr>
+  <tr><td>Integer</td><td>int</td><td>batteryRange</td><td>电池里程</td></tr>
+  <tr><td>Integer</td><td>int</td><td>powerConsumption</td><td>电量消耗</td></tr>
+  <tr><td>Integer</td><td>int</td><td>topSpeed</td><td>最大速度</td></tr>
+  <tr><td>Double</td><td>double</td><td>acceleration</td><td>零百加速用时</td></tr>
+  <tr><td>Double</td><td>double</td><td>cityConsumption</td><td>城市每百公里耗油量</td></tr>
+  <tr><td>Double</td><td>double</td><td>cityConsumptionKM</td><td>城市每公里耗油量</td></tr>
+  <tr><td>Double</td><td>double</td><td>extraUrbanConsumption</td><td>额外城市每百公里耗油量</td></tr>
+  <tr><td>Double</td><td>double</td><td>extraUrbanConsumptionKM</td><td>额外城市每公里耗油量</td></tr>
+  <tr><td>Double</td><td>double</td><td>combinedConsumption</td><td>混合每百公里耗油量</td></tr>
+  <tr><td>Double</td><td>double</td><td>combinedConsumptionKM</td><td>混合每公里耗油量</td></tr>
+  <tr><td>Double</td><td>double</td><td>consumptionMonitor</td><td>每百公里耗油量花费监视</td></tr>
+  <tr><td>Double</td><td>double</td><td>consumptionMonitorKM</td><td>每公里耗油量花费监视</td></tr>
+  <tr><td>Double</td><td>double</td><td>CO2Emissions</td><td>每公里二氧化碳排放量</td></tr>
+  <tr><td>String</td><td>varchar(1)</td><td>energyLabel</td><td>能源标签</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>frontWheelSuspension</td><td>前轮悬挂</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>rearWheelSuspension</td><td>后轮悬挂</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>frontSuspension</td><td>前悬挂</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>rearSuspension</td><td>后悬挂</td></tr>
+  <tr><td>String</td><td>varchar(5)</td><td>frontStabilizer</td><td>前稳定器</td></tr>
+  <tr><td>String</td><td>varchar(5)</td><td>rearStabilizer</td><td>后稳定器</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>frontBrakes</td><td>前轮刹车</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>rearBrakes</td><td>后轮刹车</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>frontTireSize</td><td>前轮尺寸</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>rearTireSize</td><td>后轮尺寸</td></tr>
+
+  <tr><td>Double</td><td>double</td><td>turningRadius</td><td>转弯半径</td></tr>
+  <tr><td>Double</td><td>double</td><td>_1stGear</td><td>一档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_2ndGear</td><td>二档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_3rdGear</td><td>三档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_4thGear</td><td>四档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_5thGear</td><td>五档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_6thGear</td><td>六档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_7thGear</td><td>七档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_8thGear</td><td>八档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>_9thGear</td><td>九档变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>reverseGear</td><td>倒车变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>finalTransmission</td><td>最终变速</td></tr>
+  <tr><td>Double</td><td>double</td><td>RPMAt120kmh</td><td>120km/h时转速</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>maintenance</td><td>保养</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>generalWarranty</td><td>一般保修</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>chassisWarranty</td><td>底盘保修</td></tr>
+</table>
+
+=== 1.1.9 UserCarEntity ===
+
+用户车辆类, 关联用户与车辆. 关联表user_car_entity.
+
+<table>
+  <tr><th colspan="4" align="center">UserCarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>Integer</td><td>int</td><td>userId</td><td>用户ID</td></tr>
+  <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
+  <tr><td>Integer</td><td>int</td><td>carId</td><td>车辆ID</td></tr>
+  <tr><td>String</td><td>varchar(50)</td><td>carName</td><td>车辆名</td></tr>
+</table>
+
+
 == 1.2 Controller控制类设计 ==
 
 === 1.2.1 UserController ===
@@ -124,6 +217,8 @@
   <tr><td>restoreUserById</td><td>/User/restoreUserById</td><td>userEntity</td><td>x</td><td>恢复软删除用户</td></tr>
   <tr><td>activateUserById</td><td>/User/activateUserById</td><td>userEntity</td><td>x</td><td>激活用户</td></tr>
   <tr><td>deactivateUserById</td><td>/User/deactivateUserById</td><td>userEntity</td><td>x</td><td>禁用用户</td></tr>
+  <tr><td>updateStatusById</td><td>/User/updateStatusById</td><td>userEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/User/updateRemarkById</td><td>userEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>updateUsernameById</td><td>/User/updateUsernameById</td><td>userEntity</td><td>x</td><td>更新用户名</td></tr>
   <tr><td>updateEmailById</td><td>/User/updateEmailById</td><td>userEntity</td><td>x</td><td>更新邮箱</td></tr>
   <tr><td>updatePhoneById</td><td>/User/updatePhoneById</td><td>userEntity</td><td>x</td><td>更新电话</td></tr>
@@ -149,6 +244,8 @@
   <tr><td>restoreRoleById</td><td>/Role/restoreRoleById</td><td>roleEntity</td><td>x</td><td>恢复软删除角色</td></tr>
   <tr><td>activateRoleById</td><td>/Role/activateRoleById</td><td>roleEntity</td><td>x</td><td>激活角色</td></tr>
   <tr><td>deactivateRoleById</td><td>/Role/deactivateRoleById</td><td>roleEntity</td><td>x</td><td>禁用角色</td></tr>
+  <tr><td>updateStatusById</td><td>/Role/updateStatusById</td><td>roleEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/Role/updateRemarkById</td><td>roleEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>updateRoleById</td><td>/Role/updateRoleById</td><td>roleEntity</td><td>x</td><td>更新角色信息</td></tr>
   <tr><td>searchRoleById</td><td>/Role/searchRoleById</td><td>roleEntity</td><td>x</td><td>ID查找角色</td></tr>
   <tr><td>searchRoleByRoleName</td><td>/Role/searchRoleByRoleName</td><td>roleEntity</td><td>x</td><td>角色名查找角色</td></tr>
@@ -169,6 +266,8 @@
   <tr><td>restoreMenuById</td><td>/Menu/restoreMenuById</td><td>menuEntity</td><td>x</td><td>恢复软删除菜单</td></tr>
   <tr><td>activateMenuById</td><td>/Menu/activateMenuById</td><td>menuEntity</td><td>x</td><td>激活菜单</td></tr>
   <tr><td>deactivateMenuById</td><td>/Menu/deactivateMenuById</td><td>menuEntity</td><td>x</td><td>禁用菜单</td></tr>
+  <tr><td>updateStatusById</td><td>/Menu/updateStatusById</td><td>menuEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/Menu/updateRemarkById</td><td>menuEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>updateMenuById</td><td>/Menu/updateMenuById</td><td>menuEntity</td><td>x</td><td>更新菜单信息</td></tr>
   <tr><td>searchMenuById</td><td>/Menu/searchMenuById</td><td>menuEntity</td><td>x</td><td>ID查找菜单</td></tr>
   <tr><td>searchMenuByMenuName</td><td>/Menu/searchMenuByMenuName</td><td>menuEntity</td><td>x</td><td>菜单名查找菜单</td></tr>
@@ -188,6 +287,8 @@
   <tr><td>deleteUserRoleByUsername</td><td>/UserRole/deleteUserRoleByUsername</td><td>userRoleEntity</td><td>x</td><td>用户名硬删除用户角色</td></tr>
   <tr><td>deleteUserRoleByRoleId</td><td>/UserRole/deleteUserRoleByRoleId</td><td>userRoleEntity</td><td>x</td><td>角色ID硬删除用户角色</td></tr>
   <tr><td>deleteUserRoleByRoleName</td><td>/UserRole/deleteUserRoleByRoleName</td><td>userRoleEntity</td><td>x</td><td>角色名硬删除用户角色</td></tr>
+  <tr><td>updateStatusById</td><td>/UserRole/updateStatusById</td><td>userRoleEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/UserRole/updateRemarkById</td><td>userRoleEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchUserRoleById</td><td>/UserRole/searchUserRoleById</td><td>userRoleEntity</td><td>x</td><td>ID查找角用户角色</td></tr>
   <tr><td>searchUserRoleByUserId</td><td>/UserRole/searchUserRoleByUserId</td><td>userRoleEntity</td><td>x</td><td>用户ID查找用户角色</td></tr>
   <tr><td>searchUserRoleByUsername</td><td>/UserRole/searchUserRoleByUsername</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色</td></tr>
@@ -208,6 +309,8 @@
   <tr><td>deleteRoleMenuByRoleName</td><td>/RoleMenu/deleteRoleMenuByRoleName</td><td>roleMenuEntity</td><td>x</td><td>角色名硬删除角色菜单</td></tr>
   <tr><td>deleteRoleMenuByMenuId</td><td>/RoleMenu/deleteRoleMenuByMenuId</td><td>roleMenuEntity</td><td>x</td><td>菜单ID硬删除角色菜单</td></tr>
   <tr><td>deleteRoleMenuByMenuName</td><td>/RoleMenu/deleteRoleMenuByMenuName</td><td>roleMenuEntity</td><td>x</td><td>菜单名硬删除角色菜单</td></tr>
+  <tr><td>updateStatusById</td><td>/RoleMenu/updateStatusById</td><td>roleMenuEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/RoleMenu/updateRemarkById</td><td>roleMenuEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchRoleMenuById</td><td>/RoleMenu/searchRoleMenuById</td><td>roleMenuEntity</td><td>x</td><td>ID查找角色菜单</td></tr>
   <tr><td>searchRoleMenuByRoleId</td><td>/RoleMenu/searchRoleMenuByRoleId</td><td>roleMenuEntity</td><td>x</td><td>角色ID查找角色菜单</td></tr>
   <tr><td>searchRoleMenuByRoleName</td><td>/RoleMenu/searchRoleMenuByRoleName</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单</td></tr>
@@ -216,9 +319,62 @@
   <tr><td>searchAllRoleMenu</td><td>/RoleMenu/searchAllRoleMenu</td><td>pageEntity</td><td>x</td><td>查找全部角色菜单</td></tr>
 </table>
 
-== 1.3 开发相关资料 ==
+=== 1.2.6 CarController ===
 
-=== 1.3.1 Spring ===
+车辆控制类.
+
+<table>
+  <tr><th colspan="5" align="center">CarController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addCar</td><td>/Car/addCar</td><td>carEntity</td><td>x</td><td>添加车辆</td></tr>
+  <tr><td>hardDeleteCarById</td><td>/Car/hardDeleteCarById</td><td>carEntity</td><td>x</td><td>硬删除车辆</td></tr>
+  <tr><td>softDeleteCarById</td><td>/Car/softDeleteCarById</td><td>carEntity</td><td>x</td><td>软删除车辆</td></tr>
+  <tr><td>restoreCarById</td><td>/Car/restoreCarById</td><td>carEntity</td><td>x</td><td>恢复软删除车辆</td></tr>
+  <tr><td>activateCarById</td><td>/Car/activateCarById</td><td>carEntity</td><td>x</td><td>激活车辆</td></tr>
+  <tr><td>deactivateCarById</td><td>/Car/deactivateCarById</td><td>carEntity</td><td>x</td><td>禁用车辆</td></tr>
+  <tr><td>updateStatusById</td><td>/Car/updateStatusById</td><td>carEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/Car/updateRemarkById</td><td>carEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>updateGeneralById</td><td>/Car/updateGeneralById</td><td>carEntity</td><td>x</td><td>更新车辆信息 GENERAL</td></tr>
+  <tr><td>updateDriveById</td><td>/Car/updateDriveById</td><td>carEntity</td><td>x</td><td>更新车辆信息 DRIVE</td></tr>
+  <tr><td>updateFuelEngineById</td><td>/Car/updateFuelEngineById</td><td>carEntity</td><td>x</td><td>更新车辆信息 FUEL ENGINE</td></tr>
+  <tr><td>updateElectroMotorById</td><td>/Car/updateElectroMotorById</td><td>carEntity</td><td>x</td><td>更新车辆信息 ELECTROMOTOR</td></tr>
+  <tr><td>updatePerformanceById</td><td>/Car/updatePerformanceById</td><td>carEntity</td><td>x</td><td>更新车辆信息 PERFORMANCE</td></tr>
+  <tr><td>updateChassisById</td><td>/Car/updateChassisById</td><td>carEntity</td><td>x</td><td>更新车辆信息 CHASSIS</td></tr>
+  <tr><td>updateTransmissionById</td><td>/Car/updateTransmissionById</td><td>carEntity</td><td>x</td><td>更新车辆信息 TRANSMISSION</td></tr>
+  <tr><td>updateServiceAndWarrantyById</td><td>/Car/updateServiceAndWarrantyById</td><td>carEntity</td><td>x</td><td>更新车辆信息 SERVICE AND WARRANTY</td></tr>
+  <tr><td>searchCarById</td><td>/Car/searchCarById</td><td>carEntity</td><td>x</td><td>ID查找车辆</td></tr>
+  <tr><td>searchCarByCarName</td><td>/Car/searchCarByCarName</td><td>carEntity</td><td>x</td><td>车辆名查找车辆</td></tr>
+  <tr><td>searchActivedCar</td><td>/Car/searchActivedCar</td><td>pageEntity</td><td>x</td><td>查找激活车辆</td></tr>
+  <tr><td>searchAllCar</td><td>/Car/searchAllCar</td><td>pageEntity</td><td>x</td><td>查找全部车辆</td></tr>
+</table>
+
+=== 1.2.7 UserCarController ===
+
+用户车辆控制类.
+
+<table>
+  <tr><th colspan="5" align="center">UserCarController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addCar2User</td><td>/UserCar/addCar2User</td><td>userCarEntity</td><td>x</td><td>为用户添加车辆</td></tr>
+  <tr><td>deleteUserCarByUserId</td><td>/UserCar/deleteUserCarByUserId</td><td>userCarEntity</td><td>x</td><td>用户ID硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByUsername</td><td>/UserCar/deleteUserCarByUsername</td><td>userCarEntity</td><td>x</td><td>用户名硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByCarId</td><td>/UserCar/deleteUserCarByCarId</td><td>userCarEntity</td><td>x</td><td>车辆ID硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByCarName</td><td>/UserCar/deleteUserCarByCarName</td><td>userCarEntity</td><td>x</td><td>车辆名硬删除用户车辆</td></tr>
+  <tr><td>updateStatusById</td><td>/UserCar/updateStatusById</td><td>userCarEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/UserCar/updateRemarkById</td><td>userCarEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchUserCarById</td><td>/UserCar/searchUserCarById</td><td>userCarEntity</td><td>x</td><td>ID查找用户车辆</td></tr>
+  <tr><td>searchUserCarByUserId</td><td>/UserCar/searchUserCarByUserId</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆</td></tr>
+  <tr><td>searchUserCarByUsername</td><td>/UserCar/searchUserCarByUsername</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆</td></tr>
+  <tr><td>searchUserCarByCarId</td><td>/UserCar/searchUserCarByCarId</td><td>userCarEntity</td><td>x</td><td>车辆ID查找用户车辆</td></tr>
+  <tr><td>searchUserCarByCarName</td><td>/UserCar/searchUserCarByCarName</td><td>userCarEntity</td><td>x</td><td>车辆名查找用户车辆</td></tr>
+  <tr><td>searchAllUserCar</td><td>/UserCar/searchAllUserCar</td><td>pageEntity</td><td>x</td><td>查找全部用户车辆</td></tr>
+</table>
+
+= 2 前端设计与实现 =
+
+= 3 开发相关资料 =
+
+== 3.1 Spring ==
 
 安装环境, 搭建Spring框架
 
@@ -227,14 +383,16 @@
 * Maven代理配置(proxy缩进需要调整,可用IDEA打开调试) [https://Integerellij-support.jetbrains.com/hc/en-us/community/posts/206200819-Using-Maven-behind-proxy jetbrains-Using Maven behind proxy]
 * Spring pom.xml配置载入 [https://blog.csdn.net/lteffp/article/details/89505338 CSDN-idea注解爆红解决]
 * Spring配置MySQL [https://spring.io/guides/gs/accessing-data-mysql/ Spring guides-Accessing data with MySQL]
+* (视频)CodeEngine-React & Spring应用1 [https://www.youtube.com/watch?v=avvrsnYFXIE CodeEngine-React & Spring Boot Expense Tracker Application (Part 1)]
 
 数据库相关部分: JPA, Hibernate
 
 * JPA和Hibernate实体类注释 [https://vladmihalcea.com/how-to-inherit-properties-from-a-base-class-entity-using-mappedsuperclass-with-jpa-and-hibernate/ VladMihalcea-How to inherit properties from a base class entity using @MappedSuperclass with JPA and Hibernate]
 * 数据库表注释/字段注释 [https://blog.csdn.net/qq_39996837/article/details/84717748 CSDN-Spring boot 搭配 JPA 生成表注释 和 字段注释]
 * JPA之Entity注解说明 [https://sites.google.com/site/hzg139/home/orm-jihibernate/jpaentity 不發光的螢火蟲-JPA之Entity注解说明]
+* JsonIgnore注解使用保护密码 [https://dzone.com/articles/data-hiding-using-jsonignore-and-spring-data-jpa DZone-Data Hiding Using JsonIgnore and Spring Data JPA]
 
-=== 1.3.2 MySQL ===
+== 3.2 MySQL ==
 
 如果你有一台VPS(虚拟服务器), 可以在服务器上安装MySQL, 之后通过本地的Navicat或其他软件连接此服务器.
 
@@ -249,32 +407,44 @@ root登录
 * 可视化操作数据库 [https://www.cnblogs.com/poloyy/p/12231357.html Navicat Premium 15 永久激活版安装教程]
 * 在VPS上安装MySQL服务器 [https://www.cyberciti.biz/faq/how-to-install-mysql-server-on-debian-10-linux/=Installing_MySQL How to install MySQL server on Debian 10 Linux]
 * (可选)调整ufw防火墙策略 打开3306端口 [https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-9 How To Set Up a Firewall with UFW on Debian 9]
-* MySQL指令速查 [https://www.begtut.com/mysql/ begtut-MySQL教程]
+* MySQL指令速查 [https://www.begtut.com/mysql/mysql-tutorial.html begtut-MySQL教程]
 * 创建用户&授予/撤销权限 [https://www.jianshu.com/p/d7b9c468f20d 简书-MySQL创建用户与授权]
 * Spring配置MySQL [https://spring.io/guides/gs/accessing-data-mysql/ Spring guides-Accessing data with MySQL]
+* 解决MySQL内存占用过高问题 [https://www.logcg.com/archives/1757.html 解决 MySQL 突然占用全部内存的问题]
 
 创建表格使用Spring的JPA, 详见 [[#131_Spring]] 部分.
 
-=== 1.3.3 Java ===
+== 3.3 Java ==
 
 数据编码与加密: MD5, Base64
 
 * MD5编码(哈希散列加密不可解) 用于加密密码 [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/DigestUtils.html DigestUtils (Spring Framework 5.3.1 API)]
-* Base64编码(可解) 用于上传图片的转化 [https://docs.oracle.com/javase/8/docs/api/java/util/Base64.Encoder.html Oracle-Base64-Encoder (Java Platform SE 8)]
+* Base64编码(可解) 用于上传图片的转化(Spring有上传文件的模块,用那个就行) [https://docs.oracle.com/javase/8/docs/api/java/util/Base64.Encoder.html Oracle-Base64-Encoder (Java Platform SE 8)]
 
 正则化: 用户名, 密码, 邮箱, 电话
 
 * Java正则判断示例 [https://howtodoinjava.com/java-regular-expression-tutorials/ HowToJava-Java Regex Tutorial]
 
-=== 1.3.4 JSON ===
+== 3.4 JSON ==
 
 * 多对象接受方法 [https://www.cnblogs.com/mahuan2/p/6008832.html spring接收json格式的多对象参数两种方法]
 * 阿里巴巴的开源JSON解析库 [https://github.com/alibaba/fastjson/wiki/Quick-Start-CN alibaba/fastjson]
 
-=== 1.3.5 Code Lib ===
+== 3.5 Code Lib ==
 
 * 代码示例在线查询 [https://www.codota.com/code codota]
 
-=== 1.3.6 WikiText ===
+== 3.6 WikiText ==
 
 * Wikitext语法 [https://en.wikipedia.org/wiki/Help:Wikitext Wiki-Help:Wikitext]
+
+== 3.7 React ==
+
+* React 101 [https://www.taniarascia.com/getting-started-with-react/ TaniaRascia-React Tutorial: An Overview and Walkthrough]
+* React 官方文档 [https://create-react-app.dev/docs/getting-started Create React App]
+* (视频)CodeEngine-React & Spring应用2 [https://www.youtube.com/watch?v=jCalDxGthoc CodeEngine-React & Spring Boot Expense Tracker Application (Part 2)]
+
+== 3.8 JavaScript ==
+
+* JavaScript 101[https://www.w3schools.com/js/default.asp w3school-JavaScript Tutorial]
+* JavaScript重新介紹 [https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/A_re-introduction_to_JavaScript mozilla-重新介紹JavaScript]

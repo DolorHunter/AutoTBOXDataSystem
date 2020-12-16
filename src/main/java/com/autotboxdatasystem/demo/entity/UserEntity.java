@@ -1,5 +1,6 @@
 package com.autotboxdatasystem.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 
@@ -7,6 +8,7 @@ import javax.persistence.Column;
 public class UserEntity extends BaseEntity {
     @Column(nullable = false, columnDefinition = "VARCHAR(20) comment '用户名'")
     private String username;
+    @JsonIgnore
     @Column(nullable = false, columnDefinition = "VARCHAR(50) comment '密码'")
     private String password;
     @Column(columnDefinition = "VARCHAR(20) comment '邮箱'")

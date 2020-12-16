@@ -16,6 +16,10 @@ public interface RoleService {
 
     void hardDeleteRoleById(RoleEntity roleEntity);
 
+    boolean updateStatusById(RoleEntity roleEntity);
+
+    boolean updateRemarkById(RoleEntity roleEntity);
+
     void updateRoleById(RoleEntity roleEntity);
 
     RoleEntity searchRoleById(RoleEntity roleEntity);
