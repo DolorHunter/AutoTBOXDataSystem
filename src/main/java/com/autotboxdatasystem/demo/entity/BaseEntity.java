@@ -12,19 +12,19 @@ public class BaseEntity {
     @Id
     @Column(nullable = false, columnDefinition = "int comment 'ID'")
     private Integer id;
-    @Column(nullable = false, columnDefinition = "varchar(5) comment '启用状态'")
+    @Column(nullable = false, columnDefinition = "varchar(4) comment '启用状态'")
     private String isActivated;
-    @Column(nullable = false, columnDefinition = "varchar(5) comment '删除状态'")
+    @Column(nullable = false, columnDefinition = "varchar(4) comment '删除状态'")
     private String isDeleted;
-    @Column(columnDefinition = "varchar(5) comment '状态'")
+    @Column(columnDefinition = "varchar(4) comment '状态'")
     private String status;
-    @Column(columnDefinition = "varchar(30) comment '备注'")
+    @Column(columnDefinition = "varchar(64) comment '备注'")
     private String remark;
-    @Column(nullable = false, columnDefinition = "varchar(20) comment '创建人'")
+    @Column(nullable = false, columnDefinition = "varchar(32) comment '创建人'")
     private String createdBy;
     @Column(nullable = false, columnDefinition = "TIMESTAMP comment '创建时间'")
     private String createdDate;
-    @Column(nullable = false, columnDefinition = "varchar(20) comment '最后修改人'")
+    @Column(nullable = false, columnDefinition = "varchar(32) comment '最后修改人'")
     private String lastUpdatedBy;
     @Column(nullable = false, columnDefinition = "TIMESTAMP comment '最后修改日期'")
     private String lastUpdatedDate;

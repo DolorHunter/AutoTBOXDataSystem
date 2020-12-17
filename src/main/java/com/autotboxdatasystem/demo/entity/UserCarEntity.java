@@ -7,11 +7,11 @@ import javax.persistence.Column;
 public class UserCarEntity extends BaseEntity{
     @Column(nullable = false, columnDefinition = "int comment '用户ID'")
     private Integer userId;
-    @Column(nullable = false, columnDefinition = "VARCHAR(20) comment '用户名'")
+    @Column(nullable = false, columnDefinition = "VARCHAR(32) comment '用户名'")
     private String username;
     @Column(nullable = false, columnDefinition = "int comment '车辆ID'")
     private Integer carId;
-    @Column(nullable = false, columnDefinition = "VARCHAR(50) comment '车辆名'")
+    @Column(nullable = false, columnDefinition = "VARCHAR(255) comment '车辆名'")
     private String carName;
 
     public Integer getUserId() {

@@ -18,13 +18,13 @@
   <tr><th colspan="4" align="center">BaseEntity</th></tr>
   <tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td>Integer</td><td>int</td><td>id</td><td>ID</td></tr>
-  <tr><td>String</td><td>varchar(5)</td><td>isActivated</td><td>启用状态</td></tr>
-  <tr><td>String</td><td>varchar(5)</td><td>isDeleted</td><td>删除状态</td></tr>
-  <tr><td>String</td><td>varchar(5)</td><td>status</td><td>状态</td></tr>
-  <tr><td>String</td><td>varchar(30)</td><td>remark</td><td>备注</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>createdBy</td><td>创建人</td></tr>
+  <tr><td>String</td><td>varchar(4)</td><td>isActivated</td><td>启用状态</td></tr>
+  <tr><td>String</td><td>varchar(4)</td><td>isDeleted</td><td>删除状态</td></tr>
+  <tr><td>String</td><td>varchar(4)</td><td>status</td><td>状态</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>remark</td><td>备注</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>createdBy</td><td>创建人</td></tr>
   <tr><td>String</td><td>timestamp</td><td>createdDate</td><td>创建日期</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>lastUpdatedBy</td><td>最后修改人</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>lastUpdatedBy</td><td>最后修改人</td></tr>
   <tr><td>String</td><td>timestamp</td><td>lastUpdatedDate</td><td>最后修改日期</td></tr>
 </table>
 
@@ -46,11 +46,11 @@
 <table>
   <tr><th colspan="4" align="center">UserEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>password</td><td>密码</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>email</td><td>邮箱</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>phone</td><td>电话</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>avatar</td><td>头像</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>username</td><td>用户名</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>password</td><td>密码</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>email</td><td>邮箱</td></tr>
+  <tr><td>String</td><td>varchar(16)</td><td>phone</td><td>电话</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>avatar</td><td>头像</td></tr>
 </table>
 
 === 1.1.4 RoleEntity ===
@@ -60,8 +60,8 @@
 <table>
   <tr><th colspan="4" align="center">RoleEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>roleName</td><td>角色名</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>roleType</td><td>角色类型</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>roleName</td><td>角色名</td></tr>
+  <tr><td>String</td><td>varchar(16)</td><td>roleType</td><td>角色类型</td></tr>
   <tr><td>Integer</td><td>int</td><td>fatherRoleId</td><td>父角色ID</td></tr>
 </table>
 
@@ -72,8 +72,8 @@
 <table>
   <tr><th colspan="4" align="center">MenuEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>menuName</td><td>菜单名</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>menuType</td><td>菜单类型</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>menuName</td><td>菜单名</td></tr>
+  <tr><td>String</td><td>varchar(16)</td><td>menuType</td><td>菜单类型</td></tr>
   <tr><td>Integer</td><td>int</td><td>fatherMenuId</td><td>父菜单ID</td></tr>
 </table>
 
@@ -87,9 +87,9 @@
   <tr><th colspan="4" align="center">UserRoleEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
   <tr><td>Integer</td><td>int</td><td>userId</td><td>用户ID</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>username</td><td>用户名</td></tr>
   <tr><td>Integer</td><td>int</td><td>roleId</td><td>角色ID</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>roleName</td><td>角色名</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>roleName</td><td>角色名</td></tr>
 </table>
 
 === 1.1.7 RoleMenuEntity ===
@@ -102,9 +102,9 @@
   <tr><th colspan="4" align="center">RoleMenuEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
   <tr><td>Integer</td><td>int</td><td>roleId</td><td>角色ID</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>roleName</td><td>角色名</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>roleName</td><td>角色名</td></tr>
   <tr><td>Integer</td><td>int</td><td>menuId</td><td>菜单ID</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>menuName</td><td>菜单名</td></tr>
+  <tr><td>String</td><td>varchar(32)</td><td>menuName</td><td>菜单名</td></tr>
 </table>
 
 === 1.1.8 CarEntity ===
@@ -114,76 +114,82 @@
 <table>
   <tr><th colspan="4" align="center">CarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>String</td><td>varchar(50)</td><td>carName</td><td>车辆名</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>carBody</td><td>车身</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>transmission</td><td>变速箱</td></tr>
-  <tr><td>Integer</td><td>int</td><td>seatsNumber</td><td>座位数</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>firstYearOfProduction</td><td>首次生产年份</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>lastYearOfProduction</td><td>最后生产年份</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>drive</td><td>驱动</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>engineType</td><td>引擎类型</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>fuel</td><td>燃料</td></tr>
-  <tr><td>Integer</td><td>int</td><td>totalMaximumPower</td><td>最大功率</td></tr>
-  <tr><td>Integer</td><td>int</td><td>totalMaximumTorque</td><td>最大扭矩</td></tr>
-  <tr><td>Integer</td><td>int</td><td>cylindersNumber</td><td>气缸数量</td></tr>
-  <tr><td>Integer</td><td>int</td><td>cylinderValves</td><td>每缸气门</td></tr>
-  <tr><td>Integer</td><td>int</td><td>cylinderCapacity</td><td>气缸容量</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>boreXStroke</td><td>气缸x行程</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>compressionRatio</td><td>压缩率</td></tr>
-  <tr><td>Integer</td><td>int</td><td>maxPower</td><td>最大功率</td></tr>
-  <tr><td>Integer</td><td>int</td><td>maxPowerRPM</td><td>最大功率转速</td></tr>
-  <tr><td>Integer</td><td>int</td><td>maxTorque</td><td>最大扭矩</td></tr>
-  <tr><td>Integer</td><td>int</td><td>maxTorqueRPM</td><td>最大扭矩转速</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>fuelSystem</td><td>燃油系统</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>valveControl</td><td>阀门控制</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>turbo</td><td>涡轮增压</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>catalyst</td><td>催化剂</td></tr>
-  <tr><td>Integer</td><td>int</td><td>fuelTank</td><td>燃料容量</td></tr>
-  <tr><td>Integer</td><td>int</td><td>electroEnginesNumber</td><td>电动引擎数量</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>batteryType</td><td>电池类型</td></tr>
-  <tr><td>Integer</td><td>int</td><td>batteryCapacity</td><td>电池容量</td></tr>
-  <tr><td>Integer</td><td>int</td><td>batteryVoltage</td><td>电池电压</td></tr>
-  <tr><td>Integer</td><td>int</td><td>batteryRange</td><td>电池里程</td></tr>
-  <tr><td>Integer</td><td>int</td><td>powerConsumption</td><td>电量消耗</td></tr>
-  <tr><td>Integer</td><td>int</td><td>topSpeed</td><td>最大速度</td></tr>
-  <tr><td>Double</td><td>double</td><td>acceleration</td><td>零百加速用时</td></tr>
-  <tr><td>Double</td><td>double</td><td>cityConsumption</td><td>城市每百公里耗油量</td></tr>
-  <tr><td>Double</td><td>double</td><td>cityConsumptionKM</td><td>城市每公里耗油量</td></tr>
-  <tr><td>Double</td><td>double</td><td>extraUrbanConsumption</td><td>额外城市每百公里耗油量</td></tr>
-  <tr><td>Double</td><td>double</td><td>extraUrbanConsumptionKM</td><td>额外城市每公里耗油量</td></tr>
-  <tr><td>Double</td><td>double</td><td>combinedConsumption</td><td>混合每百公里耗油量</td></tr>
-  <tr><td>Double</td><td>double</td><td>combinedConsumptionKM</td><td>混合每公里耗油量</td></tr>
-  <tr><td>Double</td><td>double</td><td>consumptionMonitor</td><td>每百公里耗油量花费监视</td></tr>
-  <tr><td>Double</td><td>double</td><td>consumptionMonitorKM</td><td>每公里耗油量花费监视</td></tr>
-  <tr><td>Double</td><td>double</td><td>CO2Emissions</td><td>每公里二氧化碳排放量</td></tr>
-  <tr><td>String</td><td>varchar(1)</td><td>energyLabel</td><td>能源标签</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>frontWheelSuspension</td><td>前轮悬挂</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>rearWheelSuspension</td><td>后轮悬挂</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>frontSuspension</td><td>前悬挂</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>rearSuspension</td><td>后悬挂</td></tr>
-  <tr><td>String</td><td>varchar(5)</td><td>frontStabilizer</td><td>前稳定器</td></tr>
-  <tr><td>String</td><td>varchar(5)</td><td>rearStabilizer</td><td>后稳定器</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>frontBrakes</td><td>前轮刹车</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>rearBrakes</td><td>后轮刹车</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>frontTireSize</td><td>前轮尺寸</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>rearTireSize</td><td>后轮尺寸</td></tr>
-
-  <tr><td>Double</td><td>double</td><td>turningRadius</td><td>转弯半径</td></tr>
-  <tr><td>Double</td><td>double</td><td>_1stGear</td><td>一档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_2ndGear</td><td>二档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_3rdGear</td><td>三档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_4thGear</td><td>四档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_5thGear</td><td>五档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_6thGear</td><td>六档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_7thGear</td><td>七档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_8thGear</td><td>八档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>_9thGear</td><td>九档变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>reverseGear</td><td>倒车变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>finalTransmission</td><td>最终变速</td></tr>
-  <tr><td>Double</td><td>double</td><td>RPMAt120kmh</td><td>120km/h时转速</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>maintenance</td><td>保养</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>generalWarranty</td><td>一般保修</td></tr>
-  <tr><td>String</td><td>varchar(20)</td><td>chassisWarranty</td><td>底盘保修</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>image</td><td>图片</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>price</td><td>价格</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>periodicalTechnicalInspection</td><td>定期技术检查</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>roadTax3Months</td><td>道路税每三月</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>carBody</td><td>车身</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>transmission</td><td>变速箱</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>seatsNumber</td><td>座位数</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>firstYearOfProduction</td><td>首次生产年份</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>lastYearOfProduction</td><td>最后生产年份</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>drive</td><td>驱动</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>engineType</td><td>引擎类型</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>fuel</td><td>燃料</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>totalMaximumPower</td><td>最大功率</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>totalMaximumTorque</td><td>最大扭矩</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>cylindersNumber</td><td>气缸数量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>cylinderValves</td><td>每缸气门</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>cylinderCapacity</td><td>气缸容量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>boreXStroke</td><td>气缸x行程</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>compressionRatio</td><td>压缩率</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>maxPower</td><td>最大功率</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>maxPowerRPM</td><td>最大功率转速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>maxTorque</td><td>最大扭矩</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>maxTorqueRPM</td><td>最大扭矩转速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>fuelSystem</td><td>燃油系统</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>valveControl</td><td>阀门控制</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>turbo</td><td>涡轮增压</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>catalyst</td><td>催化剂</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>fuelTank</td><td>燃料容量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>electroEngineType</td><td>电动引擎类型</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>electroMaxPower</td><td>电动最大功率</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>electroMaxTorque</td><td>电动最大扭矩</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>electroEnginesNumber</td><td>电动引擎数量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>batteryType</td><td>电池类型</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>batteryCapacity</td><td>电池容量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>batteryVoltage</td><td>电池电压</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>batteryRange</td><td>电池里程</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>powerConsumption</td><td>电量消耗</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>topSpeed</td><td>最大速度</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>acceleration</td><td>零百加速用时</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>cityConsumption</td><td>城市每百公里耗油量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>cityConsumptionKM</td><td>城市每公里耗油量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>extraUrbanConsumption</td><td>额外城市每百公里耗油量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>extraUrbanConsumptionKM</td><td>额外城市每公里耗油量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>combinedConsumption</td><td>混合每百公里耗油量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>combinedConsumptionKM</td><td>混合每公里耗油量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>consumptionMonitor</td><td>每百公里耗油量花费监视</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>consumptionMonitorKM</td><td>每公里耗油量花费监视</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>CO2Emissions</td><td>每公里二氧化碳排放量</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>energyLabel</td><td>能源标签</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>frontWheelSuspension</td><td>前轮悬挂</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>rearWheelSuspension</td><td>后轮悬挂</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>frontSuspension</td><td>前悬挂</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>rearSuspension</td><td>后悬挂</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>frontStabilizer</td><td>前稳定器</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>rearStabilizer</td><td>后稳定器</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>frontBrakes</td><td>前轮刹车</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>rearBrakes</td><td>后轮刹车</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>frontTireSize</td><td>前轮尺寸</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>rearTireSize</td><td>后轮尺寸</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>turningRadius</td><td>转弯半径</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_1stGear</td><td>一档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_2ndGear</td><td>二档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_3rdGear</td><td>三档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_4thGear</td><td>四档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_5thGear</td><td>五档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_6thGear</td><td>六档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_7thGear</td><td>七档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_8thGear</td><td>八档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>_9thGear</td><td>九档变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>reverseGear</td><td>倒车变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>finalTransmission</td><td>最终变速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>RPMAt120kmh</td><td>120km/h时转速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>maintenance</td><td>保养</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>generalWarranty</td><td>一般保修</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>chassisWarranty</td><td>底盘保修</td></tr>
 </table>
 
 === 1.1.9 UserCarEntity ===
@@ -196,7 +202,7 @@
   <tr><td>Integer</td><td>int</td><td>userId</td><td>用户ID</td></tr>
   <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
   <tr><td>Integer</td><td>int</td><td>carId</td><td>车辆ID</td></tr>
-  <tr><td>String</td><td>varchar(50)</td><td>carName</td><td>车辆名</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
 </table>
 
 
@@ -390,7 +396,7 @@
 * JPA和Hibernate实体类注释 [https://vladmihalcea.com/how-to-inherit-properties-from-a-base-class-entity-using-mappedsuperclass-with-jpa-and-hibernate/ VladMihalcea-How to inherit properties from a base class entity using @MappedSuperclass with JPA and Hibernate]
 * 数据库表注释/字段注释 [https://blog.csdn.net/qq_39996837/article/details/84717748 CSDN-Spring boot 搭配 JPA 生成表注释 和 字段注释]
 * JPA之Entity注解说明 [https://sites.google.com/site/hzg139/home/orm-jihibernate/jpaentity 不發光的螢火蟲-JPA之Entity注解说明]
-* JsonIgnore注解使用保护密码 [https://dzone.com/articles/data-hiding-using-jsonignore-and-spring-data-jpa DZone-Data Hiding Using JsonIgnore and Spring Data JPA]
+* JsonIgnore注解只写保护敏感信息 [https://stackoverflow.com/questions/12505141/only-using-jsonignore-during-serialization-but-not-deserialization StackOverflow-Only using @JsonIgnore during serialization, but not deserialization]
 
 == 3.2 MySQL ==
 
@@ -448,3 +454,10 @@ root登录
 
 * JavaScript 101[https://www.w3schools.com/js/default.asp w3school-JavaScript Tutorial]
 * JavaScript重新介紹 [https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/A_re-introduction_to_JavaScript mozilla-重新介紹JavaScript]
+
+== 4 数据来源 ==
+
+* 车辆信息数据来源 [https://www.cars-data.com/en/all-cars.html Cars-Data.com]
+* 爬虫说明文档 [https://github.com/DolorHunter/AutoTBOXDataSystem/tree/master/CarCrawlers/README.md CarCrawlers/README.md]
+* 爬虫代码全车型全配置 [https://github.com/DolorHunter/AutoTBOXDataSystem/tree/master/CarCrawlers/src/main.py CarCrawlers/src/main.py]
+* 结果数据uft8 [https://github.com/DolorHunter/AutoTBOXDataSystem/tree/master/CarCrawlers/data/car.csv CarCrawlers/data/car.csv]

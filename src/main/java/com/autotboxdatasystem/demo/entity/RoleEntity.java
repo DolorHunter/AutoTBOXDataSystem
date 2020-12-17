@@ -5,11 +5,11 @@ import javax.persistence.Column;
 
 @Entity
 public class RoleEntity extends BaseEntity {
-    @Column(nullable = false, columnDefinition = "VARCHAR(20) comment '角色名'")
+    @Column(nullable = false, columnDefinition = "VARCHAR(32) comment '角色名'")
     private String roleName;
-    @Column(nullable = false, columnDefinition = "VARCHAR(20) comment '角色类型'")
+    @Column(nullable = false, columnDefinition = "VARCHAR(16) comment '角色类型'")
     private String roleType;
-    @Column(nullable = false, columnDefinition = "VARCHAR(50) comment '父角色ID'")
+    @Column(nullable = false, columnDefinition = "int comment '父角色ID'")
     private Integer fatherRoleId;
 
     public String getRoleName() {

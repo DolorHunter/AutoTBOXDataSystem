@@ -157,12 +157,28 @@ public class CarServiceImpl implements CarService {
     @Override
     public void updateGeneralById(CarEntity carEntity) {
         CarEntity car = carDAO.findById(carEntity.getId()).get();
+        String image = carEntity.getImage();
         String carName = carEntity.getCarName();
+        String price = carEntity.getPrice();
+        String periodicalTechnicalInspection = carEntity.getPeriodicalTechnicalInspection();
+        String roadTax3Months = carEntity.getRoadTax3Months();
         String carBody = carEntity.getCarBody();
         String transmission = carEntity.getTransmission();
-        Integer seatsNumber = carEntity.getSeatsNumber();
+        String seatsNumber = carEntity.getSeatsNumber();
         String firstYearOfProduction = carEntity.getFirstYearOfProduction();
         String lastYearOfProduction = carEntity.getLastYearOfProduction();
+        if (image != null) {
+            car.setImage(image);
+        }
+        if (price != null) {
+            car.setPrice(price);
+        }
+        if (periodicalTechnicalInspection != null) {
+            car.setPeriodicalTechnicalInspection(periodicalTechnicalInspection);
+        }
+        if (roadTax3Months != null) {
+            car.setRoadTax3Months(roadTax3Months);
+        }
         if (carName != null) {
             car.setCarName(carName);
         }
@@ -192,8 +208,8 @@ public class CarServiceImpl implements CarService {
         String drive = carEntity.getDrive();
         String engineType = carEntity.getEngineType();
         String fuel = carEntity.getFuel();
-        Integer totalMaximumPower = carEntity.getTotalMaximumPower();
-        Integer totalMaximumTorque = carEntity.getTotalMaximumTorque();
+        String totalMaximumPower = carEntity.getTotalMaximumPower();
+        String totalMaximumTorque = carEntity.getTotalMaximumTorque();
         if (drive != null) {
             car.setDrive(drive);
         }
@@ -217,20 +233,20 @@ public class CarServiceImpl implements CarService {
     @Override
     public void updateFuelEngineById(CarEntity carEntity) {
         CarEntity car = carDAO.findById(carEntity.getId()).get();
-        Integer cylindersNumber = carEntity.getCylindersNumber();
-        Integer cylinderValves = carEntity.getCylinderValves();
-        Integer cylinderCapacity = carEntity.getCylinderCapacity();
+        String cylindersNumber = carEntity.getCylindersNumber();
+        String cylinderValves = carEntity.getCylinderValves();
+        String cylinderCapacity = carEntity.getCylinderCapacity();
         String boreXStroke = carEntity.getBoreXStroke();
         String compressionRatio = carEntity.getCompressionRatio();
-        Integer maxPower = carEntity.getMaxPower();
-        Integer maxPowerRPM = carEntity.getMaxPowerRPM();
-        Integer maxTorque = carEntity.getMaxTorque();
-        Integer maxTorqueRPM = carEntity.getMaxTorqueRPM();
+        String maxPower = carEntity.getMaxPower();
+        String maxPowerRPM = carEntity.getMaxPowerRPM();
+        String maxTorque = carEntity.getMaxTorque();
+        String maxTorqueRPM = carEntity.getMaxTorqueRPM();
         String fuelSystem = carEntity.getFuelSystem();
         String valveControl = carEntity.getValveControl();
         String turbo = carEntity.getTurbo();
         String catalyst = carEntity.getCatalyst();
-        Integer fuelTank = carEntity.getFuelTank();
+        String fuelTank = carEntity.getFuelTank();
         if (cylindersNumber != null) {
             car.setCylindersNumber(cylindersNumber);
         }
@@ -281,12 +297,24 @@ public class CarServiceImpl implements CarService {
     @Override
     public void updateElectroMotorById(CarEntity carEntity) {
         CarEntity car = carDAO.findById(carEntity.getId()).get();
-        Integer electroEnginesNumber = carEntity.getElectroEnginesNumber();
+        String electroEngineType = carEntity.getElectroEngineType();
+        String electroMaxPower = carEntity.getElectroMaxPower();
+        String electroMaxTorque = carEntity.getElectroMaxTorque();
+        String electroEnginesNumber = carEntity.getElectroEnginesNumber();
         String batteryType = carEntity.getBatteryType();
-        Integer batteryCapacity = carEntity.getBatteryCapacity();
-        Integer batteryVoltage = carEntity.getBatteryVoltage();
-        Integer batteryRange = carEntity.getBatteryRange();
-        Integer powerConsumption = carEntity.getPowerConsumption();
+        String batteryCapacity = carEntity.getBatteryCapacity();
+        String batteryVoltage = carEntity.getBatteryVoltage();
+        String batteryRange = carEntity.getBatteryRange();
+        String powerConsumption = carEntity.getPowerConsumption();
+        if (electroEngineType != null) {
+            car.setElectroEngineType(electroEngineType);
+        }
+        if (electroMaxPower != null) {
+            car.setElectroMaxPower(electroMaxPower);
+        }
+        if (electroMaxTorque != null) {
+            car.setElectroMaxTorque(electroMaxTorque);
+        }
         if (electroEnginesNumber != null) {
             car.setElectroEnginesNumber(electroEnginesNumber);
         }
@@ -313,17 +341,17 @@ public class CarServiceImpl implements CarService {
     @Override
     public void updatePerformanceById(CarEntity carEntity) {
         CarEntity car = carDAO.findById(carEntity.getId()).get();
-        Integer topSpeed = carEntity.getTopSpeed();
-        Double acceleration = carEntity.getAcceleration();
-        Double cityConsumption = carEntity.getCityConsumption();
-        Double cityConsumptionKM = carEntity.getCityConsumptionKM();
-        Double extraUrbanConsumption = carEntity.getExtraUrbanConsumption();
-        Double extraUrbanConsumptionKM = carEntity.getExtraUrbanConsumptionKM();
-        Double combinedConsumption = carEntity.getCombinedConsumption();
-        Double combinedConsumptionKM = carEntity.getCombinedConsumptionKM();
-        Double consumptionMonitor = carEntity.getConsumptionMonitor();
-        Double consumptionMonitorKM = carEntity.getConsumptionMonitorKM();
-        Double CO2Emissions = carEntity.getCO2Emissions();
+        String topSpeed = carEntity.getTopSpeed();
+        String acceleration = carEntity.getAcceleration();
+        String cityConsumption = carEntity.getCityConsumption();
+        String cityConsumptionKM = carEntity.getCityConsumptionKM();
+        String extraUrbanConsumption = carEntity.getExtraUrbanConsumption();
+        String extraUrbanConsumptionKM = carEntity.getExtraUrbanConsumptionKM();
+        String combinedConsumption = carEntity.getCombinedConsumption();
+        String combinedConsumptionKM = carEntity.getCombinedConsumptionKM();
+        String consumptionMonitor = carEntity.getConsumptionMonitor();
+        String consumptionMonitorKM = carEntity.getConsumptionMonitorKM();
+        String CO2Emissions = carEntity.getCO2Emissions();
         String energyLabel = carEntity.getEnergyLabel();
         if (topSpeed != null) {
             car.setTopSpeed(topSpeed);
@@ -379,7 +407,7 @@ public class CarServiceImpl implements CarService {
         String rearBrakes = carEntity.getRearBrakes();
         String frontTireSize = carEntity.getFrontTireSize();
         String rearTireSize = carEntity.getRearTireSize();
-        Double turningRadius = carEntity.getTurningRadius();
+        String turningRadius = carEntity.getTurningRadius();
         if (frontWheelSuspension != null) {
             car.setFrontWheelSuspension(frontWheelSuspension);
         }
@@ -421,18 +449,18 @@ public class CarServiceImpl implements CarService {
     @Override
     public void updateTransmissionById(CarEntity carEntity) {
         CarEntity car = carDAO.findById(carEntity.getId()).get();
-        Double _1stGear = carEntity.get_1stGear();
-        Double _2ndGear = carEntity.get_2ndGear();
-        Double _3rdGear = carEntity.get_3rdGear();
-        Double _4thGear = carEntity.get_4thGear();
-        Double _5thGear = carEntity.get_5thGear();
-        Double _6thGear = carEntity.get_6thGear();
-        Double _7thGear = carEntity.get_7thGear();
-        Double _8thGear = carEntity.get_8thGear();
-        Double _9thGear = carEntity.get_9thGear();
-        Double reverseGear = carEntity.getReverseGear();
-        Double finalTransmission = carEntity.getFinalTransmission();
-        Double RPMAt120kmh = carEntity.getRPMAt120kmh();
+        String _1stGear = carEntity.get_1stGear();
+        String _2ndGear = carEntity.get_2ndGear();
+        String _3rdGear = carEntity.get_3rdGear();
+        String _4thGear = carEntity.get_4thGear();
+        String _5thGear = carEntity.get_5thGear();
+        String _6thGear = carEntity.get_6thGear();
+        String _7thGear = carEntity.get_7thGear();
+        String _8thGear = carEntity.get_8thGear();
+        String _9thGear = carEntity.get_9thGear();
+        String reverseGear = carEntity.getReverseGear();
+        String finalTransmission = carEntity.getFinalTransmission();
+        String RPMAt120kmh = carEntity.getRPMAt120kmh();
         if (_1stGear != null) {
             car.set_1stGear(_1stGear);
         }

@@ -1,21 +1,22 @@
 package com.autotboxdatasystem.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 
 @Entity
 public class UserEntity extends BaseEntity {
-    @Column(nullable = false, columnDefinition = "VARCHAR(20) comment '用户名'")
+    @Column(nullable = false, columnDefinition = "VARCHAR(32) comment '用户名'")
     private String username;
-    @JsonIgnore
-    @Column(nullable = false, columnDefinition = "VARCHAR(50) comment '密码'")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(nullable = false, columnDefinition = "VARCHAR(64) comment '密码'")
     private String password;
-    @Column(columnDefinition = "VARCHAR(20) comment '邮箱'")
+    @Column(columnDefinition = "VARCHAR(32) comment '邮箱'")
     private String email;
-    @Column(columnDefinition = "VARCHAR(20) comment '电话'")
+    @Column(columnDefinition = "VARCHAR(16) comment '电话'")
     private String phone;
-    @Column(columnDefinition = "VARCHAR(20) comment '头像'")
+    @Column(columnDefinition = "VARCHAR(64) comment '头像'")
     private String avatar;
 
     public String getUsername() {
