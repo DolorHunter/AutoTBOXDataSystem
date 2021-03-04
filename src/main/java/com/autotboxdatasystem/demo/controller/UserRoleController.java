@@ -122,9 +122,9 @@ public class UserRoleController {
     // 查找全部用户角色
     @PostMapping(path = "/searchAllUserRole")
     public @ResponseBody
-    Page<UserRoleEntity> searchAllUserRole(@RequestBody PageEntity pageEntity) {
-        Integer pageIndex = pageEntity.getPageIndex();
-        Integer pageSize = pageEntity.getPageSize();
+    Page<UserRoleEntity> searchAllUserRole(@RequestBody UserRoleEntity userRoleEntity) {
+        Integer pageIndex = userRoleEntity.getPageIndex();
+        Integer pageSize = userRoleEntity.getPageSize();
         return userRoleService.searchAllUserRole(pageIndex, pageSize);
     }
 }

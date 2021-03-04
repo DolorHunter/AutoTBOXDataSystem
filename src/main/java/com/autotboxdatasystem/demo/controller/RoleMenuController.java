@@ -122,9 +122,9 @@ public class RoleMenuController {
     // 查找全部角色菜单
     @PostMapping(path = "/searchAllRoleMenu")
     public @ResponseBody
-    Page<RoleMenuEntity> searchAllRoleMenu(@RequestBody PageEntity pageEntity) {
-        Integer pageIndex = pageEntity.getPageIndex();
-        Integer pageSize = pageEntity.getPageSize();
+    Page<RoleMenuEntity> searchAllRoleMenu(@RequestBody RoleMenuEntity roleMenuEntity) {
+        Integer pageIndex = roleMenuEntity.getPageIndex();
+        Integer pageSize = roleMenuEntity.getPageSize();
         return roleMenuService.searchAllRoleMenu(pageIndex, pageSize);
     }
 }

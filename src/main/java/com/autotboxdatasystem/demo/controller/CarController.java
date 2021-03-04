@@ -1,7 +1,6 @@
 package com.autotboxdatasystem.demo.controller;
 
 import com.autotboxdatasystem.demo.entity.CarEntity;
-import com.autotboxdatasystem.demo.entity.PageEntity;
 import com.autotboxdatasystem.demo.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -169,18 +168,18 @@ public class CarController {
     // 查找激活车辆
     @PostMapping(path = "/searchActivedCar")
     public @ResponseBody
-    Page<CarEntity> searchActivedCar(@RequestBody PageEntity pageEntity) {
-        Integer pageIndex = pageEntity.getPageIndex();
-        Integer pageSize = pageEntity.getPageSize();
+    Page<CarEntity> searchActivedCar(@RequestBody CarEntity carEntity) {
+        Integer pageIndex = carEntity.getPageIndex();
+        Integer pageSize = carEntity.getPageSize();
         return carService.searchActivedCar(pageIndex, pageSize);
     }
 
     // 查找全部车辆
     @PostMapping(path = "/searchAllCar")
     public @ResponseBody
-    Page<CarEntity> searchAllCar(@RequestBody PageEntity pageEntity) {
-        Integer pageIndex = pageEntity.getPageIndex();
-        Integer pageSize = pageEntity.getPageSize();
+    Page<CarEntity> searchAllCar(@RequestBody CarEntity carEntity) {
+        Integer pageIndex = carEntity.getPageIndex();
+        Integer pageSize = carEntity.getPageSize();
         return carService.searchAllCar(pageIndex, pageSize);
     }
 }

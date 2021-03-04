@@ -1,7 +1,6 @@
 package com.autotboxdatasystem.demo.controller;
 
 import com.autotboxdatasystem.demo.entity.UserEntity;
-import com.autotboxdatasystem.demo.entity.PageEntity;
 import com.autotboxdatasystem.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -186,18 +185,18 @@ public class UserController {
     // 查找激活用户
     @PostMapping(path = "/searchActivedUser")
     public @ResponseBody
-    Page<UserEntity> searchActivedUser(@RequestBody PageEntity pageEntity) {
-        Integer pageIndex = pageEntity.getPageIndex();
-        Integer pageSize = pageEntity.getPageSize();
+    Page<UserEntity> searchActivedUser(@RequestBody UserEntity userEntity) {
+        Integer pageIndex = userEntity.getPageIndex();
+        Integer pageSize = userEntity.getPageSize();
         return userService.searchActivedUser(pageIndex, pageSize);
     }
 
     // 查找全部用户
     @PostMapping(path = "/searchAllUser")
     public @ResponseBody
-    Page<UserEntity> searchAllUser(@RequestBody PageEntity pageEntity) {
-        Integer pageIndex = pageEntity.getPageIndex();
-        Integer pageSize = pageEntity.getPageSize();
+    Page<UserEntity> searchAllUser(@RequestBody UserEntity userEntity) {
+        Integer pageIndex = userEntity.getPageIndex();
+        Integer pageSize = userEntity.getPageSize();
         return userService.searchAllUser(pageIndex, pageSize);
     }
 }

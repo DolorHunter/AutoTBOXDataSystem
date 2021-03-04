@@ -6,9 +6,9 @@
 
 ## Info
 
-* Data source from [cars-data.com](https://www.cars-data.com)
+* Data source [cars-data.com](https://www.cars-data.com)
 * Crawler [src/main.py](src/main.py)
-* Data [data/car.csv](src/car.csv)
+* Data (23,351 row, 18.9MB) [data/car.csv](data/car.csv)
 
 ## Requirements
 
@@ -22,7 +22,7 @@ $ pip install os requests beautifulsoup4
 
 * [cars-data.com](https://www.cars-data.com) seems not to have crawler protection, and the format is easy to crawl. Have fun crawling.
 * [data/car.csv](src/car.csv) only includes data from page1~page36 and it stoped at [Mercedes E 220 CDI Classic tech specs](https://www.cars-data.com/en/mercedes-e-220-cdi-classic-specs/24161/tech), which is at [page36](https://www.cars-data.com/en/all-cars/page36.html), model [2006 Mercedes-Benz E-class specs](https://www.cars-data.com/en/mercedes-benz-e-class-2006/1503), type [2006 Mercedes E 220 CDI Classic  170 hp, diesel, 6 s., manual](https://www.cars-data.com/en/mercedes-e-220-cdi-classic-specs/24161/tech).
-* I think it is bad connection cause this error. __[Full Tracker Info](#Traceback-Info)__ is down below, and there is a __[Brief Traceback](#Brief-Traceback)__ for you.
+* I think it is caused by a bad connection or should I switch my IP during the crawling. __[Full Tracker Info](#Traceback-Info)__ is down below, and there is a __[Brief Traceback](#Brief-Traceback)__ for you.
 
 ### Brief Traceback
 

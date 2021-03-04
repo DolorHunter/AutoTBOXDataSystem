@@ -28,6 +28,8 @@ public class BaseEntity {
     private String lastUpdatedBy;
     @Column(nullable = false, columnDefinition = "TIMESTAMP comment '最后修改日期'")
     private String lastUpdatedDate;
+    private Integer pageIndex;
+    private Integer pageSize;
 
     public Integer getId() {
         return id;
@@ -99,5 +101,20 @@ public class BaseEntity {
 
     public void setLastUpdatedDate(String lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
+    }
+    public Integer getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(Integer pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }

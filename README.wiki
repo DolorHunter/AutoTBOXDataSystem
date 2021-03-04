@@ -26,20 +26,11 @@
   <tr><td>String</td><td>timestamp</td><td>createdDate</td><td>创建日期</td></tr>
   <tr><td>String</td><td>varchar(32)</td><td>lastUpdatedBy</td><td>最后修改人</td></tr>
   <tr><td>String</td><td>timestamp</td><td>lastUpdatedDate</td><td>最后修改日期</td></tr>
-</table>
-
-=== 1.1.2 PageEntity ===
-
-页面实体类, 用于实现Pager功能. 无对应表.
-
-<table>
-  <tr><th colspan="4" align="center">PageEntity</th></tr>
-  <tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td>Integer</td><td>-</td><td>pageIndex</td><td>当前页面</td></tr>
   <tr><td>Integer</td><td>-</td><td>pageSize</td><td>页面容量</td></tr>
 </table>
 
-=== 1.1.3 UserEntity ===
+=== 1.1.2 UserEntity ===
 
 用户实体类. 关联表user_entity.
 
@@ -53,7 +44,7 @@
   <tr><td>String</td><td>varchar(64)</td><td>avatar</td><td>头像</td></tr>
 </table>
 
-=== 1.1.4 RoleEntity ===
+=== 1.1.3 RoleEntity ===
 
 角色实体类. 关联表role_entity.
 
@@ -65,7 +56,7 @@
   <tr><td>Integer</td><td>int</td><td>fatherRoleId</td><td>父角色ID</td></tr>
 </table>
 
-=== 1.1.5 MenuEntity ===
+=== 1.1.4 MenuEntity ===
 
 菜单实体类. 关联表menu_entity.
 
@@ -77,7 +68,7 @@
   <tr><td>Integer</td><td>int</td><td>fatherMenuId</td><td>父菜单ID</td></tr>
 </table>
 
-=== 1.1.6 UserRoleEntity ===
+=== 1.1.5 UserRoleEntity ===
 
 用户角色类, 关联用户与角色. 关联表user_role_entity.
 
@@ -92,7 +83,7 @@
   <tr><td>String</td><td>varchar(32)</td><td>roleName</td><td>角色名</td></tr>
 </table>
 
-=== 1.1.7 RoleMenuEntity ===
+=== 1.1.6 RoleMenuEntity ===
 
 角色菜单类, 关联角色和菜单. 关联表role_menu_entity.
 
@@ -107,7 +98,7 @@
   <tr><td>String</td><td>varchar(32)</td><td>menuName</td><td>菜单名</td></tr>
 </table>
 
-=== 1.1.8 CarEntity ===
+=== 1.1.7 CarEntity ===
 
 车辆实体类. 关联表car_entity.
 
@@ -192,7 +183,7 @@
   <tr><td>String</td><td>varchar(64)</td><td>chassisWarranty</td><td>底盘保修</td></tr>
 </table>
 
-=== 1.1.9 UserCarEntity ===
+=== 1.1.8 UserCarEntity ===
 
 用户车辆类, 关联用户与车辆. 关联表user_car_entity.
 
@@ -205,6 +196,48 @@
   <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
 </table>
 
+=== 1.1.9 UserCarLogEntity ===
+
+用户车辆日志类, 关联用户车辆与车辆日志. 关联表user_car_log_entity.
+
+<table>
+  <tr><th colspan="4" align="center">UserCarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>Integer</td><td>int</td><td>userCarId</td><td>用户车辆ID</td></tr>
+  <tr><td>String</td><td>timestamp</td><td>startTime</td><td>开机时间</td></tr>
+  <tr><td>String</td><td>timestamp</td><td>runTime</td><td>运行时长</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>gear</td><td>挡位</td></tr>
+  <tr><td>Double</td><td>Double</td><td>drivenRange</td><td>行驶里程</td></tr>
+  <tr><td>Double</td><td>Double</td><td>remainingRange</td><td>剩余里程</td></tr>
+  <tr><td>Double</td><td>Double</td><td>remainingFuel</td><td>剩余油量</td></tr>
+  <tr><td>Double</td><td>Double</td><td>remainingElectroFuel</td><td>剩余电量</td></tr>
+  <tr><td>Double</td><td>Double</td><td>speed</td><td>车速</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>location</td><td>位置</td></tr>
+</table>
+
+=== 1.1.10 UserCarWarrantyEntity ===
+
+用户车辆保修类, 关联用户车辆和车辆保修. 关联表user_car_warranty.
+
+<table>
+  <tr><th colspan="4" align="center">UserCarWarrantyEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>Integer</td><td>int</td><td>userCarId</td><td>用户车辆ID</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>generalComment</td><td>整体评价</td></tr>
+  <tr><td>Integer</td><td>int</td><td>generalScore</td><td>整体分数</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>driveComment</td><td>驱动评价</td></tr>
+  <tr><td>Integer</td><td>int</td><td>driveScore</td><td>驱动分数</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>fuelEngineComment</td><td>燃油引擎评价</td></tr>
+  <tr><td>Integer</td><td>int</td><td>fuelEngineScore</td><td>燃油引擎分数</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>performanceComment</td><td>性能评价</td></tr>
+  <tr><td>Integer</td><td>int</td><td>performanceScore</td><td>性能分数</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>consumptionComment</td><td>效能评价</td></tr>
+  <tr><td>Integer</td><td>int</td><td>consumptionScore</td><td>效能分数</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>chassisComment</td><td>车身评价</td></tr>
+  <tr><td>Integer</td><td>int</td><td>chassisScore</td><td>车身分数</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>transmissionComment</td><td>传动评价</td></tr>
+  <tr><td>Integer</td><td>int</td><td>transmissionScore</td><td>传动分数</td></tr>
+</table>
 
 == 1.2 Controller控制类设计 ==
 
@@ -233,8 +266,8 @@
   <tr><td>resetPasswordById</td><td>/User/resetPasswordById</td><td>userEntity</td><td>x</td><td>重置用户密码</td></tr>
   <tr><td>searchUserById</td><td>/User/searchUserById</td><td>userEntity</td><td>x</td><td>ID查找用户</td></tr>
   <tr><td>searchUserByUsername</td><td>/User/searchUserByUsername</td><td>userEntity</td><td>x</td><td>用户名查找用户</td></tr>
-  <tr><td>searchActivedUser</td><td>/User/searchActivedUser</td><td>pageEntity</td><td>x</td><td>查找激活用户</td></tr>
-  <tr><td>searchAllUser</td><td>/User/searchAllUser</td><td>pageEntity</td><td>x</td><td>查找全部用户</td></tr>
+  <tr><td>searchActivedUser</td><td>/User/searchActivedUser</td><td>userEntity</td><td>x</td><td>查找激活用户</td></tr>
+  <tr><td>searchAllUser</td><td>/User/searchAllUser</td><td>userEntity</td><td>x</td><td>查找全部用户</td></tr>
 </table>
 
 === 1.2.2 RoleController ===
@@ -255,8 +288,8 @@
   <tr><td>updateRoleById</td><td>/Role/updateRoleById</td><td>roleEntity</td><td>x</td><td>更新角色信息</td></tr>
   <tr><td>searchRoleById</td><td>/Role/searchRoleById</td><td>roleEntity</td><td>x</td><td>ID查找角色</td></tr>
   <tr><td>searchRoleByRoleName</td><td>/Role/searchRoleByRoleName</td><td>roleEntity</td><td>x</td><td>角色名查找角色</td></tr>
-  <tr><td>searchActivedRole</td><td>/Role/searchActivedRole</td><td>pageEntity</td><td>x</td><td>查找激活角色</td></tr>
-  <tr><td>searchAllRole</td><td>/Role/searchAllRole</td><td>pageEntity</td><td>x</td><td>查找全部角色</td></tr>
+  <tr><td>searchActivedRole</td><td>/Role/searchActivedRole</td><td>roleEntity</td><td>x</td><td>查找激活角色</td></tr>
+  <tr><td>searchAllRole</td><td>/Role/searchAllRole</td><td>roleEntity</td><td>x</td><td>查找全部角色</td></tr>
 </table>
 
 === 1.2.3 MenuController ===
@@ -277,8 +310,8 @@
   <tr><td>updateMenuById</td><td>/Menu/updateMenuById</td><td>menuEntity</td><td>x</td><td>更新菜单信息</td></tr>
   <tr><td>searchMenuById</td><td>/Menu/searchMenuById</td><td>menuEntity</td><td>x</td><td>ID查找菜单</td></tr>
   <tr><td>searchMenuByMenuName</td><td>/Menu/searchMenuByMenuName</td><td>menuEntity</td><td>x</td><td>菜单名查找菜单</td></tr>
-  <tr><td>searchActivedMenu</td><td>/Menu/searchActivedMenu</td><td>pageEntity</td><td>x</td><td>查找激活菜单</td></tr>
-  <tr><td>searchAllMenu</td><td>/Menu/searchAllMenu</td><td>pageEntity</td><td>x</td><td>查找全部菜单</td></tr>
+  <tr><td>searchActivedMenu</td><td>/Menu/searchActivedMenu</td><td>menuEntity</td><td>x</td><td>查找激活菜单</td></tr>
+  <tr><td>searchAllMenu</td><td>/Menu/searchAllMenu</td><td>menuEntity</td><td>x</td><td>查找全部菜单</td></tr>
 </table>
 
 === 1.2.4 UserRoleController ===
@@ -300,7 +333,7 @@
   <tr><td>searchUserRoleByUsername</td><td>/UserRole/searchUserRoleByUsername</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色</td></tr>
   <tr><td>searchUserRoleByRoleId</td><td>/UserRole/searchUserRoleByRoleId</td><td>userRoleEntity</td><td>x</td><td>角色ID查找用户角色</td></tr>
   <tr><td>searchUserRoleByRoleName</td><td>/UserRole/searchUserRoleByRoleName</td><td>userRoleEntity</td><td>x</td><td>角色名查找用户角色</td></tr>
-  <tr><td>searchAllUserRole</td><td>/UserRole/searchAllUserRole</td><td>pageEntity</td><td>x</td><td>查找全部用户角色</td></tr>
+  <tr><td>searchAllUserRole</td><td>/UserRole/searchAllUserRole</td><td>userRoleEntity</td><td>x</td><td>查找全部用户角色</td></tr>
 </table>
 
 === 1.2.5 RoleMenuController ===
@@ -322,7 +355,7 @@
   <tr><td>searchRoleMenuByRoleName</td><td>/RoleMenu/searchRoleMenuByRoleName</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单</td></tr>
   <tr><td>searchRoleMenuByMenuId</td><td>/RoleMenu/searchRoleMenuByMenuId</td><td>roleMenuEntity</td><td>x</td><td>菜单ID查找角色菜单</td></tr>
   <tr><td>searchRoleMenuByMenuName</td><td>/RoleMenu/searchRoleMenuByMenuName</td><td>roleMenuEntity</td><td>x</td><td>菜单名查找角色菜单</td></tr>
-  <tr><td>searchAllRoleMenu</td><td>/RoleMenu/searchAllRoleMenu</td><td>pageEntity</td><td>x</td><td>查找全部角色菜单</td></tr>
+  <tr><td>searchAllRoleMenu</td><td>/RoleMenu/searchAllRoleMenu</td><td>roleMenuEntity</td><td>x</td><td>查找全部角色菜单</td></tr>
 </table>
 
 === 1.2.6 CarController ===
@@ -350,8 +383,8 @@
   <tr><td>updateServiceAndWarrantyById</td><td>/Car/updateServiceAndWarrantyById</td><td>carEntity</td><td>x</td><td>更新车辆信息 SERVICE AND WARRANTY</td></tr>
   <tr><td>searchCarById</td><td>/Car/searchCarById</td><td>carEntity</td><td>x</td><td>ID查找车辆</td></tr>
   <tr><td>searchCarByCarName</td><td>/Car/searchCarByCarName</td><td>carEntity</td><td>x</td><td>车辆名查找车辆</td></tr>
-  <tr><td>searchActivedCar</td><td>/Car/searchActivedCar</td><td>pageEntity</td><td>x</td><td>查找激活车辆</td></tr>
-  <tr><td>searchAllCar</td><td>/Car/searchAllCar</td><td>pageEntity</td><td>x</td><td>查找全部车辆</td></tr>
+  <tr><td>searchActivedCar</td><td>/Car/searchActivedCar</td><td>carEntity</td><td>x</td><td>查找激活车辆</td></tr>
+  <tr><td>searchAllCar</td><td>/Car/searchAllCar</td><td>carEntity</td><td>x</td><td>查找全部车辆</td></tr>
 </table>
 
 === 1.2.7 UserCarController ===
@@ -373,7 +406,41 @@
   <tr><td>searchUserCarByUsername</td><td>/UserCar/searchUserCarByUsername</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆</td></tr>
   <tr><td>searchUserCarByCarId</td><td>/UserCar/searchUserCarByCarId</td><td>userCarEntity</td><td>x</td><td>车辆ID查找用户车辆</td></tr>
   <tr><td>searchUserCarByCarName</td><td>/UserCar/searchUserCarByCarName</td><td>userCarEntity</td><td>x</td><td>车辆名查找用户车辆</td></tr>
-  <tr><td>searchAllUserCar</td><td>/UserCar/searchAllUserCar</td><td>pageEntity</td><td>x</td><td>查找全部用户车辆</td></tr>
+  <tr><td>searchAllUserCar</td><td>/UserCar/searchAllUserCar</td><td>userCarEntity</td><td>x</td><td>查找全部用户车辆</td></tr>
+</table>
+
+=== 1.2.8 UserCarLogController ===
+
+用户车辆日志控制类.
+
+<table>
+  <tr><th colspan="5" align="center">UserCarLogController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addUserCarLog</td><td>/UserCarLog/addUserCarLog</td><td>userCarLogEntity</td><td>x</td><td>添加用户车辆日志</td></tr>
+  <tr><td>deleteUserCarLogById</td><td>/UserCarLog/deleteUserCarLogById</td><td>userCarLogEntity</td><td>x</td><td>日志ID硬删除日志</td></tr>
+  <tr><td>deleteUserCarLogByUserCarId</td><td>/UserCarLog/deleteUserCarLogByUserCarId</td><td>userCarLogEntity</td><td>x</td><td>用户车辆ID硬删除日志</td></tr>
+  <tr><td>updateStatusById</td><td>/UserCarLog/updateStatusById</td><td>userCarLogEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/UserCarLog/updateRemarkById</td><td>userCarLogEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchUserCarLogById</td><td>/UserCarLog/searchUserCarLogById</td><td>userCarLogEntity</td><td>x</td><td>日志ID查找</td></tr>
+  <tr><td>searchUserCarLogByUserCarId</td><td>/UserCarLog/searchUserCarLogByUserCarId</td><td>userCarLogEntity</td><td>x</td><td>用户车辆ID查找日志</td></tr>
+  <tr><td>searchAllUserCarLog</td><td>/UserCarLog/searchAllUserCarLog</td><td>userCarLogEntity</td><td>x</td><td>查找全部用户车辆日志</td></tr>
+</table>
+
+=== 1.2.8 UserCarWarrantyController ===
+
+用户车辆保修控制类.
+
+<table>
+  <tr><th colspan="5" align="center">UserCarWarrantyController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addUserCarWarranty</td><td>/UserCarWarranty/addUserCarWarranty</td><td>userCarWarrantyEntity</td><td>x</td><td>添加用户车辆保修</td></tr>
+  <tr><td>deleteUserCarWarrantyById</td><td>/UserCarWarranty/deleteUserCarWarrantyById</td><td>userCarWarrantyEntity</td><td>x</td><td>日志ID硬删除保修</td></tr>
+  <tr><td>deleteUserCarWarrantyByUserCarId</td><td>/UserCarWarranty/deleteUserCarWarrantyByUserCarId</td><td>userCarWarrantyEntity</td><td>x</td><td>用户车辆ID硬删除保修</td></tr>
+  <tr><td>updateStatusById</td><td>/UserCarWarranty/updateStatusById</td><td>userCarWarrantyEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/UserCarWarranty/updateRemarkById</td><td>userCarWarrantyEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchUserCarWarrantyById</td><td>/UserCarWarranty/searchUserCarWarrantyById</td><td>userCarWarrantyEntity</td><td>x</td><td>保修ID查找</td></tr>
+  <tr><td>searchUserCarWarrantyByUserCarId</td><td>/UserCarWarranty/searchUserCarWarrantyByUserCarId</td><td>userCarWarrantyEntity</td><td>x</td><td>用户车辆ID查找保修</td></tr>
+  <tr><td>searchAllUserCarWarranty</td><td>/UserCarWarranty/searchAllUserCarWarranty</td><td>userCarWarrantyEntity</td><td>x</td><td>查找全部用户车辆保修</td></tr>
 </table>
 
 = 2 前端设计与实现 =
@@ -446,8 +513,10 @@ root登录
 
 == 3.7 React ==
 
-* React 101 [https://www.taniarascia.com/getting-started-with-react/ TaniaRascia-React Tutorial: An Overview and Walkthrough]
-* React 官方文档 [https://create-react-app.dev/docs/getting-started Create React App]
+* React 介绍文档 [https://zh-hant.reactjs.org/docs/getting-started.html React 了解更多]
+* 从设计开始写React  (React 介绍文档 主要概念12)[https://zh-hant.reactjs.org/docs/thinking-in-react.html 用 React 思考]
+* React 101 CRUD [https://www.taniarascia.com/getting-started-with-react/ TaniaRascia-React Tutorial: An Overview and Walkthrough]
+* React 开发文档 [https://create-react-app.dev/docs/getting-started Create React App]
 * (视频)CodeEngine-React & Spring应用2 [https://www.youtube.com/watch?v=jCalDxGthoc CodeEngine-React & Spring Boot Expense Tracker Application (Part 2)]
 
 == 3.8 JavaScript ==
@@ -455,9 +524,7 @@ root登录
 * JavaScript 101[https://www.w3schools.com/js/default.asp w3school-JavaScript Tutorial]
 * JavaScript重新介紹 [https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/A_re-introduction_to_JavaScript mozilla-重新介紹JavaScript]
 
-== 4 数据来源 ==
+= 4 数据来源 =
 
 * 车辆信息数据来源 [https://www.cars-data.com/en/all-cars.html Cars-Data.com]
-* 爬虫说明文档 [https://github.com/DolorHunter/AutoTBOXDataSystem/tree/master/CarCrawlers/README.md CarCrawlers/README.md]
-* 爬虫代码全车型全配置 [https://github.com/DolorHunter/AutoTBOXDataSystem/tree/master/CarCrawlers/src/main.py CarCrawlers/src/main.py]
-* 结果数据uft8 [https://github.com/DolorHunter/AutoTBOXDataSystem/tree/master/CarCrawlers/data/car.csv CarCrawlers/data/car.csv]
+* 车辆信息数据爬虫(源代码+2万条数据) [https://github.com/DolorHunter/AutoTBOXDataSystem/tree/master/CarCrawlers CarCrawlers]

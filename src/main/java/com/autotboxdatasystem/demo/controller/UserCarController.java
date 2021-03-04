@@ -122,9 +122,9 @@ public class UserCarController {
     // 查找全部用户车辆
     @PostMapping(path = "/searchAllUserCar")
     public @ResponseBody
-    Page<UserCarEntity> searchAllUserCar(@RequestBody PageEntity pageEntity) {
-        Integer pageIndex = pageEntity.getPageIndex();
-        Integer pageSize = pageEntity.getPageSize();
+    Page<UserCarEntity> searchAllUserCar(@RequestBody UserCarEntity userCarEntity) {
+        Integer pageIndex = userCarEntity.getPageIndex();
+        Integer pageSize = userCarEntity.getPageSize();
         return userCarService.searchAllUserCar(pageIndex, pageSize);
     }
 }
