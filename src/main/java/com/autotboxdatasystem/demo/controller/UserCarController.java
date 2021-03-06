@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping(path = "/UserCar")
 public class UserCarController {
@@ -90,7 +88,7 @@ public class UserCarController {
     // 用户ID查找用户车辆
     @PostMapping(path = "/searchUserCarByUserId")
     public @ResponseBody
-    List<UserCarEntity> searchUserCarByUserId(@RequestBody UserCarEntity userCarEntity) {
+    Page<UserCarEntity> searchUserCarByUserId(@RequestBody UserCarEntity userCarEntity) {
         return userCarService.searchUserCarByUserId(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -98,7 +96,7 @@ public class UserCarController {
     // 用户名查找用户车辆
     @PostMapping(path = "/searchUserCarByUsername")
     public @ResponseBody
-    List<UserCarEntity> searchUserCarByUsername(@RequestBody UserCarEntity userCarEntity) {
+    Page<UserCarEntity> searchUserCarByUsername(@RequestBody UserCarEntity userCarEntity) {
         return userCarService.searchUserCarByUsername(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -106,7 +104,7 @@ public class UserCarController {
     // 车辆ID查找用户车辆
     @PostMapping(path = "/searchUserCarByCarId")
     public @ResponseBody
-    List<UserCarEntity> searchUserCarByCarId(@RequestBody UserCarEntity userCarEntity) {
+    Page<UserCarEntity> searchUserCarByCarId(@RequestBody UserCarEntity userCarEntity) {
         return userCarService.searchUserCarByCarId(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -114,7 +112,7 @@ public class UserCarController {
     // 车辆名查找用户车辆
     @PostMapping(path = "/searchUserCarByCarName")
     public @ResponseBody
-    List<UserCarEntity> searchUserCarByCarName(@RequestBody UserCarEntity userCarEntity) {
+    Page<UserCarEntity> searchUserCarByCarName(@RequestBody UserCarEntity userCarEntity) {
         return userCarService.searchUserCarByCarName(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -123,8 +121,6 @@ public class UserCarController {
     @PostMapping(path = "/searchAllUserCar")
     public @ResponseBody
     Page<UserCarEntity> searchAllUserCar(@RequestBody UserCarEntity userCarEntity) {
-        Integer pageIndex = userCarEntity.getPageIndex();
-        Integer pageSize = userCarEntity.getPageSize();
-        return userCarService.searchAllUserCar(pageIndex, pageSize);
+        return userCarService.searchAllUserCar(userCarEntity);
     }
 }

@@ -1,10 +1,6 @@
 package com.autotboxdatasystem.demo.entity;
 
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.*;
 
 @MappedSuperclass
 public class BaseEntity {
@@ -28,7 +24,9 @@ public class BaseEntity {
     private String lastUpdatedBy;
     @Column(nullable = false, columnDefinition = "TIMESTAMP comment '最后修改日期'")
     private String lastUpdatedDate;
+    @Transient
     private Integer pageIndex;
+    @Transient
     private Integer pageSize;
 
     public Integer getId() {

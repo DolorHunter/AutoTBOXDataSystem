@@ -90,7 +90,7 @@ public class UserRoleController {
     // 用户ID查找用户角色
     @PostMapping(path = "/searchUserRoleByUserId")
     public @ResponseBody
-    List<UserRoleEntity> searchUserRoleByUserId(@RequestBody UserRoleEntity userRoleEntity) {
+    Page<UserRoleEntity> searchUserRoleByUserId(@RequestBody UserRoleEntity userRoleEntity) {
         return userRoleService.searchUserRoleByUserId(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -98,7 +98,7 @@ public class UserRoleController {
     // 用户名查找用户角色
     @PostMapping(path = "/searchUserRoleByUsername")
     public @ResponseBody
-    List<UserRoleEntity> searchUserRoleByUsername(@RequestBody UserRoleEntity userRoleEntity) {
+    Page<UserRoleEntity> searchUserRoleByUsername(@RequestBody UserRoleEntity userRoleEntity) {
         return userRoleService.searchUserRoleByUsername(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -106,7 +106,7 @@ public class UserRoleController {
     // 角色ID查找用户角色
     @PostMapping(path = "/searchUserRoleByRoleId")
     public @ResponseBody
-    List<UserRoleEntity> searchUserRoleByRoleId(@RequestBody UserRoleEntity userRoleEntity) {
+    Page<UserRoleEntity> searchUserRoleByRoleId(@RequestBody UserRoleEntity userRoleEntity) {
         return userRoleService.searchUserRoleByRoleId(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -114,7 +114,7 @@ public class UserRoleController {
     // 角色名查找用户角色
     @PostMapping(path = "/searchUserRoleByRoleName")
     public @ResponseBody
-    List<UserRoleEntity> searchUserRoleByRoleName(@RequestBody UserRoleEntity userRoleEntity) {
+    Page<UserRoleEntity> searchUserRoleByRoleName(@RequestBody UserRoleEntity userRoleEntity) {
         return userRoleService.searchUserRoleByRoleName(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -123,8 +123,6 @@ public class UserRoleController {
     @PostMapping(path = "/searchAllUserRole")
     public @ResponseBody
     Page<UserRoleEntity> searchAllUserRole(@RequestBody UserRoleEntity userRoleEntity) {
-        Integer pageIndex = userRoleEntity.getPageIndex();
-        Integer pageSize = userRoleEntity.getPageSize();
-        return userRoleService.searchAllUserRole(pageIndex, pageSize);
+        return userRoleService.searchAllUserRole(userRoleEntity);
     }
 }

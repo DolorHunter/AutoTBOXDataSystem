@@ -11,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class UserRoleServiceImpl implements UserRoleService {
@@ -96,27 +94,41 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public List<UserRoleEntity> searchUserRoleByUserId(UserRoleEntity userRoleEntity) {
-        return userRoleDAO.findByUserId(userRoleEntity.getUserId());
+    public Page<UserRoleEntity> searchUserRoleByUserId(UserRoleEntity userRoleEntity) {
+        Integer pageIndex = userRoleEntity.getPageIndex();
+        Integer pageSize = userRoleEntity.getPageSize();
+        Integer userId = userRoleEntity.getUserId();
+        return userRoleDAO.findByUserId(userId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<UserRoleEntity> searchUserRoleByUsername(UserRoleEntity userRoleEntity) {
-        return userRoleDAO.findByUsername(userRoleEntity.getUsername());
+    public Page<UserRoleEntity> searchUserRoleByUsername(UserRoleEntity userRoleEntity) {
+        Integer pageIndex = userRoleEntity.getPageIndex();
+        Integer pageSize = userRoleEntity.getPageSize();
+        String username = userRoleEntity.getUsername();
+        return userRoleDAO.findByUsername(username, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<UserRoleEntity> searchUserRoleByRoleId(UserRoleEntity userRoleEntity) {
-        return userRoleDAO.findByRoleId(userRoleEntity.getRoleId());
+    public Page<UserRoleEntity> searchUserRoleByRoleId(UserRoleEntity userRoleEntity) {
+        Integer pageIndex = userRoleEntity.getPageIndex();
+        Integer pageSize = userRoleEntity.getPageSize();
+        Integer roleId = userRoleEntity.getRoleId();
+        return userRoleDAO.findByRoleId(roleId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<UserRoleEntity> searchUserRoleByRoleName(UserRoleEntity userRoleEntity) {
-        return userRoleDAO.findByRoleName(userRoleEntity.getRoleName());
+    public Page<UserRoleEntity> searchUserRoleByRoleName(UserRoleEntity userRoleEntity) {
+        Integer pageIndex = userRoleEntity.getPageIndex();
+        Integer pageSize = userRoleEntity.getPageSize();
+        String roleName = userRoleEntity.getRoleName();
+        return userRoleDAO.findByRoleName(roleName, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<UserRoleEntity> searchAllUserRole(Integer pageIndex, Integer pageSize) {
+    public Page<UserRoleEntity> searchAllUserRole(UserRoleEntity userRoleEntity) {
+        Integer pageIndex = userRoleEntity.getPageIndex();
+        Integer pageSize = userRoleEntity.getPageSize();
         return userRoleDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 }

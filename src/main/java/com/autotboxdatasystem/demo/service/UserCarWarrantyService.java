@@ -3,8 +3,6 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.UserCarWarrantyEntity;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 public interface UserCarWarrantyService {
     boolean addUserCarWarranty(UserCarWarrantyEntity userCarWarrantyEntity);
 
@@ -18,8 +16,8 @@ public interface UserCarWarrantyService {
 
     UserCarWarrantyEntity searchUserCarWarrantyById(UserCarWarrantyEntity userCarWarrantyEntity);
 
-    List<UserCarWarrantyEntity> searchUserCarWarrantyByUserCarId(UserCarWarrantyEntity userCarWarrantyEntity);
+    Page<UserCarWarrantyEntity> searchUserCarWarrantyByUserCarId(UserCarWarrantyEntity userCarWarrantyEntity);
 
-    Page<UserCarWarrantyEntity> searchAllUserCarWarranty(Integer pageIndex, Integer pageSize);
+    Page<UserCarWarrantyEntity> searchAllUserCarWarranty(UserCarWarrantyEntity userCarWarrantyEntity);
 
 }

@@ -108,16 +108,6 @@ public class UserController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 更新用户名
-    @PostMapping(path = "/updateUsernameById")
-    public @ResponseBody
-    ResponseEntity<String> updateUsernameById(@RequestBody UserEntity userEntity) {
-        if (!userService.updateUsernameById(userEntity)) {
-            return new ResponseEntity<>("Update Username Failed. Username was token, illegal or none.", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
-    }
-
     // 更新邮箱
     @PostMapping(path = "/updateEmailById")
     public @ResponseBody
@@ -186,17 +176,13 @@ public class UserController {
     @PostMapping(path = "/searchActivedUser")
     public @ResponseBody
     Page<UserEntity> searchActivedUser(@RequestBody UserEntity userEntity) {
-        Integer pageIndex = userEntity.getPageIndex();
-        Integer pageSize = userEntity.getPageSize();
-        return userService.searchActivedUser(pageIndex, pageSize);
+        return userService.searchActivedUser(userEntity);
     }
 
     // 查找全部用户
     @PostMapping(path = "/searchAllUser")
     public @ResponseBody
     Page<UserEntity> searchAllUser(@RequestBody UserEntity userEntity) {
-        Integer pageIndex = userEntity.getPageIndex();
-        Integer pageSize = userEntity.getPageSize();
-        return userService.searchAllUser(pageIndex, pageSize);
+        return userService.searchAllUser(userEntity);
     }
 }

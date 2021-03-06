@@ -21,19 +21,19 @@ public interface UserRoleDAO extends PagingAndSortingRepository<UserRoleEntity, 
 
     List<UserRoleEntity> findByUserId(Integer userId);
 
-    List<UserRoleEntity> findByUsername(String username);
+    Page<UserRoleEntity> findByUserId(Integer userId, Pageable pageable);
+
+    Page<UserRoleEntity> findByUsername(String username, Pageable pageable);
 
     List<UserRoleEntity> findByRoleId(Integer roleId);
 
-    List<UserRoleEntity> findByRoleName(String roleName);
+    Page<UserRoleEntity> findByRoleId(Integer roleId, Pageable pageable);
+
+    Page<UserRoleEntity> findByRoleName(String roleName, Pageable pageable);
 
     UserRoleEntity findByUserIdAndRoleId(Integer userId, Integer roleId);
 
     UserRoleEntity findByUsernameAndRoleName(String username, String roleName);
-
-    List<UserRoleEntity> findByCreatedBy(String username);
-
-    List<UserRoleEntity> findByLastUpdatedBy(String username);
 
     Page<UserRoleEntity> findByIsActivated(String active, Pageable pageable);
 

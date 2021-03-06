@@ -26,7 +26,7 @@ public interface MenuService {
 
     MenuEntity searchMenuByMenuName(MenuEntity menuEntity);
 
-    Page<MenuEntity> searchActivedMenu(Integer pageIndex, Integer pageSize);
+    Page<MenuEntity> searchActivedMenu(MenuEntity menuEntity);
 
-    Page<MenuEntity> searchAllMenu(Integer pageIndex, Integer pageSize);
+    Page<MenuEntity> searchAllMenu(MenuEntity menuEntity);
 }

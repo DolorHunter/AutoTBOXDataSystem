@@ -3,8 +3,6 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.RoleMenuEntity;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 public interface RoleMenuService {
     boolean addMenu2Role(RoleMenuEntity roleMenuEntity);
 
@@ -22,13 +20,13 @@ public interface RoleMenuService {
 
     RoleMenuEntity searchRoleMenuById(RoleMenuEntity roleMenuEntity);
 
-    List<RoleMenuEntity> searchRoleMenuByRoleId(RoleMenuEntity roleMenuEntity);
+    Page<RoleMenuEntity> searchRoleMenuByRoleId(RoleMenuEntity roleMenuEntity);
 
-    List<RoleMenuEntity> searchRoleMenuByRoleName(RoleMenuEntity roleMenuEntity);
+    Page<RoleMenuEntity> searchRoleMenuByRoleName(RoleMenuEntity roleMenuEntity);
 
-    List<RoleMenuEntity> searchRoleMenuByMenuId(RoleMenuEntity roleMenuEntity);
+    Page<RoleMenuEntity> searchRoleMenuByMenuId(RoleMenuEntity roleMenuEntity);
 
-    List<RoleMenuEntity> searchRoleMenuByMenuName(RoleMenuEntity roleMenuEntity);
+    Page<RoleMenuEntity> searchRoleMenuByMenuName(RoleMenuEntity roleMenuEntity);
 
-    Page<RoleMenuEntity> searchAllRoleMenu(Integer pageIndex, Integer pageSize);
+    Page<RoleMenuEntity> searchAllRoleMenu(RoleMenuEntity roleMenuEntity);
 }

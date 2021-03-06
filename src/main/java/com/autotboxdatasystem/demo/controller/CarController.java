@@ -169,17 +169,13 @@ public class CarController {
     @PostMapping(path = "/searchActivedCar")
     public @ResponseBody
     Page<CarEntity> searchActivedCar(@RequestBody CarEntity carEntity) {
-        Integer pageIndex = carEntity.getPageIndex();
-        Integer pageSize = carEntity.getPageSize();
-        return carService.searchActivedCar(pageIndex, pageSize);
+        return carService.searchActivedCar(carEntity);
     }
 
     // 查找全部车辆
     @PostMapping(path = "/searchAllCar")
     public @ResponseBody
     Page<CarEntity> searchAllCar(@RequestBody CarEntity carEntity) {
-        Integer pageIndex = carEntity.getPageIndex();
-        Integer pageSize = carEntity.getPageSize();
-        return carService.searchAllCar(pageIndex, pageSize);
+        return carService.searchAllCar(carEntity);
     }
 }

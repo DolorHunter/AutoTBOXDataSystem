@@ -26,9 +26,9 @@ public interface RoleService {
 
     RoleEntity searchRoleByRoleName(RoleEntity roleEntity);
 
-    Page<RoleEntity> searchActivedRole(Integer pageIndex, Integer pageSize);
+    Page<RoleEntity> searchActivedRole(RoleEntity roleEntity);
 
-    Page<RoleEntity> searchAllRole(Integer pageIndex, Integer pageSize);
+    Page<RoleEntity> searchAllRole(RoleEntity roleEntity);
 
 
 }

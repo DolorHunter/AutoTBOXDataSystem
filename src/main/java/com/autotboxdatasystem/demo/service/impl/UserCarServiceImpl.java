@@ -11,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class UserCarServiceImpl implements UserCarService {
@@ -96,27 +94,41 @@ public class UserCarServiceImpl implements UserCarService {
     }
 
     @Override
-    public List<UserCarEntity> searchUserCarByUserId(UserCarEntity userCarEntity) {
-        return userCarDAO.findByUserId(userCarEntity.getUserId());
+    public Page<UserCarEntity> searchUserCarByUserId(UserCarEntity userCarEntity) {
+        Integer pageIndex = userCarEntity.getPageIndex();
+        Integer pageSize = userCarEntity.getPageSize();
+        Integer userId = userCarEntity.getUserId();
+        return userCarDAO.findByUserId(userId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<UserCarEntity> searchUserCarByUsername(UserCarEntity userCarEntity) {
-        return userCarDAO.findByUsername(userCarEntity.getUsername());
+    public Page<UserCarEntity> searchUserCarByUsername(UserCarEntity userCarEntity) {
+        Integer pageIndex = userCarEntity.getPageIndex();
+        Integer pageSize = userCarEntity.getPageSize();
+        String username = userCarEntity.getUsername();
+        return userCarDAO.findByUsername(username, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<UserCarEntity> searchUserCarByCarId(UserCarEntity userCarEntity) {
-        return userCarDAO.findByCarId(userCarEntity.getCarId());
+    public Page<UserCarEntity> searchUserCarByCarId(UserCarEntity userCarEntity) {
+        Integer pageIndex = userCarEntity.getPageIndex();
+        Integer pageSize = userCarEntity.getPageSize();
+        Integer carId = userCarEntity.getCarId();
+        return userCarDAO.findByCarId(carId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<UserCarEntity> searchUserCarByCarName(UserCarEntity userCarEntity) {
-        return userCarDAO.findByCarName(userCarEntity.getCarName());
+    public Page<UserCarEntity> searchUserCarByCarName(UserCarEntity userCarEntity) {
+        Integer pageIndex = userCarEntity.getPageIndex();
+        Integer pageSize = userCarEntity.getPageSize();
+        String carName = userCarEntity.getCarName();
+        return userCarDAO.findByCarName(carName, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<UserCarEntity> searchAllUserCar(Integer pageIndex, Integer pageSize) {
+    public Page<UserCarEntity> searchAllUserCar(UserCarEntity userCarEntity) {
+        Integer pageIndex = userCarEntity.getPageIndex();
+        Integer pageSize = userCarEntity.getPageSize();
         return userCarDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 }

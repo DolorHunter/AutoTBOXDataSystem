@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping(path = "/UserCarWarranty")
 public class UserCarWarrantyController {
@@ -74,7 +72,7 @@ public class UserCarWarrantyController {
     // 用户车辆ID查找保修
     @PostMapping(path = "/searchUserCarWarrantyByUserCarId")
     public @ResponseBody
-    List<UserCarWarrantyEntity> searchUserCarWarrantyByUserCarId(@RequestBody UserCarWarrantyEntity userCarWarrantyEntity) {
+    Page<UserCarWarrantyEntity> searchUserCarWarrantyByUserCarId(@RequestBody UserCarWarrantyEntity userCarWarrantyEntity) {
         return userCarWarrantyService.searchUserCarWarrantyByUserCarId(userCarWarrantyEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -83,8 +81,6 @@ public class UserCarWarrantyController {
     @PostMapping(path = "/searchAllUserCarWarranty")
     public @ResponseBody
     Page<UserCarWarrantyEntity> searchAllUserCarWarranty(@RequestBody UserCarWarrantyEntity userCarWarrantyEntity) {
-        Integer pageIndex = userCarWarrantyEntity.getPageIndex();
-        Integer pageSize = userCarWarrantyEntity.getPageSize();
-        return userCarWarrantyService.searchAllUserCarWarranty(pageIndex, pageSize);
+        return userCarWarrantyService.searchAllUserCarWarranty(userCarWarrantyEntity);
     }
 }

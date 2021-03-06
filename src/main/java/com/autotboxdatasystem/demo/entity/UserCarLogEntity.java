@@ -7,24 +7,36 @@ import javax.persistence.Column;
 public class UserCarLogEntity extends BaseEntity {
     @Column(nullable = false, columnDefinition = "int comment '用户车辆ID'")
     private Integer userCarId;
-    @Column(columnDefinition = "timestamp comment '开机时间'")
-    private String startTime;
-    @Column(columnDefinition = "timestamp comment '运行时长'")
+    @Column(columnDefinition = "varchar(64) comment '设备ID'")
+    private Integer deviceId;
+    @Column(columnDefinition = "varchar(64) comment '开机时间'")
+    private String bootTime;
+    @Column(columnDefinition = "varchar(64) comment '运行时长'")
     private String runTime;
     @Column(columnDefinition = "varchar(64) comment '挡位'")
     private String gear;
     @Column(columnDefinition = "Double comment '行驶里程'")
-    private Double drivenRange;
+    private Double odometer;
+    @Column(columnDefinition = "Double comment '累计里程'")
+    private Double odometerAcc;
     @Column(columnDefinition = "Double comment '剩余里程'")
-    private Double remainingRange;
+    private Double odometerRem;
     @Column(columnDefinition = "Double comment '剩余油量'")
-    private Double remainingFuel;
+    private Double fuelRem;
     @Column(columnDefinition = "Double comment '剩余电量'")
-    private Double remainingElectroFuel;
+    private Double electroFuelRem;
     @Column(columnDefinition = "Double comment '车速'")
     private Double speed;
-    @Column(columnDefinition = "Double comment '位置'")
+    @Column(columnDefinition = "Double comment '转速'")
+    private Double RPM;
+    @Column(columnDefinition = "varchar(64) comment '位置'")
     private String location;
+    @Column(columnDefinition = "varchar(64) comment '方向'")
+    private String heading;
+    @Column(columnDefinition = "Double comment '高度'")
+    private Double altitude;
+    @Column(columnDefinition = "Double comment '温度'")
+    private Double temperature;
 
     public Integer getUserCarId() {
         return userCarId;
@@ -34,12 +46,20 @@ public class UserCarLogEntity extends BaseEntity {
         this.userCarId = userCarId;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public Integer getDeviceId() {
+        return deviceId;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setDeviceId(Integer deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getBootTime() {
+        return bootTime;
+    }
+
+    public void setBootTime(String bootTime) {
+        this.bootTime = bootTime;
     }
 
     public String getRunTime() {
@@ -58,36 +78,44 @@ public class UserCarLogEntity extends BaseEntity {
         this.gear = gear;
     }
 
-    public Double getDrivenRange() {
-        return drivenRange;
+    public Double getOdometer() {
+        return odometer;
     }
 
-    public void setDrivenRange(Double drivenRange) {
-        this.drivenRange = drivenRange;
+    public void setOdometer(Double odometer) {
+        this.odometer = odometer;
     }
 
-    public Double getRemainingRange() {
-        return remainingRange;
+    public Double getOdometerAcc() {
+        return odometerAcc;
     }
 
-    public void setRemainingRange(Double remainingRange) {
-        this.remainingRange = remainingRange;
+    public void setOdometerAcc(Double odometerAcc) {
+        this.odometerAcc = odometerAcc;
     }
 
-    public Double getRemainingFuel() {
-        return remainingFuel;
+    public Double getOdometerRem() {
+        return odometerRem;
     }
 
-    public void setRemainingFuel(Double remainingFuel) {
-        this.remainingFuel = remainingFuel;
+    public void setOdometerRem(Double odometerRem) {
+        this.odometerRem = odometerRem;
     }
 
-    public Double getRemainingElectroFuel() {
-        return remainingElectroFuel;
+    public Double getFuelRem() {
+        return fuelRem;
     }
 
-    public void setRemainingElectroFuel(Double remainingElectroFuel) {
-        this.remainingElectroFuel = remainingElectroFuel;
+    public void setFuelRem(Double fuelRem) {
+        this.fuelRem = fuelRem;
+    }
+
+    public Double getElectroFuelRem() {
+        return electroFuelRem;
+    }
+
+    public void setElectroFuelRem(Double electroFuelRem) {
+        this.electroFuelRem = electroFuelRem;
     }
 
     public Double getSpeed() {
@@ -98,11 +126,43 @@ public class UserCarLogEntity extends BaseEntity {
         this.speed = speed;
     }
 
+    public Double getRPM() {
+        return RPM;
+    }
+
+    public void setRPM(Double RPM) {
+        this.RPM = RPM;
+    }
+
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
+    }
+
+    public Double getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(Double altitude) {
+        this.altitude = altitude;
+    }
+
+    public Double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Double temperature) {
+        this.temperature = temperature;
     }
 }

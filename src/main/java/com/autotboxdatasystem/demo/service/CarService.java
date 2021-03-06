@@ -40,7 +40,7 @@ public interface CarService {
 
     CarEntity searchCarByCarName(CarEntity carEntity);
 
-    Page<CarEntity> searchActivedCar(Integer pageIndex, Integer pageSize);
+    Page<CarEntity> searchActivedCar(CarEntity carEntity);
 
-    Page<CarEntity> searchAllCar(Integer pageIndex, Integer pageSize);
+    Page<CarEntity> searchAllCar(CarEntity carEntity);
 }

@@ -79,12 +79,17 @@ public class UserCarLogServiceImpl implements UserCarLogService{
     }
 
     @Override
-    public List<UserCarLogEntity> searchUserCarLogByUserCarId(UserCarLogEntity userCarLogEntity) {
-        return userCarLogDAO.findByUserCarId(userCarLogEntity.getUserCarId());
+    public Page<UserCarLogEntity> searchUserCarLogByUserCarId(UserCarLogEntity userCarLogEntity) {
+        Integer pageIndex = userCarLogEntity.getPageIndex();
+        Integer pageSize = userCarLogEntity.getPageSize();
+        Integer userCarId = userCarLogEntity.getUserCarId();
+        return userCarLogDAO.findByUserCarId(userCarId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<UserCarLogEntity> searchAllUserCarLog(Integer pageIndex, Integer pageSize) {
+    public Page<UserCarLogEntity> searchAllUserCarLog(UserCarLogEntity userCarLogEntity) {
+        Integer pageIndex = userCarLogEntity.getPageIndex();
+        Integer pageSize = userCarLogEntity.getPageSize();
         return userCarLogDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 }

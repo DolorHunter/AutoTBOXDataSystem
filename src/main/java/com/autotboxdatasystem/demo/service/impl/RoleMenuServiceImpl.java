@@ -3,6 +3,7 @@ package com.autotboxdatasystem.demo.service.impl;
 import com.autotboxdatasystem.demo.dao.MenuDAO;
 import com.autotboxdatasystem.demo.dao.RoleMenuDAO;
 import com.autotboxdatasystem.demo.entity.MenuEntity;
+import com.autotboxdatasystem.demo.entity.RoleEntity;
 import com.autotboxdatasystem.demo.entity.RoleMenuEntity;
 import com.autotboxdatasystem.demo.service.RoleMenuService;
 import com.autotboxdatasystem.demo.util.DateUtil;
@@ -163,27 +164,41 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public List<RoleMenuEntity> searchRoleMenuByRoleId(RoleMenuEntity roleMenuEntity) {
-        return roleMenuDAO.findByRoleId(roleMenuEntity.getRoleId());
+    public Page<RoleMenuEntity> searchRoleMenuByRoleId(RoleMenuEntity roleMenuEntity) {
+        Integer pageIndex = roleMenuEntity.getPageIndex();
+        Integer pageSize = roleMenuEntity.getPageSize();
+        Integer roleId = roleMenuEntity.getRoleId();
+        return roleMenuDAO.findByRoleId(roleId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<RoleMenuEntity> searchRoleMenuByRoleName(RoleMenuEntity roleMenuEntity) {
-        return roleMenuDAO.findByRoleName(roleMenuEntity.getRoleName());
+    public Page<RoleMenuEntity> searchRoleMenuByRoleName(RoleMenuEntity roleMenuEntity) {
+        Integer pageIndex = roleMenuEntity.getPageIndex();
+        Integer pageSize = roleMenuEntity.getPageSize();
+        String roleName = roleMenuEntity.getRoleName();
+        return roleMenuDAO.findByRoleName(roleName, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<RoleMenuEntity> searchRoleMenuByMenuId(RoleMenuEntity roleMenuEntity) {
-        return roleMenuDAO.findByMenuId(roleMenuEntity.getMenuId());
+    public Page<RoleMenuEntity> searchRoleMenuByMenuId(RoleMenuEntity roleMenuEntity) {
+        Integer pageIndex = roleMenuEntity.getPageIndex();
+        Integer pageSize = roleMenuEntity.getPageSize();
+        Integer menuId = roleMenuEntity.getMenuId();
+        return roleMenuDAO.findByMenuId(menuId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<RoleMenuEntity> searchRoleMenuByMenuName(RoleMenuEntity roleMenuEntity) {
-        return roleMenuDAO.findByMenuName(roleMenuEntity.getMenuName());
+    public Page<RoleMenuEntity> searchRoleMenuByMenuName(RoleMenuEntity roleMenuEntity) {
+        Integer pageIndex = roleMenuEntity.getPageIndex();
+        Integer pageSize = roleMenuEntity.getPageSize();
+        String menuName = roleMenuEntity.getMenuName();
+        return roleMenuDAO.findByMenuName(menuName, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<RoleMenuEntity> searchAllRoleMenu(Integer pageIndex, Integer pageSize) {
+    public Page<RoleMenuEntity> searchAllRoleMenu(RoleMenuEntity roleMenuEntity) {
+        Integer pageIndex = roleMenuEntity.getPageIndex();
+        Integer pageSize = roleMenuEntity.getPageSize();
         return roleMenuDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 }

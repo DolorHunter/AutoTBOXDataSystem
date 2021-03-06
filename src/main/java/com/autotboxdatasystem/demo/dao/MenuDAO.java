@@ -15,10 +15,6 @@ public interface MenuDAO extends PagingAndSortingRepository<MenuEntity, Integer>
 
     List<MenuEntity> findByFatherMenuId(Integer fatherMenuId);
 
-    List<MenuEntity> findByCreatedBy(String username);
-
-    List<MenuEntity> findByLastUpdatedBy(String username);
-
     Page<MenuEntity> findByIsActivated(String active, Pageable pageable);
 
     Page<MenuEntity> findAll(Pageable pageable);

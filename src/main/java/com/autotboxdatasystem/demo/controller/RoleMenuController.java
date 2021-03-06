@@ -90,7 +90,7 @@ public class RoleMenuController {
     // 角色ID查找角色菜单
     @PostMapping(path = "/searchRoleMenuByRoleId")
     public @ResponseBody
-    List<RoleMenuEntity> searchRoleMenuByRoleId(@RequestBody RoleMenuEntity roleMenuEntity) {
+    Page<RoleMenuEntity> searchRoleMenuByRoleId(@RequestBody RoleMenuEntity roleMenuEntity) {
         return roleMenuService.searchRoleMenuByRoleId(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -98,7 +98,7 @@ public class RoleMenuController {
     // 角色名查找角色菜单
     @PostMapping(path = "/searchRoleMenuByRoleName")
     public @ResponseBody
-    List<RoleMenuEntity> searchRoleMenuByRoleName(@RequestBody RoleMenuEntity roleMenuEntity) {
+    Page<RoleMenuEntity> searchRoleMenuByRoleName(@RequestBody RoleMenuEntity roleMenuEntity) {
         return roleMenuService.searchRoleMenuByRoleName(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -106,7 +106,7 @@ public class RoleMenuController {
     // 菜单ID查找角色菜单
     @PostMapping(path = "/searchRoleMenuByMenuId")
     public @ResponseBody
-    List<RoleMenuEntity> searchRoleMenuByMenuId(@RequestBody RoleMenuEntity roleMenuEntity) {
+    Page<RoleMenuEntity> searchRoleMenuByMenuId(@RequestBody RoleMenuEntity roleMenuEntity) {
         return roleMenuService.searchRoleMenuByMenuId(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -114,7 +114,7 @@ public class RoleMenuController {
     // 菜单名查找角色菜单
     @PostMapping(path = "/searchRoleMenuByMenuName")
     public @ResponseBody
-    List<RoleMenuEntity> searchRoleMenuByMenuName(@RequestBody RoleMenuEntity roleMenuEntity) {
+    Page<RoleMenuEntity> searchRoleMenuByMenuName(@RequestBody RoleMenuEntity roleMenuEntity) {
         return roleMenuService.searchRoleMenuByMenuName(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -123,8 +123,6 @@ public class RoleMenuController {
     @PostMapping(path = "/searchAllRoleMenu")
     public @ResponseBody
     Page<RoleMenuEntity> searchAllRoleMenu(@RequestBody RoleMenuEntity roleMenuEntity) {
-        Integer pageIndex = roleMenuEntity.getPageIndex();
-        Integer pageSize = roleMenuEntity.getPageSize();
-        return roleMenuService.searchAllRoleMenu(pageIndex, pageSize);
+        return roleMenuService.searchAllRoleMenu(roleMenuEntity);
     }
 }

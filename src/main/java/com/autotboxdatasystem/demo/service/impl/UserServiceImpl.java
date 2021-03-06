@@ -17,22 +17,13 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
-    private final RoleDAO roleDAO;
-    private final MenuDAO menuDAO;
     private final UserRoleDAO userRoleDAO;
-    private final RoleMenuDAO roleMenuDAO;
-    private final CarDAO carDAO;
     private final UserCarDAO userCarDAO;
 
     @Autowired
-    public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO, MenuDAO menuDAO,
-                           UserRoleDAO userRoleDAO, RoleMenuDAO roleMenuDAO, CarDAO carDAO, UserCarDAO userCarDAO) {
+    public UserServiceImpl(UserDAO userDAO, UserRoleDAO userRoleDAO, UserCarDAO userCarDAO) {
         this.userDAO = userDAO;
-        this.roleDAO = roleDAO;
-        this.menuDAO = menuDAO;
         this.userRoleDAO = userRoleDAO;
-        this.roleMenuDAO = roleMenuDAO;
-        this.carDAO = carDAO;
         this.userCarDAO = userCarDAO;
     }
 
@@ -107,6 +98,14 @@ public class UserServiceImpl implements UserService {
                 userRoleDAO.save(userRole);
             }
         }
+        List<UserCarEntity> userCarList = userCarDAO.findByUserId(userEntity.getId());
+        if (userCarList != null) {
+            for (UserCarEntity userCar : userCarList) {
+                userCar.setIsActivated("1");
+                userCar.setLastUpdatedBy(userEntity.getLastUpdatedBy());
+                userCarDAO.save(userCar);
+            }
+        }
 
         UserEntity user = userDAO.findById(userEntity.getId()).get();
         user.setIsActivated("1");
@@ -124,6 +123,14 @@ public class UserServiceImpl implements UserService {
                 userRole.setLastUpdatedBy(userEntity.getLastUpdatedBy());
                 userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
                 userRoleDAO.save(userRole);
+            }
+        }
+        List<UserCarEntity> userCarList = userCarDAO.findByUserId(userEntity.getId());
+        if (userCarList != null) {
+            for (UserCarEntity userCar : userCarList) {
+                userCar.setIsActivated("0");
+                userCar.setLastUpdatedBy(userEntity.getLastUpdatedBy());
+                userCarDAO.save(userCar);
             }
         }
 
@@ -146,6 +153,15 @@ public class UserServiceImpl implements UserService {
                 userRoleDAO.save(userRole);
             }
         }
+        List<UserCarEntity> userCarList = userCarDAO.findByUserId(userEntity.getId());
+        if (userCarList != null) {
+            for (UserCarEntity userCar : userCarList) {
+                userCar.setIsActivated("0");
+                userCar.setIsDeleted("1");
+                userCar.setLastUpdatedBy(userEntity.getLastUpdatedBy());
+                userCarDAO.save(userCar);
+            }
+        }
 
         UserEntity user = userDAO.findById(userEntity.getId()).get();
         user.setIsActivated("0");
@@ -165,6 +181,15 @@ public class UserServiceImpl implements UserService {
                 userRole.setLastUpdatedBy(userEntity.getLastUpdatedBy());
                 userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
                 userRoleDAO.save(userRole);
+            }
+        }
+        List<UserCarEntity> userCarList = userCarDAO.findByUserId(userEntity.getId());
+        if (userCarList != null) {
+            for (UserCarEntity userCar : userCarList) {
+                userCar.setIsActivated("1");
+                userCar.setIsDeleted("0");
+                userCar.setLastUpdatedBy(userEntity.getLastUpdatedBy());
+                userCarDAO.save(userCar);
             }
         }
 
@@ -202,158 +227,6 @@ public class UserServiceImpl implements UserService {
         String remark = userEntity.getRemark();
         if (remark != null) {
             user.setRemark(remark);
-            user.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-            user.setLastUpdatedDate(DateUtil.getCurDateTime());
-            userDAO.save(user);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean updateUsernameById(UserEntity userEntity) {
-        UserEntity user = userDAO.findById(userEntity.getId()).get();
-        String oldUsername = user.getUsername();
-        String newUsername = userEntity.getUsername();
-        if (newUsername != null && RegexUtil.isUsername(newUsername) &&
-                userDAO.findByUsername(newUsername) == null) {
-            /* Need to update all username !! */
-            // Role Table
-            List<RoleEntity> roleList = roleDAO.findByCreatedBy(oldUsername);
-            if (roleList != null) {
-                for (RoleEntity role : roleList) {
-                    role.setCreatedBy(newUsername);
-                    role.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    role.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    roleDAO.save(role);
-                }
-            }
-            roleList = roleDAO.findByLastUpdatedBy(oldUsername);
-            if (roleList != null) {
-                for (RoleEntity role : roleList) {
-                    role.setLastUpdatedBy(newUsername);
-                    role.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    role.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    roleDAO.save(role);
-                }
-            }
-            // Menu Table
-            List<MenuEntity> menuList = menuDAO.findByCreatedBy(oldUsername);
-            if (menuList != null) {
-                for (MenuEntity menu : menuList) {
-                    menu.setCreatedBy(newUsername);
-                    menu.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    menu.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    menuDAO.save(menu);
-                }
-            }
-            menuList = menuDAO.findByLastUpdatedBy(oldUsername);
-            if (menuList != null) {
-                for (MenuEntity menu : menuList) {
-                    menu.setLastUpdatedBy(newUsername);
-                    menu.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    menu.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    menuDAO.save(menu);
-                }
-            }
-            // UserRole Table
-            List<UserRoleEntity> userRoleList = userRoleDAO.findByUsername(oldUsername);
-            if (userRoleList != null) {
-                for (UserRoleEntity userRole : userRoleList) {
-                    userRole.setUsername(newUsername);
-                    userRole.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    userRoleDAO.save(userRole);
-                }
-            }
-            userRoleList = userRoleDAO.findByCreatedBy(oldUsername);
-            if (userRoleList != null) {
-                for (UserRoleEntity userRole : userRoleList) {
-                    userRole.setCreatedBy(newUsername);
-                    userRole.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    userRoleDAO.save(userRole);
-                }
-            }
-            userRoleList = userRoleDAO.findByLastUpdatedBy(oldUsername);
-            if (userRoleList != null) {
-                for (UserRoleEntity userRole : userRoleList) {
-                    userRole.setLastUpdatedBy(newUsername);
-                    userRole.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    userRole.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    userRoleDAO.save(userRole);
-                }
-            }
-            // RoleMenu Table
-            List<RoleMenuEntity> roleMenuList = roleMenuDAO.findByCreatedBy(oldUsername);
-            if (roleMenuList != null) {
-                for (RoleMenuEntity roleMenu : roleMenuList) {
-                    roleMenu.setCreatedBy(newUsername);
-                    roleMenu.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    roleMenuDAO.save(roleMenu);
-                }
-            }
-            roleMenuList = roleMenuDAO.findByLastUpdatedBy(oldUsername);
-            if (roleMenuList != null) {
-                for (RoleMenuEntity roleMenu : roleMenuList) {
-                    roleMenu.setLastUpdatedBy(newUsername);
-                    roleMenu.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    roleMenu.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    roleMenuDAO.save(roleMenu);
-                }
-            }
-            // Car Table
-            List<CarEntity> carList = carDAO.findByCreatedBy(oldUsername);
-            if (carList != null) {
-                for (CarEntity car : carList) {
-                    car.setCreatedBy(newUsername);
-                    car.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    car.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    carDAO.save(car);
-                }
-            }
-            carList = carDAO.findByLastUpdatedBy(oldUsername);
-            if (carList != null) {
-                for (CarEntity car : carList) {
-                    car.setLastUpdatedBy(newUsername);
-                    car.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    car.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    carDAO.save(car);
-                }
-            }
-            // UserCar Table
-            List<UserCarEntity> userCarList = userCarDAO.findByUsername(oldUsername);
-            if (userCarList != null) {
-                for (UserCarEntity userCar : userCarList) {
-                    userCar.setUsername(newUsername);
-                    userCar.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    userCar.setLastUpdatedDate(DateUtil.getCurDateTime());
-                }
-            }
-            userCarList = userCarDAO.findByCreatedBy(oldUsername);
-            if (userCarList != null) {
-                for (UserCarEntity userCar : userCarList) {
-                    userCar.setCreatedBy(newUsername);
-                    userCar.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    userCar.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    userCarDAO.save(userCar);
-                }
-            }
-            userCarList = userCarDAO.findByLastUpdatedBy(oldUsername);
-            if (userCarList != null) {
-                for (UserCarEntity userCar : userCarList) {
-                    userCar.setLastUpdatedBy(newUsername);
-                    userCar.setLastUpdatedBy(userEntity.getLastUpdatedBy());
-                    userCar.setLastUpdatedDate(DateUtil.getCurDateTime());
-                    userCarDAO.save(userCar);
-                }
-            }
-            // User Table
-            if (oldUsername.equals(user.getCreatedBy())) {
-                user.setCreatedBy(newUsername);
-            }
-            user.setUsername(newUsername);
             user.setLastUpdatedBy(userEntity.getLastUpdatedBy());
             user.setLastUpdatedDate(DateUtil.getCurDateTime());
             userDAO.save(user);
@@ -442,12 +315,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserEntity> searchActivedUser(Integer pageIndex, Integer pageSize) {
+    public Page<UserEntity> searchActivedUser(UserEntity userEntity) {
+        Integer pageIndex = userEntity.getPageIndex();
+        Integer pageSize = userEntity.getPageSize();
         return userDAO.findByIsActivated("1", PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<UserEntity> searchAllUser(Integer pageIndex, Integer pageSize) {
+    public Page<UserEntity> searchAllUser(UserEntity userEntity) {
+        Integer pageIndex = userEntity.getPageIndex();
+        Integer pageSize = userEntity.getPageSize();
         return userDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 }

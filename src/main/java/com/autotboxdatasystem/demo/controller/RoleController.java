@@ -113,17 +113,13 @@ public class RoleController {
     @PostMapping(path = "/searchActivedRole")
     public @ResponseBody
     Page<RoleEntity> searchActivedRole(@RequestBody RoleEntity roleEntity) {
-        Integer pageIndex = roleEntity.getPageIndex();
-        Integer pageSize = roleEntity.getPageSize();
-        return roleService.searchActivedRole(pageIndex, pageSize);
+        return roleService.searchActivedRole(roleEntity);
     }
 
     // 查找全部角色
     @PostMapping(path = "/searchAllRole")
     public @ResponseBody
     Page<RoleEntity> searchAllRole(@RequestBody RoleEntity roleEntity) {
-        Integer pageIndex = roleEntity.getPageIndex();
-        Integer pageSize = roleEntity.getPageSize();
-        return roleService.searchAllRole(pageIndex, pageSize);
+        return roleService.searchAllRole(roleEntity);
     }
 }

@@ -114,17 +114,13 @@ public class MenuController {
     @PostMapping(path = "/searchActivedMenu")
     public @ResponseBody
     Page<MenuEntity> searchActivedMenu(@RequestBody MenuEntity menuEntity) {
-        Integer pageIndex = menuEntity.getPageIndex();
-        Integer pageSize = menuEntity.getPageSize();
-        return menuService.searchActivedMenu(pageIndex, pageSize);
+        return menuService.searchActivedMenu(menuEntity);
     }
 
     // 查找全部菜单
     @PostMapping(path = "/searchAllMenu")
     public @ResponseBody
     Page<MenuEntity> searchAllMenu(@RequestBody MenuEntity menuEntity) {
-        Integer pageIndex = menuEntity.getPageIndex();
-        Integer pageSize = menuEntity.getPageSize();
-        return menuService.searchAllMenu(pageIndex, pageSize);
+        return menuService.searchAllMenu(menuEntity);
     }
 }

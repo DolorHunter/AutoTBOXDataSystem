@@ -22,8 +22,6 @@ public interface UserService {
 
     boolean updateRemarkById(UserEntity userEntity);
 
-    boolean updateUsernameById(UserEntity userEntity);
-
     boolean updateEmailById(UserEntity userEntity);
 
     boolean updatePhoneById(UserEntity userEntity);
@@ -38,8 +36,8 @@ public interface UserService {
 
     UserEntity searchUserById(UserEntity userEntity);
 
-    Page<UserEntity> searchActivedUser(Integer pageIndex, Integer pageSize);
+    Page<UserEntity> searchActivedUser(UserEntity userEntity);
 
-    Page<UserEntity> searchAllUser(Integer pageIndex, Integer pageSize);
+    Page<UserEntity> searchAllUser(UserEntity userEntity);
 
 }

@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping(path = "/UserCarLog")
 public class UserCarLogController {
@@ -64,7 +62,7 @@ public class UserCarLogController {
     }
 
     // 日志ID查找
-    @PostMapping(path = "/searchUserCarLogById") ///??
+    @PostMapping(path = "/searchUserCarLogById")
     public @ResponseBody
     UserCarLogEntity searchUserCarLogById(@RequestBody UserCarLogEntity userCarLogEntity) {
         return userCarLogService.searchUserCarLogById(userCarLogEntity);
@@ -74,7 +72,7 @@ public class UserCarLogController {
     // 用户车辆ID查找日志
     @PostMapping(path = "/searchUserCarLogByUserCarId")
     public @ResponseBody
-    List<UserCarLogEntity> searchUserCarLogByUserCarId(@RequestBody UserCarLogEntity userCarLogEntity) {
+    Page<UserCarLogEntity> searchUserCarLogByUserCarId(@RequestBody UserCarLogEntity userCarLogEntity) {
         return userCarLogService.searchUserCarLogByUserCarId(userCarLogEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
@@ -83,8 +81,6 @@ public class UserCarLogController {
     @PostMapping(path = "/searchAllUserCarLog")
     public @ResponseBody
     Page<UserCarLogEntity> searchAllUserCarLog(@RequestBody UserCarLogEntity userCarLogEntity) {
-        Integer pageIndex = userCarLogEntity.getPageIndex();
-        Integer pageSize = userCarLogEntity.getPageSize();
-        return userCarLogService.searchAllUserCarLog(pageIndex, pageSize);
+        return userCarLogService.searchAllUserCarLog(userCarLogEntity);
     }
 }

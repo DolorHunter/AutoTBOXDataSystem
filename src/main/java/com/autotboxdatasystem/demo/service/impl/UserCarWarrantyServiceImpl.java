@@ -79,12 +79,17 @@ public class UserCarWarrantyServiceImpl implements UserCarWarrantyService {
     }
 
     @Override
-    public List<UserCarWarrantyEntity> searchUserCarWarrantyByUserCarId(UserCarWarrantyEntity userCarWarrantyEntity) {
-        return userCarWarrantyDAO.findByUserCarId(userCarWarrantyEntity.getUserCarId());
+    public Page<UserCarWarrantyEntity> searchUserCarWarrantyByUserCarId(UserCarWarrantyEntity userCarWarrantyEntity) {
+        Integer pageIndex = userCarWarrantyEntity.getPageIndex();
+        Integer pageSize = userCarWarrantyEntity.getPageSize();
+        Integer userCarId = userCarWarrantyEntity.getUserCarId();
+        return userCarWarrantyDAO.findByUserCarId(userCarId, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<UserCarWarrantyEntity> searchAllUserCarWarranty(Integer pageIndex, Integer pageSize) {
+    public Page<UserCarWarrantyEntity> searchAllUserCarWarranty(UserCarWarrantyEntity userCarWarrantyEntity) {
+        Integer pageIndex = userCarWarrantyEntity.getPageIndex();
+        Integer pageSize = userCarWarrantyEntity.getPageSize();
         return userCarWarrantyDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 }
