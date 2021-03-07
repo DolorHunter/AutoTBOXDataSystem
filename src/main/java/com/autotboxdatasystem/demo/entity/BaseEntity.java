@@ -100,6 +100,7 @@ public class BaseEntity {
     public void setLastUpdatedDate(String lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
+
     public Integer getPageIndex() {
         return pageIndex;
     }

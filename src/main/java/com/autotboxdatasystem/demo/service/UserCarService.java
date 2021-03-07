@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 public interface UserCarService {
     boolean addCar2User(UserCarEntity userCarEntity);
 
+    void deleteUserCarById(UserCarEntity userCarEntity);
+
     void deleteUserCarByUserId(UserCarEntity userCarEntity);
 
     void deleteUserCarByUsername(UserCarEntity userCarEntity);

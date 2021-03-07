@@ -41,6 +41,11 @@ public class UserCarServiceImpl implements UserCarService {
     }
 
     @Override
+    public void deleteUserCarById(UserCarEntity userCarEntity) {
+        userCarDAO.deleteById(userCarEntity.getId());
+    }
+
+    @Override
     public void deleteUserCarByUserId(UserCarEntity userCarEntity) {
         userCarDAO.deleteAllByUserId(userCarEntity.getUserId());
     }

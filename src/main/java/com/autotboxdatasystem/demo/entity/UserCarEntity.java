@@ -13,6 +13,8 @@ public class UserCarEntity extends BaseEntity{
     private Integer carId;
     @Column(nullable = false, columnDefinition = "VARCHAR(255) comment '车辆名'")
     private String carName;
+    @Column(nullable = false, columnDefinition = "varchar(64) comment '车辆识别号码'")
+    private String VIN;
 
     public Integer getUserId() {
         return userId;
@@ -44,5 +46,13 @@ public class UserCarEntity extends BaseEntity{
 
     public void setCarName(String carName) {
         this.carName = carName;
+    }
+
+    public String getVIN() {
+        return VIN;
+    }
+
+    public void setVIN(String VIN) {
+        this.VIN = VIN;
     }
 }

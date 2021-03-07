@@ -20,6 +20,5 @@ public interface UserDAO extends PagingAndSortingRepository<UserEntity, Integer>
     Page<UserEntity> findByIsActivated(String active, Pageable pageable);
 
     Page<UserEntity> findAll(Pageable pageable);
-
 }
 

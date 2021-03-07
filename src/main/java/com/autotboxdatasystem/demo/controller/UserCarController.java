@@ -29,6 +29,14 @@ public class UserCarController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // ID硬删除用户车辆
+    @PostMapping(path = "/deleteUserCarById")
+    public @ResponseBody
+    ResponseEntity<String> deleteUserCarById(@RequestBody UserCarEntity userCarEntity) {
+        userCarService.deleteUserCarById(userCarEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
     // 用户ID硬删除用户车辆
     @PostMapping(path = "/deleteUserCarByUserId")
     public @ResponseBody

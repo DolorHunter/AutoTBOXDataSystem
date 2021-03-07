@@ -38,5 +38,4 @@ public interface UserRoleDAO extends PagingAndSortingRepository<UserRoleEntity, 
     Page<UserRoleEntity> findByIsActivated(String active, Pageable pageable);
 
     Page<UserRoleEntity> findAll(Pageable pageable);
-
 }

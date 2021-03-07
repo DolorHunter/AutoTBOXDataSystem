@@ -194,17 +194,17 @@
   <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
   <tr><td>Integer</td><td>int</td><td>carId</td><td>车辆ID</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>VIN</td><td>车辆识别号码</td></tr>
 </table>
 
-=== 1.1.9 UserCarLogEntity ===
+=== 1.1.9 CarLogEntity ===
 
-用户车辆日志类, 关联用户车辆与车辆日志. 关联表user_car_log_entity.
+车辆日志类, 关联用户车辆与车辆日志. 关联表car_log_entity.
 
 <table>
-  <tr><th colspan="4" align="center">UserCarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><th colspan="4" align="center">CarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>Integer</td><td>int</td><td>userCarId</td><td>用户车辆ID</td></tr>
-  <tr><td>Integer</td><td>varchar(64)</td><td>deviceId</td><td>设备ID</td></tr>
+  <tr><td>String</td><td>int</td><td>VIN</td><td>车辆识别号码</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>bootTime</td><td>开机时间</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>runTime</td><td>运行时长</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>gear</td><td>挡位</td></tr>
@@ -221,14 +221,28 @@
   <tr><td>Double</td><td>Double</td><td>temperature</td><td>温度</td></tr>
 </table>
 
-=== 1.1.10 UserCarWarrantyEntity ===
+=== 1.1.10 CarWarningEntity ===
 
-用户车辆保修类, 关联用户车辆和车辆保修. 关联表user_car_warranty.
+车辆故障类, 关联用户车辆与车辆故障. 关联表car_warning_entity.
 
 <table>
-  <tr><th colspan="4" align="center">UserCarWarrantyEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><th colspan="4" align="center">CarWarningEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>Integer</td><td>int</td><td>userCarId</td><td>用户车辆ID</td></tr>
+  <tr><td>String</td><td>int</td><td>VIN</td><td>车辆识别号码</td></tr>
+  <tr><td>Integer</td><td>varchar(64)</td><td>warCode</td><td>故障代号</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>warLevel</td><td>故障等级</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>warInfo</td><td>故障信息</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>warUnit</td><td>故障单位</td></tr>
+</table>
+
+=== 1.1.11 CarWarrantyEntity ===
+
+车辆保修类, 关联用户车辆和车辆保修. 关联表car_warranty.
+
+<table>
+  <tr><th colspan="4" align="center">CarWarrantyEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>String</td><td>int</td><td>VIN</td><td>车辆识别号码</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>generalComment</td><td>整体评价</td></tr>
   <tr><td>Integer</td><td>int</td><td>generalScore</td><td>整体分数</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>driveComment</td><td>驱动评价</td></tr>
@@ -400,6 +414,7 @@
   <tr><th colspan="5" align="center">UserCarController</th></tr>
   <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
   <tr><td>addCar2User</td><td>/UserCar/addCar2User</td><td>userCarEntity</td><td>x</td><td>为用户添加车辆</td></tr>
+  <tr><td>deleteUserCarById</td><td>/UserCar/deleteUserCarById</td><td>userCarEntity</td><td>x</td><td>ID硬删除用户车辆</td></tr>
   <tr><td>deleteUserCarByUserId</td><td>/UserCar/deleteUserCarByUserId</td><td>userCarEntity</td><td>x</td><td>用户ID硬删除用户车辆</td></tr>
   <tr><td>deleteUserCarByUsername</td><td>/UserCar/deleteUserCarByUsername</td><td>userCarEntity</td><td>x</td><td>用户名硬删除用户车辆</td></tr>
   <tr><td>deleteUserCarByCarId</td><td>/UserCar/deleteUserCarByCarId</td><td>userCarEntity</td><td>x</td><td>车辆ID硬删除用户车辆</td></tr>
@@ -414,38 +429,55 @@
   <tr><td>searchAllUserCar</td><td>/UserCar/searchAllUserCar</td><td>userCarEntity</td><td>x</td><td>查找全部用户车辆</td></tr>
 </table>
 
-=== 1.2.8 UserCarLogController ===
+=== 1.2.8 CarLogController ===
 
-用户车辆日志控制类.
+车辆日志控制类.
 
 <table>
-  <tr><th colspan="5" align="center">UserCarLogController</th></tr>
+  <tr><th colspan="5" align="center">CarLogController</th></tr>
   <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addUserCarLog</td><td>/UserCarLog/addUserCarLog</td><td>userCarLogEntity</td><td>x</td><td>添加用户车辆日志</td></tr>
-  <tr><td>deleteUserCarLogById</td><td>/UserCarLog/deleteUserCarLogById</td><td>userCarLogEntity</td><td>x</td><td>日志ID硬删除日志</td></tr>
-  <tr><td>deleteUserCarLogByUserCarId</td><td>/UserCarLog/deleteUserCarLogByUserCarId</td><td>userCarLogEntity</td><td>x</td><td>用户车辆ID硬删除日志</td></tr>
-  <tr><td>updateStatusById</td><td>/UserCarLog/updateStatusById</td><td>userCarLogEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/UserCarLog/updateRemarkById</td><td>userCarLogEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchUserCarLogById</td><td>/UserCarLog/searchUserCarLogById</td><td>userCarLogEntity</td><td>x</td><td>日志ID查找</td></tr>
-  <tr><td>searchUserCarLogByUserCarId</td><td>/UserCarLog/searchUserCarLogByUserCarId</td><td>userCarLogEntity</td><td>x</td><td>用户车辆ID查找日志</td></tr>
-  <tr><td>searchAllUserCarLog</td><td>/UserCarLog/searchAllUserCarLog</td><td>userCarLogEntity</td><td>x</td><td>查找全部用户车辆日志</td></tr>
+  <tr><td>addCarLog</td><td>/CarLog/addCarLog</td><td>carLogEntity</td><td>x</td><td>添加车辆日志</td></tr>
+  <tr><td>deleteCarLogById</td><td>/CarLog/deleteCarLogById</td><td>carLogEntity</td><td>x</td><td>日志ID硬删除日志</td></tr>
+  <tr><td>deleteCarLogByVIN</td><td>/CarLog/deleteCarLogByVIN</td><td>carLogEntity</td><td>x</td><td>车辆VIN硬删除日志</td></tr>
+  <tr><td>updateStatusById</td><td>/CarLog/updateStatusById</td><td>carLogEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarLog/updateRemarkById</td><td>carLogEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchCarLogById</td><td>/CarLog/searchCarLogById</td><td>carLogEntity</td><td>x</td><td>日志ID查找</td></tr>
+  <tr><td>searchCarLogByVIN</td><td>/CarLog/searchCarLogByVIN</td><td>carLogEntity</td><td>x</td><td>车辆VIN查找日志</td></tr>
+  <tr><td>searchAllCarLog</td><td>/CarLog/searchAllCarLog</td><td>carLogEntity</td><td>x</td><td>查找全部车辆日志</td></tr>
 </table>
 
-=== 1.2.8 UserCarWarrantyController ===
+=== 1.2.9 CarWarningController ===
 
-用户车辆保修控制类.
+车辆故障控制类.
 
 <table>
-  <tr><th colspan="5" align="center">UserCarWarrantyController</th></tr>
+  <tr><th colspan="5" align="center">CarWarningController</th></tr>
   <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addUserCarWarranty</td><td>/UserCarWarranty/addUserCarWarranty</td><td>userCarWarrantyEntity</td><td>x</td><td>添加用户车辆保修</td></tr>
-  <tr><td>deleteUserCarWarrantyById</td><td>/UserCarWarranty/deleteUserCarWarrantyById</td><td>userCarWarrantyEntity</td><td>x</td><td>日志ID硬删除保修</td></tr>
-  <tr><td>deleteUserCarWarrantyByUserCarId</td><td>/UserCarWarranty/deleteUserCarWarrantyByUserCarId</td><td>userCarWarrantyEntity</td><td>x</td><td>用户车辆ID硬删除保修</td></tr>
-  <tr><td>updateStatusById</td><td>/UserCarWarranty/updateStatusById</td><td>userCarWarrantyEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/UserCarWarranty/updateRemarkById</td><td>userCarWarrantyEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchUserCarWarrantyById</td><td>/UserCarWarranty/searchUserCarWarrantyById</td><td>userCarWarrantyEntity</td><td>x</td><td>保修ID查找</td></tr>
-  <tr><td>searchUserCarWarrantyByUserCarId</td><td>/UserCarWarranty/searchUserCarWarrantyByUserCarId</td><td>userCarWarrantyEntity</td><td>x</td><td>用户车辆ID查找保修</td></tr>
-  <tr><td>searchAllUserCarWarranty</td><td>/UserCarWarranty/searchAllUserCarWarranty</td><td>userCarWarrantyEntity</td><td>x</td><td>查找全部用户车辆保修</td></tr>
+  <tr><td>addCarWarning</td><td>/CarWarning/addCarWarning</td><td>carWarningEntity</td><td>x</td><td>添加车辆故障</td></tr>
+  <tr><td>deleteCarWarningById</td><td>/CarWarning/deleteCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID硬删除故障</td></tr>
+  <tr><td>deleteCarWarningByVIN</td><td>/CarWarning/deleteCarWarningByVIN</td><td>carWarningEntity</td><td>x</td><td>车辆VIN硬删除故障</td></tr>
+  <tr><td>updateStatusById</td><td>/CarWarning/updateStatusById</td><td>carWarningEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarWarning/updateRemarkById</td><td>carWarningEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchCarWarningById</td><td>/CarWarning/searchCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID查找</td></tr>
+  <tr><td>searchCarWarningByVIN</td><td>/CarWarning/searchCarWarningByVIN</td><td>carWarningEntity</td><td>x</td><td>车辆VIN查找故障</td></tr>
+  <tr><td>searchAllCarWarning</td><td>/CarWarning/searchAllCarWarning</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障</td></tr>
+</table>
+
+=== 1.2.10 CarWarrantyController ===
+
+车辆保修控制类.
+
+<table>
+  <tr><th colspan="5" align="center">CarWarrantyController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addCarWarranty</td><td>/CarWarranty/addCarWarranty</td><td>carWarrantyEntity</td><td>x</td><td>添加车辆保修</td></tr>
+  <tr><td>deleteCarWarrantyById</td><td>/CarWarranty/deleteCarWarrantyById</td><td>carWarrantyEntity</td><td>x</td><td>保修ID硬删除保修</td></tr>
+  <tr><td>deleteCarWarrantyByVIN</td><td>/CarWarranty/deleteCarWarrantyByVIN</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN硬删除保修</td></tr>
+  <tr><td>updateStatusById</td><td>/CarWarranty/updateStatusById</td><td>carWarrantyEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarWarranty/updateRemarkById</td><td>carWarrantyEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchCarWarrantyById</td><td>/CarWarranty/searchCarWarrantyById</td><td>carWarrantyEntity</td><td>x</td><td>保修ID查找</td></tr>
+  <tr><td>searchCarWarrantyByVIN</td><td>/CarWarranty/searchCarWarrantyByVIN</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN查找保修</td></tr>
+  <tr><td>searchAllCarWarranty</td><td>/CarWarranty/searchAllCarWarranty</td><td>carWarrantyEntity</td><td>x</td><td>查找全部用户车辆保修</td></tr>
 </table>
 
 = 2 前端设计与实现 =

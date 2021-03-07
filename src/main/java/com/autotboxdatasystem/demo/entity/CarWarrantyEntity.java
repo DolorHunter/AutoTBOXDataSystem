@@ -4,9 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 
 @Entity
-public class UserCarWarrantyEntity extends BaseEntity{
-    @Column(nullable = false, columnDefinition = "int comment '用户车辆ID'")
-    private Integer	userCarId;
+public class CarWarrantyEntity extends BaseEntity{
+    @Column(nullable = false, columnDefinition = "varchar(64) comment '车辆识别号码'")
+    private String VIN;
     @Column(nullable = false, columnDefinition = "varchar(255) comment '整体评价'")
     private String	generalComment;
     @Column(nullable = false, columnDefinition = "int comment '整体分数'")
@@ -36,12 +36,12 @@ public class UserCarWarrantyEntity extends BaseEntity{
     @Column(columnDefinition = "int comment '传动分数'")
     private Integer	transmissionScore;
 
-    public Integer getUserCarId() {
-        return userCarId;
+    public String getVIN() {
+        return VIN;
     }
 
-    public void setUserCarId(Integer userCarId) {
-        this.userCarId = userCarId;
+    public void setVIN(String VIN) {
+        this.VIN = VIN;
     }
 
     public String getGeneralComment() {

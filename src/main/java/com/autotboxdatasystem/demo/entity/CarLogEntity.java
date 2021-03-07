@@ -4,11 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 
 @Entity
-public class UserCarLogEntity extends BaseEntity {
-    @Column(nullable = false, columnDefinition = "int comment '用户车辆ID'")
-    private Integer userCarId;
-    @Column(columnDefinition = "varchar(64) comment '设备ID'")
-    private Integer deviceId;
+public class CarLogEntity extends BaseEntity {
+    @Column(nullable = false, columnDefinition = "varchar(64) comment '车辆识别号码'")
+    private String VIN;
     @Column(columnDefinition = "varchar(64) comment '开机时间'")
     private String bootTime;
     @Column(columnDefinition = "varchar(64) comment '运行时长'")
@@ -38,20 +36,12 @@ public class UserCarLogEntity extends BaseEntity {
     @Column(columnDefinition = "Double comment '温度'")
     private Double temperature;
 
-    public Integer getUserCarId() {
-        return userCarId;
+    public String getVIN() {
+        return VIN;
     }
 
-    public void setUserCarId(Integer userCarId) {
-        this.userCarId = userCarId;
-    }
-
-    public Integer getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(Integer deviceId) {
-        this.deviceId = deviceId;
+    public void setVIN(String VIN) {
+        this.VIN = VIN;
     }
 
     public String getBootTime() {
