@@ -4,8 +4,8 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public class BaseEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, columnDefinition = "int comment 'ID'")
     private Integer id;
     @Column(nullable = false, columnDefinition = "varchar(4) comment '启用状态'")

@@ -17,7 +17,7 @@
 <table>
   <tr><th colspan="4" align="center">BaseEntity</th></tr>
   <tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
-  <tr><td>Integer</td><td>int</td><td>id</td><td>ID</td></tr>
+  <tr><td>UUID</td><td>int</td><td>id</td><td>ID</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>isActivated</td><td>启用状态</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>isDeleted</td><td>删除状态</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>status</td><td>状态</td></tr>
@@ -228,8 +228,10 @@
 <table>
   <tr><th colspan="4" align="center">CarWarningEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>String</td><td>int</td><td>VIN</td><td>车辆识别号码</td></tr>
-  <tr><td>Integer</td><td>varchar(64)</td><td>warCode</td><td>故障代号</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>VIN</td><td>车辆识别号码</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>warCode</td><td>故障代号</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>warTags</td><td>故障标签</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>warLevel</td><td>故障等级</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>warInfo</td><td>故障信息</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>warUnit</td><td>故障单位</td></tr>
@@ -237,7 +239,7 @@
 
 === 1.1.11 CarWarrantyEntity ===
 
-车辆保修类, 关联用户车辆和车辆保修. 关联表car_warranty.
+车辆保修类, 关联用户车辆和车辆保修. 关联表car_warranty_entity.
 
 <table>
   <tr><th colspan="4" align="center">CarWarrantyEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
@@ -257,6 +259,18 @@
   <tr><td>Integer</td><td>int</td><td>chassisScore</td><td>车身分数</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>transmissionComment</td><td>传动评价</td></tr>
   <tr><td>Integer</td><td>int</td><td>transmissionScore</td><td>传动分数</td></tr>
+</table>
+
+=== 1.1.12 VisualChartEntity ===
+
+视觉图表类. 关联表visual_chart_warranty_entity.
+
+<table>
+  <tr><th colspan="4" align="center">CarWarrantyEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><td colspan="4" align="center">BaseEntity</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>chartName</td><td>图表名</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>chartType</td><td>图表类型</td></tr>
+  <tr><td>String</td><td>blob</td><td>chartData</td><td>图表数据</td></tr>
 </table>
 
 == 1.2 Controller控制类设计 ==
@@ -459,6 +473,10 @@
   <tr><td>updateStatusById</td><td>/CarWarning/updateStatusById</td><td>carWarningEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/CarWarning/updateRemarkById</td><td>carWarningEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchCarWarningById</td><td>/CarWarning/searchCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID查找</td></tr>
+  <tr><td>searchMaxWarCar</td><td>/CarWarning/searchMaxWarCar</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的车辆型号</td></tr>
+  <tr><td>searchWarCarDetail</td><td>/CarWarning/searchWarCarDetail</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的车辆型号详细信息</td></tr>
+  <tr><td>searchMaxWarUnit</td><td>/CarWarning/searchMaxWarUnit</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的单元</td></tr>
+  <tr><td>searchWarUnitDetail</td><td>/CarWarning/searchWarUnitDetail</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的单元详细信息</td></tr>
   <tr><td>searchCarWarningByVIN</td><td>/CarWarning/searchCarWarningByVIN</td><td>carWarningEntity</td><td>x</td><td>车辆VIN查找故障</td></tr>
   <tr><td>searchAllCarWarning</td><td>/CarWarning/searchAllCarWarning</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障</td></tr>
 </table>
@@ -477,7 +495,24 @@
   <tr><td>updateRemarkById</td><td>/CarWarranty/updateRemarkById</td><td>carWarrantyEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchCarWarrantyById</td><td>/CarWarranty/searchCarWarrantyById</td><td>carWarrantyEntity</td><td>x</td><td>保修ID查找</td></tr>
   <tr><td>searchCarWarrantyByVIN</td><td>/CarWarranty/searchCarWarrantyByVIN</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN查找保修</td></tr>
-  <tr><td>searchAllCarWarranty</td><td>/CarWarranty/searchAllCarWarranty</td><td>carWarrantyEntity</td><td>x</td><td>查找全部用户车辆保修</td></tr>
+  <tr><td>searchAllCarWarranty</td><td>/CarWarranty/searchAllCarWarranty</td><td>carWarrantyEntity</td><td>x</td><td>查找全部车辆保修</td></tr>
+</table>
+
+=== 1.2.10 VisualChartController ===
+
+视觉图表控制类.
+
+<table>
+  <tr><th colspan="5" align="center">VisualChartController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addvisualChart</td><td>/VisualChart/addvisualChart</td><td>visualChartEntity</td><td>x</td><td>添加视觉图表</td></tr>
+  <tr><td>deletevisualChartById</td><td>/VisualChart/deletevisualChartById</td><td>visualChartEntity</td><td>x</td><td>视觉图表硬删除</td></tr>
+  <tr><td>deletevisualChartByChartName</td><td>/VisualChart/deletevisualChartByChartName</td><td>visualChartEntity</td><td>x</td><td>视觉图表名硬删除</td></tr>
+  <tr><td>updateStatusById</td><td>/VisualChart/updateStatusById</td><td>visualChartEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/VisualChart/updateRemarkById</td><td>visualChartEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchvisualChartById</td><td>/VisualChart/searchvisualChartById</td><td>visualChartEntity</td><td>x</td><td>视觉图表ID查找</td></tr>
+  <tr><td>searchvisualChartByChartName</td><td>/VisualChart/searchvisualChartByChartName</td><td>visualChartEntity</td><td>x</td><td>视觉图表名查找</td></tr>
+  <tr><td>searchAllvisualChart</td><td>/VisualChart/searchAllvisualChart</td><td>visualChartEntity</td><td>x</td><td>查找全部视觉图表</td></tr>
 </table>
 
 = 2 前端设计与实现 =
@@ -495,12 +530,13 @@
 * Spring配置MySQL [https://spring.io/guides/gs/accessing-data-mysql/ Spring guides-Accessing data with MySQL]
 * (视频)CodeEngine-React & Spring应用1 [https://www.youtube.com/watch?v=avvrsnYFXIE CodeEngine-React & Spring Boot Expense Tracker Application (Part 1)]
 
-数据库相关部分: JPA, Hibernate
+数据库相关部分: JPA, Hibernate, Query
 
 * JPA和Hibernate实体类注释 [https://vladmihalcea.com/how-to-inherit-properties-from-a-base-class-entity-using-mappedsuperclass-with-jpa-and-hibernate/ VladMihalcea-How to inherit properties from a base class entity using @MappedSuperclass with JPA and Hibernate]
 * 数据库表注释/字段注释 [https://blog.csdn.net/qq_39996837/article/details/84717748 CSDN-Spring boot 搭配 JPA 生成表注释 和 字段注释]
 * JPA之Entity注解说明 [https://sites.google.com/site/hzg139/home/orm-jihibernate/jpaentity 不發光的螢火蟲-JPA之Entity注解说明]
 * JsonIgnore注解只写保护敏感信息 [https://stackoverflow.com/questions/12505141/only-using-jsonignore-during-serialization-but-not-deserialization StackOverflow-Only using @JsonIgnore during serialization, but not deserialization]
+* Spring Data JPA @Query自定义查询[https://www.baeldung.com/spring-data-jpa-query Spring Data JPA @Query]
 
 == 3.2 MySQL ==
 
@@ -534,6 +570,10 @@ root登录
 正则化: 用户名, 密码, 邮箱, 电话
 
 * Java正则判断示例 [https://howtodoinjava.com/java-regular-expression-tutorials/ HowToJava-Java Regex Tutorial]
+
+网络通信
+
+* GET/POST HttpUtil工具[https://blog.csdn.net/zhuchenglin830/article/details/90436748 java实现Http post（参数json格式）、get 请求的HttpUtil工具类]
 
 == 3.4 JSON ==
 

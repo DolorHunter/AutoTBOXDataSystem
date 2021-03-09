@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/CarWarning")
 public class CarWarningController {
@@ -74,6 +76,22 @@ public class CarWarningController {
     public @ResponseBody
     Page<CarWarningEntity> searchCarWarningByVIN(@RequestBody CarWarningEntity userCarWarningEntity) {
         return userCarWarningService.searchCarWarningByVIN(userCarWarningEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 车辆名查找故障
+    @PostMapping(path = "/searchCarWarningByCarName")
+    public @ResponseBody
+    Page<CarWarningEntity> searchCarWarningByCarName(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByCarName(userCarWarningEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 单元名查找故障
+    @PostMapping(path = "/searchCarWarningByUnit")
+    public @ResponseBody
+    Page<CarWarningEntity> searchCarWarningByUnit(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByUnit(userCarWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 

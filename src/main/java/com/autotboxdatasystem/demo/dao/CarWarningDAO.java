@@ -13,5 +13,9 @@ public interface CarWarningDAO extends PagingAndSortingRepository<CarWarningEnti
 
     Page<CarWarningEntity> findByVIN(String VIN, Pageable pageable);
 
+    Page<CarWarningEntity> findByCarName(String carName, Pageable pageable);
+
+    Page<CarWarningEntity> findByWarUnit(String warUnit, Pageable pageable);
+
     Page<CarWarningEntity> findAll(Pageable pageable);
 }

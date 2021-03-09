@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CarWarningServiceImpl implements CarWarningService {
@@ -82,6 +84,22 @@ public class CarWarningServiceImpl implements CarWarningService {
         Integer pageSize = carWarningEntity.getPageSize();
         String VIN = carWarningEntity.getVIN();
         return carWarningDAO.findByVIN(VIN, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+    }
+
+    @Override
+    public Page<CarWarningEntity> searchCarWarningByCarName(CarWarningEntity carWarningEntity) {
+        Integer pageIndex = carWarningEntity.getPageIndex();
+        Integer pageSize = carWarningEntity.getPageSize();
+        String carName = carWarningEntity.getCarName();
+        return carWarningDAO.findByCarName(carName, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+    }
+
+    @Override
+    public Page<CarWarningEntity> searchCarWarningByUnit(CarWarningEntity carWarningEntity) {
+        Integer pageIndex = carWarningEntity.getPageIndex();
+        Integer pageSize = carWarningEntity.getPageSize();
+        String warUnit = carWarningEntity.getWarUnit();
+        return carWarningDAO.findByWarUnit(warUnit, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override

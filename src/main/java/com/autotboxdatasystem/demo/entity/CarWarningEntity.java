@@ -7,8 +7,12 @@ import javax.persistence.Column;
 public class CarWarningEntity extends BaseEntity{
     @Column(nullable = false, columnDefinition = "varchar(64) comment '车辆识别号码'")
     private String VIN;
+    @Column(nullable = false, columnDefinition = "VARCHAR(255) comment '车辆名'")
+    private String carName;
     @Column(columnDefinition = "VARCHAR(64) comment '故障代号'")
     private String warCode;
+    @Column(columnDefinition = "VARCHAR(64) comment '故障标签'")
+    private String warTags;
     @Column(columnDefinition = "VARCHAR(64) comment '故障等级'")
     private String warLevel;
     @Column(columnDefinition = "VARCHAR(255) comment '故障信息'")
@@ -24,12 +28,28 @@ public class CarWarningEntity extends BaseEntity{
         this.VIN = VIN;
     }
 
+    public String getCarName() {
+        return carName;
+    }
+
+    public void setCarName(String carName) {
+        this.carName = carName;
+    }
+
     public String getWarCode() {
         return warCode;
     }
 
     public void setWarCode(String warCode) {
         this.warCode = warCode;
+    }
+
+    public String getWarTags() {
+        return warTags;
+    }
+
+    public void setWarTags(String warTags) {
+        this.warTags = warTags;
     }
 
     public String getWarLevel() {
