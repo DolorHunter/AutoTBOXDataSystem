@@ -18,11 +18,19 @@ public interface CarWarningService {
 
     CarWarningEntity searchCarWarningById(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchCarWarningByVIN(CarWarningEntity carWarningEntity);
+    List<CarWarningEntity> searchCarWarningByVINList(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchCarWarningByCarName(CarWarningEntity carWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByVINPager(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchCarWarningByUnit(CarWarningEntity carWarningEntity);
+    List<CarWarningEntity> searchCarWarningByCarNameList(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchAllCarWarning(CarWarningEntity carWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByCarNamePager(CarWarningEntity carWarningEntity);
+
+    List<CarWarningEntity> searchCarWarningByUnitList(CarWarningEntity carWarningEntity);
+
+    Page<CarWarningEntity> searchCarWarningByUnitPager(CarWarningEntity carWarningEntity);
+
+    List<CarWarningEntity> searchAllCarWarningList(CarWarningEntity carWarningEntity);
+
+    Page<CarWarningEntity> searchAllCarWarningPager(CarWarningEntity carWarningEntity);
 }

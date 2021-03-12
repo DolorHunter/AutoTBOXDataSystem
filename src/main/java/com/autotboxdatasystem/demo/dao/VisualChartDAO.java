@@ -15,5 +15,7 @@ public interface VisualChartDAO extends PagingAndSortingRepository<VisualChartEn
 
     VisualChartEntity findByChartName(String chartName);
 
-    Page<VisualChartEntity> findByChartType(String chartName, Pageable pageable);
+    List<VisualChartEntity> findAll();
+
+    Page<VisualChartEntity> findAll(Pageable pageable);
 }

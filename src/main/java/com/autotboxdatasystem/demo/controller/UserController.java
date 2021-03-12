@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/User")
 public class UserController {
@@ -173,16 +175,30 @@ public class UserController {
     }
 
     // 查找激活用户
-    @PostMapping(path = "/searchActivedUser")
+    @PostMapping(path = "/searchActivedUserList")
     public @ResponseBody
-    Page<UserEntity> searchActivedUser(@RequestBody UserEntity userEntity) {
-        return userService.searchActivedUser(userEntity);
+    List<UserEntity> searchActivedUserList(@RequestBody UserEntity userEntity) {
+        return userService.searchActivedUserList(userEntity);
+    }
+
+    // 查找激活用户
+    @PostMapping(path = "/searchActivedUserPager")
+    public @ResponseBody
+    Page<UserEntity> searchActivedUserPager(@RequestBody UserEntity userEntity) {
+        return userService.searchActivedUserPager(userEntity);
     }
 
     // 查找全部用户
-    @PostMapping(path = "/searchAllUser")
+    @PostMapping(path = "/searchAllUserList")
     public @ResponseBody
-    Page<UserEntity> searchAllUser(@RequestBody UserEntity userEntity) {
-        return userService.searchAllUser(userEntity);
+    List<UserEntity> searchAllUserList(@RequestBody UserEntity userEntity) {
+        return userService.searchAllUserList(userEntity);
+    }
+
+    // 查找全部用户
+    @PostMapping(path = "/searchAllUserPager")
+    public @ResponseBody
+    Page<UserEntity> searchAllUserPager(@RequestBody UserEntity userEntity) {
+        return userService.searchAllUserPager(userEntity);
     }
 }

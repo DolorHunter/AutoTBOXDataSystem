@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/VisualChart")
 public class VisualChartController {
@@ -76,9 +78,16 @@ public class VisualChartController {
     }
 
     // 查找全部视觉图表
-    @PostMapping(path = "/searchAllVisualChart")
+    @PostMapping(path = "/searchAllVisualChartList")
     public @ResponseBody
-    Page<VisualChartEntity> searchAllVisualChart(@RequestBody VisualChartEntity visualChartEntity) {
-        return visualChartService.searchAllVisualChart(visualChartEntity);
+    List<VisualChartEntity> searchAllVisualChartList(@RequestBody VisualChartEntity visualChartEntity) {
+        return visualChartService.searchAllVisualChartList(visualChartEntity);
+    }
+
+    // 查找全部视觉图表
+    @PostMapping(path = "/searchAllVisualChartPager")
+    public @ResponseBody
+    Page<VisualChartEntity> searchAllVisualChartPager(@RequestBody VisualChartEntity visualChartEntity) {
+        return visualChartService.searchAllVisualChartPager(visualChartEntity);
     }
 }

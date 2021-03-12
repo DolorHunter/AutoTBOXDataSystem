@@ -3,6 +3,8 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.UserEntity;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface UserService {
     boolean login(UserEntity userEntity);
 
@@ -36,8 +38,12 @@ public interface UserService {
 
     UserEntity searchUserById(UserEntity userEntity);
 
-    Page<UserEntity> searchActivedUser(UserEntity userEntity);
+    List<UserEntity> searchActivedUserList(UserEntity userEntity);
 
-    Page<UserEntity> searchAllUser(UserEntity userEntity);
+    Page<UserEntity> searchActivedUserPager(UserEntity userEntity);
+
+    List<UserEntity> searchAllUserList(UserEntity userEntity);
+
+    Page<UserEntity> searchAllUserPager(UserEntity userEntity);
 
 }

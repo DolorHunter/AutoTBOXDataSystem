@@ -200,14 +200,24 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Page<MenuEntity> searchActivedMenu(MenuEntity menuEntity) {
+    public List<MenuEntity> searchActivedMenuList(MenuEntity menuEntity) {
+        return menuDAO.findByIsActivated("1");
+    }
+
+    @Override
+    public Page<MenuEntity> searchActivedMenuPager(MenuEntity menuEntity) {
         Integer pageIndex = menuEntity.getPageIndex();
         Integer pageSize = menuEntity.getPageSize();
         return menuDAO.findByIsActivated("1", PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<MenuEntity> searchAllMenu(MenuEntity menuEntity) {
+    public List<MenuEntity> searchAllMenuList(MenuEntity menuEntity) {
+        return menuDAO.findAll();
+    }
+
+    @Override
+    public Page<MenuEntity> searchAllMenuPager(MenuEntity menuEntity) {
         Integer pageIndex = menuEntity.getPageIndex();
         Integer pageSize = menuEntity.getPageSize();
         return menuDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

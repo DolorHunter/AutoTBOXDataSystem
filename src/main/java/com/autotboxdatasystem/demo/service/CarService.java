@@ -3,6 +3,8 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.CarEntity;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface CarService {
     boolean addCar(CarEntity carEntity);
 
@@ -40,7 +42,11 @@ public interface CarService {
 
     CarEntity searchCarByCarName(CarEntity carEntity);
 
-    Page<CarEntity> searchActivedCar(CarEntity carEntity);
+    List<CarEntity> searchActivedCarList(CarEntity carEntity);
 
-    Page<CarEntity> searchAllCar(CarEntity carEntity);
+    Page<CarEntity> searchActivedCarPager(CarEntity carEntity);
+
+    List<CarEntity> searchAllCarList(CarEntity carEntity);
+
+    Page<CarEntity> searchAllCarPager(CarEntity carEntity);
 }

@@ -79,7 +79,13 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public Page<CarWarningEntity> searchCarWarningByVIN(CarWarningEntity carWarningEntity) {
+    public List<CarWarningEntity> searchCarWarningByVINList(CarWarningEntity carWarningEntity) {
+        String VIN = carWarningEntity.getVIN();
+        return carWarningDAO.findByVIN(VIN);
+    }
+
+    @Override
+    public Page<CarWarningEntity> searchCarWarningByVINPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
         String VIN = carWarningEntity.getVIN();
@@ -87,7 +93,13 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public Page<CarWarningEntity> searchCarWarningByCarName(CarWarningEntity carWarningEntity) {
+    public List<CarWarningEntity> searchCarWarningByCarNameList(CarWarningEntity carWarningEntity) {
+        String carName = carWarningEntity.getCarName();
+        return carWarningDAO.findByCarName(carName);
+    }
+
+    @Override
+    public Page<CarWarningEntity> searchCarWarningByCarNamePager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
         String carName = carWarningEntity.getCarName();
@@ -95,7 +107,13 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public Page<CarWarningEntity> searchCarWarningByUnit(CarWarningEntity carWarningEntity) {
+    public List<CarWarningEntity> searchCarWarningByUnitList(CarWarningEntity carWarningEntity) {
+        String warUnit = carWarningEntity.getWarUnit();
+        return carWarningDAO.findByWarUnit(warUnit);
+    }
+
+    @Override
+    public Page<CarWarningEntity> searchCarWarningByUnitPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
         String warUnit = carWarningEntity.getWarUnit();
@@ -103,7 +121,12 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public Page<CarWarningEntity> searchAllCarWarning(CarWarningEntity carWarningEntity) {
+    public List<CarWarningEntity> searchAllCarWarningList(CarWarningEntity carWarningEntity) {
+        return carWarningDAO.findAll();
+    }
+
+    @Override
+    public Page<CarWarningEntity> searchAllCarWarningPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
         return carWarningDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

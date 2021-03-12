@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/Menu")
 public class MenuController {
@@ -111,16 +113,30 @@ public class MenuController {
     }
 
     // 查找激活菜单
-    @PostMapping(path = "/searchActivedMenu")
+    @PostMapping(path = "/searchActivedMenuList")
     public @ResponseBody
-    Page<MenuEntity> searchActivedMenu(@RequestBody MenuEntity menuEntity) {
-        return menuService.searchActivedMenu(menuEntity);
+    List<MenuEntity> searchActivedMenuList(@RequestBody MenuEntity menuEntity) {
+        return menuService.searchActivedMenuList(menuEntity);
+    }
+
+    // 查找激活菜单
+    @PostMapping(path = "/searchActivedMenuPager")
+    public @ResponseBody
+    Page<MenuEntity> searchActivedMenuPager(@RequestBody MenuEntity menuEntity) {
+        return menuService.searchActivedMenuPager(menuEntity);
     }
 
     // 查找全部菜单
-    @PostMapping(path = "/searchAllMenu")
+    @PostMapping(path = "/searchAllMenuList")
     public @ResponseBody
-    Page<MenuEntity> searchAllMenu(@RequestBody MenuEntity menuEntity) {
-        return menuService.searchAllMenu(menuEntity);
+    List<MenuEntity> searchAllMenuList(@RequestBody MenuEntity menuEntity) {
+        return menuService.searchAllMenuList(menuEntity);
+    }
+
+    // 查找全部菜单
+    @PostMapping(path = "/searchAllMenuPager")
+    public @ResponseBody
+    Page<MenuEntity> searchAllMenuPager(@RequestBody MenuEntity menuEntity) {
+        return menuService.searchAllMenuPager(menuEntity);
     }
 }

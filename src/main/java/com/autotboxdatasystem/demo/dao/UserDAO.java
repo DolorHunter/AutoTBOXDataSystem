@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserDAO extends PagingAndSortingRepository<UserEntity, Integer> {
 
@@ -17,7 +19,11 @@ public interface UserDAO extends PagingAndSortingRepository<UserEntity, Integer>
 
     UserEntity findByEmail(String email);
 
+    List<UserEntity> findByIsActivated(String active);
+
     Page<UserEntity> findByIsActivated(String active, Pageable pageable);
+
+    List<UserEntity> findAll();
 
     Page<UserEntity> findAll(Pageable pageable);
 }

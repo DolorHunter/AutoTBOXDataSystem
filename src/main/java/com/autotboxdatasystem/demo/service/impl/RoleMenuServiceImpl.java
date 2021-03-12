@@ -164,7 +164,13 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public Page<RoleMenuEntity> searchRoleMenuByRoleId(RoleMenuEntity roleMenuEntity) {
+    public List<RoleMenuEntity> searchRoleMenuByRoleIdList(RoleMenuEntity roleMenuEntity) {
+        Integer roleId = roleMenuEntity.getRoleId();
+        return roleMenuDAO.findByRoleId(roleId);
+    }
+
+    @Override
+    public Page<RoleMenuEntity> searchRoleMenuByRoleIdPager(RoleMenuEntity roleMenuEntity) {
         Integer pageIndex = roleMenuEntity.getPageIndex();
         Integer pageSize = roleMenuEntity.getPageSize();
         Integer roleId = roleMenuEntity.getRoleId();
@@ -172,7 +178,13 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public Page<RoleMenuEntity> searchRoleMenuByRoleName(RoleMenuEntity roleMenuEntity) {
+    public List<RoleMenuEntity> searchRoleMenuByRoleNameList(RoleMenuEntity roleMenuEntity) {
+        String roleName = roleMenuEntity.getRoleName();
+        return roleMenuDAO.findByRoleName(roleName);
+    }
+
+    @Override
+    public Page<RoleMenuEntity> searchRoleMenuByRoleNamePager(RoleMenuEntity roleMenuEntity) {
         Integer pageIndex = roleMenuEntity.getPageIndex();
         Integer pageSize = roleMenuEntity.getPageSize();
         String roleName = roleMenuEntity.getRoleName();
@@ -180,7 +192,13 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public Page<RoleMenuEntity> searchRoleMenuByMenuId(RoleMenuEntity roleMenuEntity) {
+    public List<RoleMenuEntity> searchRoleMenuByMenuIdList(RoleMenuEntity roleMenuEntity) {
+        Integer menuId = roleMenuEntity.getMenuId();
+        return roleMenuDAO.findByMenuId(menuId);
+    }
+
+    @Override
+    public Page<RoleMenuEntity> searchRoleMenuByMenuIdPager(RoleMenuEntity roleMenuEntity) {
         Integer pageIndex = roleMenuEntity.getPageIndex();
         Integer pageSize = roleMenuEntity.getPageSize();
         Integer menuId = roleMenuEntity.getMenuId();
@@ -188,7 +206,13 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public Page<RoleMenuEntity> searchRoleMenuByMenuName(RoleMenuEntity roleMenuEntity) {
+    public List<RoleMenuEntity> searchRoleMenuByMenuNameList(RoleMenuEntity roleMenuEntity) {
+        String menuName = roleMenuEntity.getMenuName();
+        return roleMenuDAO.findByMenuName(menuName);
+    }
+
+    @Override
+    public Page<RoleMenuEntity> searchRoleMenuByMenuNamePager(RoleMenuEntity roleMenuEntity) {
         Integer pageIndex = roleMenuEntity.getPageIndex();
         Integer pageSize = roleMenuEntity.getPageSize();
         String menuName = roleMenuEntity.getMenuName();
@@ -196,7 +220,12 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public Page<RoleMenuEntity> searchAllRoleMenu(RoleMenuEntity roleMenuEntity) {
+    public List<RoleMenuEntity> searchAllRoleMenuList(RoleMenuEntity roleMenuEntity) {
+        return roleMenuDAO.findAll();
+    }
+
+    @Override
+    public Page<RoleMenuEntity> searchAllRoleMenuPager(RoleMenuEntity roleMenuEntity) {
         Integer pageIndex = roleMenuEntity.getPageIndex();
         Integer pageSize = roleMenuEntity.getPageSize();
         return roleMenuDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

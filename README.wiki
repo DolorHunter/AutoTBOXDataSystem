@@ -299,8 +299,10 @@
   <tr><td>resetPasswordById</td><td>/User/resetPasswordById</td><td>userEntity</td><td>x</td><td>重置用户密码</td></tr>
   <tr><td>searchUserById</td><td>/User/searchUserById</td><td>userEntity</td><td>x</td><td>ID查找用户</td></tr>
   <tr><td>searchUserByUsername</td><td>/User/searchUserByUsername</td><td>userEntity</td><td>x</td><td>用户名查找用户</td></tr>
-  <tr><td>searchActivedUser</td><td>/User/searchActivedUser</td><td>userEntity</td><td>x</td><td>查找激活用户</td></tr>
-  <tr><td>searchAllUser</td><td>/User/searchAllUser</td><td>userEntity</td><td>x</td><td>查找全部用户</td></tr>
+  <tr><td>searchActivedUserList</td><td>/User/searchActivedUserList</td><td>userEntity</td><td>x</td><td>查找激活用户List</td></tr>
+  <tr><td>searchActivedUserPager</td><td>/User/searchActivedUserPager</td><td>userEntity</td><td>x</td><td>查找激活用户Pager</td></tr>
+  <tr><td>searchAllUserList</td><td>/User/searchAllUserList</td><td>userEntity</td><td>x</td><td>查找全部用户List</td></tr>
+  <tr><td>searchAllUserPager</td><td>/User/searchAllUserPager</td><td>userEntity</td><td>x</td><td>查找全部用户Pager</td></tr>
 </table>
 
 === 1.2.2 RoleController ===
@@ -321,8 +323,10 @@
   <tr><td>updateRoleById</td><td>/Role/updateRoleById</td><td>roleEntity</td><td>x</td><td>更新角色信息</td></tr>
   <tr><td>searchRoleById</td><td>/Role/searchRoleById</td><td>roleEntity</td><td>x</td><td>ID查找角色</td></tr>
   <tr><td>searchRoleByRoleName</td><td>/Role/searchRoleByRoleName</td><td>roleEntity</td><td>x</td><td>角色名查找角色</td></tr>
-  <tr><td>searchActivedRole</td><td>/Role/searchActivedRole</td><td>roleEntity</td><td>x</td><td>查找激活角色</td></tr>
-  <tr><td>searchAllRole</td><td>/Role/searchAllRole</td><td>roleEntity</td><td>x</td><td>查找全部角色</td></tr>
+  <tr><td>searchActivedRoleList</td><td>/Role/searchActivedRoleList</td><td>roleEntity</td><td>x</td><td>查找激活角色List</td></tr>
+  <tr><td>searchActivedRolePager</td><td>/Role/searchActivedRolePager</td><td>roleEntity</td><td>x</td><td>查找激活角色Pager</td></tr>
+  <tr><td>searchAllRoleList</td><td>/Role/searchAllRoleList</td><td>roleEntity</td><td>x</td><td>查找全部角色List</td></tr>
+  <tr><td>searchAllRolePager</td><td>/Role/searchAllRolePager</td><td>roleEntity</td><td>x</td><td>查找全部角色Pager</td></tr>
 </table>
 
 === 1.2.3 MenuController ===
@@ -343,8 +347,10 @@
   <tr><td>updateMenuById</td><td>/Menu/updateMenuById</td><td>menuEntity</td><td>x</td><td>更新菜单信息</td></tr>
   <tr><td>searchMenuById</td><td>/Menu/searchMenuById</td><td>menuEntity</td><td>x</td><td>ID查找菜单</td></tr>
   <tr><td>searchMenuByMenuName</td><td>/Menu/searchMenuByMenuName</td><td>menuEntity</td><td>x</td><td>菜单名查找菜单</td></tr>
-  <tr><td>searchActivedMenu</td><td>/Menu/searchActivedMenu</td><td>menuEntity</td><td>x</td><td>查找激活菜单</td></tr>
-  <tr><td>searchAllMenu</td><td>/Menu/searchAllMenu</td><td>menuEntity</td><td>x</td><td>查找全部菜单</td></tr>
+  <tr><td>searchActivedMenuList</td><td>/Menu/searchActivedMenuList</td><td>menuEntity</td><td>x</td><td>查找激活菜单List</td></tr>
+  <tr><td>searchActivedMenuPager</td><td>/Menu/searchActivedMenuPager</td><td>menuEntity</td><td>x</td><td>查找激活菜单Pager</td></tr>
+  <tr><td>searchAllMenuList</td><td>/Menu/searchAllMenuList</td><td>menuEntity</td><td>x</td><td>查找全部菜单List</td></tr>
+  <tr><td>searchAllMenuPager</td><td>/Menu/searchAllMenuPager</td><td>menuEntity</td><td>x</td><td>查找全部菜单Pager</td></tr>
 </table>
 
 === 1.2.4 UserRoleController ===
@@ -362,11 +368,16 @@
   <tr><td>updateStatusById</td><td>/UserRole/updateStatusById</td><td>userRoleEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/UserRole/updateRemarkById</td><td>userRoleEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchUserRoleById</td><td>/UserRole/searchUserRoleById</td><td>userRoleEntity</td><td>x</td><td>ID查找角用户角色</td></tr>
-  <tr><td>searchUserRoleByUserId</td><td>/UserRole/searchUserRoleByUserId</td><td>userRoleEntity</td><td>x</td><td>用户ID查找用户角色</td></tr>
-  <tr><td>searchUserRoleByUsername</td><td>/UserRole/searchUserRoleByUsername</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色</td></tr>
-  <tr><td>searchUserRoleByRoleId</td><td>/UserRole/searchUserRoleByRoleId</td><td>userRoleEntity</td><td>x</td><td>角色ID查找用户角色</td></tr>
-  <tr><td>searchUserRoleByRoleName</td><td>/UserRole/searchUserRoleByRoleName</td><td>userRoleEntity</td><td>x</td><td>角色名查找用户角色</td></tr>
-  <tr><td>searchAllUserRole</td><td>/UserRole/searchAllUserRole</td><td>userRoleEntity</td><td>x</td><td>查找全部用户角色</td></tr>
+  <tr><td>searchUserRoleByUserIdList</td><td>/UserRole/searchUserRoleByUserIdList</td><td>userRoleEntity</td><td>x</td><td>用户ID查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByUserIdPager</td><td>/UserRole/searchUserRoleByUserIdPager</td><td>userRoleEntity</td><td>x</td><td>用户ID查找用户角色Pager</td></tr>
+  <tr><td>searchUserRoleByUsernameList</td><td>/UserRole/searchUserRoleByUsernameList</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByUsernamePager</td><td>/UserRole/searchUserRoleByUsernamePager</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色Pager</td></tr>
+  <tr><td>searchUserRoleByRoleIdList</td><td>/UserRole/searchUserRoleByRoleIdList</td><td>userRoleEntity</td><td>x</td><td>角色ID查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByRoleIdPager</td><td>/UserRole/searchUserRoleByRoleIdPager</td><td>userRoleEntity</td><td>x</td><td>角色ID查找用户角色Pager</td></tr>
+  <tr><td>searchUserRoleByRoleNameList</td><td>/UserRole/searchUserRoleByRoleNameList</td><td>userRoleEntity</td><td>x</td><td>角色名查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByRoleNamePager</td><td>/UserRole/searchUserRoleByRoleNamePager</td><td>userRoleEntity</td><td>x</td><td>角色名查找用户角色Pager</td></tr>
+  <tr><td>searchAllUserRoleList</td><td>/UserRole/searchAllUserRoleList</td><td>userRoleEntity</td><td>x</td><td>查找全部用户角色List</td></tr>
+  <tr><td>searchAllUserRolePager</td><td>/UserRole/searchAllUserRolePager</td><td>userRoleEntity</td><td>x</td><td>查找全部用户角色Pager</td></tr>
 </table>
 
 === 1.2.5 RoleMenuController ===
@@ -384,11 +395,16 @@
   <tr><td>updateStatusById</td><td>/RoleMenu/updateStatusById</td><td>roleMenuEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/RoleMenu/updateRemarkById</td><td>roleMenuEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchRoleMenuById</td><td>/RoleMenu/searchRoleMenuById</td><td>roleMenuEntity</td><td>x</td><td>ID查找角色菜单</td></tr>
-  <tr><td>searchRoleMenuByRoleId</td><td>/RoleMenu/searchRoleMenuByRoleId</td><td>roleMenuEntity</td><td>x</td><td>角色ID查找角色菜单</td></tr>
-  <tr><td>searchRoleMenuByRoleName</td><td>/RoleMenu/searchRoleMenuByRoleName</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单</td></tr>
-  <tr><td>searchRoleMenuByMenuId</td><td>/RoleMenu/searchRoleMenuByMenuId</td><td>roleMenuEntity</td><td>x</td><td>菜单ID查找角色菜单</td></tr>
-  <tr><td>searchRoleMenuByMenuName</td><td>/RoleMenu/searchRoleMenuByMenuName</td><td>roleMenuEntity</td><td>x</td><td>菜单名查找角色菜单</td></tr>
-  <tr><td>searchAllRoleMenu</td><td>/RoleMenu/searchAllRoleMenu</td><td>roleMenuEntity</td><td>x</td><td>查找全部角色菜单</td></tr>
+  <tr><td>searchRoleMenuByRoleIdList</td><td>/RoleMenu/searchRoleMenuByRoleIdList</td><td>roleMenuEntity</td><td>x</td><td>角色ID查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByRoleIdPager</td><td>/RoleMenu/searchRoleMenuByRoleIdPager</td><td>roleMenuEntity</td><td>x</td><td>角色ID查找角色菜单Pager</td></tr>
+  <tr><td>searchRoleMenuByRoleNameList</td><td>/RoleMenu/searchRoleMenuByRoleNameList</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByRoleNamePager</td><td>/RoleMenu/searchRoleMenuByRoleNamePager</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单Pager</td></tr>
+  <tr><td>searchRoleMenuByMenuIdList</td><td>/RoleMenu/searchRoleMenuByMenuIdList</td><td>roleMenuEntity</td><td>x</td><td>菜单ID查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByMenuIdPager</td><td>/RoleMenu/searchRoleMenuByMenuIdPager</td><td>roleMenuEntity</td><td>x</td><td>菜单ID查找角色菜单Pager</td></tr>
+  <tr><td>searchRoleMenuByMenuNameList</td><td>/RoleMenu/searchRoleMenuByMenuNameList</td><td>roleMenuEntity</td><td>x</td><td>菜单名查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByMenuNamePager</td><td>/RoleMenu/searchRoleMenuByMenuNamePager</td><td>roleMenuEntity</td><td>x</td><td>菜单名查找角色菜单Pager</td></tr>
+  <tr><td>searchAllRoleMenuList</td><td>/RoleMenu/searchAllRoleMenuList</td><td>roleMenuEntity</td><td>x</td><td>查找全部角色菜单List</td></tr>
+  <tr><td>searchAllRoleMenuPager</td><td>/RoleMenu/searchAllRoleMenuPager</td><td>roleMenuEntity</td><td>x</td><td>查找全部角色菜单Pager</td></tr>
 </table>
 
 === 1.2.6 CarController ===
@@ -416,8 +432,10 @@
   <tr><td>updateServiceAndWarrantyById</td><td>/Car/updateServiceAndWarrantyById</td><td>carEntity</td><td>x</td><td>更新车辆信息 SERVICE AND WARRANTY</td></tr>
   <tr><td>searchCarById</td><td>/Car/searchCarById</td><td>carEntity</td><td>x</td><td>ID查找车辆</td></tr>
   <tr><td>searchCarByCarName</td><td>/Car/searchCarByCarName</td><td>carEntity</td><td>x</td><td>车辆名查找车辆</td></tr>
-  <tr><td>searchActivedCar</td><td>/Car/searchActivedCar</td><td>carEntity</td><td>x</td><td>查找激活车辆</td></tr>
-  <tr><td>searchAllCar</td><td>/Car/searchAllCar</td><td>carEntity</td><td>x</td><td>查找全部车辆</td></tr>
+  <tr><td>searchActivedCarList</td><td>/Car/searchActivedCarList</td><td>carEntity</td><td>x</td><td>查找激活车辆List</td></tr>
+  <tr><td>searchActivedCarPager</td><td>/Car/searchActivedCarPager</td><td>carEntity</td><td>x</td><td>查找激活车辆Pager</td></tr>
+  <tr><td>searchAllCarList</td><td>/Car/searchAllCarList</td><td>carEntity</td><td>x</td><td>查找全部车辆List</td></tr>
+  <tr><td>searchAllCarPager</td><td>/Car/searchAllCarPager</td><td>carEntity</td><td>x</td><td>查找全部车辆Pager</td></tr>
 </table>
 
 === 1.2.7 UserCarController ===
@@ -436,11 +454,16 @@
   <tr><td>updateStatusById</td><td>/UserCar/updateStatusById</td><td>userCarEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/UserCar/updateRemarkById</td><td>userCarEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchUserCarById</td><td>/UserCar/searchUserCarById</td><td>userCarEntity</td><td>x</td><td>ID查找用户车辆</td></tr>
-  <tr><td>searchUserCarByUserId</td><td>/UserCar/searchUserCarByUserId</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆</td></tr>
-  <tr><td>searchUserCarByUsername</td><td>/UserCar/searchUserCarByUsername</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆</td></tr>
-  <tr><td>searchUserCarByCarId</td><td>/UserCar/searchUserCarByCarId</td><td>userCarEntity</td><td>x</td><td>车辆ID查找用户车辆</td></tr>
-  <tr><td>searchUserCarByCarName</td><td>/UserCar/searchUserCarByCarName</td><td>userCarEntity</td><td>x</td><td>车辆名查找用户车辆</td></tr>
-  <tr><td>searchAllUserCar</td><td>/UserCar/searchAllUserCar</td><td>userCarEntity</td><td>x</td><td>查找全部用户车辆</td></tr>
+  <tr><td>searchUserCarByUserIdList</td><td>/UserCar/searchUserCarByUserIdList</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByUserIdPager</td><td>/UserCar/searchUserCarByUserIdPager</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆Pager</td></tr>
+  <tr><td>searchUserCarByUsernameList</td><td>/UserCar/searchUserCarByUsernameList</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByUsernamePager</td><td>/UserCar/searchUserCarByUsernamePager</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆Pager</td></tr>
+  <tr><td>searchUserCarByCarIdList</td><td>/UserCar/searchUserCarByCarIdList</td><td>userCarEntity</td><td>x</td><td>车辆ID查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByCarIdPager</td><td>/UserCar/searchUserCarByCarIdPager</td><td>userCarEntity</td><td>x</td><td>车辆ID查找用户车辆Pager</td></tr>
+  <tr><td>searchUserCarByCarNameList</td><td>/UserCar/searchUserCarByCarNameList</td><td>userCarEntity</td><td>x</td><td>车辆名查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByCarNamePager</td><td>/UserCar/searchUserCarByCarNamePager</td><td>userCarEntity</td><td>x</td><td>车辆名查找用户车辆Pager</td></tr>
+  <tr><td>searchAllUserCarList</td><td>/UserCar/searchAllUserCarList</td><td>userCarEntity</td><td>x</td><td>查找全部用户车辆List</td></tr>
+  <tr><td>searchAllUserCarPager</td><td>/UserCar/searchAllUserCarPager</td><td>userCarEntity</td><td>x</td><td>查找全部用户车辆Pager</td></tr>
 </table>
 
 === 1.2.8 CarLogController ===
@@ -456,8 +479,10 @@
   <tr><td>updateStatusById</td><td>/CarLog/updateStatusById</td><td>carLogEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/CarLog/updateRemarkById</td><td>carLogEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchCarLogById</td><td>/CarLog/searchCarLogById</td><td>carLogEntity</td><td>x</td><td>日志ID查找</td></tr>
-  <tr><td>searchCarLogByVIN</td><td>/CarLog/searchCarLogByVIN</td><td>carLogEntity</td><td>x</td><td>车辆VIN查找日志</td></tr>
-  <tr><td>searchAllCarLog</td><td>/CarLog/searchAllCarLog</td><td>carLogEntity</td><td>x</td><td>查找全部车辆日志</td></tr>
+  <tr><td>searchCarLogByVINList</td><td>/CarLog/searchCarLogByVINList</td><td>carLogEntity</td><td>x</td><td>车辆VIN查找日志List</td></tr>
+  <tr><td>searchCarLogByVINPager</td><td>/CarLog/searchCarLogByVINPager</td><td>carLogEntity</td><td>x</td><td>车辆VIN查找日志Pager</td></tr>
+  <tr><td>searchAllCarLogList</td><td>/CarLog/searchAllCarLogList</td><td>carLogEntity</td><td>x</td><td>查找全部车辆日志List</td></tr>
+  <tr><td>searchAllCarLogPager</td><td>/CarLog/searchAllCarLogPager</td><td>carLogEntity</td><td>x</td><td>查找全部车辆日志Pager</td></tr>
 </table>
 
 === 1.2.9 CarWarningController ===
@@ -473,12 +498,14 @@
   <tr><td>updateStatusById</td><td>/CarWarning/updateStatusById</td><td>carWarningEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/CarWarning/updateRemarkById</td><td>carWarningEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchCarWarningById</td><td>/CarWarning/searchCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID查找</td></tr>
-  <tr><td>searchMaxWarCar</td><td>/CarWarning/searchMaxWarCar</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的车辆型号</td></tr>
-  <tr><td>searchWarCarDetail</td><td>/CarWarning/searchWarCarDetail</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的车辆型号详细信息</td></tr>
-  <tr><td>searchMaxWarUnit</td><td>/CarWarning/searchMaxWarUnit</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的单元</td></tr>
-  <tr><td>searchWarUnitDetail</td><td>/CarWarning/searchWarUnitDetail</td><td>carWarningEntity</td><td>x</td><td>查找最常故障的单元详细信息</td></tr>
-  <tr><td>searchCarWarningByVIN</td><td>/CarWarning/searchCarWarningByVIN</td><td>carWarningEntity</td><td>x</td><td>车辆VIN查找故障</td></tr>
-  <tr><td>searchAllCarWarning</td><td>/CarWarning/searchAllCarWarning</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障</td></tr>
+  <tr><td>searchCarWarningByVINList</td><td>/CarWarning/searchCarWarningByVINList</td><td>carWarningEntity</td><td>x</td><td>车辆VIN查找故障List</td></tr>
+  <tr><td>searchCarWarningByVINPager</td><td>/CarWarning/searchCarWarningByVINPager</td><td>carWarningEntity</td><td>x</td><td>车辆VIN查找故障Pager</td></tr>
+  <tr><td>searchCarWarningByCarNameList</td><td>/CarWarning/searchCarWarningByCarNameList</td><td>carWarningEntity</td><td>x</td><td>车辆名查找故障List</td></tr>
+  <tr><td>searchCarWarningByCarNamePager</td><td>/CarWarning/searchCarWarningByCarNamePager</td><td>carWarningEntity</td><td>x</td><td>车辆名查找故障Pager</td></tr>
+  <tr><td>searchCarWarningByUnitNameList</td><td>/CarWarning/searchCarWarningByUnitNameList</td><td>carWarningEntity</td><td>x</td><td>单元名查找故障List</td></tr>
+  <tr><td>searchCarWarningByUnitNamePager</td><td>/CarWarning/searchCarWarningByUnitNamePager</td><td>carWarningEntity</td><td>x</td><td>单元名查找故障Pager</td></tr>
+  <tr><td>searchAllCarWarningList</td><td>/CarWarning/searchAllCarWarningList</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障List</td></tr>
+  <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障Pager</td></tr>
 </table>
 
 === 1.2.10 CarWarrantyController ===
@@ -494,8 +521,10 @@
   <tr><td>updateStatusById</td><td>/CarWarranty/updateStatusById</td><td>carWarrantyEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/CarWarranty/updateRemarkById</td><td>carWarrantyEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchCarWarrantyById</td><td>/CarWarranty/searchCarWarrantyById</td><td>carWarrantyEntity</td><td>x</td><td>保修ID查找</td></tr>
-  <tr><td>searchCarWarrantyByVIN</td><td>/CarWarranty/searchCarWarrantyByVIN</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN查找保修</td></tr>
-  <tr><td>searchAllCarWarranty</td><td>/CarWarranty/searchAllCarWarranty</td><td>carWarrantyEntity</td><td>x</td><td>查找全部车辆保修</td></tr>
+  <tr><td>searchCarWarrantyByVINList</td><td>/CarWarranty/searchCarWarrantyByVINList</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN查找保修List</td></tr>
+  <tr><td>searchCarWarrantyByVINPager</td><td>/CarWarranty/searchCarWarrantyByVINPager</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN查找保修Pager</td></tr>
+  <tr><td>searchAllCarWarrantyList</td><td>/CarWarranty/searchAllCarWarrantyList</td><td>carWarrantyEntity</td><td>x</td><td>查找全部车辆保修List</td></tr>
+  <tr><td>searchAllCarWarrantyPager</td><td>/CarWarranty/searchAllCarWarrantyPager</td><td>carWarrantyEntity</td><td>x</td><td>查找全部车辆保修Pager</td></tr>
 </table>
 
 === 1.2.10 VisualChartController ===
@@ -512,7 +541,8 @@
   <tr><td>updateRemarkById</td><td>/VisualChart/updateRemarkById</td><td>visualChartEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchvisualChartById</td><td>/VisualChart/searchvisualChartById</td><td>visualChartEntity</td><td>x</td><td>视觉图表ID查找</td></tr>
   <tr><td>searchvisualChartByChartName</td><td>/VisualChart/searchvisualChartByChartName</td><td>visualChartEntity</td><td>x</td><td>视觉图表名查找</td></tr>
-  <tr><td>searchAllvisualChart</td><td>/VisualChart/searchAllvisualChart</td><td>visualChartEntity</td><td>x</td><td>查找全部视觉图表</td></tr>
+  <tr><td>searchAllvisualChartList</td><td>/VisualChart/searchAllvisualChartList</td><td>visualChartEntity</td><td>x</td><td>查找全部视觉图表List</td></tr>
+  <tr><td>searchAllvisualChartPager</td><td>/VisualChart/searchAllvisualChartPager</td><td>visualChartEntity</td><td>x</td><td>查找全部视觉图表Pager</td></tr>
 </table>
 
 = 2 前端设计与实现 =
@@ -595,6 +625,8 @@ root登录
 * React 101 CRUD [https://www.taniarascia.com/getting-started-with-react/ TaniaRascia-React Tutorial: An Overview and Walkthrough]
 * React 开发文档 [https://create-react-app.dev/docs/getting-started Create React App]
 * (视频)CodeEngine-React & Spring应用2 [https://www.youtube.com/watch?v=jCalDxGthoc CodeEngine-React & Spring Boot Expense Tracker Application (Part 2)]
+* AJAX 和 APIs [https://zh-hant.reactjs.org/docs/faq-ajax.html AJAX和APIs]
+* Axios React请求交互(类ajax) [https://github.com/axios/axios GitHub axios/axios]
 
 == 3.8 JavaScript ==
 

@@ -3,6 +3,8 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.UserCarEntity;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface UserCarService {
     boolean addCar2User(UserCarEntity userCarEntity);
 
@@ -22,14 +24,24 @@ public interface UserCarService {
 
     UserCarEntity searchUserCarById(UserCarEntity userCarEntity);
 
-    Page<UserCarEntity> searchUserCarByUserId(UserCarEntity userCarEntity);
+    List<UserCarEntity> searchUserCarByUserIdList(UserCarEntity userCarEntity);
 
-    Page<UserCarEntity> searchUserCarByUsername(UserCarEntity userCarEntity);
+    Page<UserCarEntity> searchUserCarByUserIdPager(UserCarEntity userCarEntity);
 
-    Page<UserCarEntity> searchUserCarByCarId(UserCarEntity userCarEntity);
+    List<UserCarEntity> searchUserCarByUsernameList(UserCarEntity userCarEntity);
 
-    Page<UserCarEntity> searchUserCarByCarName(UserCarEntity userCarEntity);
+    Page<UserCarEntity> searchUserCarByUsernamePager(UserCarEntity userCarEntity);
 
-    Page<UserCarEntity> searchAllUserCar(UserCarEntity userCarEntity);
+    List<UserCarEntity> searchUserCarByCarIdList(UserCarEntity userCarEntity);
+
+    Page<UserCarEntity> searchUserCarByCarIdPager(UserCarEntity userCarEntity);
+
+    List<UserCarEntity> searchUserCarByCarNameList(UserCarEntity userCarEntity);
+
+    Page<UserCarEntity> searchUserCarByCarNamePager(UserCarEntity userCarEntity);
+
+    List<UserCarEntity> searchAllUserCarList(UserCarEntity userCarEntity);
+
+    Page<UserCarEntity> searchAllUserCarPager(UserCarEntity userCarEntity);
 
 }

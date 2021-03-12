@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/CarLog")
 public class CarLogController {
@@ -70,17 +72,32 @@ public class CarLogController {
     }
 
     // 车辆VIN查找日志
-    @PostMapping(path = "/searchCarLogByVIN")
+    @PostMapping(path = "/searchCarLogByVINList")
     public @ResponseBody
-    Page<CarLogEntity> searchCarLogByVIN(@RequestBody CarLogEntity carLogEntity) {
-        return carLogService.searchCarLogByVIN(carLogEntity);
+    List<CarLogEntity> searchCarLogByVINList(@RequestBody CarLogEntity carLogEntity) {
+        return carLogService.searchCarLogByVINList(carLogEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 车辆VIN查找日志
+    @PostMapping(path = "/searchCarLogByVINPager")
+    public @ResponseBody
+    Page<CarLogEntity> searchCarLogByVINPager(@RequestBody CarLogEntity carLogEntity) {
+        return carLogService.searchCarLogByVINPager(carLogEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 查找全部车辆日志
-    @PostMapping(path = "/searchAllCarLog")
+    @PostMapping(path = "/searchAllCarLogList")
     public @ResponseBody
-    Page<CarLogEntity> searchAllCarLog(@RequestBody CarLogEntity carLogEntity) {
-        return carLogService.searchAllCarLog(carLogEntity);
+    List<CarLogEntity> searchAllCarLog(@RequestBody CarLogEntity carLogEntity) {
+        return carLogService.searchAllCarLogList(carLogEntity);
+    }
+
+    // 查找全部车辆日志
+    @PostMapping(path = "/searchAllCarLogPager")
+    public @ResponseBody
+    Page<CarLogEntity> searchAllCarLogPager(@RequestBody CarLogEntity carLogEntity) {
+        return carLogService.searchAllCarLogPager(carLogEntity);
     }
 }

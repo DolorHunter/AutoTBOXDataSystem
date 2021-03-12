@@ -3,6 +3,8 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.VisualChartEntity;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface VisualChartService {
     boolean addVisualChart(VisualChartEntity visualChartEntity);
 
@@ -18,5 +20,7 @@ public interface VisualChartService {
 
     VisualChartEntity searchVisualChartByChartName(VisualChartEntity visualChartEntity);
 
-    Page<VisualChartEntity> searchAllVisualChart(VisualChartEntity visualChartEntity);
+    List<VisualChartEntity> searchAllVisualChartList(VisualChartEntity visualChartEntity);
+
+    Page<VisualChartEntity> searchAllVisualChartPager(VisualChartEntity visualChartEntity);
 }

@@ -533,14 +533,24 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<CarEntity> searchActivedCar(CarEntity carEntity) {
+    public List<CarEntity> searchActivedCarList(CarEntity carEntity) {
+        return carDAO.findByIsActivated("1");
+    }
+
+    @Override
+    public Page<CarEntity> searchActivedCarPager(CarEntity carEntity) {
         Integer pageIndex = carEntity.getPageIndex();
         Integer pageSize = carEntity.getPageSize();
         return carDAO.findByIsActivated("1", PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<CarEntity> searchAllCar(CarEntity carEntity) {
+    public List<CarEntity> searchAllCarList(CarEntity carEntity) {
+        return carDAO.findAll();
+    }
+
+    @Override
+    public Page<CarEntity> searchAllCarPager(CarEntity carEntity) {
         Integer pageIndex = carEntity.getPageIndex();
         Integer pageSize = carEntity.getPageSize();
         return carDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

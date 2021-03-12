@@ -3,6 +3,8 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.CarLogEntity;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface CarLogService {    
     boolean addCarLog(CarLogEntity carLogEntity);
 
@@ -16,7 +18,11 @@ public interface CarLogService {
 
     CarLogEntity searchCarLogById(CarLogEntity carLogEntity);
 
-    Page<CarLogEntity> searchCarLogByVIN(CarLogEntity carLogEntity);
+    List<CarLogEntity> searchCarLogByVINList(CarLogEntity carLogEntity);
 
-    Page<CarLogEntity> searchAllCarLog(CarLogEntity carLogEntity);
+    Page<CarLogEntity> searchCarLogByVINPager(CarLogEntity carLogEntity);
+
+    List<CarLogEntity> searchAllCarLogList(CarLogEntity carLogEntity);
+
+    Page<CarLogEntity> searchAllCarLogPager(CarLogEntity carLogEntity);
 }

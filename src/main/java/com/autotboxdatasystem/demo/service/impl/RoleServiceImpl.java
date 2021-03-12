@@ -253,14 +253,24 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Page<RoleEntity> searchActivedRole(RoleEntity roleEntity) {
+    public List<RoleEntity> searchActivedRoleList(RoleEntity roleEntity) {
+        return roleDAO.findByIsActivated("1");
+    }
+
+    @Override
+    public Page<RoleEntity> searchActivedRolePager(RoleEntity roleEntity) {
         Integer pageIndex = roleEntity.getPageIndex();
         Integer pageSize = roleEntity.getPageSize();
         return roleDAO.findByIsActivated("1", PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<RoleEntity> searchAllRole(RoleEntity roleEntity) {
+    public List<RoleEntity> searchAllRoleList(RoleEntity roleEntity) {
+        return roleDAO.findAll();
+    }
+
+    @Override
+    public Page<RoleEntity> searchAllRolePager(RoleEntity roleEntity) {
         Integer pageIndex = roleEntity.getPageIndex();
         Integer pageSize = roleEntity.getPageSize();
         return roleDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

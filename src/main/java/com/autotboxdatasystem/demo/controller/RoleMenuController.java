@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/RoleMenu")
 public class RoleMenuController {
@@ -86,41 +88,80 @@ public class RoleMenuController {
     }
 
     // 角色ID查找角色菜单
-    @PostMapping(path = "/searchRoleMenuByRoleId")
+    @PostMapping(path = "/searchRoleMenuByRoleIdList")
     public @ResponseBody
-    Page<RoleMenuEntity> searchRoleMenuByRoleId(@RequestBody RoleMenuEntity roleMenuEntity) {
-        return roleMenuService.searchRoleMenuByRoleId(roleMenuEntity);
+    List<RoleMenuEntity> searchRoleMenuByRoleIdList(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByRoleIdList(roleMenuEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 角色ID查找角色菜单
+    @PostMapping(path = "/searchRoleMenuByRoleIdPager")
+    public @ResponseBody
+    Page<RoleMenuEntity> searchRoleMenuByRoleIdPager(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByRoleIdPager(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 角色名查找角色菜单
-    @PostMapping(path = "/searchRoleMenuByRoleName")
+    @PostMapping(path = "/searchRoleMenuByRoleNameList")
     public @ResponseBody
-    Page<RoleMenuEntity> searchRoleMenuByRoleName(@RequestBody RoleMenuEntity roleMenuEntity) {
-        return roleMenuService.searchRoleMenuByRoleName(roleMenuEntity);
+    List<RoleMenuEntity> searchRoleMenuByRoleNameList(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByRoleNameList(roleMenuEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 角色名查找角色菜单
+    @PostMapping(path = "/searchRoleMenuByRoleNamePager")
+    public @ResponseBody
+    Page<RoleMenuEntity> searchRoleMenuByRoleNamePager(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByRoleNamePager(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 菜单ID查找角色菜单
-    @PostMapping(path = "/searchRoleMenuByMenuId")
+    @PostMapping(path = "/searchRoleMenuByMenuIdList")
     public @ResponseBody
-    Page<RoleMenuEntity> searchRoleMenuByMenuId(@RequestBody RoleMenuEntity roleMenuEntity) {
-        return roleMenuService.searchRoleMenuByMenuId(roleMenuEntity);
+    List<RoleMenuEntity> searchRoleMenuByMenuIdList(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByMenuIdList(roleMenuEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 菜单ID查找角色菜单
+    @PostMapping(path = "/searchRoleMenuByMenuIdPager")
+    public @ResponseBody
+    Page<RoleMenuEntity> searchRoleMenuByMenuIdPager(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByMenuIdPager(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 菜单名查找角色菜单
-    @PostMapping(path = "/searchRoleMenuByMenuName")
+    @PostMapping(path = "/searchRoleMenuByMenuNameList")
     public @ResponseBody
-    Page<RoleMenuEntity> searchRoleMenuByMenuName(@RequestBody RoleMenuEntity roleMenuEntity) {
-        return roleMenuService.searchRoleMenuByMenuName(roleMenuEntity);
+    List<RoleMenuEntity> searchRoleMenuByMenuNameList(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByMenuNameList(roleMenuEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 菜单名查找角色菜单
+    @PostMapping(path = "/searchRoleMenuByMenuNamePager")
+    public @ResponseBody
+    Page<RoleMenuEntity> searchRoleMenuByMenuNamePager(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchRoleMenuByMenuNamePager(roleMenuEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 查找全部角色菜单
-    @PostMapping(path = "/searchAllRoleMenu")
+    @PostMapping(path = "/searchAllRoleMenuList")
     public @ResponseBody
-    Page<RoleMenuEntity> searchAllRoleMenu(@RequestBody RoleMenuEntity roleMenuEntity) {
-        return roleMenuService.searchAllRoleMenu(roleMenuEntity);
+    List<RoleMenuEntity> searchAllRoleMenuList(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchAllRoleMenuList(roleMenuEntity);
+    }
+
+    // 查找全部角色菜单
+    @PostMapping(path = "/searchAllRoleMenuPager")
+    public @ResponseBody
+    Page<RoleMenuEntity> searchAllRoleMenuPager(@RequestBody RoleMenuEntity roleMenuEntity) {
+        return roleMenuService.searchAllRoleMenuPager(roleMenuEntity);
     }
 }

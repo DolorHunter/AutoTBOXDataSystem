@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/CarWarranty")
 public class CarWarrantyController {
@@ -70,17 +72,32 @@ public class CarWarrantyController {
     }
 
     // 车辆VIN查找保修
-    @PostMapping(path = "/searchCarWarrantyByVIN")
+    @PostMapping(path = "/searchCarWarrantyByVINList")
     public @ResponseBody
-    Page<CarWarrantyEntity> searchCarWarrantyByVIN(@RequestBody CarWarrantyEntity carWarrantyEntity) {
-        return carWarrantyService.searchCarWarrantyByVIN(carWarrantyEntity);
+    List<CarWarrantyEntity> searchCarWarrantyByVINList(@RequestBody CarWarrantyEntity carWarrantyEntity) {
+        return carWarrantyService.searchCarWarrantyByVINList(carWarrantyEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 车辆VIN查找保修
+    @PostMapping(path = "/searchCarWarrantyByVINPager")
+    public @ResponseBody
+    Page<CarWarrantyEntity> searchCarWarrantyByVINPager(@RequestBody CarWarrantyEntity carWarrantyEntity) {
+        return carWarrantyService.searchCarWarrantyByVINPager(carWarrantyEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 查找全部车辆保修
-    @PostMapping(path = "/searchAllCarWarranty")
+    @PostMapping(path = "/searchAllCarWarrantyList")
     public @ResponseBody
-    Page<CarWarrantyEntity> searchAllCarWarranty(@RequestBody CarWarrantyEntity carWarrantyEntity) {
-        return carWarrantyService.searchAllCarWarranty(carWarrantyEntity);
+    List<CarWarrantyEntity> searchAllCarWarrantyList(@RequestBody CarWarrantyEntity carWarrantyEntity) {
+        return carWarrantyService.searchAllCarWarrantyList(carWarrantyEntity);
+    }
+
+    // 查找全部车辆保修
+    @PostMapping(path = "/searchAllCarWarrantyPager")
+    public @ResponseBody
+    Page<CarWarrantyEntity> searchAllCarWarrantyPager(@RequestBody CarWarrantyEntity carWarrantyEntity) {
+        return carWarrantyService.searchAllCarWarrantyPager(carWarrantyEntity);
     }
 }

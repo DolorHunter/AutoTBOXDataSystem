@@ -39,7 +39,11 @@ public interface UserCarDAO extends PagingAndSortingRepository<UserCarEntity, In
 
     UserCarEntity findByUsernameAndCarName(String username, String carName);
 
+    List<UserCarEntity> findByIsActivated(String active);
+
     Page<UserCarEntity> findByIsActivated(String active, Pageable pageable);
+
+    List<UserCarEntity> findAll();
 
     Page<UserCarEntity> findAll(Pageable pageable);
 }

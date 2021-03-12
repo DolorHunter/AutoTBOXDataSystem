@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CarLogServiceImpl implements CarLogService{
@@ -77,7 +79,13 @@ public class CarLogServiceImpl implements CarLogService{
     }
 
     @Override
-    public Page<CarLogEntity> searchCarLogByVIN(CarLogEntity carLogEntity) {
+    public List<CarLogEntity> searchCarLogByVINList(CarLogEntity carLogEntity) {
+        String VIN = carLogEntity.getVIN();
+        return carLogDAO.findByVIN(VIN);
+    }
+
+    @Override
+    public Page<CarLogEntity> searchCarLogByVINPager(CarLogEntity carLogEntity) {
         Integer pageIndex = carLogEntity.getPageIndex();
         Integer pageSize = carLogEntity.getPageSize();
         String VIN = carLogEntity.getVIN();
@@ -85,7 +93,12 @@ public class CarLogServiceImpl implements CarLogService{
     }
 
     @Override
-    public Page<CarLogEntity> searchAllCarLog(CarLogEntity carLogEntity) {
+    public List<CarLogEntity> searchAllCarLogList(CarLogEntity carLogEntity) {
+        return carLogDAO.findAll();
+    }
+
+    @Override
+    public Page<CarLogEntity> searchAllCarLogPager(CarLogEntity carLogEntity) {
         Integer pageIndex = carLogEntity.getPageIndex();
         Integer pageSize = carLogEntity.getPageSize();
         return carLogDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

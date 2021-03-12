@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CarWarrantyServiceImpl implements CarWarrantyService {
@@ -77,7 +79,13 @@ public class CarWarrantyServiceImpl implements CarWarrantyService {
     }
 
     @Override
-    public Page<CarWarrantyEntity> searchCarWarrantyByVIN(CarWarrantyEntity carWarrantyEntity) {
+    public List<CarWarrantyEntity> searchCarWarrantyByVINList(CarWarrantyEntity carWarrantyEntity) {
+        String VIN = carWarrantyEntity.getVIN();
+        return carWarrantyDAO.findByVIN(VIN);
+    }
+
+    @Override
+    public Page<CarWarrantyEntity> searchCarWarrantyByVINPager(CarWarrantyEntity carWarrantyEntity) {
         Integer pageIndex = carWarrantyEntity.getPageIndex();
         Integer pageSize = carWarrantyEntity.getPageSize();
         String VIN = carWarrantyEntity.getVIN();
@@ -85,7 +93,12 @@ public class CarWarrantyServiceImpl implements CarWarrantyService {
     }
 
     @Override
-    public Page<CarWarrantyEntity> searchAllCarWarranty(CarWarrantyEntity carWarrantyEntity) {
+    public List<CarWarrantyEntity> searchAllCarWarrantyList(CarWarrantyEntity carWarrantyEntity) {
+        return carWarrantyDAO.findAll();
+    }
+
+    @Override
+    public Page<CarWarrantyEntity> searchAllCarWarrantyPager(CarWarrantyEntity carWarrantyEntity) {
         Integer pageIndex = carWarrantyEntity.getPageIndex();
         Integer pageSize = carWarrantyEntity.getPageSize();
         return carWarrantyDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

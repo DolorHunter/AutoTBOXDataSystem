@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/UserRole")
 public class UserRoleController {
@@ -86,41 +88,80 @@ public class UserRoleController {
     }
 
     // 用户ID查找用户角色
-    @PostMapping(path = "/searchUserRoleByUserId")
+    @PostMapping(path = "/searchUserRoleByUserIdList")
     public @ResponseBody
-    Page<UserRoleEntity> searchUserRoleByUserId(@RequestBody UserRoleEntity userRoleEntity) {
-        return userRoleService.searchUserRoleByUserId(userRoleEntity);
+    List<UserRoleEntity> searchUserRoleByUserIdList(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByUserIdList(userRoleEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 用户ID查找用户角色
+    @PostMapping(path = "/searchUserRoleByUserIdPager")
+    public @ResponseBody
+    Page<UserRoleEntity> searchUserRoleByUserIdPager(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByUserIdPager(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 用户名查找用户角色
-    @PostMapping(path = "/searchUserRoleByUsername")
+    @PostMapping(path = "/searchUserRoleByUsernameList")
     public @ResponseBody
-    Page<UserRoleEntity> searchUserRoleByUsername(@RequestBody UserRoleEntity userRoleEntity) {
-        return userRoleService.searchUserRoleByUsername(userRoleEntity);
+    List<UserRoleEntity> searchUserRoleByUsernameList(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByUsernameList(userRoleEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 用户名查找用户角色
+    @PostMapping(path = "/searchUserRoleByUsernamePager")
+    public @ResponseBody
+    Page<UserRoleEntity> searchUserRoleByUsernamePager(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByUsernamePager(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 角色ID查找用户角色
-    @PostMapping(path = "/searchUserRoleByRoleId")
+    @PostMapping(path = "/searchUserRoleByRoleIdList")
     public @ResponseBody
-    Page<UserRoleEntity> searchUserRoleByRoleId(@RequestBody UserRoleEntity userRoleEntity) {
-        return userRoleService.searchUserRoleByRoleId(userRoleEntity);
+    List<UserRoleEntity> searchUserRoleByRoleIdList(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByRoleIdList(userRoleEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 角色ID查找用户角色
+    @PostMapping(path = "/searchUserRoleByRoleIdPager")
+    public @ResponseBody
+    Page<UserRoleEntity> searchUserRoleByRoleIdPager(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByRoleIdPager(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 角色名查找用户角色
-    @PostMapping(path = "/searchUserRoleByRoleName")
+    @PostMapping(path = "/searchUserRoleByRoleNameList")
     public @ResponseBody
-    Page<UserRoleEntity> searchUserRoleByRoleName(@RequestBody UserRoleEntity userRoleEntity) {
-        return userRoleService.searchUserRoleByRoleName(userRoleEntity);
+    List<UserRoleEntity> searchUserRoleByRoleNameList(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByRoleNameList(userRoleEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 角色名查找用户角色
+    @PostMapping(path = "/searchUserRoleByRoleNamePager")
+    public @ResponseBody
+    Page<UserRoleEntity> searchUserRoleByRoleNamePager(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchUserRoleByRoleNamePager(userRoleEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 查找全部用户角色
-    @PostMapping(path = "/searchAllUserRole")
+    @PostMapping(path = "/searchAllUserRoleList")
     public @ResponseBody
-    Page<UserRoleEntity> searchAllUserRole(@RequestBody UserRoleEntity userRoleEntity) {
-        return userRoleService.searchAllUserRole(userRoleEntity);
+    List<UserRoleEntity> searchAllUserRoleList(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchAllUserRoleList(userRoleEntity);
+    }
+
+    // 查找全部用户角色
+    @PostMapping(path = "/searchAllUserRolePager")
+    public @ResponseBody
+    Page<UserRoleEntity> searchAllUserRolePager(@RequestBody UserRoleEntity userRoleEntity) {
+        return userRoleService.searchAllUserRolePager(userRoleEntity);
     }
 }

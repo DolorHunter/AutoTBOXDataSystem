@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/UserCar")
 public class UserCarController {
@@ -94,41 +96,80 @@ public class UserCarController {
     }
 
     // 用户ID查找用户车辆
-    @PostMapping(path = "/searchUserCarByUserId")
+    @PostMapping(path = "/searchUserCarByUserIdList")
     public @ResponseBody
-    Page<UserCarEntity> searchUserCarByUserId(@RequestBody UserCarEntity userCarEntity) {
-        return userCarService.searchUserCarByUserId(userCarEntity);
+    List<UserCarEntity> searchUserCarByUserIdList(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByUserIdList(userCarEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 用户ID查找用户车辆
+    @PostMapping(path = "/searchUserCarByUserIdPager")
+    public @ResponseBody
+    Page<UserCarEntity> searchUserCarByUserIdPager(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByUserIdPager(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 用户名查找用户车辆
-    @PostMapping(path = "/searchUserCarByUsername")
+    @PostMapping(path = "/searchUserCarByUsernameList")
     public @ResponseBody
-    Page<UserCarEntity> searchUserCarByUsername(@RequestBody UserCarEntity userCarEntity) {
-        return userCarService.searchUserCarByUsername(userCarEntity);
+    List<UserCarEntity> searchUserCarByUsernameList(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByUsernameList(userCarEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 用户名查找用户车辆
+    @PostMapping(path = "/searchUserCarByUsernamePager")
+    public @ResponseBody
+    Page<UserCarEntity> searchUserCarByUsernamePager(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByUsernamePager(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 车辆ID查找用户车辆
-    @PostMapping(path = "/searchUserCarByCarId")
+    @PostMapping(path = "/searchUserCarByCarIdList")
     public @ResponseBody
-    Page<UserCarEntity> searchUserCarByCarId(@RequestBody UserCarEntity userCarEntity) {
-        return userCarService.searchUserCarByCarId(userCarEntity);
+    List<UserCarEntity> searchUserCarByCarIdList(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByCarIdList(userCarEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 车辆ID查找用户车辆
+    @PostMapping(path = "/searchUserCarByCarIdPager")
+    public @ResponseBody
+    Page<UserCarEntity> searchUserCarByCarIdPager(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByCarIdPager(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 车辆名查找用户车辆
-    @PostMapping(path = "/searchUserCarByCarName")
+    @PostMapping(path = "/searchUserCarByCarNameList")
     public @ResponseBody
-    Page<UserCarEntity> searchUserCarByCarName(@RequestBody UserCarEntity userCarEntity) {
-        return userCarService.searchUserCarByCarName(userCarEntity);
+    List<UserCarEntity> searchUserCarByCarNameList(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByCarNameList(userCarEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // 车辆名查找用户车辆
+    @PostMapping(path = "/searchUserCarByCarNamePager")
+    public @ResponseBody
+    Page<UserCarEntity> searchUserCarByCarNamePager(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByCarNamePager(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 查找全部用户车辆
-    @PostMapping(path = "/searchAllUserCar")
+    @PostMapping(path = "/searchAllUserCarList")
     public @ResponseBody
-    Page<UserCarEntity> searchAllUserCar(@RequestBody UserCarEntity userCarEntity) {
-        return userCarService.searchAllUserCar(userCarEntity);
+    List<UserCarEntity> searchAllUserCarList(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchAllUserCarList(userCarEntity);
+    }
+
+    // 查找全部用户车辆
+    @PostMapping(path = "/searchAllUserCarPager")
+    public @ResponseBody
+    Page<UserCarEntity> searchAllUserCarPager(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchAllUserCarPager(userCarEntity);
     }
 }

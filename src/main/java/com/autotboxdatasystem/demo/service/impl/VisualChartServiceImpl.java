@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class VisualChartServiceImpl implements VisualChartService{
@@ -88,7 +90,12 @@ public class VisualChartServiceImpl implements VisualChartService{
     }
 
     @Override
-    public Page<VisualChartEntity> searchAllVisualChart(VisualChartEntity visualChartEntity) {
+    public List<VisualChartEntity> searchAllVisualChartList(VisualChartEntity visualChartEntity) {
+        return visualChartDAO.findAll();
+    }
+
+    @Override
+    public Page<VisualChartEntity> searchAllVisualChartPager(VisualChartEntity visualChartEntity) {
         Integer pageIndex = visualChartEntity.getPageIndex();
         Integer pageSize = visualChartEntity.getPageSize();
         return visualChartDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));

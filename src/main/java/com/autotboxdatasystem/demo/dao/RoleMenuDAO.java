@@ -39,7 +39,11 @@ public interface RoleMenuDAO extends PagingAndSortingRepository<RoleMenuEntity, 
 
     RoleMenuEntity findByRoleNameAndMenuName(String roleName, String menuName);
 
+    List<RoleMenuEntity> findByIsActivated(String active);
+
     Page<RoleMenuEntity> findByIsActivated(String active, Pageable pageable);
+
+    List<RoleMenuEntity> findAll();
 
     Page<RoleMenuEntity> findAll(Pageable pageable);
 }

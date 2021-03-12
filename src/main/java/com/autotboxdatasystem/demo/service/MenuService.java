@@ -3,6 +3,8 @@ package com.autotboxdatasystem.demo.service;
 import com.autotboxdatasystem.demo.entity.MenuEntity;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface MenuService {
     boolean addMenu(MenuEntity menuEntity);
 
@@ -26,7 +28,11 @@ public interface MenuService {
 
     MenuEntity searchMenuByMenuName(MenuEntity menuEntity);
 
-    Page<MenuEntity> searchActivedMenu(MenuEntity menuEntity);
+    List<MenuEntity> searchActivedMenuList(MenuEntity menuEntity);
 
-    Page<MenuEntity> searchAllMenu(MenuEntity menuEntity);
+    Page<MenuEntity> searchActivedMenuPager(MenuEntity menuEntity);
+
+    List<MenuEntity> searchAllMenuList(MenuEntity menuEntity);
+
+    Page<MenuEntity> searchAllMenuPager(MenuEntity menuEntity);
 }

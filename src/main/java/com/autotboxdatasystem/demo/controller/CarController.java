@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/Car")
 public class CarController {
@@ -165,17 +167,31 @@ public class CarController {
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 查找激活车辆
-    @PostMapping(path = "/searchActivedCar")
+    // 查找激活车辆List
+    @PostMapping(path = "/searchActivedCarList")
     public @ResponseBody
-    Page<CarEntity> searchActivedCar(@RequestBody CarEntity carEntity) {
-        return carService.searchActivedCar(carEntity);
+    List<CarEntity> searchActivedCarList(@RequestBody CarEntity carEntity) {
+        return carService.searchActivedCarList(carEntity);
     }
 
-    // 查找全部车辆
-    @PostMapping(path = "/searchAllCar")
+    // 查找激活车辆Pager
+    @PostMapping(path = "/searchActivedCarPager")
     public @ResponseBody
-    Page<CarEntity> searchAllCar(@RequestBody CarEntity carEntity) {
-        return carService.searchAllCar(carEntity);
+    Page<CarEntity> searchActivedCarPager(@RequestBody CarEntity carEntity) {
+        return carService.searchActivedCarPager(carEntity);
+    }
+
+    // 查找全部车辆List
+    @PostMapping(path = "/searchAllCarList")
+    public @ResponseBody
+    List<CarEntity> searchAllCarList(@RequestBody CarEntity carEntity) {
+        return carService.searchAllCarList(carEntity);
+    }
+
+    // 查找全部车辆Pager
+    @PostMapping(path = "/searchAllCarPager")
+    public @ResponseBody
+    Page<CarEntity> searchAllCarPager(@RequestBody CarEntity carEntity) {
+        return carService.searchAllCarPager(carEntity);
     }
 }

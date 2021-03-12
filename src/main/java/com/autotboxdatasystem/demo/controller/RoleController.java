@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/Role")
 public class RoleController {
@@ -110,16 +112,30 @@ public class RoleController {
     }
 
     // 查找激活角色
-    @PostMapping(path = "/searchActivedRole")
+    @PostMapping(path = "/searchActivedRoleList")
     public @ResponseBody
-    Page<RoleEntity> searchActivedRole(@RequestBody RoleEntity roleEntity) {
-        return roleService.searchActivedRole(roleEntity);
+    List<RoleEntity> searchActivedRoleList(@RequestBody RoleEntity roleEntity) {
+        return roleService.searchActivedRoleList(roleEntity);
+    }
+
+    // 查找激活角色
+    @PostMapping(path = "/searchActivedRolePager")
+    public @ResponseBody
+    Page<RoleEntity> searchActivedRolePager(@RequestBody RoleEntity roleEntity) {
+        return roleService.searchActivedRolePager(roleEntity);
     }
 
     // 查找全部角色
-    @PostMapping(path = "/searchAllRole")
+    @PostMapping(path = "/searchAllRoleList")
     public @ResponseBody
-    Page<RoleEntity> searchAllRole(@RequestBody RoleEntity roleEntity) {
-        return roleService.searchAllRole(roleEntity);
+    List<RoleEntity> searchAllRoleList(@RequestBody RoleEntity roleEntity) {
+        return roleService.searchAllRoleList(roleEntity);
+    }
+
+    // 查找全部角色
+    @PostMapping(path = "/searchAllRolePager")
+    public @ResponseBody
+    Page<RoleEntity> searchAllRolePager(@RequestBody RoleEntity roleEntity) {
+        return roleService.searchAllRolePager(roleEntity);
     }
 }

@@ -315,14 +315,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserEntity> searchActivedUser(UserEntity userEntity) {
+    public List<UserEntity> searchActivedUserList(UserEntity userEntity) {
+        return userDAO.findByIsActivated("1");
+    }
+
+    @Override
+    public Page<UserEntity> searchActivedUserPager(UserEntity userEntity) {
         Integer pageIndex = userEntity.getPageIndex();
         Integer pageSize = userEntity.getPageSize();
         return userDAO.findByIsActivated("1", PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public Page<UserEntity> searchAllUser(UserEntity userEntity) {
+    public List<UserEntity> searchAllUserList(UserEntity userEntity) {
+        return userDAO.findAll();
+    }
+
+    @Override
+    public Page<UserEntity> searchAllUserPager(UserEntity userEntity) {
         Integer pageIndex = userEntity.getPageIndex();
         Integer pageSize = userEntity.getPageSize();
         return userDAO.findAll(PageRequest.of(pageIndex, pageSize, Sort.by("id")));
