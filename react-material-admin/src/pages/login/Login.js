@@ -10,7 +10,6 @@ import {
   Fade,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
 
 // styles
 import useStyles from "./styles";
@@ -19,7 +18,7 @@ import useStyles from "./styles";
 import logo from "../../images/logo.svg";
 
 // context
-import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
 
 function Login(props) {
   var classes = useStyles();
@@ -31,9 +30,9 @@ function Login(props) {
   var [isLoading, setIsLoading] = useState(false);
   var [error, setError] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
-  var [nameValue, setNameValue] = useState("username");
-  var [loginValue, setLoginValue] = useState("admin@tbox.com");
-  var [passwordValue, setPasswordValue] = useState("password");
+  var [nameValue, setNameValue] = useState("admin");
+  var [emailValue, setEmailValue] = useState("tbox@tbox.com");
+  var [passwordValue, setPasswordValue] = useState("12345678a");
 
   return (
     <Grid container className={classes.container}>
@@ -68,18 +67,18 @@ function Login(props) {
                 </Typography>
               </Fade>
               <TextField
-                id="email"
+                id="name"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
                     input: classes.textField,
                   },
                 }}
-                value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                value={nameValue}
+                onChange={e => setNameValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
-                type="email"
+                placeholder="Username"
+                type="text"
                 fullWidth
               />
               <TextField
@@ -103,12 +102,13 @@ function Login(props) {
                 ) : (
                   <Button
                     disabled={
-                      loginValue.length === 0 || passwordValue.length === 0
+                      nameValue.length === 0 || 
+                      passwordValue.length === 0
                     }
                     onClick={() =>
                       loginUser(
                         userDispatch,
-                        loginValue,
+                        nameValue,
                         passwordValue,
                         props.history,
                         setIsLoading,
@@ -168,8 +168,8 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                value={emailValue}
+                onChange={e => setEmailValue(e.target.value)}
                 margin="normal"
                 placeholder="Email Adress"
                 type="email"
@@ -196,9 +196,10 @@ function Login(props) {
                 ) : (
                   <Button
                     onClick={() =>
-                      loginUser(
+                      registerUser(
                         userDispatch,
-                        loginValue,
+                        nameValue,
+                        emailValue,
                         passwordValue,
                         props.history,
                         setIsLoading,
@@ -206,9 +207,9 @@ function Login(props) {
                       )
                     }
                     disabled={
-                      loginValue.length === 0 ||
-                      passwordValue.length === 0 ||
-                      nameValue.length === 0
+                      nameValue.length === 0 ||
+                      emailValue.length === 0 ||
+                      passwordValue.length === 0                      
                     }
                     size="large"
                     variant="contained"

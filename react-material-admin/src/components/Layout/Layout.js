@@ -31,6 +31,12 @@ import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
+import CarTables from "../../pages/tables/CarTables";
+import CarLogTables from "../../pages/tables/CarLogTables";
+import CarWarningTables from "../../pages/tables/CarWarningTables";
+import CarWarrantyTables from "../../pages/tables/CarWarrantyTables";
+import UserTables from "../../pages/tables/UserTables";
+import RoleTables from "../../pages/tables/RoleTables";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -65,6 +71,22 @@ function Layout(props) {
               <Route path="/app/ui/maps" component={Maps} />
               <Route path="/app/ui/icons" component={Icons} />
               <Route path="/app/ui/charts" component={Charts} />
+              <Route
+                exact
+                path="/app/car"
+                render={() => <Redirect to="/app/car/tables" />}
+              />
+              <Route path="/app/car/tables" component={CarTables} />
+              <Route path="/app/car/logTables" component={CarLogTables} />
+              <Route path="/app/car/warningTables" component={CarWarningTables} />
+              <Route path="/app/car/warrantyTables" component={CarWarrantyTables} />
+              <Route
+                exact
+                path="/app/user"
+                render={() => <Redirect to="/app/user/tables" />}
+              />
+              <Route path="/app/user/tables" component={UserTables} />
+              <Route path="/app/user/roleTables" component={RoleTables} />
             </Switch>
             <Box
               mt={5}

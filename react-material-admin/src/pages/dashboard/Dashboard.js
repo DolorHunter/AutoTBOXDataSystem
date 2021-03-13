@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import {
   Grid,
   LinearProgress,
-  Select,
-  OutlinedInput,
-  MenuItem
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import {
   ResponsiveContainer,
-  ComposedChart,
   AreaChart,
   LineChart,
   Line,

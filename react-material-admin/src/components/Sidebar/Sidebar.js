@@ -5,11 +5,10 @@ import {
   NotificationsNone as NotificationsIcon,
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
-  BorderAll as TableIcon,
-  QuestionAnswer as SupportIcon,
-  LibraryBooks as LibraryIcon,
-  HelpOutline as FAQIcon,
+  InsertChart as TableIcon,
   ArrowBack as ArrowBackIcon,
+  DirectionsCar as CarIcon,
+  SupervisorAccount as UserIcon,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -20,7 +19,6 @@ import useStyles from "./styles";
 
 // components
 import SidebarLink from "./components/SidebarLink/SidebarLink";
-import Dot from "./components/Dot";
 
 // context
 import {
@@ -55,25 +53,27 @@ const structure = [
       { label: "Maps", link: "/app/ui/maps" },
     ],
   },
-  { id: 5, type: "divider" },
-  { id: 6, type: "title", label: "PROJECTS" },
   {
-    id: 7,
-    label: "My recent",
-    link: "",
-    icon: <Dot size="small" color="warning" />,
+    id: 5,
+    label: "车辆",
+    link: "/app/car",
+    icon: <CarIcon />,
+    children: [
+      { label: "车辆列表", link: "/app/car/tables" },
+      { label: "车辆日志列表", link: "/app/car/logTables" },
+      { label: "车辆故障列表", link: "/app/car/warningTables" },
+      { label: "车辆保固列表", link: "/app/car/warrantyTables" },
+    ],
   },
   {
-    id: 8,
-    label: "Starred",
-    link: "",
-    icon: <Dot size="small" color="primary" />,
-  },
-  {
-    id: 9,
-    label: "Background",
-    link: "",
-    icon: <Dot size="small" color="secondary" />,
+    id: 6,
+    label: "用户",
+    link: "/app/user",
+    icon: <UserIcon />,
+    children: [
+      { label: "用户列表", link: "/app/user/tables" },
+      { label: "角色列表", link: "/app/user/roleTables" },
+    ],
   },
 ];
 
