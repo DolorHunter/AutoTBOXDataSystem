@@ -60,11 +60,11 @@ public class CarWarningEntity extends BaseEntity{
     @Column(columnDefinition = "VARCHAR(64) comment '安全气囊故障'")
     private String airbagFault;
     @Column(columnDefinition = "VARCHAR(64) comment '错误内容'")
-    private String error_content;
+    private String errorContent;
     @Column(columnDefinition = "VARCHAR(64) comment '故障类别'")
-    private String fault_category;
+    private String faultCategory;
     @Column(columnDefinition = "VARCHAR(64) comment '错误列表计数'")
-    private String error_list_count;
+    private String errorListCount;
     @Column(columnDefinition = "VARCHAR(64) comment '电子稳定系统指示'")
     private String ElectronicStabilitySysIndication;
     @Column(columnDefinition = "VARCHAR(64) comment '轮胎压力异常'")
@@ -298,28 +298,28 @@ public class CarWarningEntity extends BaseEntity{
         this.airbagFault = airbagFault;
     }
 
-    public String getError_content() {
-        return error_content;
+    public String getErrorContent() {
+        return errorContent;
     }
 
-    public void setError_content(String error_content) {
-        this.error_content = error_content;
+    public void setErrorContent(String errorContent) {
+        this.errorContent = errorContent;
     }
 
-    public String getFault_category() {
-        return fault_category;
+    public String getFaultCategory() {
+        return faultCategory;
     }
 
-    public void setFault_category(String fault_category) {
-        this.fault_category = fault_category;
+    public void setFaultCategory(String faultCategory) {
+        this.faultCategory = faultCategory;
     }
 
-    public String getError_list_count() {
-        return error_list_count;
+    public String getErrorListCount() {
+        return errorListCount;
     }
 
-    public void setError_list_count(String error_list_count) {
-        this.error_list_count = error_list_count;
+    public void setErrorListCount(String errorListCount) {
+        this.errorListCount = errorListCount;
     }
 
     public String getElectronicStabilitySysIndication() {

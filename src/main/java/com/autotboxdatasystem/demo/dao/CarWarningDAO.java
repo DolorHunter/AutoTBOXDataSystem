@@ -17,13 +17,13 @@ public interface CarWarningDAO extends PagingAndSortingRepository<CarWarningEnti
 
     Page<CarWarningEntity> findByVin(String Vin, Pageable pageable);
 
-    List<CarWarningEntity> findByError_content(String error_content);
+    List<CarWarningEntity> findByErrorContent(String error_content);
 
-    Page<CarWarningEntity> findByError_content(String error_content, Pageable pageable);
+    Page<CarWarningEntity> findByErrorContent(String error_content, Pageable pageable);
 
-    List<CarWarningEntity> findByFault_category(String fault_category);
+    List<CarWarningEntity> findByFaultCategory(String fault_category);
 
-    Page<CarWarningEntity> findByFault_category(String fault_category, Pageable pageable);
+    Page<CarWarningEntity> findByFaultCategory(String fault_category, Pageable pageable);
 
     List<CarWarningEntity> findAll();
 

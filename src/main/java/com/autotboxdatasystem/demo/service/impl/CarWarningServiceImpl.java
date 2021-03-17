@@ -94,30 +94,30 @@ public class CarWarningServiceImpl implements CarWarningService {
 
     @Override
     public List<CarWarningEntity> searchCarWarningByErrorContentList(CarWarningEntity carWarningEntity) {
-        String carName = carWarningEntity.getError_content();
-        return carWarningDAO.findByError_content(carName);
+        String carName = carWarningEntity.getErrorContent();
+        return carWarningDAO.findByErrorContent(carName);
     }
 
     @Override
     public Page<CarWarningEntity> searchCarWarningByErrorContentPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
-        String errorContent = carWarningEntity.getError_content();
-        return carWarningDAO.findByError_content(errorContent, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+        String errorContent = carWarningEntity.getErrorContent();
+        return carWarningDAO.findByErrorContent(errorContent, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
     public List<CarWarningEntity> searchCarWarningByFaultCategoryList(CarWarningEntity carWarningEntity) {
-        String warUnit = carWarningEntity.getFault_category();
-        return carWarningDAO.findByFault_category(warUnit);
+        String warUnit = carWarningEntity.getFaultCategory();
+        return carWarningDAO.findByFaultCategory(warUnit);
     }
 
     @Override
     public Page<CarWarningEntity> searchCarWarningByFaultCategoryPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
-        String faultCategory = carWarningEntity.getFault_category();
-        return carWarningDAO.findByFault_category(faultCategory, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+        String faultCategory = carWarningEntity.getFaultCategory();
+        return carWarningDAO.findByFaultCategory(faultCategory, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
