@@ -11,19 +11,19 @@ import java.util.List;
 @Repository
 public interface CarWarningDAO extends PagingAndSortingRepository<CarWarningEntity, Integer> {
 
-    void deleteAllByVIN(String VIN);
+    void deleteAllByVin(String Vin);
 
-    List<CarWarningEntity> findByVIN(String VIN);
+    List<CarWarningEntity> findByVin(String Vin);
 
-    Page<CarWarningEntity> findByVIN(String VIN, Pageable pageable);
+    Page<CarWarningEntity> findByVin(String Vin, Pageable pageable);
 
-    List<CarWarningEntity> findByCarName(String carName);
+    List<CarWarningEntity> findByError_content(String error_content);
 
-    Page<CarWarningEntity> findByCarName(String carName, Pageable pageable);
+    Page<CarWarningEntity> findByError_content(String error_content, Pageable pageable);
 
-    List<CarWarningEntity> findByWarUnit(String warUnit);
+    List<CarWarningEntity> findByFault_category(String fault_category);
 
-    Page<CarWarningEntity> findByWarUnit(String warUnit, Pageable pageable);
+    Page<CarWarningEntity> findByFault_category(String fault_category, Pageable pageable);
 
     List<CarWarningEntity> findAll();
 

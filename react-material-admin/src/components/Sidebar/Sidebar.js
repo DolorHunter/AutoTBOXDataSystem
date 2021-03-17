@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   Home as HomeIcon,
+  ViewQuilt as GeneralIcon,
   NotificationsNone as NotificationsIcon,
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
@@ -29,18 +30,13 @@ import {
 
 const structure = [
   { id: 0, label: "数据面板", link: "/app/dashboard", icon: <HomeIcon /> },
-  { id: 1, label: "车辆故障信息表", link: "/app/tables", icon: <TableIcon /> },
+  { id: 1, label: "概览", link: "/app/general", icon: <GeneralIcon /> },
+  { id: 2, label: "车辆故障信息表", link: "/app/tables", icon: <TableIcon /> },
   {
-    id: 2,
+    id: 3,
     label: "Typography",
     link: "/app/typography",
     icon: <TypographyIcon />,
-  },
-  {
-    id: 3,
-    label: "Notifications",
-    link: "/app/notifications",
-    icon: <NotificationsIcon />,
   },
   {
     id: 4,

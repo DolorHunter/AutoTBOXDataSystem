@@ -68,6 +68,11 @@ public class UserCarServiceImpl implements UserCarService {
     }
 
     @Override
+    public void deleteUserCarByVin(UserCarEntity userCarEntity){
+        userCarDAO.deleteByVin(userCarEntity.getVin());
+    }
+
+    @Override
     public boolean updateStatusById(UserCarEntity userCarEntity) {
         UserCarEntity userCar = userCarDAO.findById(userCarEntity.getId()).get();
         String status = userCarEntity.getStatus();
@@ -98,6 +103,11 @@ public class UserCarServiceImpl implements UserCarService {
     @Override
     public UserCarEntity searchUserCarById(UserCarEntity userCarEntity) {
         return userCarDAO.findById(userCarEntity.getId()).get();
+    }
+
+    @Override
+    public UserCarEntity searchUserCarByVin(UserCarEntity userCarEntity) {
+        return userCarDAO.findByVin(userCarEntity.getVin());
     }
 
     @Override

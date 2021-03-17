@@ -14,7 +14,13 @@ public class UserCarEntity extends BaseEntity{
     @Column(nullable = false, columnDefinition = "VARCHAR(255) comment '车辆名'")
     private String carName;
     @Column(nullable = false, columnDefinition = "varchar(64) comment '车辆识别号码'")
-    private String VIN;
+    private String vin;
+    @Column(nullable = false, columnDefinition = "varchar(255) comment '4S店名'")
+    private String _4SShop;
+    @Column(nullable = false, columnDefinition = "varchar(64) comment '销售位置'")
+    private String saleLoc;
+    @Column(nullable = false, columnDefinition = "varchar(64) comment '销售时间'")
+    private String saleTime;
 
     public Integer getUserId() {
         return userId;
@@ -48,11 +54,35 @@ public class UserCarEntity extends BaseEntity{
         this.carName = carName;
     }
 
-    public String getVIN() {
-        return VIN;
+    public String getVin() {
+        return vin;
     }
 
-    public void setVIN(String VIN) {
-        this.VIN = VIN;
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
+    public String get_4SShop() {
+        return _4SShop;
+    }
+
+    public void set_4SShop(String _4SShop) {
+        this._4SShop = _4SShop;
+    }
+
+    public String getSaleLoc() {
+        return saleLoc;
+    }
+
+    public void setSaleLoc(String saleLoc) {
+        this.saleLoc = saleLoc;
+    }
+
+    public String getSaleTime() {
+        return saleTime;
+    }
+
+    public void setSaleTime(String saleTime) {
+        this.saleTime = saleTime;
     }
 }

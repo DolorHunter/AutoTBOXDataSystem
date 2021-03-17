@@ -41,8 +41,8 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public void deleteCarWarningByVIN(CarWarningEntity carWarningEntity) {
-        carWarningDAO.deleteAllByVIN(carWarningEntity.getVIN());
+    public void deleteCarWarningByVin(CarWarningEntity carWarningEntity) {
+        carWarningDAO.deleteAllByVin(carWarningEntity.getVin());
     }
 
     @Override
@@ -79,45 +79,45 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public List<CarWarningEntity> searchCarWarningByVINList(CarWarningEntity carWarningEntity) {
-        String VIN = carWarningEntity.getVIN();
-        return carWarningDAO.findByVIN(VIN);
+    public List<CarWarningEntity> searchCarWarningByVinList(CarWarningEntity carWarningEntity) {
+        String vin = carWarningEntity.getVin();
+        return carWarningDAO.findByVin(vin);
     }
 
     @Override
-    public Page<CarWarningEntity> searchCarWarningByVINPager(CarWarningEntity carWarningEntity) {
+    public Page<CarWarningEntity> searchCarWarningByVinPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
-        String VIN = carWarningEntity.getVIN();
-        return carWarningDAO.findByVIN(VIN, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+        String vin = carWarningEntity.getVin();
+        return carWarningDAO.findByVin(vin, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<CarWarningEntity> searchCarWarningByCarNameList(CarWarningEntity carWarningEntity) {
-        String carName = carWarningEntity.getCarName();
-        return carWarningDAO.findByCarName(carName);
+    public List<CarWarningEntity> searchCarWarningByErrorContentList(CarWarningEntity carWarningEntity) {
+        String carName = carWarningEntity.getError_content();
+        return carWarningDAO.findByError_content(carName);
     }
 
     @Override
-    public Page<CarWarningEntity> searchCarWarningByCarNamePager(CarWarningEntity carWarningEntity) {
+    public Page<CarWarningEntity> searchCarWarningByErrorContentPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
-        String carName = carWarningEntity.getCarName();
-        return carWarningDAO.findByCarName(carName, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+        String errorContent = carWarningEntity.getError_content();
+        return carWarningDAO.findByError_content(errorContent, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override
-    public List<CarWarningEntity> searchCarWarningByUnitList(CarWarningEntity carWarningEntity) {
-        String warUnit = carWarningEntity.getWarUnit();
-        return carWarningDAO.findByWarUnit(warUnit);
+    public List<CarWarningEntity> searchCarWarningByFaultCategoryList(CarWarningEntity carWarningEntity) {
+        String warUnit = carWarningEntity.getFault_category();
+        return carWarningDAO.findByFault_category(warUnit);
     }
 
     @Override
-    public Page<CarWarningEntity> searchCarWarningByUnitPager(CarWarningEntity carWarningEntity) {
+    public Page<CarWarningEntity> searchCarWarningByFaultCategoryPager(CarWarningEntity carWarningEntity) {
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
-        String warUnit = carWarningEntity.getWarUnit();
-        return carWarningDAO.findByWarUnit(warUnit, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+        String faultCategory = carWarningEntity.getFault_category();
+        return carWarningDAO.findByFault_category(faultCategory, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override

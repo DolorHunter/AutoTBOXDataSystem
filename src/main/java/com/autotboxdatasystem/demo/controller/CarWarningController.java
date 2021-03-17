@@ -39,11 +39,11 @@ public class CarWarningController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 车辆VIN硬删除故障
-    @PostMapping(path = "/deleteCarWarningByVIN")
+    // 车辆Vin硬删除故障
+    @PostMapping(path = "/deleteCarWarningByVin")
     public @ResponseBody
-    ResponseEntity<String> deleteCarWarningByVIN(@RequestBody CarWarningEntity userCarWarningEntity) {
-        userCarWarningService.deleteCarWarningByVIN(userCarWarningEntity);
+    ResponseEntity<String> deleteCarWarningByVin(@RequestBody CarWarningEntity userCarWarningEntity) {
+        userCarWarningService.deleteCarWarningByVin(userCarWarningEntity);
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
@@ -72,50 +72,50 @@ public class CarWarningController {
     }
 
     // 车辆ID查找故障
-    @PostMapping(path = "/searchCarWarningByVINList")
+    @PostMapping(path = "/searchCarWarningByVinList")
     public @ResponseBody
-    List<CarWarningEntity> searchCarWarningByVINList(@RequestBody CarWarningEntity userCarWarningEntity) {
-        return userCarWarningService.searchCarWarningByVINList(userCarWarningEntity);
+    List<CarWarningEntity> searchCarWarningByVinList(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByVinList(userCarWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 车辆ID查找故障
-    @PostMapping(path = "/searchCarWarningByVINPager")
+    @PostMapping(path = "/searchCarWarningByVinPager")
     public @ResponseBody
-    Page<CarWarningEntity> searchCarWarningByVINPager(@RequestBody CarWarningEntity userCarWarningEntity) {
-        return userCarWarningService.searchCarWarningByVINPager(userCarWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByVinPager(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByVinPager(userCarWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 车辆名查找故障
-    @PostMapping(path = "/searchCarWarningByCarNameList")
+    // 错误内容查找故障
+    @PostMapping(path = "/searchCarWarningByErrorContentList")
     public @ResponseBody
-    List<CarWarningEntity> searchCarWarningByCarNameList(@RequestBody CarWarningEntity userCarWarningEntity) {
-        return userCarWarningService.searchCarWarningByCarNameList(userCarWarningEntity);
+    List<CarWarningEntity> searchCarWarningByErrorContentList(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByErrorContentList(userCarWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 车辆名查找故障
-    @PostMapping(path = "/searchCarWarningByCarNamePager")
+    // 错误内容查找故障
+    @PostMapping(path = "/searchCarWarningByErrorContentPager")
     public @ResponseBody
-    Page<CarWarningEntity> searchCarWarningByCarNamePager(@RequestBody CarWarningEntity userCarWarningEntity) {
-        return userCarWarningService.searchCarWarningByCarNamePager(userCarWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByErrorContentPager(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByErrorContentPager(userCarWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 单元名查找故障
-    @PostMapping(path = "/searchCarWarningByUnitList")
+    // 错误单元查找故障
+    @PostMapping(path = "/searchCarWarningByFaultCategoryList")
     public @ResponseBody
-    List<CarWarningEntity> searchCarWarningByUnitList(@RequestBody CarWarningEntity userCarWarningEntity) {
-        return userCarWarningService.searchCarWarningByUnitList(userCarWarningEntity);
+    List<CarWarningEntity> searchCarWarningByFaultCategoryList(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByFaultCategoryList(userCarWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
-    // 单元名查找故障
-    @PostMapping(path = "/searchCarWarningByUnitPager")
+    // 错误单元查找故障
+    @PostMapping(path = "/searchCarWarningByFaultCategoryPager")
     public @ResponseBody
-    Page<CarWarningEntity> searchCarWarningByUnitPager(@RequestBody CarWarningEntity userCarWarningEntity) {
-        return userCarWarningService.searchCarWarningByUnitPager(userCarWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByFaultCategoryPager(@RequestBody CarWarningEntity userCarWarningEntity) {
+        return userCarWarningService.searchCarWarningByFaultCategoryPager(userCarWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 

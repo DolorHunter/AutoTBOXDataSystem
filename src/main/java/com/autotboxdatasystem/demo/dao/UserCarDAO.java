@@ -19,6 +19,8 @@ public interface UserCarDAO extends PagingAndSortingRepository<UserCarEntity, In
 
     void deleteAllByCarName(String carName);
 
+    void deleteByVin(String vin);
+
     List<UserCarEntity> findByUserId(Integer userId);
 
     Page<UserCarEntity> findByUserId(Integer userId, Pageable pageable);
@@ -38,6 +40,8 @@ public interface UserCarDAO extends PagingAndSortingRepository<UserCarEntity, In
     UserCarEntity findByUserIdAndCarId(Integer userId, Integer carId);
 
     UserCarEntity findByUsernameAndCarName(String username, String carName);
+
+    UserCarEntity findByVin(String vin);
 
     List<UserCarEntity> findByIsActivated(String active);
 

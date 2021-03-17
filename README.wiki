@@ -194,7 +194,10 @@
   <tr><td>String</td><td>varchar(20)</td><td>username</td><td>用户名</td></tr>
   <tr><td>Integer</td><td>int</td><td>carId</td><td>车辆ID</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
-  <tr><td>String</td><td>varchar(64)</td><td>VIN</td><td>车辆识别号码</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>vin</td><td>车辆识别号码</td></tr>
+  <tr><td>String</td><td>varchar(255)</td><td>_4SShop</td><td>4S店名</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>saleLoc</td><td>销售位置</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>saleTime</td><td>销售时间</td></tr>
 </table>
 
 === 1.1.9 CarLogEntity ===
@@ -228,7 +231,7 @@
 <table>
   <tr><th colspan="4" align="center">CarWarningEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
-  <tr><td>String</td><td>varchar(64)</td><td>VIN</td><td>车辆识别号码</td></tr>
+  <tr><td>String</td><td>varchar(64)</td><td>vin</td><td>车辆识别号码</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>warCode</td><td>故障代号</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>warTags</td><td>故障标签</td></tr>
@@ -451,9 +454,11 @@
   <tr><td>deleteUserCarByUsername</td><td>/UserCar/deleteUserCarByUsername</td><td>userCarEntity</td><td>x</td><td>用户名硬删除用户车辆</td></tr>
   <tr><td>deleteUserCarByCarId</td><td>/UserCar/deleteUserCarByCarId</td><td>userCarEntity</td><td>x</td><td>车辆ID硬删除用户车辆</td></tr>
   <tr><td>deleteUserCarByCarName</td><td>/UserCar/deleteUserCarByCarName</td><td>userCarEntity</td><td>x</td><td>车辆名硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByVin</td><td>/UserCar/deleteUserCarByVin</td><td>userCarEntity</td><td>x</td><td>Vin硬删除用户车辆</td></tr>
   <tr><td>updateStatusById</td><td>/UserCar/updateStatusById</td><td>userCarEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/UserCar/updateRemarkById</td><td>userCarEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchUserCarById</td><td>/UserCar/searchUserCarById</td><td>userCarEntity</td><td>x</td><td>ID查找用户车辆</td></tr>
+  <tr><td>searchUserCarByVin</td><td>/UserCar/searchUserCarByVin</td><td>userCarEntity</td><td>x</td><td>Vin查找用户车辆</td></tr>
   <tr><td>searchUserCarByUserIdList</td><td>/UserCar/searchUserCarByUserIdList</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆List</td></tr>
   <tr><td>searchUserCarByUserIdPager</td><td>/UserCar/searchUserCarByUserIdPager</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆Pager</td></tr>
   <tr><td>searchUserCarByUsernameList</td><td>/UserCar/searchUserCarByUsernameList</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆List</td></tr>
@@ -494,16 +499,16 @@
   <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
   <tr><td>addCarWarning</td><td>/CarWarning/addCarWarning</td><td>carWarningEntity</td><td>x</td><td>添加车辆故障</td></tr>
   <tr><td>deleteCarWarningById</td><td>/CarWarning/deleteCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID硬删除故障</td></tr>
-  <tr><td>deleteCarWarningByVIN</td><td>/CarWarning/deleteCarWarningByVIN</td><td>carWarningEntity</td><td>x</td><td>车辆VIN硬删除故障</td></tr>
+  <tr><td>deleteCarWarningByVin</td><td>/CarWarning/deleteCarWarningByVin</td><td>carWarningEntity</td><td>x</td><td>车辆Vin硬删除故障</td></tr>
   <tr><td>updateStatusById</td><td>/CarWarning/updateStatusById</td><td>carWarningEntity</td><td>x</td><td>更新状态</td></tr>
   <tr><td>updateRemarkById</td><td>/CarWarning/updateRemarkById</td><td>carWarningEntity</td><td>x</td><td>更新备注</td></tr>
   <tr><td>searchCarWarningById</td><td>/CarWarning/searchCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID查找</td></tr>
-  <tr><td>searchCarWarningByVINList</td><td>/CarWarning/searchCarWarningByVINList</td><td>carWarningEntity</td><td>x</td><td>车辆VIN查找故障List</td></tr>
-  <tr><td>searchCarWarningByVINPager</td><td>/CarWarning/searchCarWarningByVINPager</td><td>carWarningEntity</td><td>x</td><td>车辆VIN查找故障Pager</td></tr>
-  <tr><td>searchCarWarningByCarNameList</td><td>/CarWarning/searchCarWarningByCarNameList</td><td>carWarningEntity</td><td>x</td><td>车辆名查找故障List</td></tr>
-  <tr><td>searchCarWarningByCarNamePager</td><td>/CarWarning/searchCarWarningByCarNamePager</td><td>carWarningEntity</td><td>x</td><td>车辆名查找故障Pager</td></tr>
-  <tr><td>searchCarWarningByUnitNameList</td><td>/CarWarning/searchCarWarningByUnitNameList</td><td>carWarningEntity</td><td>x</td><td>单元名查找故障List</td></tr>
-  <tr><td>searchCarWarningByUnitNamePager</td><td>/CarWarning/searchCarWarningByUnitNamePager</td><td>carWarningEntity</td><td>x</td><td>单元名查找故障Pager</td></tr>
+  <tr><td>searchCarWarningByVinList</td><td>/CarWarning/searchCarWarningByVinList</td><td>carWarningEntity</td><td>x</td><td>车辆Vin查找故障List</td></tr>
+  <tr><td>searchCarWarningByVinPager</td><td>/CarWarning/searchCarWarningByVinPager</td><td>carWarningEntity</td><td>x</td><td>车辆Vin查找故障Pager</td></tr>
+  <tr><td>searchCarWarningByErrorContentList</td><td>/CarWarning/searchCarWarningByErrorContentList</td><td>carWarningEntity</td><td>x</td><td>错误内容查找故障List</td></tr>
+  <tr><td>searchCarWarningByErrorContentPager</td><td>/CarWarning/searchCarWarningByErrorContentPager</td><td>carWarningEntity</td><td>x</td><td>错误内容查找故障Pager</td></tr>
+  <tr><td>searchCarWarningByFaultCategoryList</td><td>/CarWarning/searchCarWarningByFaultCategoryList</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障List</td></tr>
+  <tr><td>searchCarWarningByFaultCategoryPager</td><td>/CarWarning/searchCarWarningByFaultCategoryPager</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障Pager</td></tr>
   <tr><td>searchAllCarWarningList</td><td>/CarWarning/searchAllCarWarningList</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障List</td></tr>
   <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障Pager</td></tr>
 </table>
@@ -627,6 +632,11 @@ root登录
 * (视频)CodeEngine-React & Spring应用2 [https://www.youtube.com/watch?v=jCalDxGthoc CodeEngine-React & Spring Boot Expense Tracker Application (Part 2)]
 * AJAX 和 APIs [https://zh-hant.reactjs.org/docs/faq-ajax.html AJAX和APIs]
 * Axios React请求交互(类ajax) [https://github.com/axios/axios GitHub axios/axios]
+* nivo图表 [https://nivo.rocks/components nivo Components]
+* react-vis图表 [https://uber.github.io/react-vis/examples/showcases/plots react-vis]
+* APEXCharts图表 [https://apexcharts.com/docs/chart-types/line-chart/ APEXCharts]
+* Bootstrap Grids网格 [https://www.w3schools.com/bootstrap/bootstrap_grid_system.asp Bootstrap Grids]
+* react-grid-layout网格布局调整 [https://github.com/react-grid-layout/react-grid-layout react-grid-layout]
 
 == 3.8 JavaScript ==
 

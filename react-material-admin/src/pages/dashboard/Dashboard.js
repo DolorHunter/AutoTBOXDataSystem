@@ -164,9 +164,6 @@ export default function Dashboard(props) {
   var classes = useStyles();
   var theme = useTheme();
 
-  // local
-  var [mainChartState, setMainChartState] = useState("monthly");
-
   return (
     <>
       <Grid container spacing={4}>
@@ -418,7 +415,7 @@ export default function Dashboard(props) {
             </Grid>
           </Widget>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item lg={12} md={16} sm={24} xs={48}>
           <Widget title="Simple Line Chart" noBodyPadding upperTitle>
             <ResponsiveContainer width="99%" height={350}>
               <LineChart

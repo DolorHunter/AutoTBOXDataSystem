@@ -10,7 +10,7 @@ public interface CarWarningService {
 
     void deleteCarWarningById(CarWarningEntity carWarningEntity);
 
-    void deleteCarWarningByVIN(CarWarningEntity carWarningEntity);
+    void deleteCarWarningByVin(CarWarningEntity carWarningEntity);
 
     boolean updateStatusById(CarWarningEntity carWarningEntity);
 
@@ -18,17 +18,17 @@ public interface CarWarningService {
 
     CarWarningEntity searchCarWarningById(CarWarningEntity carWarningEntity);
 
-    List<CarWarningEntity> searchCarWarningByVINList(CarWarningEntity carWarningEntity);
+    List<CarWarningEntity> searchCarWarningByVinList(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchCarWarningByVINPager(CarWarningEntity carWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByVinPager(CarWarningEntity carWarningEntity);
 
-    List<CarWarningEntity> searchCarWarningByCarNameList(CarWarningEntity carWarningEntity);
+    List<CarWarningEntity> searchCarWarningByErrorContentList(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchCarWarningByCarNamePager(CarWarningEntity carWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByErrorContentPager(CarWarningEntity carWarningEntity);
 
-    List<CarWarningEntity> searchCarWarningByUnitList(CarWarningEntity carWarningEntity);
+    List<CarWarningEntity> searchCarWarningByFaultCategoryList(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchCarWarningByUnitPager(CarWarningEntity carWarningEntity);
+    Page<CarWarningEntity> searchCarWarningByFaultCategoryPager(CarWarningEntity carWarningEntity);
 
     List<CarWarningEntity> searchAllCarWarningList(CarWarningEntity carWarningEntity);
 

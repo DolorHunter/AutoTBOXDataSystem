@@ -71,6 +71,14 @@ public class UserCarController {
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // Vin硬删除用户车辆
+    @PostMapping(path = "/deleteUserCarByVin")
+    public @ResponseBody
+    ResponseEntity<String> deleteUserCarByVin(@RequestBody UserCarEntity userCarEntity) {
+        userCarService.deleteUserCarByVin(userCarEntity);
+        return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
     // 更新状态
     @PostMapping(path = "/updateStatusById")
     public @ResponseBody
@@ -92,6 +100,14 @@ public class UserCarController {
     public @ResponseBody
     UserCarEntity searchUserCarById(@RequestBody UserCarEntity userCarEntity) {
         return userCarService.searchUserCarById(userCarEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
+    // Vin查找角用户车辆
+    @PostMapping(path = "/searchUserCarByVin")
+    public @ResponseBody
+    UserCarEntity searchUserCarByVin(@RequestBody UserCarEntity userCarEntity) {
+        return userCarService.searchUserCarByVin(userCarEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
