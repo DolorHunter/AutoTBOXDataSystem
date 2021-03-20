@@ -40,23 +40,7 @@ axios.post('/CarLog/searchAllCarLogPager', page)
     let data = eval('(' + res.request.response + ')');
     let content = data.content;
     for (var i=0;i<content.length;i++) { 
-      let id = content[i].id;
-      let vin = content[i].vin;
-      let bootTime = content[i].bootTime;
-      let runTime = content[i].runTime;
-      let gear = content[i].gear;
-      let odometer = content[i].odometer;
-      let odometerRem = content[i].odometerRem;
-      let odometerAcc = content[i].odometerAcc;
-      let fuelRem = content[i].fuelRem;
-      let electroFuelRem = content[i].electroFuelRem;
-      let speed = content[i].speed;
-      let location = content[i].location;
-      let heading = content[i].heading;
-      let altitude = content[i].altitude;
-      let info = {id, vin, bootTime, runTime, gear, odometer, odometerRem, odometerAcc, 
-        fuelRem, electroFuelRem, speed, location, heading, altitude};
-      datatableData.push(info);
+      datatableData.push(content[i]);
     }
   }
 })

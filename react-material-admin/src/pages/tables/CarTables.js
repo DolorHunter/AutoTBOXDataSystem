@@ -36,19 +36,7 @@ axios.post('/Car/searchAllCarPager', page)
     let data = eval('(' + res.request.response + ')');
     let content = data.content;
     for (var i=0;i<content.length;i++) {
-      let id = content[i].id;
-      let carName = content[i].carName;
-      let price = content[i].price;
-      let periodicalTechnicalInspection = content[i].periodicalTechnicalInspection;
-      let roadTax3Months = content[i].roadTax3Months;
-      let carBody = content[i].carBody;
-      let transmission = content[i].transmission;
-      let seatsNumber = content[i].seatsNumber;
-      let firstYearOfProduction = content[i].firstYearOfProduction;
-      let lastYearOfProduction = content[i].lastYearOfProduction;
-      let info = {id, carName, price, periodicalTechnicalInspection, roadTax3Months, 
-        carBody, transmission, seatsNumber, firstYearOfProduction, lastYearOfProduction};
-      datatableData.push(info);
+      datatableData.push(content[i]);
     }
   }
 })

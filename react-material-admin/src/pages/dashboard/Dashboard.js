@@ -4,6 +4,13 @@ import {
   LinearProgress,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import {
   ResponsiveContainer,
   AreaChart,
@@ -29,27 +36,59 @@ import { Typography } from "../../components/Wrappers";
 import Dot from "../../components/Sidebar/components/Dot";
 import BigStat from "./components/BigStat/BigStat";
 
-const visitsToday = "7,777"
-const registrations = "88"
-const signOut = "99"
+import axios from 'axios';
 
-const IntegrationData = "66"
-const SDKData = "88"
-
-const serverData1 = "60%/37°С/3.3 Ghz"
-const serverData2 = "54%/31°С/3.3 Ghz"
-const serverData3 = "57%/21°С/3.3 Ghz"
-const serverData = [
-  { value: 5 }, { value: 4 }, { value: 6 }, { value: 2 }, { value: 10 }, 
-  { value: 9 }, { value: 9 }, { value: 9 }, { value: 3 }, { value: 1 }
-]
-
-const PieChartData = [
+var errorCounter = ""
+var errorCarCounter = ""
+var errorCategoryCounter = ""
+var errorYesterday = ""
+var errorAvgWeekly = ""
+const errorData = []
+const errorCarData = []
+const errorCategoryData = []
+const errorCategoryPie = [
   { name: "Group A", value: 400, color: "primary" },
   { name: "Group B", value: 300, color: "secondary" },
   { name: "Group C", value: 300, color: "warning" },
   { name: "Group D", value: 200, color: "success" },
 ];
+
+
+function appendZero(obj){
+  if(obj<10) return "0" +""+ obj;
+  else return obj;
+}
+var date = new Date();
+
+var year = date.getFullYear();
+var month = appendZero(date.getMonth() + 1);
+var day = appendZero(date.getDate());
+var hour = appendZero(date.getHours());
+var chartTimestramp = ""+year+month+day+hour;
+
+function addErrorToday(content){
+  errorCounter = content.errorCounter;
+  errorCarCounter = content.errorCarCounter;
+  errorCategoryCounter = content.errorCategoryCounter;
+  errorYesterday = content.errorYesterday;
+  errorAvgWeekly = content.errorAvgWeekly;
+  errorData.push(content.errorData);
+  errorCarData.push(content.errorCarData);
+  errorCategoryData.push(content.errorCategoryData);
+  errorCategoryPie.push(content.errorCategoryPie);
+}
+
+axios.post('/VisualChart/searchVisualChartByChartName', 
+            {"chartName":"dashboard-errorToday-"+chartTimestramp})
+.then(res => {
+  if (res.status === 200){
+    let data = eval('(' + res.request.response + ')');
+    let content = data.chartData.replace(/'/g,"\"");
+    content = JSON.parse(content);
+    addErrorToday(content);
+  }
+})
+
 
 const lineChartData = [
   {
@@ -94,6 +133,16 @@ const lineChartData = [
     pv: 4300,
     amt: 2100,
   },
+];
+
+const rows = [
+  {id: 1, sendingTime: 159, vin:"LX", errorContent: 6, faultCategory: 24},
+  {id: 2, sendingTime: 237, vin:"LX", errorContent: 9, faultCategory: 37},
+  {id: 3, sendingTime: 262, vin:"LX", errorContent: 16, faultCategory: 24},
+  {id: 4, sendingTime: 305, vin:"LX", errorContent: 3, faultCategory: 67},
+  {id: 5, sendingTime: 356, vin:"LX", errorContent: 16, faultCategory: 3},
+  {id: 6, sendingTime: 356, vin:"LX", errorContent: 16, faultCategory: 3},
+  {id: 7, sendingTime: 356, vin:"LX", errorContent: 16, faultCategory: 3},
 ];
 
 const bigStatData = [
@@ -159,8 +208,7 @@ const bigStatData = [
   }
 ];
 
-
-export default function Dashboard(props) {
+export default function Dashboard(props){
   var classes = useStyles();
   var theme = useTheme();
 
@@ -169,7 +217,7 @@ export default function Dashboard(props) {
       <Grid container spacing={4}>
         <Grid item lg={3} md={4} sm={6} xs={12}>
           <Widget
-            title="Visits Today"
+            title="过去24小时故障"
             upperTitle
             bodyClass={classes.fullHeightBody}
             className={classes.card}
@@ -178,20 +226,14 @@ export default function Dashboard(props) {
               <Grid container item alignItems={"center"}>
                 <Grid item xs={6}>
               <Typography size="xl" weight="medium" noWrap>
-                {visitsToday}
+                {errorCounter}
               </Typography>
                 </Grid>
                 <Grid item xs={6}>
               <LineChart
                 width={100}
                 height={30}
-                data={[
-                  { value: 10 },
-                  { value: 15 },
-                  { value: 10 },
-                  { value: 17 },
-                  { value: 18 },
-                ]}
+                data={errorData}
               >
                 <Line
                   type="natural"
@@ -212,28 +254,28 @@ export default function Dashboard(props) {
             >
               <Grid item xs={4}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
-                  Registrations
+                  故障车辆
                 </Typography>
-                <Typography size="md">{registrations}</Typography>
+                <Typography size="md">{errorCarCounter}</Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
-                  Sign Out
+                  故障单元
                 </Typography>
-                <Typography size="md">{signOut}</Typography>
+                <Typography size="md">{errorCategoryCounter}</Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
-                  Rate
+                  车辆平均故障
                 </Typography>
-                <Typography size="md">{(registrations/signOut).toFixed(2)}%</Typography>
+                <Typography size="md">{(errorCategoryCounter/errorCarCounter).toFixed(2)}</Typography>
               </Grid>
             </Grid>
           </Widget>
         </Grid>
         <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="App Performance"
+            title="平均故障"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
@@ -246,7 +288,7 @@ export default function Dashboard(props) {
                   colorBrightness="secondary"
                   className={classes.legendElementText}
                 >
-                  Integration
+                  过去24小时故障
                 </Typography>
               </div>
               <div className={classes.legendElement}>
@@ -256,7 +298,7 @@ export default function Dashboard(props) {
                   colorBrightness="secondary"
                   className={classes.legendElementText}
                 >
-                  SDK
+                  本周平均故障
                 </Typography>
               </div>
             </div>
@@ -267,12 +309,12 @@ export default function Dashboard(props) {
                 colorBrightness="secondary"
                 className={classes.progressSectionTitle}
               >
-                Integration
+                过去24小时故障
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={IntegrationData}
-                classes={{ barColorPrimary: classes.progressBarPrimary }}
+                value={errorYesterday}
+                classes={{ barColorPrimary: classes.progressBarWarning }}
                 className={classes.progress}
               />
             </div>
@@ -283,12 +325,12 @@ export default function Dashboard(props) {
                 colorBrightness="secondary"
                 className={classes.progressSectionTitle}
               >
-                SDK
+                本周平均故障
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={SDKData}
-                classes={{ barColorPrimary: classes.progressBarWarning }}
+                value={errorAvgWeekly}
+                classes={{ barColorPrimary: classes.progressBarPrimary }}
                 className={classes.progress}
               />
             </div>
@@ -296,7 +338,7 @@ export default function Dashboard(props) {
         </Grid>
         <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="Server Overview"
+            title="过去24小时故障概览"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
@@ -308,11 +350,11 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                {serverData1}
+              故障
               </Typography> 
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
-                  <AreaChart data={serverData}>
+                  <AreaChart data={errorData}>
                     <Area
                       type="natural"
                       dataKey="value"
@@ -332,11 +374,11 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                {serverData2}
+              故障车辆
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
-                  <AreaChart data={serverData}>
+                  <AreaChart data={errorCarData}>
                     <Area
                       type="natural"
                       dataKey="value"
@@ -356,11 +398,11 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                {serverData3}
+              故障单元
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
-                  <AreaChart data={serverData}>
+                  <AreaChart data={errorCategoryData}>
                     <Area
                       type="natural"
                       dataKey="value"
@@ -376,18 +418,18 @@ export default function Dashboard(props) {
           </Widget>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Widget title="Revenue Breakdown" upperTitle className={classes.card}>
+          <Widget title="过去24小时故障单元" upperTitle className={classes.card}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <ResponsiveContainer width="100%" height={144}>
                   <PieChart>
                     <Pie
-                      data={PieChartData}
+                      data={errorCategoryPie}
                       innerRadius={30}
                       outerRadius={40}
                       dataKey="value"
                     >
-                      {PieChartData.map((entry, index) => (
+                      {errorCategoryPie.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}
                           fill={theme.palette[entry.color].main}
@@ -399,7 +441,7 @@ export default function Dashboard(props) {
               </Grid>
               <Grid item xs={6}>
                 <div className={classes.pieChartLegendWrapper}>
-                  {PieChartData.map(({ name, value, color }, index) => (
+                  {errorCategoryPie.map(({ name, value, color }, index) => (
                     <div key={color} className={classes.legendItemContainer}>
                       <Dot color={color} />
                       <Typography style={{ whiteSpace: "nowrap", fontSize: 12 }} >
@@ -415,12 +457,12 @@ export default function Dashboard(props) {
             </Grid>
           </Widget>
         </Grid>
-        <Grid item lg={12} md={16} sm={24} xs={48}>
-          <Widget title="Simple Line Chart" noBodyPadding upperTitle>
-            <ResponsiveContainer width="99%" height={350}>
+        <Grid item lg={9} md={24} sm={18} xs={36}>
+          <Widget title="过去一周故障情况" noBodyPadding upperTitle>
+            <ResponsiveContainer width="99%" height={400}>
               <LineChart
                 width={500}
-                height={300}
+                height={400}
                 data={lineChartData}
                 margin={{
                   top: 5,
@@ -459,6 +501,32 @@ export default function Dashboard(props) {
               </LineChart>
             </ResponsiveContainer>
           </Widget>
+        </Grid>
+        <Grid item lg={3} md={8} sm={6} xs={12}>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="实时故障信息">
+              <TableHead>
+                <TableRow>
+                  <TableCell>时间</TableCell>
+                  <TableCell align="right">VIN</TableCell>
+                  <TableCell align="right">错误内容</TableCell>
+                  <TableCell align="right">故障类别</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell component="th" scope="row">
+                      {row.sendingTime}
+                    </TableCell>
+                    <TableCell align="right">{row.vin}</TableCell>
+                    <TableCell align="right">{row.errorContent}</TableCell>
+                    <TableCell align="right">{row.faultCategory}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Grid>
         {bigStatData.map(stat => (
           <Grid item md={4} sm={6} xs={12} key={stat.product}>

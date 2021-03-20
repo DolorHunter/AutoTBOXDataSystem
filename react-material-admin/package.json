@@ -36,6 +36,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-syntax-highlighter": "^13.5.3",
+    "react-table-scrollbar": "^0.1.9",
     "react-toastify": "^6.0.8",
     "react-vis": "^1.11.7",
     "recharts": "^1.6.2",

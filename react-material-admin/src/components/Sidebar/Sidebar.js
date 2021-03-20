@@ -3,7 +3,6 @@ import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   Home as HomeIcon,
   ViewQuilt as GeneralIcon,
-  NotificationsNone as NotificationsIcon,
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
   InsertChart as TableIcon,
@@ -31,7 +30,7 @@ import {
 const structure = [
   { id: 0, label: "数据面板", link: "/app/dashboard", icon: <HomeIcon /> },
   { id: 1, label: "概览", link: "/app/general", icon: <GeneralIcon /> },
-  { id: 2, label: "车辆故障信息表", link: "/app/tables", icon: <TableIcon /> },
+  { id: 2, label: "车辆故障信息表", link: "/app/car/warningTables", icon: <TableIcon /> },
   {
     id: 3,
     label: "Typography",

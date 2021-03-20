@@ -29,11 +29,7 @@ axios.post('/Role/searchAllRolePager', page)
     let data = eval('(' + res.request.response + ')');
     let content = data.content;
     for (var i=0;i<content.length;i++) { 
-      let id = content[i].id;
-      let roleName = content[i].roleName;
-      let roleType = content[i].roleType;
-      let info = {id, roleName, roleType};
-      datatableData.push(info);
+      datatableData.push(content[i]);
     }
   }
 })

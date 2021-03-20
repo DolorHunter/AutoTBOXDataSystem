@@ -12,11 +12,11 @@ const columns = [
       display: "excluded",
     },
   },
-  { name: "name", label: "用户名" },
+  { name: "username", label: "用户名" },
   { name: "email", label: "邮箱" },
   { name: "phone", label: "电话" },
   { name: "createdDate", label: "注册日期" },
-  { name: "status", label: "状态" },
+  { name: "isActivated", label: "状态" },
 ]
 
 const datatableData = [];
@@ -32,19 +32,7 @@ axios.post('/User/searchAllUserPager', page)
     let data = eval('(' + res.request.response + ')');
     let content = data.content;
     for (var i=0;i<content.length;i++) { 
-      let id = content[i].id;
-      let name = content[i].username;
-      let email = content[i].email;
-      let phone = content[i].phone;
-      let createdDate = content[i].createdDate;
-      let status = content[i].isActivated;
-      if (status === "1"){
-        status = "启用";
-      }else{
-        status = "禁用";
-      }
-      let info = {id, name, email, phone, createdDate, status};
-      datatableData.push(info);
+      datatableData.push(content[i]);
     }
   }
 })

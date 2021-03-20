@@ -42,27 +42,7 @@ axios.post('/CarWarranty/searchAllCarWarrantyPager', page)
     let data = eval('(' + res.request.response + ')');
     let content = data.content;
     for (var i=0;i<content.length;i++) { 
-      let id = content[i].vin;
-      let vin = content[i].vin;
-      let generalComment = content[i].generalComment;
-      let generalScore = content[i].generalScore;
-      let driveComment = content[i].driveComment;
-      let driveScore = content[i].driveScore;
-      let fuelEngineComment = content[i].fuelEngineComment;
-      let fuelEngineScore = content[i].fuelEngineScore;
-      let performanceComment = content[i].performanceComment;
-      let performanceScore = content[i].performanceScore;
-      let consumptionComment = content[i].consumptionComment;
-      let consumptionScore = content[i].consumptionScore;
-      let chassisComment = content[i].chassisComment;
-      let chassisScore = content[i].chassisScore;
-      let transmissionComment = content[i].transmissionComment;
-      let transmissionScore = content[i].transmissionScore;
-      let info = {id, vin, generalComment, generalScore, driveComment, driveScore, 
-        fuelEngineComment, fuelEngineScore, performanceComment, performanceScore, 
-        consumptionComment, consumptionScore, chassisComment, chassisScore, 
-        transmissionComment, transmissionScore};
-      datatableData.push(info);
+      datatableData.push(content[i]);
     }
   }
 })

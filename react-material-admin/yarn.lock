@@ -9997,6 +9997,11 @@ react-syntax-highlighter@^13.5.3:
     prismjs "^1.21.0"
     refractor "^3.1.0"
 
+react-table-scrollbar@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.npm.taobao.org/react-table-scrollbar/download/react-table-scrollbar-0.1.9.tgz#5348c490715af40f0befa7d80397c1205d1910e3"
+  integrity sha1-U0jEkHFa9A8L76fYA5fBIF0ZEOM=
+
 react-to-print@^2.8.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.10.0.tgz#b45c3dd37341848c1b42f3d9a00cecbe83785f61"

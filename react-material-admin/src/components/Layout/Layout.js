@@ -29,7 +29,6 @@ import General from "../../pages/general";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
-import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import CarTables from "../../pages/tables/CarTables";
@@ -38,6 +37,7 @@ import CarWarningTables from "../../pages/tables/CarWarningTables";
 import CarWarrantyTables from "../../pages/tables/CarWarrantyTables";
 import UserTables from "../../pages/tables/UserTables";
 import RoleTables from "../../pages/tables/RoleTables";
+import axios from 'axios';
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -63,7 +63,7 @@ function Layout(props) {
               <Route path="/app/dashboard" component={Dashboard} />
               <Route path="/app/general" component={General} />
               <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Tables} />
+              <Route path="/app/car/warningTables" component={CarWarningTables} />
               <Route path="/app/notifications" component={Notifications} />
               <Route
                 exact
