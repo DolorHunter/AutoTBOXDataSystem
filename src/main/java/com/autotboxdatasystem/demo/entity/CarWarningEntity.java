@@ -8,7 +8,7 @@ public class CarWarningEntity extends BaseEntity{
     @Column(columnDefinition = "VARCHAR(64) comment '盲点监控系统故障'")
     private String blindSpotMonitoringSysFailure;
     @Column(columnDefinition = "VARCHAR(64) comment '引擎防盗系统故障'")
-    private String EngineTheftPreventionSysFailure;
+    private String engineTheftPreventionSysFailure;
     @Column(columnDefinition = "VARCHAR(64) comment '电池充电'")
     private String batteryCharging;
     @Column(columnDefinition = "VARCHAR(64) comment '高度'")
@@ -18,7 +18,7 @@ public class CarWarningEntity extends BaseEntity{
     @Column(columnDefinition = "VARCHAR(64) comment '动力转向系统故障'")
     private String powerSteeringSystemFailure;
     @Column(columnDefinition = "VARCHAR(64) comment '自动停车失败'")
-    private String AutoParkingFailure;
+    private String autoParkingFailure;
     @Column(columnDefinition = "VARCHAR(64) comment '自适应巡航故障'")
     private String adaptiveCruiseFault;
     @Column(columnDefinition = "VARCHAR(64) comment '发动机故障'")
@@ -26,17 +26,17 @@ public class CarWarningEntity extends BaseEntity{
     @Column(columnDefinition = "VARCHAR(64) comment '稳定系统关闭'")
     private String stabilitySystemShutdown;
     @Column(columnDefinition = "VARCHAR(64) comment '油压'")
-    private String OilPressure;
+    private String oilPressure;
     @Column(columnDefinition = "VARCHAR(64) comment '斜坡减速故障'")
     private String slopeSlowDownFault;
     @Column(columnDefinition = "VARCHAR(64) comment '电子停车'")
-    private String ElectronicParking;
+    private String electronicParking;
     @Column(nullable = false, columnDefinition = "varchar(64) comment '车辆识别号码'")
     private String vin;
     @Column(columnDefinition = "VARCHAR(64) comment '开始停止系统故障'")
     private String startStopSystemFailure;
     @Column(columnDefinition = "VARCHAR(64) comment '挡风玻璃传感器护罩'")
-    private String WindshieldSensorShield;
+    private String windshieldSensorShield;
     @Column(columnDefinition = "VARCHAR(64) comment '经度'")
     private String longitude;
     @Column(columnDefinition = "VARCHAR(64) comment '车道偏离系统故障'")
@@ -46,13 +46,13 @@ public class CarWarningEntity extends BaseEntity{
     @Column(columnDefinition = "VARCHAR(64) comment '方向'")
     private String direct;
     @Column(columnDefinition = "VARCHAR(64) comment '胎压监测系统故障'")
-    private String TirePressureMonitoringSysFailure;
+    private String tirePressureMonitoringSysFailure;
     @Column(columnDefinition = "VARCHAR(64) comment '发动机排气系统故障'")
     private String engineExhaustSystemFailure;
     @Column(columnDefinition = "VARCHAR(64) comment '动力转向系统'")
     private String powerSteeringSystemInit;
     @Column(columnDefinition = "VARCHAR(64) comment '自动刹车系统状态'")
-    private String AutoBrakSystemStatus;
+    private String autoBrakSystemStatus;
     @Column(columnDefinition = "VARCHAR(64) comment '纬度州'")
     private String latitudeState;
     @Column(columnDefinition = "VARCHAR(64) comment '位置'")
@@ -66,9 +66,9 @@ public class CarWarningEntity extends BaseEntity{
     @Column(columnDefinition = "VARCHAR(64) comment '错误列表计数'")
     private String errorListCount;
     @Column(columnDefinition = "VARCHAR(64) comment '电子稳定系统指示'")
-    private String ElectronicStabilitySysIndication;
+    private String electronicStabilitySysIndication;
     @Column(columnDefinition = "VARCHAR(64) comment '轮胎压力异常'")
-    private String TirePressureAnomaly;
+    private String tirePressureAnomaly;
     @Column(columnDefinition = "VARCHAR(64) comment '电子停车故障'")
     private String electronicParkingFailure;
     @Column(columnDefinition = "VARCHAR(64) comment 'gps速度'")
@@ -78,9 +78,9 @@ public class CarWarningEntity extends BaseEntity{
     @Column(columnDefinition = "VARCHAR(64) comment '发送时间'")
     private String sendingTime;
     @Column(columnDefinition = "VARCHAR(64) comment '启动停止系统故障'")
-    private String StartStopSystemNotWork;
+    private String startStopSystemNotWork;
     @Column(columnDefinition = "VARCHAR(64) comment '自动紧急制动系统故障'")
-    private String AutoEmergencyBrakeSysFailure;
+    private String autoEmergencyBrakeSysFailure;
 
     public String getBlindSpotMonitoringSysFailure() {
         return blindSpotMonitoringSysFailure;
@@ -91,11 +91,11 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getEngineTheftPreventionSysFailure() {
-        return EngineTheftPreventionSysFailure;
+        return engineTheftPreventionSysFailure;
     }
 
     public void setEngineTheftPreventionSysFailure(String engineTheftPreventionSysFailure) {
-        EngineTheftPreventionSysFailure = engineTheftPreventionSysFailure;
+        this.engineTheftPreventionSysFailure = engineTheftPreventionSysFailure;
     }
 
     public String getBatteryCharging() {
@@ -131,11 +131,11 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getAutoParkingFailure() {
-        return AutoParkingFailure;
+        return autoParkingFailure;
     }
 
     public void setAutoParkingFailure(String autoParkingFailure) {
-        AutoParkingFailure = autoParkingFailure;
+        this.autoParkingFailure = autoParkingFailure;
     }
 
     public String getAdaptiveCruiseFault() {
@@ -163,11 +163,11 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getOilPressure() {
-        return OilPressure;
+        return oilPressure;
     }
 
     public void setOilPressure(String oilPressure) {
-        OilPressure = oilPressure;
+        this.oilPressure = oilPressure;
     }
 
     public String getSlopeSlowDownFault() {
@@ -179,11 +179,11 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getElectronicParking() {
-        return ElectronicParking;
+        return electronicParking;
     }
 
     public void setElectronicParking(String electronicParking) {
-        ElectronicParking = electronicParking;
+        this.electronicParking = electronicParking;
     }
 
     public String getVin() {
@@ -203,11 +203,11 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getWindshieldSensorShield() {
-        return WindshieldSensorShield;
+        return windshieldSensorShield;
     }
 
     public void setWindshieldSensorShield(String windshieldSensorShield) {
-        WindshieldSensorShield = windshieldSensorShield;
+        this.windshieldSensorShield = windshieldSensorShield;
     }
 
     public String getLongitude() {
@@ -243,11 +243,11 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getTirePressureMonitoringSysFailure() {
-        return TirePressureMonitoringSysFailure;
+        return tirePressureMonitoringSysFailure;
     }
 
     public void setTirePressureMonitoringSysFailure(String tirePressureMonitoringSysFailure) {
-        TirePressureMonitoringSysFailure = tirePressureMonitoringSysFailure;
+        this.tirePressureMonitoringSysFailure = tirePressureMonitoringSysFailure;
     }
 
     public String getEngineExhaustSystemFailure() {
@@ -267,11 +267,11 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getAutoBrakSystemStatus() {
-        return AutoBrakSystemStatus;
+        return autoBrakSystemStatus;
     }
 
     public void setAutoBrakSystemStatus(String autoBrakSystemStatus) {
-        AutoBrakSystemStatus = autoBrakSystemStatus;
+        this.autoBrakSystemStatus = autoBrakSystemStatus;
     }
 
     public String getLatitudeState() {
@@ -323,19 +323,19 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getElectronicStabilitySysIndication() {
-        return ElectronicStabilitySysIndication;
+        return electronicStabilitySysIndication;
     }
 
     public void setElectronicStabilitySysIndication(String electronicStabilitySysIndication) {
-        ElectronicStabilitySysIndication = electronicStabilitySysIndication;
+        this.electronicStabilitySysIndication = electronicStabilitySysIndication;
     }
 
     public String getTirePressureAnomaly() {
-        return TirePressureAnomaly;
+        return tirePressureAnomaly;
     }
 
     public void setTirePressureAnomaly(String tirePressureAnomaly) {
-        TirePressureAnomaly = tirePressureAnomaly;
+        this.tirePressureAnomaly = tirePressureAnomaly;
     }
 
     public String getElectronicParkingFailure() {
@@ -371,18 +371,18 @@ public class CarWarningEntity extends BaseEntity{
     }
 
     public String getStartStopSystemNotWork() {
-        return StartStopSystemNotWork;
+        return startStopSystemNotWork;
     }
 
     public void setStartStopSystemNotWork(String startStopSystemNotWork) {
-        StartStopSystemNotWork = startStopSystemNotWork;
+        this.startStopSystemNotWork = startStopSystemNotWork;
     }
 
     public String getAutoEmergencyBrakeSysFailure() {
-        return AutoEmergencyBrakeSysFailure;
+        return autoEmergencyBrakeSysFailure;
     }
 
     public void setAutoEmergencyBrakeSysFailure(String autoEmergencyBrakeSysFailure) {
-        AutoEmergencyBrakeSysFailure = autoEmergencyBrakeSysFailure;
+        this.autoEmergencyBrakeSysFailure = autoEmergencyBrakeSysFailure;
     }
 }

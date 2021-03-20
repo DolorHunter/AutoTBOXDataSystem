@@ -25,6 +25,12 @@ public class CarWarningServiceImpl implements CarWarningService {
 
     @Override
     public boolean addCarWarning(CarWarningEntity carWarningEntity) {
+        // 重复数据不添加
+        CarWarningEntity carWarning = searchExistCarWarningByVinAndSendingTimeAndErrorContentAndFaultCategory(carWarningEntity);
+        if (carWarning != null){
+            return false;
+        }
+
         carWarningEntity.setIsActivated("1");
         carWarningEntity.setIsDeleted("0");
 
@@ -119,6 +125,30 @@ public class CarWarningServiceImpl implements CarWarningService {
         String faultCategory = carWarningEntity.getFaultCategory();
         return carWarningDAO.findByFaultCategory(faultCategory, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
+
+    @Override
+    public List<CarWarningEntity> searchCarWarningBySendingTimeList(CarWarningEntity carWarningEntity) {
+        String sendingTime = carWarningEntity.getSendingTime();
+        return carWarningDAO.findBySendingTimeGreaterThanEqual(sendingTime);
+    }
+
+    @Override
+    public Page<CarWarningEntity> searchCarWarningBySendingTimePager(CarWarningEntity carWarningEntity) {
+        String sendingTime = carWarningEntity.getSendingTime();
+        Integer pageIndex = carWarningEntity.getPageIndex();
+        Integer pageSize = carWarningEntity.getPageSize();
+        return carWarningDAO.findBySendingTimeGreaterThanEqual(sendingTime, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+    }
+
+    @Override
+    public CarWarningEntity  searchExistCarWarningByVinAndSendingTimeAndErrorContentAndFaultCategory(CarWarningEntity carWarningEntity) {
+        String vin = carWarningEntity.getVin();
+        String sendingTime = carWarningEntity.getSendingTime();
+        String errorContent = carWarningEntity.getErrorContent();
+        String faultCategory = carWarningEntity.getFaultCategory();
+        return carWarningDAO.findByVinAndSendingTimeAndErrorContentAndFaultCategory(vin, sendingTime, errorContent, faultCategory);
+    }
+
 
     @Override
     public List<CarWarningEntity> searchAllCarWarningList(CarWarningEntity carWarningEntity) {

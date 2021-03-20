@@ -18,6 +18,8 @@ public interface CarWarningService {
 
     CarWarningEntity searchCarWarningById(CarWarningEntity carWarningEntity);
 
+    CarWarningEntity searchExistCarWarningByVinAndSendingTimeAndErrorContentAndFaultCategory(CarWarningEntity carWarningEntity);
+
     List<CarWarningEntity> searchCarWarningByVinList(CarWarningEntity carWarningEntity);
 
     Page<CarWarningEntity> searchCarWarningByVinPager(CarWarningEntity carWarningEntity);
@@ -29,6 +31,10 @@ public interface CarWarningService {
     List<CarWarningEntity> searchCarWarningByFaultCategoryList(CarWarningEntity carWarningEntity);
 
     Page<CarWarningEntity> searchCarWarningByFaultCategoryPager(CarWarningEntity carWarningEntity);
+
+    List<CarWarningEntity> searchCarWarningBySendingTimeList(CarWarningEntity carWarningEntity);
+
+    Page<CarWarningEntity> searchCarWarningBySendingTimePager(CarWarningEntity carWarningEntity);
 
     List<CarWarningEntity> searchAllCarWarningList(CarWarningEntity carWarningEntity);
 

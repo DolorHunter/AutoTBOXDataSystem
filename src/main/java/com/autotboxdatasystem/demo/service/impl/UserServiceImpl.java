@@ -47,9 +47,6 @@ public class UserServiceImpl implements UserService {
         if (username == null || password == null) {
             return "Username or Password is null.";
         } else {
-            if (!RegexUtil.isUsername(username)) {
-                return "Username illegal.";
-            }
             if (!RegexUtil.isPassword(password)) {
                 return "Password illegal.";
             }

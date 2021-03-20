@@ -232,43 +232,43 @@
 <tr><th colspan="4" align="center">CarWarningEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
 <tr><td colspan="4" align="center">BaseEntity</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>blindSpotMonitoringSysFailure</td><td>盲点监控系统故障</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>EngineTheftPreventionSysFailure</td><td>引擎防盗系统故障</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>engineTheftPreventionSysFailure</td><td>引擎防盗系统故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>batteryCharging</td><td>电池充电</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>altitude</td><td>高度</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>transmissionFailure</td><td>传输失败</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>powerSteeringSystemFailure</td><td>动力转向系统故障</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>AutoParkingFailure</td><td>自动停车失败</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>autoParkingFailure</td><td>自动停车失败</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>adaptiveCruiseFault</td><td>自适应巡航故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>engineFailure</td><td>发动机故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>stabilitySystemShutdown</td><td>稳定系统关闭</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>OilPressure</td><td>油压</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>oilPressure</td><td>油压</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>slopeSlowDownFault</td><td>斜坡减速故障</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>ElectronicParking</td><td>电子停车</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>electronicParking</td><td>电子停车</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>vin</td><td>车辆识别号码</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>startStopSystemFailure</td><td>开始停止系统故障</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>WindshieldSensorShield</td><td>挡风玻璃传感器护罩</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>windshieldSensorShield</td><td>挡风玻璃传感器护罩</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>longitude</td><td>经度</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>laneDepartureSysFailure</td><td>车道偏离系统故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>longitudeState</td><td>经度状态</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>direct</td><td>方向</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>TirePressureMonitoringSysFailure</td><td>胎压监测系统故障</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>tirePressureMonitoringSysFailure</td><td>胎压监测系统故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>engineExhaustSystemFailure</td><td>发动机排气系统故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>powerSteeringSystemInit</td><td>动力转向系统</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>AutoBrakSystemStatus</td><td>自动刹车系统状态</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>autoBrakSystemStatus</td><td>自动刹车系统状态</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>latitudeState</td><td>纬度州</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>loc</td><td>位置</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>airbagFault</td><td>安全气囊故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>errorContent</td><td>错误内容</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>faultCategory</td><td>故障类别</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>errorListCount</td><td>错误列表计数 </td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>ElectronicStabilitySysIndication</td><td>电子稳定系统指示</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>TirePressureAnomaly</td><td>轮胎压力异常</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>electronicStabilitySysIndication</td><td>电子稳定系统指示</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>tirePressureAnomaly</td><td>轮胎压力异常</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>electronicParkingFailure</td><td>电子停车故障</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>gpsSpeed</td><td>gps速度</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>latitude</td><td>纬度</td></tr>
 <tr><td>String</td><td>varchar(64)</td><td>sendingTime</td><td>发送时间</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>StartStopSystemNotWork</td><td>启动停止系统不起作用</td></tr>
-<tr><td>String</td><td>varchar(64)</td><td>AutoEmergencyBrakeSysFailure</td><td>自动紧急制动系统故障</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>startStopSystemNotWork</td><td>启动停止系统不起作用</td></tr>
+<tr><td>String</td><td>varchar(64)</td><td>autoEmergencyBrakeSysFailure</td><td>自动紧急制动系统故障</td></tr>
 </table>
 
 === 1.1.11 CarWarrantyEntity ===
@@ -540,6 +540,8 @@
   <tr><td>searchCarWarningByErrorContentPager</td><td>/CarWarning/searchCarWarningByErrorContentPager</td><td>carWarningEntity</td><td>x</td><td>错误内容查找故障Pager</td></tr>
   <tr><td>searchCarWarningByFaultCategoryList</td><td>/CarWarning/searchCarWarningByFaultCategoryList</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障List</td></tr>
   <tr><td>searchCarWarningByFaultCategoryPager</td><td>/CarWarning/searchCarWarningByFaultCategoryPager</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障Pager</td></tr>
+  <tr><td>searchCarWarningBySendingTimeList</td><td>/CarWarning/searchCarWarningBySendingTimeList</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障List</td></tr>
+  <tr><td>searchCarWarningBySendingTimePager</td><td>/CarWarning/searchCarWarningBySendingTimePager</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障Pager</td></tr>
   <tr><td>searchAllCarWarningList</td><td>/CarWarning/searchAllCarWarningList</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障List</td></tr>
   <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障Pager</td></tr>
 </table>
