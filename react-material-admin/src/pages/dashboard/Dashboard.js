@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Grid,
   LinearProgress,
@@ -38,58 +38,7 @@ import BigStat from "./components/BigStat/BigStat";
 
 import axios from 'axios';
 
-var errorCounter = ""
-var errorCarCounter = ""
-var errorCategoryCounter = ""
-var errorYesterday = ""
-var errorAvgWeekly = ""
-const errorData = []
-const errorCarData = []
-const errorCategoryData = []
-const errorCategoryPie = [
-  { name: "Group A", value: 400, color: "primary" },
-  { name: "Group B", value: 300, color: "secondary" },
-  { name: "Group C", value: 300, color: "warning" },
-  { name: "Group D", value: 200, color: "success" },
-];
-
-
-function appendZero(obj){
-  if(obj<10) return "0" +""+ obj;
-  else return obj;
-}
-var date = new Date();
-
-var year = date.getFullYear();
-var month = appendZero(date.getMonth() + 1);
-var day = appendZero(date.getDate());
-var hour = appendZero(date.getHours());
-var chartTimestramp = ""+year+month+day+hour;
-
-function addErrorToday(content){
-  errorCounter = content.errorCounter;
-  errorCarCounter = content.errorCarCounter;
-  errorCategoryCounter = content.errorCategoryCounter;
-  errorYesterday = content.errorYesterday;
-  errorAvgWeekly = content.errorAvgWeekly;
-  errorData.push(content.errorData);
-  errorCarData.push(content.errorCarData);
-  errorCategoryData.push(content.errorCategoryData);
-  errorCategoryPie.push(content.errorCategoryPie);
-}
-
-axios.post('/VisualChart/searchVisualChartByChartName', 
-            {"chartName":"dashboard-errorToday-"+chartTimestramp})
-.then(res => {
-  if (res.status === 200){
-    let data = eval('(' + res.request.response + ')');
-    let content = data.chartData.replace(/'/g,"\"");
-    content = JSON.parse(content);
-    addErrorToday(content);
-  }
-})
-
-
+/*
 const lineChartData = [
   {
     date: "2021/03/11",
@@ -207,10 +156,46 @@ const bigStatData = [
     }
   }
 ];
+*/
 
 export default function Dashboard(props){
-  var classes = useStyles();
-  var theme = useTheme();
+  const classes = useStyles();
+  const theme = useTheme();
+
+  var [errorCounter, setErrorCounter] = useState(0);
+  var [errorCarCounter, setErrorCarCounter] = useState(0);
+  var [errorCategoryCounter, setErrorCategoryCounter] = useState(0);
+  var [errorToday, setErrorToday] = useState(0);
+  var [errorAvgWeekly, setErrorAvgWeekly] = useState(0);
+  var [errorData, setErrorData] = useState([]);
+  var [errorCarData, setErrorCarData] = useState([]);
+  var [errorCategoryData, setErrorCategoryData] = useState([]);
+  var [errorCategoryPie, setErrorCategoryPie] = useState([]);
+
+  var [lineChartData, setLineChartData] = useState([]);
+  var [rows, setRows] = useState([]);
+  var [bigStatData, setBigStatData] = useState([]);
+
+  useEffect(() => {
+    axios.post('/VisualChart/searchVisualChartByChartName', 
+            {"chartName":"dashboard-errorToday-"+errorTodayTimestramp})
+    .then(res => {
+      if (res.status === 200){
+        let data = eval('(' + res.request.response + ')');
+        let content = data.chartData.replace(/'/g,"\"");
+        content = JSON.parse(content);
+        setErrorCounter(content.errorCounter);
+        setErrorCarCounter(content.errorCarCounter);
+        setErrorCategoryCounter(content.errorCategoryCounter);
+        setErrorToday(content.errorToday);
+        setErrorAvgWeekly(content.errorAvgWeekly);
+        setErrorData(content.errorData);
+        setErrorCarData(content.errorCarData);
+        setErrorCategoryData(content.errorCategoryData);
+        setErrorCategoryPie(content.errorCategoryPie);
+      }
+    })
+  }, []);
 
   return (
     <>
@@ -268,7 +253,7 @@ export default function Dashboard(props){
                 <Typography color="text" colorBrightness="secondary" noWrap>
                   车辆平均故障
                 </Typography>
-                <Typography size="md">{(errorCategoryCounter/errorCarCounter).toFixed(2)}</Typography>
+                <Typography size="md">{(errorCounter/errorCarCounter).toFixed(2)}</Typography>
               </Grid>
             </Grid>
           </Widget>
@@ -313,7 +298,7 @@ export default function Dashboard(props){
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={errorYesterday}
+                value={errorToday}
                 classes={{ barColorPrimary: classes.progressBarWarning }}
                 className={classes.progress}
               />
@@ -537,3 +522,14 @@ export default function Dashboard(props){
     </>
   );
 }
+// #####################################################################
+function appendZero(obj){
+  if(obj<10) return "0" +""+ obj;
+  else return obj;
+}
+var date = new Date();
+var year = date.getFullYear();
+var month = appendZero(date.getMonth() + 1);
+var day = appendZero(date.getDate());
+var hour = appendZero(date.getHours());
+var errorTodayTimestramp = ""+year+month+day+hour;

@@ -37,7 +37,6 @@ import CarWarningTables from "../../pages/tables/CarWarningTables";
 import CarWarrantyTables from "../../pages/tables/CarWarrantyTables";
 import UserTables from "../../pages/tables/UserTables";
 import RoleTables from "../../pages/tables/RoleTables";
-import axios from 'axios';
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";

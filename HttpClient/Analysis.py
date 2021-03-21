@@ -31,11 +31,6 @@ def today_error_counter():
     return error_digits_counter(data)
 
 
-def yesteday_error_counter():
-    data = HttpUtil.get_my_warning_response(24 * 2)
-    return error_digits_counter(data)
-
-
 def weekly_error_counter():
     data = HttpUtil.get_my_warning_response(24 * 7)
     return error_digits_counter(data)
@@ -88,16 +83,23 @@ def fault_category_counter():
 
 def daily_analysis():
     today = today_error_counter()
-    yesterday = yesteday_error_counter()
     weekly = weekly_error_counter()
-    error_yesterday = (yesterday['errorContent'] - today['errorContent']) % 100
-    error_weekly = (weekly['errorContent'] / 7) % 100
+    error_today = today['errorContent']
+    error_weekly = weekly['errorContent'] / 7
+    if error_today >= error_weekly:
+        zoom = 80 / error_today
+        if zoom >= 1:
+            error_today *= zoom
+            error_weekly *= zoom
+        else:
+            error_today /= zoom
+            error_weekly /= zoom
     error_chart_data = hourly_error_counter()
     pie = fault_category_counter()
     error = {'errorCounter': today['errorContent'],
              'errorCarCounter': today['vin'],
              'errorCategoryCounter': today['faultCategory'],
-             'errorYesterday': error_yesterday,
+             'errorToday': error_today,
              'errorAvgWeekly': error_weekly,
              'errorData': error_chart_data['errorContent'],
              'errorCarData': error_chart_data['vin'],

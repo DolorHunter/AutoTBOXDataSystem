@@ -665,6 +665,8 @@ root登录
 * (视频)CodeEngine-React & Spring应用2 [https://www.youtube.com/watch?v=jCalDxGthoc CodeEngine-React & Spring Boot Expense Tracker Application (Part 2)]
 * AJAX 和 APIs [https://zh-hant.reactjs.org/docs/faq-ajax.html AJAX和APIs]
 * Axios React请求交互(类ajax) [https://github.com/axios/axios GitHub axios/axios]
+* DigitalOcean-Axios React示例 [https://www.digitalocean.com/community/tutorials/react-axios-react DigitalOcean-How To Use Axios with React]
+* React-Hook 概觀 [https://zh-hant.reactjs.org/docs/hooks-overview.html React-Hook 概觀]
 * nivo图表 [https://nivo.rocks/components nivo Components]
 * react-vis图表 [https://uber.github.io/react-vis/examples/showcases/plots react-vis]
 * APEXCharts图表 [https://apexcharts.com/docs/chart-types/line-chart/ APEXCharts]
