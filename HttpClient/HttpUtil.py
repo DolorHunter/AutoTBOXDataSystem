@@ -1,5 +1,4 @@
 import time
-from datetime import datetime
 import requests
 import copy
 
@@ -466,8 +465,6 @@ def get_warning_response():
 # 转存故障信息到我的数据库(数据格式调整)
 # response 江淮服务器获取故障信息
 def save_warning_to_my_database(response):
-    # 故障转存列表
-    warning_list = []
     car_list = response['data']['carList']
     for car in car_list:
         car1 = copy.deepcopy(car)
@@ -509,16 +506,15 @@ def save_warning_to_my_database(response):
 
 
 # 从我的数据库取出数据
-# timespan_hours 从现在往回推的以小时计算的时间跨度
-def get_my_warning_response(timespan_hours):
-    # 获取当前分钟, 秒数
-    struct_time = time.localtime(time.time())
-    tm_min = struct_time.tm_min
-    tm_sec = struct_time.tm_sec
-    # 获得上小时的时间戳 e.g. 14:52 为14:00
+# timespan_hours 从现在往回推的以小时/天计算的时间跨度
+def get_my_warning_response(timespan, hourly=None, daily=None):
+    # 获取当前时间
     cur_time = int(time.time()) * 1000
-    cur_hour = cur_time - (60 * tm_min + tm_sec) * 1000
-    start_time = cur_hour - timespan_hours * 60 * 60 * 1000
+    start_time = 0
+    if hourly:
+        start_time = cur_time - timespan * 3600 * 1000
+    if daily:
+        start_time = cur_time - timespan * 24 * 3600 * 1000
     warning_input = {'sendingTime': start_time}
     # POST方式请求故障信息
     response = requests.post(MY_WARNING_URL, json=warning_input, timeout=5)
@@ -528,18 +524,14 @@ def get_my_warning_response(timespan_hours):
         return response.json()
 
 
-# 存放dashboard_errorToday数据到数据库VisualChart(每小时更新)
-def save_visual_chart_dashboard_error_today(json):
-    # 每小时存放一次
-    date = datetime.now().date()
-    hour = datetime.now().hour
-    timestamp = str(date).replace("-", "") + str(hour)
+# 存放数据到数据库VisualChart
+def save_visual_chart(chart_name, chart_type, json, created_by, last_updated_by):
     save_input = {
-        "chartName": "dashboard-errorToday-" + timestamp,
-        "chartType": "0",
+        "chartName": chart_name,
+        "chartType": chart_type,
         "chartData": str(json),
-        "createdBy": "db",
-        "lastUpdatedBy": "db"
+        "createdBy": created_by,
+        "lastUpdatedBy": last_updated_by
     }
     save_response = requests.post(MY_SAVE_VISUAL_CHART_URL, json=save_input, timeout=5)
     if save_response.status_code != 200 or save_response.text != "Succeed.":

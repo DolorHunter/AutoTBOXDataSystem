@@ -162,6 +162,8 @@ export default function Dashboard(props){
   const classes = useStyles();
   const theme = useTheme();
 
+  const FAULT_CATEGORY_MAPPING = ["TBOX", "EMS", "ESC", "EPS", "TCU", "SRS", "ICM", "MP5", "PEPS", "PDC", "ESCL", "HVAC", "AVM", "BCM", "BSD", "SLC", "MRR", "MPC", "LDFC", "APA", "IMMO", "CFP", "PLG", "FPCM" ]
+
   var [errorCounter, setErrorCounter] = useState(0);
   var [errorCarCounter, setErrorCarCounter] = useState(0);
   var [errorCategoryCounter, setErrorCategoryCounter] = useState(0);
@@ -178,7 +180,7 @@ export default function Dashboard(props){
 
   useEffect(() => {
     axios.post('/VisualChart/searchVisualChartByChartName', 
-            {"chartName":"dashboard-errorToday-"+errorTodayTimestramp})
+            {"chartName":"dashboard-errorToday-"+errorTodayTimestamp})
     .then(res => {
       if (res.status === 200){
         let data = eval('(' + res.request.response + ')');
@@ -193,6 +195,40 @@ export default function Dashboard(props){
         setErrorCarData(content.errorCarData);
         setErrorCategoryData(content.errorCategoryData);
         setErrorCategoryPie(content.errorCategoryPie);
+      }
+    })
+
+    axios.post('/VisualChart/searchVisualChartByChartName', 
+            {"chartName":"dashboard-weeklyError-"+lineChartTimestamp})
+    .then(res => {
+      if (res.status === 200){
+        let data = eval('(' + res.request.response + ')');
+        let content = data.chartData.replace(/'/g,"\"");
+        content = JSON.parse(content);
+        setLineChartData(content);
+      }
+    })
+    
+    axios.post('/CarWarning/searchCarWarningBySendingTimeList', 
+            {"sendingTime": realtimeErrorTimestamp})
+    .then(res => {
+      if (res.status === 200){
+        let data = eval('(' + res.request.response + ')');
+        for(var i=0;i<data.length;i++){
+          let timestamp = Number(data[i]['sendingTime']);
+          let date = new Date(timestamp);
+          let year = date.getFullYear();
+          let month = appendZero(date.getMonth() + 1);
+          let day = appendZero(date.getDate());
+          let hour = appendZero(date.getHours());
+          let min = appendZero(date.getHours());
+          data[i]['sendingTime'] = ""+year+"/"+month+"/"+day+" "+hour+":"+min;
+
+          let faultCategory = data[i]['faultCategory'];
+          let faultIndex = parseInt(faultCategory, 16);
+          data[i]['faultCategory'] = FAULT_CATEGORY_MAPPING[faultIndex];
+        }
+        setRows(data);
       }
     })
   }, []);
@@ -442,11 +478,10 @@ export default function Dashboard(props){
             </Grid>
           </Widget>
         </Grid>
-        <Grid item lg={9} md={24} sm={18} xs={36}>
+        <Grid item lg={6} md={16} sm={12} xs={24}>
           <Widget title="过去一周故障情况" noBodyPadding upperTitle>
             <ResponsiveContainer width="99%" height={400}>
               <LineChart
-                width={500}
                 height={400}
                 data={lineChartData}
                 margin={{
@@ -474,28 +509,34 @@ export default function Dashboard(props){
                 <Legend />
                 <Line
                   type="monotone"
-                  dataKey="pv"
+                  dataKey="故障车辆"
                   stroke={theme.palette.primary.main}
                   activeDot={{ r: 8 }}
                 />
                 <Line
                   type="monotone"
-                  dataKey="uv"
+                  dataKey="故障单元"
                   stroke={theme.palette.secondary.main}
+                  activeDot={{ r: 4 }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="故障"
+                  stroke={theme.palette.warning.main}
                 />
               </LineChart>
             </ResponsiveContainer>
           </Widget>
         </Grid>
-        <Grid item lg={3} md={8} sm={6} xs={12}>
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="实时故障信息">
+        <Grid item lg={6} md={16} sm={12} xs={24}>
+          <TableContainer component={Paper} style={{ height: 500 }}>
+            <Table className={classes.table} stickyHeader aria-label="实时故障信息">
               <TableHead>
                 <TableRow>
                   <TableCell>时间</TableCell>
                   <TableCell align="right">VIN</TableCell>
-                  <TableCell align="right">错误内容</TableCell>
                   <TableCell align="right">故障类别</TableCell>
+                  <TableCell align="right">错误内容</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -505,8 +546,8 @@ export default function Dashboard(props){
                       {row.sendingTime}
                     </TableCell>
                     <TableCell align="right">{row.vin}</TableCell>
-                    <TableCell align="right">{row.errorContent}</TableCell>
                     <TableCell align="right">{row.faultCategory}</TableCell>
+                    <TableCell align="right">{row.errorContent}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -532,4 +573,8 @@ var year = date.getFullYear();
 var month = appendZero(date.getMonth() + 1);
 var day = appendZero(date.getDate());
 var hour = appendZero(date.getHours());
-var errorTodayTimestramp = ""+year+month+day+hour;
+var errorTodayTimestamp = ""+year+month+day+hour;
+const hasTimestamp = new Date() - new Date(year.toString());
+const hasDays = Math.ceil(hasTimestamp / 86400000);
+var lineChartTimestamp = ""+year+hasDays;
+var realtimeErrorTimestamp = Date.now() - 3600000;
