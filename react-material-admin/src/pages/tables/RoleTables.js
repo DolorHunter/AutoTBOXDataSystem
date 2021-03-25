@@ -25,11 +25,10 @@ export default class Tables extends Component {
   }
 
   componentDidMount() {
-    axios.post('/Role/searchAllRolePager', this.state.page)
+    axios.post('/Role/searchAllRoleList', {})
       .then(res => {
         if (res.status === 200) {
-          let data = eval('(' + res.request.response + ')');
-          let datatableData = data.content;
+          let datatableData = eval('(' + res.request.response + ')');
           this.setState({ datatableData });
         }
       })

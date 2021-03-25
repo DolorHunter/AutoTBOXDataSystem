@@ -25,18 +25,13 @@ export default class Tables extends Component {
       { name: "firstYearOfProduction", label: "首次生产年份" },
       { name: "lastYearOfProduction", label: "最后生产年份" },
     ],
-    page: {
-      "pageIndex": 0,
-      "pageSize": 30,
-    }
   }
 
   componentDidMount() {
-    axios.post('/Car/searchAllCarPager', this.state.page)
+    axios.post('/Car/searchAllCarList', {})
       .then(res => {
         if (res.status === 200) {
-          let data = eval('(' + res.request.response + ')');
-          let datatableData = data.content;
+          let datatableData = eval('(' + res.request.response + ')');
           this.setState({ datatableData });
         }
       })

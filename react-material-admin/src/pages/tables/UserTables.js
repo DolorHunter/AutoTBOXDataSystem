@@ -21,18 +21,13 @@ export default class Tables extends Component {
       { name: "createdDate", label: "注册日期" },
       { name: "isActivated", label: "状态" },
     ],
-    page: {
-      "pageIndex": 0,
-      "pageSize": 30,
-    }
   }
 
   componentDidMount() {
-    axios.post('/User/searchAllUserPager', this.state.page)
+    axios.post('/User/searchAllUserList', {})
       .then(res => {
         if (res.status === 200) {
-          let data = eval('(' + res.request.response + ')');
-          const datatableData = data.content;
+          const datatableData = eval('(' + res.request.response + ')');
           this.setState({ datatableData });
         }
       })

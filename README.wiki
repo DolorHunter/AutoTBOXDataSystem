@@ -540,8 +540,8 @@
   <tr><td>searchCarWarningByErrorContentPager</td><td>/CarWarning/searchCarWarningByErrorContentPager</td><td>carWarningEntity</td><td>x</td><td>错误内容查找故障Pager</td></tr>
   <tr><td>searchCarWarningByFaultCategoryList</td><td>/CarWarning/searchCarWarningByFaultCategoryList</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障List</td></tr>
   <tr><td>searchCarWarningByFaultCategoryPager</td><td>/CarWarning/searchCarWarningByFaultCategoryPager</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障Pager</td></tr>
-  <tr><td>searchCarWarningBySendingTimeList</td><td>/CarWarning/searchCarWarningBySendingTimeList</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障List</td></tr>
-  <tr><td>searchCarWarningBySendingTimePager</td><td>/CarWarning/searchCarWarningBySendingTimePager</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障Pager</td></tr>
+  <tr><td>searchCarWarningBySendingTimeBetweenList</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenList</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障List</td></tr>
+  <tr><td>searchCarWarningBySendingTimeBetweenPager</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenPager</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障Pager</td></tr>
   <tr><td>searchAllCarWarningList</td><td>/CarWarning/searchAllCarWarningList</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障List</td></tr>
   <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障Pager</td></tr>
 </table>

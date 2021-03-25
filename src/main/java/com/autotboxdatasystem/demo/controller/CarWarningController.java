@@ -120,18 +120,18 @@ public class CarWarningController {
     }
 
     // 查找时间内的车辆故障
-    @PostMapping(path = "/searchCarWarningBySendingTimeList")
+    @PostMapping(path = "/searchCarWarningBySendingTimeBetweenList")
     public @ResponseBody
-    List<CarWarningEntity> searchCarWarningBySendingTimeList(@RequestBody CarWarningEntity carWarningEntity) {
-        return carWarningService.searchCarWarningBySendingTimeList(carWarningEntity);
+    List<CarWarningEntity> searchCarWarningBySendingTimeBetweenList(@RequestBody CarWarningEntity carWarningEntity) {
+        return carWarningService.searchCarWarningBySendingTimeBetweenList(carWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
     // 查找时间内的车辆故障
-    @PostMapping(path = "/searchCarWarningBySendingTimePager")
+    @PostMapping(path = "/searchCarWarningBySendingTimeBetweenPager")
     public @ResponseBody
-    Page<CarWarningEntity> searchCarWarningBySendingTimePager(@RequestBody CarWarningEntity carWarningEntity) {
-        return carWarningService.searchCarWarningBySendingTimePager(carWarningEntity);
+    Page<CarWarningEntity> searchCarWarningBySendingTimeBetweenPager(@RequestBody CarWarningEntity carWarningEntity) {
+        return carWarningService.searchCarWarningBySendingTimeBetweenPager(carWarningEntity);
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 

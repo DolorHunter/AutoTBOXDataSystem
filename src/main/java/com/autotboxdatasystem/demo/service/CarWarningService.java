@@ -32,9 +32,9 @@ public interface CarWarningService {
 
     Page<CarWarningEntity> searchCarWarningByFaultCategoryPager(CarWarningEntity carWarningEntity);
 
-    List<CarWarningEntity> searchCarWarningBySendingTimeList(CarWarningEntity carWarningEntity);
+    List<CarWarningEntity> searchCarWarningBySendingTimeBetweenList(CarWarningEntity carWarningEntity);
 
-    Page<CarWarningEntity> searchCarWarningBySendingTimePager(CarWarningEntity carWarningEntity);
+    Page<CarWarningEntity> searchCarWarningBySendingTimeBetweenPager(CarWarningEntity carWarningEntity);
 
     List<CarWarningEntity> searchAllCarWarningList(CarWarningEntity carWarningEntity);
 

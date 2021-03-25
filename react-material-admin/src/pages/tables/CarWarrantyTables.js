@@ -31,18 +31,13 @@ export default class Tables extends Component {
       { name: "transmissionComment", label: "传动评价" },
       { name: "transmissionScore", label: "传动分数" },
     ],
-    page: {
-      "pageIndex": 0,
-      "pageSize": 30,
-    }
   }
 
   componentDidMount() {
-    axios.post('/CarWarranty/searchAllCarWarrantyPager', this.state.page)
+    axios.post('/CarWarranty/searchAllCarWarrantyList', {})
       .then(res => {
         if (res.status === 200) {
-          let data = eval('(' + res.request.response + ')');
-          let datatableData = data.content;
+          let datatableData = eval('(' + res.request.response + ')');
           this.setState({ datatableData });
         }
       })

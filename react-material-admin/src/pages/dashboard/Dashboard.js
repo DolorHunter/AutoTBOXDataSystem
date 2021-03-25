@@ -34,129 +34,8 @@ import useStyles from "./styles";
 import Widget from "../../components/Widget";
 import { Typography } from "../../components/Wrappers";
 import Dot from "../../components/Sidebar/components/Dot";
-import BigStat from "./components/BigStat/BigStat";
 
 import axios from 'axios';
-
-/*
-const lineChartData = [
-  {
-    date: "2021/03/11",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    date: "2021/03/06",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    date: "2021/03/07",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    date: "2021/03/08",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    date: "2021/03/09",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    date: "2021/03/10",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    date: "2021/03/11",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
-
-const rows = [
-  {id: 1, sendingTime: 159, vin:"LX", errorContent: 6, faultCategory: 24},
-  {id: 2, sendingTime: 237, vin:"LX", errorContent: 9, faultCategory: 37},
-  {id: 3, sendingTime: 262, vin:"LX", errorContent: 16, faultCategory: 24},
-  {id: 4, sendingTime: 305, vin:"LX", errorContent: 3, faultCategory: 67},
-  {id: 5, sendingTime: 356, vin:"LX", errorContent: 16, faultCategory: 3},
-  {id: 6, sendingTime: 356, vin:"LX", errorContent: 16, faultCategory: 3},
-  {id: 7, sendingTime: 356, vin:"LX", errorContent: 16, faultCategory: 3},
-];
-
-const bigStatData = [
-  {
-    product: "Light Blue",
-    total: {
-      monthly: 4232,
-      weekly: 1465,
-      daily: 199,
-      percent: { value: 3.7, profit: false }
-    },
-    color: "primary",
-    registrations: {
-      monthly: { value: 830, profit: false },
-      weekly: { value: 215, profit: true },
-      daily: { value: 33, profit: true }
-    },
-    bounce: {
-      monthly: { value: 4.5, profit: false },
-      weekly: { value: 3, profit: true },
-      daily: { value: 3.25, profit: true }
-    }
-  },
-  {
-    product: "Sing App",
-    total: {
-      monthly: 754,
-      weekly: 180,
-      daily: 27,
-      percent: { value: 2.5, profit: true }
-    },
-    color: "warning",
-    registrations: {
-      monthly: { value: 32, profit: true },
-      weekly: { value: 8, profit: true },
-      daily: { value: 2, profit: false }
-    },
-    bounce: {
-      monthly: { value: 2.5, profit: true },
-      weekly: { value: 4, profit: false },
-      daily: { value: 4.5, profit: false }
-    }
-  },
-  {
-    product: "RNS",
-    total: {
-      monthly: 1025,
-      weekly: 301,
-      daily: 44,
-      percent: { value: 3.1, profit: true }
-    },
-    color: "secondary",
-    registrations: {
-      monthly: { value: 230, profit: true },
-      weekly: { value: 58, profit: false },
-      daily: { value: 15, profit: false }
-    },
-    bounce: {
-      monthly: { value: 21.5, profit: false },
-      weekly: { value: 19.35, profit: false },
-      daily: { value: 10.1, profit: true }
-    }
-  }
-];
-*/
 
 export default function Dashboard(props){
   const classes = useStyles();
@@ -176,11 +55,10 @@ export default function Dashboard(props){
 
   var [lineChartData, setLineChartData] = useState([]);
   var [rows, setRows] = useState([]);
-  var [bigStatData, setBigStatData] = useState([]);
 
   useEffect(() => {
     axios.post('/VisualChart/searchVisualChartByChartName', 
-            {"chartName":"dashboard-errorToday-"+errorTodayTimestamp})
+            {"chartName":"dashboard-daily-"+dailyTimestamp})
     .then(res => {
       if (res.status === 200){
         let data = eval('(' + res.request.response + ')');
@@ -195,22 +73,12 @@ export default function Dashboard(props){
         setErrorCarData(content.errorCarData);
         setErrorCategoryData(content.errorCategoryData);
         setErrorCategoryPie(content.errorCategoryPie);
-      }
-    })
-
-    axios.post('/VisualChart/searchVisualChartByChartName', 
-            {"chartName":"dashboard-weeklyError-"+lineChartTimestamp})
-    .then(res => {
-      if (res.status === 200){
-        let data = eval('(' + res.request.response + ')');
-        let content = data.chartData.replace(/'/g,"\"");
-        content = JSON.parse(content);
-        setLineChartData(content);
+        setLineChartData(content.errorLastWeek);
       }
     })
     
-    axios.post('/CarWarning/searchCarWarningBySendingTimeList', 
-            {"sendingTime": realtimeErrorTimestamp})
+    axios.post('/CarWarning/searchCarWarningBySendingTimeBetweenList', 
+            {"sendingTime": realtimeErrorTimestamp, "remark": Date.now()})
     .then(res => {
       if (res.status === 200){
         let data = eval('(' + res.request.response + ')');
@@ -228,7 +96,7 @@ export default function Dashboard(props){
           let faultIndex = parseInt(faultCategory, 16);
           data[i]['faultCategory'] = FAULT_CATEGORY_MAPPING[faultIndex];
         }
-        setRows(data);
+        setRows(data.reverse());
       }
     })
   }, []);
@@ -238,7 +106,7 @@ export default function Dashboard(props){
       <Grid container spacing={4}>
         <Grid item lg={3} md={4} sm={6} xs={12}>
           <Widget
-            title="过去24小时故障"
+            title="昨日故障"
             upperTitle
             bodyClass={classes.fullHeightBody}
             className={classes.card}
@@ -309,7 +177,7 @@ export default function Dashboard(props){
                   colorBrightness="secondary"
                   className={classes.legendElementText}
                 >
-                  过去24小时故障
+                  昨日故障
                 </Typography>
               </div>
               <div className={classes.legendElement}>
@@ -330,7 +198,7 @@ export default function Dashboard(props){
                 colorBrightness="secondary"
                 className={classes.progressSectionTitle}
               >
-                过去24小时故障
+                昨日故障
               </Typography>
               <LinearProgress
                 variant="determinate"
@@ -359,7 +227,7 @@ export default function Dashboard(props){
         </Grid>
         <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="过去24小时故障概览"
+            title="昨日故障概览"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
@@ -439,7 +307,7 @@ export default function Dashboard(props){
           </Widget>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Widget title="过去24小时故障单元" upperTitle className={classes.card}>
+          <Widget title="昨日故障单元" upperTitle className={classes.card}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <ResponsiveContainer width="100%" height={144}>
@@ -492,19 +360,8 @@ export default function Dashboard(props){
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  tickFormatter={i => i + 1}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
-                  dataKey="date"
-                />
-                <YAxis
-                  ticks={[]}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
-                />
+                <XAxis dataKey="date" />
+                <YAxis />
                 <Tooltip />
                 <Legend />
                 <Line
@@ -533,7 +390,11 @@ export default function Dashboard(props){
             <Table className={classes.table} stickyHeader aria-label="实时故障信息">
               <TableHead>
                 <TableRow>
-                  <TableCell>时间</TableCell>
+                  <TableCell>
+                    <Typography variant="h6" className={classes.text}>
+                      过去24h实时故障
+                    </Typography>
+                  </TableCell>
                   <TableCell align="right">VIN</TableCell>
                   <TableCell align="right">故障类别</TableCell>
                   <TableCell align="right">错误内容</TableCell>
@@ -554,11 +415,6 @@ export default function Dashboard(props){
             </Table>
           </TableContainer>
         </Grid>
-        {bigStatData.map(stat => (
-          <Grid item md={4} sm={6} xs={12} key={stat.product}>
-            <BigStat {...stat} />
-          </Grid>
-        ))}
       </Grid>
     </>
   );
@@ -570,11 +426,10 @@ function appendZero(obj){
 }
 var date = new Date();
 var year = date.getFullYear();
-var month = appendZero(date.getMonth() + 1);
-var day = appendZero(date.getDate());
 var hour = appendZero(date.getHours());
-var errorTodayTimestamp = ""+year+month+day+hour;
+var min = appendZero(date.getMinutes());
+var sec = appendZero(date.getSeconds());
 const hasTimestamp = new Date() - new Date(year.toString());
 const hasDays = Math.ceil(hasTimestamp / 86400000);
-var lineChartTimestamp = ""+year+hasDays;
-var realtimeErrorTimestamp = Date.now() - 3600000;
+var dailyTimestamp = ""+year+hasDays;
+var realtimeErrorTimestamp = Date.now() - 86400000;

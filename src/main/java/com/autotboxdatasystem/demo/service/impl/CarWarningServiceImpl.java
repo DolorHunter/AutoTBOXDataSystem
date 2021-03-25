@@ -127,17 +127,19 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public List<CarWarningEntity> searchCarWarningBySendingTimeList(CarWarningEntity carWarningEntity) {
-        String sendingTime = carWarningEntity.getSendingTime();
-        return carWarningDAO.findBySendingTimeGreaterThanEqual(sendingTime);
+    public List<CarWarningEntity> searchCarWarningBySendingTimeBetweenList(CarWarningEntity carWarningEntity) {
+        String time1 = carWarningEntity.getSendingTime();
+        String time2 = carWarningEntity.getRemark();
+        return carWarningDAO.findBySendingTimeBetween(time1, time2);
     }
 
     @Override
-    public Page<CarWarningEntity> searchCarWarningBySendingTimePager(CarWarningEntity carWarningEntity) {
-        String sendingTime = carWarningEntity.getSendingTime();
+    public Page<CarWarningEntity> searchCarWarningBySendingTimeBetweenPager(CarWarningEntity carWarningEntity) {
+        String time1 = carWarningEntity.getSendingTime();
+        String time2 = carWarningEntity.getRemark();
         Integer pageIndex = carWarningEntity.getPageIndex();
         Integer pageSize = carWarningEntity.getPageSize();
-        return carWarningDAO.findBySendingTimeGreaterThanEqual(sendingTime, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
+        return carWarningDAO.findBySendingTimeBetween(time1, time2, PageRequest.of(pageIndex, pageSize, Sort.by("id")));
     }
 
     @Override

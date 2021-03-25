@@ -1,4 +1,5 @@
 import HttpUtil
+import time
 import datetime
 
 FAULT_CATEGORY_MAPPING = ["TBOX", "EMS", "ESC", "EPS", "TCU", "SRS", "ICM", "MP5", "PEPS", "PDC", "ESCL", "HVAC", "AVM", "BCM", "BSD", "SLC", "MRR", "MPC", "LDFC", "APA", "IMMO", "CFP", "PLG", "FPCM" ]
@@ -9,63 +10,78 @@ def error_digits_counter(data):
     error_vin_category_pair = set()
     error_vin = set()
     error_content_counter = 0
-    for d in data:
-        error_content_counter += 1
-        error_vin.add(d['vin'])
-        error_vin_category_pair.add((d["vin"], d["faultCategory"]))
+    if data:
+        for d in data:
+            error_content_counter += 1
+            error_vin.add(d['vin'])
+            error_vin_category_pair.add((d["vin"], d["faultCategory"]))
     return {"vin": len(error_vin), "faultCategory": len(error_vin_category_pair),
             "errorContent": error_content_counter}
 
 
-def today_error_counter():
-    data = HttpUtil.get_my_warning_response(timespan=24, hourly=True)
+# 昨日故障统计
+def yesterday_error_counter():
+    localtime = time.localtime()
+    end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
+    start_time = end_time - 24 * 60 * 60 * 1000
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
     return error_digits_counter(data)
 
 
+# 过去一周故障统计
 def weekly_error_counter():
-    data = HttpUtil.get_my_warning_response(timespan=24 * 7, hourly=True)
+    localtime = time.localtime()
+    end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
+    start_time = end_time - 7 * 24 * 60 * 60 * 1000
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
     return error_digits_counter(data)
 
 
-def hourly_error_counter():
-    counter_list = []
+# 昨日故障统计(小时图)
+def yesterday_error_counter_hourly():
     error_list = {'vin': [], 'faultCategory': [], 'errorContent': []}
-    for hour in range(24, -1, -1):
-        data = HttpUtil.get_my_warning_response(timespan=hour, hourly=True)
-        counter_list.append(error_digits_counter(data))
+    localtime = time.localtime()
+    yesterday = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec - 24 * 60 * 60)*1000
     for i in range(0, 24):
-        error_car = counter_list[i]['vin'] - counter_list[i + 1]['vin']
-        error_category = counter_list[i]['faultCategory'] - counter_list[i + 1]['faultCategory']
-        error_content = counter_list[i]['errorContent'] - counter_list[i + 1]['errorContent']
-        error_list['vin'].append({'value': error_car})
-        error_list['faultCategory'].append({'value': error_category})
-        error_list['errorContent'].append({'value': error_content})
+        start_time = yesterday + i * 60 * 60 * 1000
+        end_time = start_time + 60 * 60 * 1000
+        data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+        counter = error_digits_counter(data)
+        error_list['vin'].append({'value': counter['vin']})
+        error_list['faultCategory'].append({'value': counter['faultCategory']})
+        error_list['errorContent'].append({'value': counter['errorContent']})
     return error_list
 
 
-def daily_error_counter():
-    counter_list = []
+# 过去一周故障统计(天图)
+def last_week_error_counter_daily():
     error_list = []
-    for day in range(7, -1, -1):
-        data = HttpUtil.get_my_warning_response(timespan=day, daily=True)
-        counter_list.append(error_digits_counter(data))
+    localtime = time.localtime()
+    last_week = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec - 7 * 24 * 60 * 60)*1000
     for i in range(0, 7):
-        error_car = counter_list[i]['vin'] - counter_list[i + 1]['vin']
-        error_category = counter_list[i]['faultCategory'] - counter_list[i + 1]['faultCategory']
-        error_content = counter_list[i]['errorContent'] - counter_list[i + 1]['errorContent']
-        error_list.append({"name": str(datetime.datetime.date(datetime.datetime.now())).replace("-", "/"),
-                           "故障车辆": str(error_car), "故障单元": str(error_category), "故障": str(error_content)})
+        start_time = last_week + i * 24 * 60 * 60 * 1000
+        end_time = start_time + 24 * 60 * 60 * 1000
+        data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+        counter = error_digits_counter(data)
+        error_list.append({"date": str(datetime.datetime.fromtimestamp(start_time / 1000).date()),
+                           "故障车辆": str(counter['vin']), "故障单元": str(counter['faultCategory']),
+                           "故障": str(counter['errorContent'])})
     return error_list
 
 
+# 故障单元统计
 def fault_category_counter():
-    data = HttpUtil.get_my_warning_response(timespan=24, hourly=True)
+    localtime = time.localtime()
+    end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
+    start_time = end_time - 24 * 60 * 60 * 1000
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
     fault_category_dict = {}
-    for d in data:
-        fault_category = d['faultCategory']
-        if fault_category not in fault_category_dict:
-            fault_category_dict[fault_category] = 0
-        fault_category_dict[fault_category] += 1
+    if data:
+        for d in data:
+            fault_category = d['faultCategory']
+            if fault_category not in fault_category_dict:
+                fault_category_dict[fault_category] = 0
+            fault_category_dict[fault_category] += 1
     fault_category_dict = dict(sorted(fault_category_dict.items(), key=lambda item: item[1], reverse=True))
     counter = 0
     pie = []
@@ -87,28 +103,28 @@ def fault_category_counter():
     return pie
 
 
+# 每日更新故障(昨日故障分析，过去七天故障分析)
 def daily_analysis():
-    today = today_error_counter()
+    yesterday = yesterday_error_counter()
     weekly = weekly_error_counter()
-    error_today = today['errorContent']
+    error_yesterday = yesterday['errorContent']
     error_weekly = weekly['errorContent'] / 7
-    if error_today > 0 and error_weekly > 0:
-        zoom = 80 / max(int(error_today), int(error_weekly))
-        error_today *= zoom
+    if error_yesterday > 0 and error_weekly > 0:
+        zoom = 80 / max(int(error_yesterday), int(error_weekly))
+        error_yesterday *= zoom
         error_weekly *= zoom
-    error_chart_data = hourly_error_counter()
+    error_chart_data = yesterday_error_counter_hourly()
     pie = fault_category_counter()
-    error = {'errorCounter': today['errorContent'],
-             'errorCarCounter': today['vin'],
-             'errorCategoryCounter': today['faultCategory'],
-             'errorToday': error_today,
+    # 过去七天故障分析
+    error_last_week = last_week_error_counter_daily()
+    error = {'errorCounter': yesterday['errorContent'],
+             'errorCarCounter': yesterday['vin'],
+             'errorCategoryCounter': yesterday['faultCategory'],
+             'errorYesterday': error_yesterday,
              'errorAvgWeekly': error_weekly,
              'errorData': error_chart_data['errorContent'],
              'errorCarData': error_chart_data['vin'],
              'errorCategoryData': error_chart_data['faultCategory'],
-             'errorCategoryPie': pie}
+             'errorCategoryPie': pie,
+             'errorLastWeek': error_last_week}
     return error
-
-
-def weekly_analysis():
-    return daily_error_counter()

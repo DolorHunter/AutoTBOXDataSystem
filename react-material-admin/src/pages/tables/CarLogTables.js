@@ -29,18 +29,13 @@ export default class Tables extends Component {
       { name: "heading", label: "方向" },
       { name: "altitude", label: "高度" }
     ],
-    page: {
-      "pageIndex": 0,
-      "pageSize": 30,
-    }
   }
 
   componentDidMount() {
-    axios.post('/CarLog/searchAllCarLogPager', this.state.page)
+    axios.post('/CarLog/searchAllCarLogList', {})
       .then(res => {
         if (res.status === 200) {
-          let data = eval('(' + res.request.response + ')');
-          let datatableData = data.content;
+          let datatableData = eval('(' + res.request.response + ')');
           this.setState({ datatableData });
         }
       })

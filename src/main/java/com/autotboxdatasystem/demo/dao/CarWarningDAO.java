@@ -28,9 +28,9 @@ public interface CarWarningDAO extends PagingAndSortingRepository<CarWarningEnti
 
     Page<CarWarningEntity> findByFaultCategory(String faultCategory, Pageable pageable);
 
-    List<CarWarningEntity> findBySendingTimeGreaterThanEqual(String sendingTime);
+    List<CarWarningEntity> findBySendingTimeBetween(String time1, String time2);
 
-    Page<CarWarningEntity> findBySendingTimeGreaterThanEqual(String sendingTime, Pageable pageable);
+    Page<CarWarningEntity> findBySendingTimeBetween(String time1, String time2, Pageable pageable);
 
     List<CarWarningEntity> findAll();
 

@@ -54,18 +54,13 @@ export default class Tables extends Component {
       { name: "startStopSystemNotWork", label: "启动停止系统不起作用" },
       { name: "autoEmergencyBrakeSysFailure", label: "自动紧急制动系统故障" },
     ],
-    page: {
-      "pageIndex": 0,
-      "pageSize": 30,
-    }
   }
 
   componentDidMount() {
-    axios.post('/CarWarning/searchAllCarWarningPager', this.state.page)
+    axios.post('/CarWarning/searchAllCarWarningList', {})
       .then(res => {
         if (res.status === 200) {
-          let data = eval('(' + res.request.response + ')');
-          let datatableData = data.content;
+          let datatableData = eval('(' + res.request.response + ')');
           this.setState({ datatableData });
         }
       })
