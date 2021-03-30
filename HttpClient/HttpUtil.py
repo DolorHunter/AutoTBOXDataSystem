@@ -9,6 +9,8 @@ WARNING_URL = ""
 WARNING_SAVE_URL = "http://127.0.0.1:8080/CarWarning/addCarWarning"
 # 获取故障地址
 MY_WARNING_URL = "http://127.0.0.1:8080/CarWarning/searchCarWarningBySendingTimeBetweenList"
+# 获取故障车辆信息地址
+MY_WARNING_CAR_URL = "http://127.0.0.1:8080/CarWarning/searchUserCarWarningDetailBySendingTimeBetween"
 # 存放数据报表地址
 MY_SAVE_VISUAL_CHART_URL = "http://127.0.0.1:8080/VisualChart/addVisualChart"
 
@@ -73,14 +75,26 @@ def save_warning_to_my_database(response):
                     print(datetime.datetime.now(), save_response, "Save warning to my DB failed!!")
 
 
-# 从我的数据库取出数据
+# 从我的数据库取出故障数据
 def get_my_warning_response(start_time, end_time):
     warning_input = {'sendingTime': start_time, 'remark': end_time}
     # POST方式请求故障信息
     response = requests.post(MY_WARNING_URL, json=warning_input, timeout=5)
     if response.status_code != 200:
         print(datetime.datetime.now(), response, "Get my warning response failed!!")
-        exit(500)
+        exit(response.status_code)
+    else:
+        return response.json()
+
+
+# 从我的数据库取出故障车辆数据(车辆名称, 4S店等信息)
+def get_my_warning_car_response(start_time, end_time):
+    warning_input = {'sendingTime': start_time, 'remark': end_time}
+    # POST方式请求故障信息
+    response = requests.post(MY_WARNING_CAR_URL, json=warning_input, timeout=5)
+    if response.status_code != 200:
+        print(datetime.datetime.now(), response, "Get my warning response failed!!")
+        exit(response.status_code)
     else:
         return response.json()
 

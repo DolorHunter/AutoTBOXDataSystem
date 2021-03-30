@@ -33,22 +33,6 @@ const structure = [
   { id: 2, label: "车辆故障信息表", link: "/app/car/warningTables", icon: <TableIcon /> },
   {
     id: 3,
-    label: "Typography",
-    link: "/app/typography",
-    icon: <TypographyIcon />,
-  },
-  {
-    id: 4,
-    label: "UI Elements",
-    link: "/app/ui",
-    icon: <UIElementsIcon />,
-    children: [
-      { label: "Icons", link: "/app/ui/icons" },
-      { label: "Maps", link: "/app/ui/maps" },
-    ],
-  },
-  {
-    id: 5,
     label: "车辆",
     link: "/app/car",
     icon: <CarIcon />,
@@ -60,7 +44,7 @@ const structure = [
     ],
   },
   {
-    id: 6,
+    id: 4,
     label: "用户",
     link: "/app/user",
     icon: <UserIcon />,

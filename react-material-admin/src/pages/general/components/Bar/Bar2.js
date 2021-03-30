@@ -10,13 +10,13 @@ import { ResponsiveBar } from '@nivo/bar'
 export default ({ data }) => (
 	<ResponsiveBar
 		data={data}
-		keys={['hot dog', 'burger', 'sandwich', 'kebab', 'fries', 'donut']}
-		indexBy="country"
+		keys={["TBOX", "EMS", "ESC", "EPS", "TCU", "SRS", "ICM", "MP5", "PEPS", "PDC", "ESCL", "HVAC", "AVM", "BCM", "BSD", "SLC", "MRR", "MPC", "LDFC", "APA", "IMMO", "CFP", "PLG", "FPCM"]}
+		indexBy="4SShop"
 		margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
 		padding={0.3}
 		valueScale={{ type: 'linear' }}
 		indexScale={{ type: 'band', round: true }}
-		colors={{ scheme: 'nivo' }}
+		colors={{ scheme: 'spectral' }}
 		defs={[
 			{
 				id: 'dots',
@@ -58,7 +58,7 @@ export default ({ data }) => (
 			tickSize: 5,
 			tickPadding: 5,
 			tickRotation: 0,
-			legend: 'country',
+			legend: '4S门店',
 			legendPosition: 'middle',
 			legendOffset: 32
 		}}
@@ -66,7 +66,7 @@ export default ({ data }) => (
 			tickSize: 5,
 			tickPadding: 5,
 			tickRotation: 0,
-			legend: 'food',
+			legend: '故障单元',
 			legendPosition: 'middle',
 			legendOffset: -40
 		}}

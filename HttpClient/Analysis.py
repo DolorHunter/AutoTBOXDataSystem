@@ -2,7 +2,7 @@ import HttpUtil
 import time
 import datetime
 
-FAULT_CATEGORY_MAPPING = ["TBOX", "EMS", "ESC", "EPS", "TCU", "SRS", "ICM", "MP5", "PEPS", "PDC", "ESCL", "HVAC", "AVM", "BCM", "BSD", "SLC", "MRR", "MPC", "LDFC", "APA", "IMMO", "CFP", "PLG", "FPCM" ]
+FAULT_CATEGORY_MAPPING = ["TBOX", "EMS", "ESC", "EPS", "TCU", "SRS", "ICM", "MP5", "PEPS", "PDC", "ESCL", "HVAC", "AVM", "BCM", "BSD", "SLC", "MRR", "MPC", "LDFC", "APA", "IMMO", "CFP", "PLG", "FPCM"]
 
 
 # 统计data中故障车辆, 故障单元和故障的数量
@@ -151,4 +151,125 @@ def dashboard_daily_analysis():
              'errorCategoryPie': pie,
              'errorLastWeek': error_last_week,
              'errorYearly': error_yearly}
+    return error
+
+
+# 获取30天数据故障车辆
+def get_30days_data():
+    localtime = time.localtime()
+    end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
+    start_time = end_time - 30 * 24 * 60 * 60 * 1000
+    data = HttpUtil.get_my_warning_car_response(start_time=start_time, end_time=end_time)
+    return data
+
+
+# 散点图生成
+def gen_scatter_plot(data):
+    scatter_plot = []
+    error = {}
+    if data:
+        for d in data:
+            fault_category = d[3]
+            error_list_count = d[6]
+            if fault_category not in error:
+                error[fault_category] = {}
+            if error_list_count not in error[fault_category]:
+                error[fault_category][error_list_count] = 0
+            error[fault_category][error_list_count] += 1
+    for e in error:
+        category_data = []
+        for ek in error[e].keys():
+            category_data.append({'x': ek, 'y': error[e][ek]})
+        key_mapping = FAULT_CATEGORY_MAPPING[int(e, 16)]
+        scatter_plot.append({'id': key_mapping, 'data': category_data})
+    return scatter_plot
+
+
+# 树形图生成
+def gen_treemap(data):
+    error = {}
+    if data:
+        for d in data:
+            car_name = d[2]
+            fault_category = d[3]
+            error_detail = d[5]
+            if car_name not in error:
+                error[car_name] = {}
+            if fault_category not in error[car_name]:
+                error[car_name][fault_category] = {}
+            if error_detail not in error[car_name][fault_category]:
+                error[car_name][fault_category][error_detail] = 0
+            error[car_name][fault_category][error_detail] += 1
+    treemap_data = []
+    for e in error:
+        treemap_father_data = []
+        for ek in error[e].keys():
+            treemap_children_data = []
+            for ekk in error[e][ek]:
+                grand_children = {'name': ekk, 'value': error[e][ek][ekk]}
+                treemap_children_data.append(grand_children)
+            key_mapping = FAULT_CATEGORY_MAPPING[int(ek, 16)]
+            children = {'name': key_mapping, 'children': treemap_children_data}
+            treemap_father_data.append(children)
+        father = {'name': e, 'children': treemap_father_data}
+        treemap_data.append(father)
+    treemap = {'name': '故障', 'children': treemap_data}
+    return treemap
+
+
+# 条形图生成
+def gen_bar(data):
+    bar = []
+    error = {}
+    if data:
+        for d in data:
+            car_name = d[2]
+            fault_category = d[3]
+            if car_name not in error:
+                error[car_name] = {}
+            if fault_category not in error[car_name]:
+                error[car_name][fault_category] = 0
+            error[car_name][fault_category] += 1
+    for e in error:
+        bar_data = {'carName': e}
+        for ek in error[e].keys():
+            key_mapping = FAULT_CATEGORY_MAPPING[int(ek, 16)]
+            bar_data[key_mapping] = error[e][ek]
+        bar.append(bar_data)
+    return bar
+
+
+# 条形图生成2
+def gen_bar2(data):
+    bar = []
+    error = {}
+    if data:
+        for d in data:
+            _4SShop = d[9]
+            fault_category = d[3]
+            if _4SShop not in error:
+                error[_4SShop] = {}
+            if fault_category not in error[_4SShop]:
+                error[_4SShop][fault_category] = 0
+            error[_4SShop][fault_category] += 1
+    for e in error:
+        bar_data = {'4SShop': e}
+        for ek in error[e].keys():
+            key_mapping = FAULT_CATEGORY_MAPPING[int(ek, 16)]
+            bar_data[key_mapping] = error[e][ek]
+        bar.append(bar_data)
+    return bar
+
+
+# 概览(general)的每日更新故障(散点图, 树形图)
+def general_daily_analysis():
+    data = get_30days_data()
+    scatter_plot = gen_scatter_plot(data)
+    treemap = gen_treemap(data)
+    bar = gen_bar(data)
+    bar2 = gen_bar2(data)
+    error = {'scatterPlot': scatter_plot,
+             'treemap': treemap,
+             'bar': bar,
+             'bar2': bar2}
     return error

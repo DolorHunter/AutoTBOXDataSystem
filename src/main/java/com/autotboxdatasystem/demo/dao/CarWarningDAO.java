@@ -33,12 +33,22 @@ public interface CarWarningDAO extends PagingAndSortingRepository<CarWarningEnti
 
     Page<CarWarningEntity> findBySendingTimeBetween(String time1, String time2, Pageable pageable);
 
-    @Query("select cw.sendingTime, cwd.carType, cw.faultCategory, cwd.errorDetail " +
-           "from CarWarningEntity as cw,  CarWarningDetailEntity as cwd " +
+    @Query("select cw.sendingTime, uc.carName, cw.faultCategory, cwd.errorDetail " +
+           "from CarWarningEntity as cw, CarWarningDetailEntity as cwd, UserCarEntity as uc " +
            "where substring(cw.vin, 1,6) = cwd.carType and " +
            "cw.errorContent = cwd.errorContent and " +
            "cw.sendingTime BETWEEN ?1 and ?2")
-    List<Object> findDetailBySendingTimeBetween(String time1, String time2);
+    List<Object> findCarWarningDetailBySendingTimeBetween(String time1, String time2);
+
+    @Query("select cw.vin, cwd.carType, uc.carName, cw.faultCategory, " +
+           "cw.errorContent, cwd.errorDetail, cw.errorListCount, " +
+           "uc.saleLoc, uc.saleTime, uc._4SShop " +
+           "from CarWarningEntity as cw, CarWarningDetailEntity as cwd, UserCarEntity as uc " +
+           "where substring(cw.vin, 1,6) = cwd.carType and " +
+           "cw.vin = uc.vin and " +
+           "cw.errorContent = cwd.errorContent and " +
+           "cw.sendingTime BETWEEN ?1 and ?2")
+    List<Object> findUserCarWarningDetailBySendingTimeBetween(String time1, String time2);
 
     List<CarWarningEntity> findAll();
 

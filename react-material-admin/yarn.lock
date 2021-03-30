@@ -1612,6 +1612,18 @@
     lodash "^4.17.11"
     react-spring "9.0.0-rc.3"
 
+"@nivo/radar@^0.66.0":
+  version "0.66.0"
+  resolved "https://registry.npm.taobao.org/@nivo/radar/download/@nivo/radar-0.66.0.tgz#9b6a8d0d05be3a4f6c57ecad0136b9f175c1656c"
+  integrity sha1-m2qNDQW+Ok9sV+ytATa58XXBZWw=
+  dependencies:
+    "@nivo/colors" "0.66.0"
+    "@nivo/legends" "0.66.0"
+    "@nivo/tooltip" "0.66.0"
+    d3-scale "^3.0.0"
+    d3-shape "^1.3.5"
+    react-spring "9.0.0-rc.3"
+
 "@nivo/scales@0.66.0":
   version "0.66.0"
   resolved "https://registry.npm.taobao.org/@nivo/scales/download/@nivo/scales-0.66.0.tgz#0005a1b5eabeaa4bdf1478f72a7596373fcfad69"

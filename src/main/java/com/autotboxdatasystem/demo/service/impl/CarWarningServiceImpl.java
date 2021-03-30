@@ -146,7 +146,14 @@ public class CarWarningServiceImpl implements CarWarningService {
     public List<Object> searchCarWarningDetailBySendingTimeBetween(CarWarningEntity carWarningEntity) {
         String time1 = carWarningEntity.getSendingTime();
         String time2 = carWarningEntity.getRemark();
-        return carWarningDAO.findDetailBySendingTimeBetween(time1, time2);
+        return carWarningDAO.findCarWarningDetailBySendingTimeBetween(time1, time2);
+    }
+
+    @Override
+    public List<Object> searchUserCarWarningDetailBySendingTimeBetween(CarWarningEntity carWarningEntity) {
+        String time1 = carWarningEntity.getSendingTime();
+        String time2 = carWarningEntity.getRemark();
+        return carWarningDAO.findUserCarWarningDetailBySendingTimeBetween(time1, time2);
     }
 
     @Override

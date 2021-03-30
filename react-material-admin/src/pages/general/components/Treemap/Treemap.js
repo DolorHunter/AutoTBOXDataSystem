@@ -17,6 +17,7 @@ export default ({ data }) => (
     labelSkipSize={12}
     labelTextColor={{ from: 'color', modifiers: [['darker', 1.2]] }}
     parentLabelTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+    colors={{ scheme: 'spectral' }}
     borderColor={{ from: 'color', modifiers: [['darker', 0.1]] }}
   />
 )
