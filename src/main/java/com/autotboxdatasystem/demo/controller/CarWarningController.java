@@ -135,6 +135,14 @@ public class CarWarningController {
         //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }
 
+    // 查找时间内的车辆故障
+    @PostMapping(path = "/searchCarWarningDetailBySendingTimeBetween")
+    public @ResponseBody
+    List<Object> searchCarWarningDetailBySendingTimeBetween(@RequestBody CarWarningEntity carWarningEntity) {
+        return carWarningService.searchCarWarningDetailBySendingTimeBetween(carWarningEntity);
+        //return new ResponseEntity<>("Succeed.", HttpStatus.OK);
+    }
+
     // 查找全部车辆故障
     @PostMapping(path = "/searchAllCarWarningList")
     public @ResponseBody

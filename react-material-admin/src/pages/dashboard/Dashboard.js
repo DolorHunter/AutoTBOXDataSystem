@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Grid,
   LinearProgress,
+  Container,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import Table from '@material-ui/core/Table';
@@ -34,14 +35,15 @@ import useStyles from "./styles";
 import Widget from "../../components/Widget";
 import { Typography } from "../../components/Wrappers";
 import Dot from "../../components/Sidebar/components/Dot";
+import Calender from "./components/Calender/Calender";
 
 import axios from 'axios';
 
-export default function Dashboard(props){
+export default function Dashboard(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const FAULT_CATEGORY_MAPPING = ["TBOX", "EMS", "ESC", "EPS", "TCU", "SRS", "ICM", "MP5", "PEPS", "PDC", "ESCL", "HVAC", "AVM", "BCM", "BSD", "SLC", "MRR", "MPC", "LDFC", "APA", "IMMO", "CFP", "PLG", "FPCM" ]
+  const FAULT_CATEGORY_MAPPING = ["TBOX", "EMS", "ESC", "EPS", "TCU", "SRS", "ICM", "MP5", "PEPS", "PDC", "ESCL", "HVAC", "AVM", "BCM", "BSD", "SLC", "MRR", "MPC", "LDFC", "APA", "IMMO", "CFP", "PLG", "FPCM"]
 
   var [errorCounter, setErrorCounter] = useState(0);
   var [errorCarCounter, setErrorCarCounter] = useState(0);
@@ -54,56 +56,62 @@ export default function Dashboard(props){
   var [errorCategoryPie, setErrorCategoryPie] = useState([]);
 
   var [lineChartData, setLineChartData] = useState([]);
-  var [rows, setRows] = useState([]);
+  var [realtimeData, setrealtimeData] = useState([]);
+  var [calenderData, setCalenderData] = useState([]);
 
   useEffect(() => {
-    axios.post('/VisualChart/searchVisualChartByChartName', 
-            {"chartName":"dashboard-daily-"+dailyTimestamp})
-    .then(res => {
-      if (res.status === 200){
-        let data = eval('(' + res.request.response + ')');
-        let content = data.chartData.replace(/'/g,"\"");
-        content = JSON.parse(content);
-        setErrorCounter(content.errorCounter);
-        setErrorCarCounter(content.errorCarCounter);
-        setErrorCategoryCounter(content.errorCategoryCounter);
-        setErrorToday(content.errorToday);
-        setErrorAvgWeekly(content.errorAvgWeekly);
-        setErrorData(content.errorData);
-        setErrorCarData(content.errorCarData);
-        setErrorCategoryData(content.errorCategoryData);
-        setErrorCategoryPie(content.errorCategoryPie);
-        setLineChartData(content.errorLastWeek);
-      }
-    })
-    
-    axios.post('/CarWarning/searchCarWarningBySendingTimeBetweenList', 
-            {"sendingTime": realtimeErrorTimestamp, "remark": Date.now()})
-    .then(res => {
-      if (res.status === 200){
-        let data = eval('(' + res.request.response + ')');
-        for(var i=0;i<data.length;i++){
-          let timestamp = Number(data[i]['sendingTime']);
-          let date = new Date(timestamp);
-          let year = date.getFullYear();
-          let month = appendZero(date.getMonth() + 1);
-          let day = appendZero(date.getDate());
-          let hour = appendZero(date.getHours());
-          let min = appendZero(date.getHours());
-          data[i]['sendingTime'] = ""+year+"/"+month+"/"+day+" "+hour+":"+min;
-
-          let faultCategory = data[i]['faultCategory'];
-          let faultIndex = parseInt(faultCategory, 16);
-          data[i]['faultCategory'] = FAULT_CATEGORY_MAPPING[faultIndex];
+    axios.post('/VisualChart/searchVisualChartByChartName',
+      { "chartName": "dashboard-daily-" + dailyTimestamp })
+      .then(res => {
+        if (res.status === 200) {
+          const data = JSON.parse(res.request.response);
+          let content = data.chartData.replace(/'/g, "\"");
+          content = JSON.parse(content);
+          setErrorCounter(content.errorCounter);
+          setErrorCarCounter(content.errorCarCounter);
+          setErrorCategoryCounter(content.errorCategoryCounter);
+          setErrorToday(content.errorToday);
+          setErrorAvgWeekly(content.errorAvgWeekly);
+          setErrorData(content.errorData);
+          setErrorCarData(content.errorCarData);
+          setErrorCategoryData(content.errorCategoryData);
+          setErrorCategoryPie(content.errorCategoryPie);
+          setLineChartData(content.errorLastWeek);
+          setCalenderData(content.errorYearly);
         }
-        setRows(data.reverse());
-      }
-    })
+      })
+  }, []);
+
+  useEffect(() => {
+    axios.post('/CarWarning/searchCarWarningDetailBySendingTimeBetween',
+      { "sendingTime": realtimeErrorTimestamp, "remark": Date.now() })
+      .then(res => {
+        if (res.status === 200) {
+          const data = JSON.parse(res.request.response);
+          for (var i = 0; i < data.length; i++) {
+            let timestamp = Number(data[i][0]);
+            let date = new Date(timestamp);
+            let year = date.getFullYear();
+            let month = appendZero(date.getMonth() + 1);
+            let day = appendZero(date.getDate());
+            let hour = appendZero(date.getHours());
+            let min = appendZero(date.getHours());
+            let sec = appendZero(date.getSeconds());
+            data[i][0] = "" + year + "/" + month + "/" + day + " " + 
+                                     hour + ":" + min + ":" + sec;
+
+            let faultCategory = data[i][2];
+            let faultIndex = parseInt(faultCategory, 16);
+            data[i][2] = FAULT_CATEGORY_MAPPING[faultIndex];
+          }
+          setrealtimeData(data.reverse());
+        }
+      })
   }, []);
 
   return (
     <>
-      <Grid container spacing={4}>
+      <Grid container spacing={2}>
         <Grid item lg={3} md={4} sm={6} xs={12}>
           <Widget
             title="昨日故障"
@@ -114,24 +122,24 @@ export default function Dashboard(props){
             <div className={classes.visitsNumberContainer}>
               <Grid container item alignItems={"center"}>
                 <Grid item xs={6}>
-              <Typography size="xl" weight="medium" noWrap>
-                {errorCounter}
-              </Typography>
+                  <Typography size="xl" weight="medium" noWrap>
+                    {errorCounter}
+                  </Typography>
                 </Grid>
                 <Grid item xs={6}>
-              <LineChart
-                width={100}
-                height={30}
-                data={errorData}
-              >
-                <Line
-                  type="natural"
-                  dataKey="value"
-                  stroke={theme.palette.success.main}
-                  strokeWidth={2}
-                  dot={false}
-                />
-              </LineChart>
+                  <LineChart
+                    width={100}
+                    height={30}
+                    data={errorData}
+                  >
+                    <Line
+                      type="natural"
+                      dataKey="value"
+                      stroke={theme.palette.success.main}
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  </LineChart>
                 </Grid>
               </Grid>
             </div>
@@ -157,7 +165,7 @@ export default function Dashboard(props){
                 <Typography color="text" colorBrightness="secondary" noWrap>
                   车辆平均故障
                 </Typography>
-                <Typography size="md">{(errorCounter/errorCarCounter).toFixed(2)}</Typography>
+                <Typography size="md">{(errorCounter / errorCarCounter).toFixed(2)}</Typography>
               </Grid>
             </Grid>
           </Widget>
@@ -239,8 +247,8 @@ export default function Dashboard(props){
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-              故障
-              </Typography> 
+                故障
+              </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
                   <AreaChart data={errorData}>
@@ -263,7 +271,7 @@ export default function Dashboard(props){
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-              故障车辆
+                故障车辆
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
@@ -287,7 +295,7 @@ export default function Dashboard(props){
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-              故障单元
+                故障单元
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
@@ -346,90 +354,107 @@ export default function Dashboard(props){
             </Grid>
           </Widget>
         </Grid>
-        <Grid item lg={6} md={16} sm={12} xs={24}>
-          <Widget title="过去一周故障情况" noBodyPadding upperTitle>
-            <ResponsiveContainer width="99%" height={400}>
-              <LineChart
-                height={400}
-                data={lineChartData}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="故障车辆"
-                  stroke={theme.palette.primary.main}
-                  activeDot={{ r: 8 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="故障单元"
-                  stroke={theme.palette.secondary.main}
-                  activeDot={{ r: 4 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="故障"
-                  stroke={theme.palette.warning.main}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </Widget>
-        </Grid>
-        <Grid item lg={6} md={16} sm={12} xs={24}>
-          <TableContainer component={Paper} style={{ height: 500 }}>
-            <Table className={classes.table} stickyHeader aria-label="实时故障信息">
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <Typography variant="h6" className={classes.text}>
-                      过去24h实时故障
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">VIN</TableCell>
-                  <TableCell align="right">故障类别</TableCell>
-                  <TableCell align="right">错误内容</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.id}>
-                    <TableCell component="th" scope="row">
-                      {row.sendingTime}
-                    </TableCell>
-                    <TableCell align="right">{row.vin}</TableCell>
-                    <TableCell align="right">{row.faultCategory}</TableCell>
-                    <TableCell align="right">{row.errorContent}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+        <Grid container spacing={2} direction="row">
+          <Grid item xs={6}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Widget title="过去一周故障情况" noBodyPadding upperTitle>
+                  <ResponsiveContainer width="99%" height={400}>
+                    <LineChart
+                      height={400}
+                      data={lineChartData}
+                      margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="date" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="故障车辆"
+                        stroke={theme.palette.primary.main}
+                        activeDot={{ r: 8 }}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="故障单元"
+                        stroke={theme.palette.secondary.main}
+                        activeDot={{ r: 4 }}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="故障"
+                        stroke={theme.palette.warning.main}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </Widget>
+              </Grid>
+              <Grid item xs={12}>
+                <Widget title="本年度故障情况" noBodyPadding upperTitle>
+                  <Grid item xs={12}>
+                    <ResponsiveContainer width="100%" height={175}>
+                      <Calender
+                        data={calenderData}
+                        height={175}
+                      />
+                    </ResponsiveContainer>
+                  </Grid>
+                </Widget>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={6}>
+            <Grid item xs={12}>
+              <TableContainer component={Paper} style={{ height: 720 }}>
+                <Table className={classes.table} stickyHeader aria-label="实时故障信息">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                        <Typography variant="h6" className={classes.text}>
+                          过去24h实时故障
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">车辆型号</TableCell>
+                      <TableCell align="right">故障单元</TableCell>
+                      <TableCell align="right">错误内容</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {realtimeData.map((row) => (
+                      <TableRow key={row.id}>
+                        <TableCell component="th" scope="row">
+                          {row[0]}
+                        </TableCell>
+                        <TableCell align="right">{row[1]}</TableCell>
+                        <TableCell align="right">{row[2]}</TableCell>
+                        <TableCell align="right">{row[3]}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </>
   );
 }
 // #####################################################################
-function appendZero(obj){
-  if(obj<10) return "0" +""+ obj;
+function appendZero(obj) {
+  if (obj < 10) return "0" + "" + obj;
   else return obj;
 }
 var date = new Date();
 var year = date.getFullYear();
-var hour = appendZero(date.getHours());
-var min = appendZero(date.getMinutes());
-var sec = appendZero(date.getSeconds());
 const hasTimestamp = new Date() - new Date(year.toString());
 const hasDays = Math.ceil(hasTimestamp / 86400000);
-var dailyTimestamp = ""+year+hasDays;
+var dailyTimestamp = "" + year + hasDays;
 var realtimeErrorTimestamp = Date.now() - 86400000;

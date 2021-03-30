@@ -37,6 +37,27 @@ def weekly_error_counter():
     return error_digits_counter(data)
 
 
+# 今年故障统计
+def yearly_error_counter():
+    localtime = time.localtime()
+    tm_today = datetime.date.today().timetuple().tm_yday
+    end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
+    start_time = end_time - tm_today * 24 * 60 * 60 * 1000
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+    error = {}
+    calender = []
+    if data:
+        for d in data:
+            date = str(datetime.datetime.fromtimestamp(int(d['sendingTime']) / 1000).date())
+            if date not in error:
+                error[date] = 0
+            error[date] += 1
+    if error:
+        for e in error.keys():
+            calender.append({"day": e, "value": error[e]})
+    return calender
+
+
 # 昨日故障统计(小时图)
 def yesterday_error_counter_hourly():
     error_list = {'vin': [], 'faultCategory': [], 'errorContent': []}
@@ -103,8 +124,8 @@ def fault_category_counter():
     return pie
 
 
-# 每日更新故障(昨日故障分析，过去七天故障分析)
-def daily_analysis():
+# 仪表盘(dashboard)的每日更新故障(昨日故障分析，过去七天故障分析)
+def dashboard_daily_analysis():
     yesterday = yesterday_error_counter()
     weekly = weekly_error_counter()
     error_yesterday = yesterday['errorContent']
@@ -115,8 +136,10 @@ def daily_analysis():
         error_weekly *= zoom
     error_chart_data = yesterday_error_counter_hourly()
     pie = fault_category_counter()
-    # 过去七天故障分析
+    # 过去七天故障统计
     error_last_week = last_week_error_counter_daily()
+    # 今年故障统计
+    error_yearly = yearly_error_counter()
     error = {'errorCounter': yesterday['errorContent'],
              'errorCarCounter': yesterday['vin'],
              'errorCategoryCounter': yesterday['faultCategory'],
@@ -126,5 +149,6 @@ def daily_analysis():
              'errorCarData': error_chart_data['vin'],
              'errorCategoryData': error_chart_data['faultCategory'],
              'errorCategoryPie': pie,
-             'errorLastWeek': error_last_week}
+             'errorLastWeek': error_last_week,
+             'errorYearly': error_yearly}
     return error

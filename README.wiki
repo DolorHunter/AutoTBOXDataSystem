@@ -271,7 +271,20 @@
 <tr><td>String</td><td>varchar(64)</td><td>autoEmergencyBrakeSysFailure</td><td>自动紧急制动系统故障</td></tr>
 </table>
 
-=== 1.1.11 CarWarrantyEntity ===
+=== 1.1.11 CarWarningDetailEntity ===
+
+车辆故障详细信息类, 关联车辆故障. 关联表car_warning_detail_entity.
+
+<table>
+<tr><th colspan="4" align="center">CarWarningDetailEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+<tr><td colspan="4" align="center">BaseEntity</td></tr>
+<tr><td>String</td><td>varchar(6)</td><td>carType</td><td>车辆型号(vin前六位)</td></tr>
+<tr><td>String</td><td>varchar(6)</td><td>faultCategory</td><td>错误类型</td></tr>
+<tr><td>String</td><td>varchar(6)</td><td>errorContent</td><td>错误内容</td></tr>
+<tr><td>String</td><td>varchar(255)</td><td>errorDetail</td><td>错误详情</td></tr>
+</table>
+
+=== 1.1.12 CarWarrantyEntity ===
 
 车辆保修类, 关联用户车辆和车辆保修. 关联表car_warranty_entity.
 
@@ -295,7 +308,7 @@
   <tr><td>Integer</td><td>int</td><td>transmissionScore</td><td>传动分数</td></tr>
 </table>
 
-=== 1.1.12 VisualChartEntity ===
+=== 1.1.13 VisualChartEntity ===
 
 视觉图表类. 关联表visual_chart_warranty_entity.
 
@@ -546,7 +559,27 @@
   <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障Pager</td></tr>
 </table>
 
-=== 1.2.10 CarWarrantyController ===
+=== 1.2.9 CarWarningDetailController ===
+
+车辆故障详细控制类.
+
+<table>
+  <tr><th colspan="5" align="center">CarWarningDetailController</th></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
+  <tr><td>addCarWarningDetail</td><td>/CarWarningDetail/addCarWarningDetail</td><td>carWarningDetailEntity</td><td>x</td><td>添加车辆故障详情</td></tr>
+  <tr><td>deleteCarWarningDetailById</td><td>/CarWarningDetail/deleteCarWarningDetailById</td><td>carWarningDetailEntity</td><td>x</td><td>故障ID硬删除故障详情</td></tr>
+  <tr><td>deleteCarWarningDetailByCarType</td><td>/CarWarningDetail/deleteCarWarningDetailByCarType</td><td>carWarningDetailEntity</td><td>x</td><td>车辆类型硬删除故障详情</td></tr>
+  <tr><td>updateStatusById</td><td>/CarWarningDetail/updateStatusById</td><td>carWarningDetailEntity</td><td>x</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarWarningDetail/updateRemarkById</td><td>carWarningDetailEntity</td><td>x</td><td>更新备注</td></tr>
+  <tr><td>searchCarWarningDetailById</td><td>/CarWarningDetail/searchCarWarningDetailById</td><td>carWarningDetailEntity</td><td>x</td><td>故障详情ID查找</td></tr>
+  <tr><td>searchCarWarningDetailByCarTypeAndErrorContent</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypeAndErrorContent</td><td>carWarningDetailEntity</td><td>x</td><td>车辆型号与故障内容查找故障</td></tr>
+  <tr><td>searchCarWarningDetailByCarTypeList</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypeList</td><td>carWarningDetailEntity</td><td>x</td><td>车辆类型查找List</td></tr>
+  <tr><td>searchCarWarningDetailByCarTypePager</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypePager</td><td>carWarningDetailEntity</td><td>x</td><td>车辆类型查找Pager</td></tr>
+  <tr><td>searchAllCarWarningDetailList</td><td>/CarWarningDetail/searchAllCarWarningDetailList</td><td>carWarningDetailEntity</td><td>x</td><td>查找全部车辆故障详情List</td></tr>
+  <tr><td>searchAllCarWarningDetailPager</td><td>/CarWarningDetail/searchAllCarWarningDetailPager</td><td>carWarningDetailEntity</td><td>x</td><td>查找全部车辆故障详情Pager</td></tr>
+</table>
+
+=== 1.2.11 CarWarrantyController ===
 
 车辆保修控制类.
 
@@ -565,7 +598,7 @@
   <tr><td>searchAllCarWarrantyPager</td><td>/CarWarranty/searchAllCarWarrantyPager</td><td>carWarrantyEntity</td><td>x</td><td>查找全部车辆保修Pager</td></tr>
 </table>
 
-=== 1.2.10 VisualChartController ===
+=== 1.2.12 VisualChartController ===
 
 视觉图表控制类.
 
@@ -639,24 +672,7 @@ root登录
 
 * Java正则判断示例 [https://howtodoinjava.com/java-regular-expression-tutorials/ HowToJava-Java Regex Tutorial]
 
-网络通信
-
-* GET/POST HttpUtil工具[https://blog.csdn.net/zhuchenglin830/article/details/90436748 java实现Http post（参数json格式）、get 请求的HttpUtil工具类]
-
-== 3.4 JSON ==
-
-* 多对象接受方法 [https://www.cnblogs.com/mahuan2/p/6008832.html spring接收json格式的多对象参数两种方法]
-* 阿里巴巴的开源JSON解析库 [https://github.com/alibaba/fastjson/wiki/Quick-Start-CN alibaba/fastjson]
-
-== 3.5 Code Lib ==
-
-* 代码示例在线查询 [https://www.codota.com/code codota]
-
-== 3.6 WikiText ==
-
-* Wikitext语法 [https://en.wikipedia.org/wiki/Help:Wikitext Wiki-Help:Wikitext]
-
-== 3.7 React ==
+== 3.4 React ==
 
 * React 介绍文档 [https://zh-hant.reactjs.org/docs/getting-started.html React 了解更多]
 * 从设计开始写React  (React 介绍文档 主要概念12)[https://zh-hant.reactjs.org/docs/thinking-in-react.html 用 React 思考]
@@ -667,13 +683,22 @@ root登录
 * Axios React请求交互(类ajax) [https://github.com/axios/axios GitHub axios/axios]
 * DigitalOcean-Axios React示例 [https://www.digitalocean.com/community/tutorials/react-axios-react DigitalOcean-How To Use Axios with React]
 * React-Hook 概觀 [https://zh-hant.reactjs.org/docs/hooks-overview.html React-Hook 概觀]
+* 谈谈React Hooks之useEffect [https://www.jianshu.com/p/7813d0c2ae67 谈谈React Hooks之useEffect]
 * nivo图表 [https://nivo.rocks/components nivo Components]
 * react-vis图表 [https://uber.github.io/react-vis/examples/showcases/plots react-vis]
 * APEXCharts图表 [https://apexcharts.com/docs/chart-types/line-chart/ APEXCharts]
 * Bootstrap Grids网格 [https://www.w3schools.com/bootstrap/bootstrap_grid_system.asp Bootstrap Grids]
 * react-grid-layout网格布局调整 [https://github.com/react-grid-layout/react-grid-layout react-grid-layout]
 
-== 3.8 JavaScript ==
+== 3.5 Code Lib ==
+
+* 代码示例在线查询 [https://www.codota.com/code codota]
+
+== 3.6 WikiText ==
+
+* Wikitext语法 [https://en.wikipedia.org/wiki/Help:Wikitext Wiki-Help:Wikitext]
+
+== 3.7 JavaScript ==
 
 * JavaScript 101[https://www.w3schools.com/js/default.asp w3school-JavaScript Tutorial]
 * JavaScript重新介紹 [https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/A_re-introduction_to_JavaScript mozilla-重新介紹JavaScript]

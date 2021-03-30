@@ -60,7 +60,7 @@ export default class Tables extends Component {
     axios.post('/CarWarning/searchAllCarWarningList', {})
       .then(res => {
         if (res.status === 200) {
-          let datatableData = eval('(' + res.request.response + ')');
+          const datatableData = JSON.parse(res.request.response);
           this.setState({ datatableData });
         }
       })

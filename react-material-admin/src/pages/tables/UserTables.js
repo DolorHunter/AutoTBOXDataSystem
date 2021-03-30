@@ -27,7 +27,7 @@ export default class Tables extends Component {
     axios.post('/User/searchAllUserList', {})
       .then(res => {
         if (res.status === 200) {
-          const datatableData = eval('(' + res.request.response + ')');
+          const datatableData = JSON.parse(res.request.response);
           this.setState({ datatableData });
         }
       })

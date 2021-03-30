@@ -36,6 +36,8 @@ public interface CarWarningService {
 
     Page<CarWarningEntity> searchCarWarningBySendingTimeBetweenPager(CarWarningEntity carWarningEntity);
 
+    List<Object> searchCarWarningDetailBySendingTimeBetween(CarWarningEntity carWarningEntity);
+
     List<CarWarningEntity> searchAllCarWarningList(CarWarningEntity carWarningEntity);
 
     Page<CarWarningEntity> searchAllCarWarningPager(CarWarningEntity carWarningEntity);

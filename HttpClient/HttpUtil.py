@@ -13,7 +13,6 @@ MY_WARNING_URL = "http://127.0.0.1:8080/CarWarning/searchCarWarningBySendingTime
 MY_SAVE_VISUAL_CHART_URL = "http://127.0.0.1:8080/VisualChart/addVisualChart"
 
 
-
 # 从服务器获取故障信息
 def get_warning_response():
     # 故障请求内容(request) 开始结束时间 String startTime, String endTime
@@ -81,6 +80,7 @@ def get_my_warning_response(start_time, end_time):
     response = requests.post(MY_WARNING_URL, json=warning_input, timeout=5)
     if response.status_code != 200:
         print(datetime.datetime.now(), response, "Get my warning response failed!!")
+        exit(500)
     else:
         return response.json()
 

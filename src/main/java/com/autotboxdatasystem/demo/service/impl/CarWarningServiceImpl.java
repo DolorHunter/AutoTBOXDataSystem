@@ -143,7 +143,14 @@ public class CarWarningServiceImpl implements CarWarningService {
     }
 
     @Override
-    public CarWarningEntity  searchExistCarWarningByVinAndSendingTimeAndErrorContentAndFaultCategory(CarWarningEntity carWarningEntity) {
+    public List<Object> searchCarWarningDetailBySendingTimeBetween(CarWarningEntity carWarningEntity) {
+        String time1 = carWarningEntity.getSendingTime();
+        String time2 = carWarningEntity.getRemark();
+        return carWarningDAO.findDetailBySendingTimeBetween(time1, time2);
+    }
+
+    @Override
+    public CarWarningEntity searchExistCarWarningByVinAndSendingTimeAndErrorContentAndFaultCategory(CarWarningEntity carWarningEntity) {
         String vin = carWarningEntity.getVin();
         String sendingTime = carWarningEntity.getSendingTime();
         String errorContent = carWarningEntity.getErrorContent();

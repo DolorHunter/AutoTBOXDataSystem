@@ -27,10 +27,8 @@ import Sidebar from "../Sidebar";
 import Dashboard from "../../pages/dashboard";
 import General from "../../pages/general";
 import Typography from "../../pages/typography";
-import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
 import Icons from "../../pages/icons";
-import Charts from "../../pages/charts";
 import CarTables from "../../pages/tables/CarTables";
 import CarLogTables from "../../pages/tables/CarLogTables";
 import CarWarningTables from "../../pages/tables/CarWarningTables";
@@ -63,7 +61,6 @@ function Layout(props) {
               <Route path="/app/general" component={General} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/car/warningTables" component={CarWarningTables} />
-              <Route path="/app/notifications" component={Notifications} />
               <Route
                 exact
                 path="/app/ui"
@@ -71,7 +68,6 @@ function Layout(props) {
               />
               <Route path="/app/ui/maps" component={Maps} />
               <Route path="/app/ui/icons" component={Icons} />
-              <Route path="/app/ui/charts" component={Charts} />
               <Route
                 exact
                 path="/app/car"
