@@ -14,4 +14,44 @@
 
 汽车TBOX数据采集及分析系统设计与实现
 
+## 预览
+
+![login](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162335_qvhgeh.webp)
+
+![register](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162321_bfzbyb.webp)
+
+登录与注册界面，沿用react-material-admin模板。
+
+![dashboard](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179632/blog/2021-03-31_160707_wfvliq.webp)
+
+数据面板/仪表盘对昨日故障，过去一周故障，本年度故障，过去24h实时故障做统计，并渲染图表。
+
+![general](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_160731_d7wnsr.webp)
+
+概览使用散列图对单元并发故障次数分布统计；使用树形图对车型/单元/故障占比统计；使用条形图对车型故障单元与4S店售出车辆故障单元统计。
+
+![table](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162249_vwiity.webp)
+
+车辆故障信息表对数据库中的故障信息进行读取并且支持导出/下载。
+
+## 使用
+
+数据库：安装MySQL到本地或服务器（其他应该也行，只要JPA支持）。
+
+后端：安装Maven（包管理工具），安装Spring包环境(刷新maven自动下载)，安装Tomcat（服务）。
+
+前端：安装Nodejs，安装yarn或npm。
+
+分别启动Spring和React（命令如下）。
+
+```plain
+yarn
+$ yarn start
+
+npm
+$ npm start
+```
+
+## 系统设计与实现细节
+
 - [系统设计与实现细节](README.wiki)

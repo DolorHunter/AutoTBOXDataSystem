@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
 
 import { ResponsiveContainer } from "recharts";
-
-// styles
-import useStyles from "../dashboard/styles";
 
 import Widget from "../../components/Widget/Widget";
 import Treemap from "./components/Treemap/Treemap";
@@ -26,14 +22,14 @@ export default function General(props) {
 		axios.post('/VisualChart/searchVisualChartByChartName',
     { "chartName": "general-daily-" + dailyTimestamp })
     .then(res => {
-      if (res.status === 200) {
-        const data = JSON.parse(res.request.response);
-        let content = data.chartData.replace(/'/g, "\"");
-        content = JSON.parse(content);
-        setScatterPlotData(content.scatterPlot);
-        setTreemapData(content.treemap);
-        setBarData(content.bar);
-        setBarData2(content.bar2);
+			if (res.status === 200 && Object.keys(res.request.response).length > 0) {
+				const data = JSON.parse(res.request.response);
+				let content = data.chartData.replace(/'/g, "\"");
+				content = JSON.parse(content);
+				setScatterPlotData(content.scatterPlot);
+				setTreemapData(content.treemap);
+				setBarData(content.bar);
+				setBarData2(content.bar2);
       }
     })
   }, [])

@@ -36,7 +36,7 @@ export default class Tables extends Component {
   componentDidMount() {
     axios.post('/CarWarranty/searchAllCarWarrantyList', {})
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 200 && Object.keys(res.request.response).length > 0) {
           const datatableData = JSON.parse(res.request.response);
           this.setState({ datatableData });
         }
@@ -49,7 +49,7 @@ export default class Tables extends Component {
         <Grid container spacing={4}>
           <Grid item xs={12}>
             <MUIDataTable
-              title="车辆列表"
+              title="车辆保固列表"
               data={this.state.datatableData}
               columns={this.state.columns}
               options={{

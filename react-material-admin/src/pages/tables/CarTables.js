@@ -30,7 +30,7 @@ export default class Tables extends Component {
   componentDidMount() {
     axios.post('/Car/searchAllCarList', {})
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 200 && Object.keys(res.request.response).length > 0) {
           const datatableData = JSON.parse(res.request.response);
           this.setState({ datatableData });
         }

@@ -63,7 +63,7 @@ export default function Dashboard(props) {
     axios.post('/VisualChart/searchVisualChartByChartName',
       { "chartName": "dashboard-daily-" + dailyTimestamp })
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 200 && Object.keys(res.request.response).length > 0) {
           const data = JSON.parse(res.request.response);
           let content = data.chartData.replace(/'/g, "\"");
           content = JSON.parse(content);
@@ -86,7 +86,7 @@ export default function Dashboard(props) {
     axios.post('/CarWarning/searchCarWarningDetailBySendingTimeBetween',
       { "sendingTime": realtimeErrorTimestamp, "remark": Date.now() })
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 200 && Object.keys(res.request.response).length > 0) {
           const data = JSON.parse(res.request.response);
           for (var i = 0; i < data.length; i++) {
             let timestamp = Number(data[i][0]);
@@ -98,7 +98,7 @@ export default function Dashboard(props) {
             let min = appendZero(date.getHours());
             let sec = appendZero(date.getSeconds());
             data[i][0] = "" + year + "/" + month + "/" + day + " " + 
-                                     hour + ":" + min + ":" + sec;
+                                    hour + ":" + min + ":" + sec;
 
             let faultCategory = data[i][2];
             let faultIndex = parseInt(faultCategory, 16);

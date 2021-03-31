@@ -17,7 +17,7 @@
 <table>
   <tr><th colspan="4" align="center">BaseEntity</th></tr>
   <tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
-  <tr><td>id</td><td>int</td><td>id</td><td>ID</td></tr>
+  <tr><td>id</td><td>int</td><td>ID</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>isActivated</td><td>启用状态</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>isDeleted</td><td>删除状态</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>status</td><td>状态</td></tr>
@@ -555,8 +555,8 @@
   <tr><td>searchCarWarningByFaultCategoryPager</td><td>/CarWarning/searchCarWarningByFaultCategoryPager</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障Pager</td></tr>
   <tr><td>searchCarWarningBySendingTimeBetweenList</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenList</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障List</td></tr>
   <tr><td>searchCarWarningBySendingTimeBetweenPager</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenPager</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障Pager</td></tr>
-  <tr><td>searchCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>x</td><td>查找时间内的故障详情List</td></tr>
-  <tr><td>searchUserCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchUserCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆详情List</td></tr>
+  <tr><td>searchCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>x</td><td>查找时间内的故障详情List(CarWarningEntity, CarWarningDetailEntity多表查询)</td></tr>
+  <tr><td>searchUserCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchUserCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆详情List(UserCarEntity, CarWarningEntity, CarWarningDetailEntity多表查询)</td></tr>
   <tr><td>searchAllCarWarningList</td><td>/CarWarning/searchAllCarWarningList</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障List</td></tr>
   <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障Pager</td></tr>
 </table>
@@ -619,6 +619,236 @@
 </table>
 
 = 2 前端设计与实现 =
+
+== 2.1 数据面板 ==
+
+mui-table表格(Material UI), LineChart折线图, PieChart饼状图(recharts), Calender日历(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/general/General.js General.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/VisualChart/searchVisualChartByChartName</td><td>{ "chartName": "general-daily-" + dailyTimestamp }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">数据面板</th></tr>
+  <tr><th>图表名</th><th>x轴</th><th>y轴</th><th>意义</th></tr>
+  <tr><td>昨日故障</td><td>时间(小时)</td><td>次数</td><td>统计昨日故障次数, 故障车辆数, 故障单元数, 和车辆平均故障数</td></tr>
+  <tr><td>平均故障</td><td>-</td><td>-</td><td>对比昨日故障和本周平均故障的数量差异</td></tr>
+  <tr><td>昨日故障概览</td><td>时间(小时)</td><td>次数</td><td>对昨天每小时的故障, 故障车辆, 故障单元情况进行绘图</td></tr>
+  <tr><td>昨日故障单元</td><td>-</td><td>-</td><td>统计昨日出现故障次数前三的单元</td></tr>
+  <tr><td>过去一周故障情况</td><td>日期(天)</td><td>次数</td><td>对过去一周每天的故障, 故障车辆, 故障单元情况进行绘图</td></tr>
+  <tr><td>本年度故障情况</td><td>-</td><td>-</td><td>统计本年度故障出现次数最多/中等/最少的日历</td></tr>
+  <tr><td>过去24h实时故障</td><td>-</td><td>-</td><td>统计过去24小时出现故障的时间, 车辆型号, 故障单元, 故障内容</td></tr>
+</table>
+
+== 2.2 概览 ==
+
+ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/dashboard/Dashboard.js Dashboard.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/VisualChart/searchVisualChartByChartName</td><td>{ "chartName": "dashboard-daily-" + dailyTimestamp }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">概览</th></tr>
+  <tr><th>图表名</th><th>x轴</th><th>y轴</th><th>意义</th></tr>
+  <tr><td>单元并发故障次数分布</td><td>每个单元同时出现的故障数量</td><td>次数</td><td>每个单元可能会出现多个错误, 找到并发错误多且出现次数多的单元, 并对故障并发高的单元进行更严格的筛检</td></tr>
+  <tr><td>车型/单元/故障占比</td><td>-</td><td>-</td><td>树状图下故障发生在哪些车型, 车型中的哪些单元, 即发生了哪些故障, 以及故障占比</td></tr>
+  <tr><td>车型故障单元</td><td>车型</td><td>故障单元</td><td>不同车型下故障单元的分布, 可对车型中单元故障次数高的单元进行更严格的筛检</td></tr>
+  <tr><td>4S店售出车辆故障单元</td><td>车型</td><td>故障单元</td><td>不同4S店售出车辆的故障单元的分布, 可对4S店优化单元(用于替换故障单元)的仓储状况</td></tr>
+</table>
+
+== 2.3 车辆故障信息表 ==
+
+mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarningTables.js CarWarningTables.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/CarWarning/searchAllCarWarningList</td><td>{}</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="2" align="center">车辆故障列表</th></tr>
+  <tr><th>属性名</th><th>标签</th></tr>
+  <tr><td>id</td><td>ID</td></tr>
+  <tr><td>blindSpotMonitoringSysFailure</td><td>车辆识别号码</td></tr>
+  <tr><td>blindSpotMonitoringSysFailure</td><td>盲点监控系统故障</td></tr>
+  <tr><td>engineTheftPreventionSysFailure</td><td>引擎防盗系统故障</td></tr>
+  <tr><td>batteryCharging</td><td>电池充电</td></tr>
+  <tr><td>altitude</td><td>高度</td></tr>
+  <tr><td>transmissionFailure</td><td>传输失败</td></tr>
+  <tr><td>powerSteeringSystemFailure</td><td>动力转向系统故障</td></tr>
+  <tr><td>autoParkingFailure</td><td>自动停车失败</td></tr>
+  <tr><td>adaptiveCruiseFault</td><td>自适应巡航故障</td></tr>
+  <tr><td>engineFailure</td><td>发动机故障</td></tr>
+  <tr><td>stabilitySystemShutdown</td><td>稳定系统关闭</td></tr>
+  <tr><td>oilPressure</td><td>油压</td></tr>
+  <tr><td>slopeSlowDownFault</td><td>斜坡减速故障</td></tr>
+  <tr><td>electronicParking</td><td>电子停车</td></tr>
+  <tr><td>vin</td><td>车辆识别号码</td></tr>
+  <tr><td>startStopSystemFailure</td><td>开始停止系统故障</td></tr>
+  <tr><td>windshieldSensorShield</td><td>挡风玻璃传感器护罩</td></tr>
+  <tr><td>longitude</td><td>经度</td></tr>
+  <tr><td>laneDepartureSysFailure</td><td>车道偏离系统故障</td></tr>
+  <tr><td>longitudeState</td><td>经度状态</td></tr>
+  <tr><td>direct</td><td>方向</td></tr>
+  <tr><td>tirePressureMonitoringSysFailure</td><td>胎压监测系统故障</td></tr>
+  <tr><td>engineExhaustSystemFailure</td><td>发动机排气系统故障</td></tr>
+  <tr><td>powerSteeringSystemInit</td><td>动力转向系统</td></tr>
+  <tr><td>autoBrakSystemStatus</td><td>自动刹车系统状态</td></tr>
+  <tr><td>latitudeState</td><td>纬度州</td></tr>
+  <tr><td>loc</td><td>位置</td></tr>
+  <tr><td>airbagFault</td><td>安全气囊故障</td></tr>
+  <tr><td>errorContent</td><td>错误内容</td></tr>
+  <tr><td>faultCategory</td><td>故障类别</td></tr>
+  <tr><td>errorListCount</td><td>错误列表计数 </td></tr>
+  <tr><td>electronicStabilitySysIndication</td><td>电子稳定系统指示</td></tr>
+  <tr><td>tirePressureAnomaly</td><td>轮胎压力异常</td></tr>
+  <tr><td>electronicParkingFailure</td><td>电子停车故障</td></tr>
+  <tr><td>gpsSpeed</td><td>gps速度</td></tr>
+  <tr><td>latitude</td><td>纬度</td></tr>
+  <tr><td>sendingTime</td><td>发送时间</td></tr>
+  <tr><td>startStopSystemNotWork</td><td>启动停止系统不起作用</td></tr>
+  <tr><td>autoEmergencyBrakeSysFailure</td><td>自动紧急制动系统故障</td></tr>
+</table>
+
+== 2.4 车辆 ==
+
+=== 2.4.1 车辆列表 ===
+
+mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarTables.js CarTable.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/CarWarranty/searchAllCarWarrantyList</td><td>{}</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="2" align="center">车辆列表</th></tr>
+  <tr><th>属性名</th><th>标签</th></tr>
+  <tr><td>id</td><td>ID</td></tr>
+  <tr><td>carName</td><td>车辆名</td></tr>
+  <tr><td>price</td><td>价格</td></tr>
+  <tr><td>periodicalTechnicalInspection</td><td>定期技术检查</td></tr>
+  <tr><td>roadTax3Months</td><td>道路税每三月</td></tr>
+  <tr><td>carBody</td><td>车身</td></tr>
+  <tr><td>transmission</td><td>变速箱</td></tr>
+  <tr><td>seatsNumber</td><td>座位数</td></tr>
+  <tr><td>firstYearOfProduction</td><td>首次生产年份</td></tr>
+  <tr><td>lastYearOfProduction</td><td>最后生产年份</td></tr>
+</table>
+
+=== 2.4.2 车辆日志列表 ===
+
+mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarLogTables.js CarLogTable.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/CarWarranty/searchAllCarWarrantyList</td><td>{}</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="2" align="center">车辆日志列表</th></tr>
+  <tr><th>属性名</th><th>标签</th></tr>
+  <tr><td>id</td><td>ID</td></tr>
+  <tr><td>vin</td><td>车辆识别号码</td></tr>
+  <tr><td>generalComment</td><td>整体评价</td></tr>
+  <tr><td>generalScore</td><td>整体分数</td></tr>
+  <tr><td>driveComment</td><td>驱动评价</td></tr>
+  <tr><td>driveScore</td><td>驱动分数</td></tr>
+  <tr><td>fuelEngineComment</td><td>燃油引擎评价</td></tr>
+  <tr><td>fuelEngineScore</td><td>燃油引擎分数</td></tr>
+  <tr><td>performanceComment</td><td>性能评价</td></tr>
+  <tr><td>performanceScore</td><td>性能分数</td></tr>
+  <tr><td>consumptionComment</td><td>效能评价</td></tr>
+  <tr><td>consumptionScore</td><td>效能分数</td></tr>
+  <tr><td>chassisComment</td><td>车身评价</td></tr>
+  <tr><td>chassisScore</td><td>车身分数</td></tr>
+  <tr><td>transmissionComment</td><td>传动评价</td></tr>
+  <tr><td>transmissionScore</td><td>传动分数</td></tr>
+</table>
+
+=== 2.4.3 车辆故障列表 ===
+
+见 [[#2.3 车辆故障信息表]]
+
+=== 2.4.4 车辆保固列表 ===
+
+mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarrantyTables.js CarWarrantyTables.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/CarWarranty/searchAllCarWarrantyList</td><td>{}</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="2" align="center">车辆保固列表</th></tr>
+  <tr><th>属性名</th><th>标签</th></tr>
+  <tr><td>id</td><td>ID</td></tr>
+  <tr><td>vin</td><td>车辆识别号码</td></tr>
+  <tr><td>generalComment</td><td>整体评价</td></tr>
+  <tr><td>generalScore</td><td>整体分数</td></tr>
+  <tr><td>driveComment</td><td>驱动评价</td></tr>
+  <tr><td>driveScore</td><td>驱动分数</td></tr>
+  <tr><td>fuelEngineComment</td><td>燃油引擎评价</td></tr>
+  <tr><td>fuelEngineScore</td><td>燃油引擎分数</td></tr>
+  <tr><td>performanceComment</td><td>性能评价</td></tr>
+  <tr><td>performanceScore</td><td>性能分数</td></tr>
+  <tr><td>consumptionComment</td><td>效能评价</td></tr>
+  <tr><td>consumptionScore</td><td>效能分数</td></tr>
+  <tr><td>chassisComment</td><td>车身评价</td></tr>
+  <tr><td>chassisScore</td><td>车身分数</td></tr>
+  <tr><td>transmissionComment</td><td>传动评价</td></tr>
+  <tr><td>transmissionScore</td><td>传动分数</td></tr>
+</table>
+
+== 2.5 用户 ==
+
+=== 2.5.1 用户列表 ===
+
+mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/UserTables.js UserTables.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/User/searchAllUserList</td><td>{}</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="2" align="center">用户列表</th></tr>
+  <tr><th>属性名</th><th>标签</th></tr>
+  <tr><td>ID</td></tr>
+  <tr><td>username</td><td>用户名</td></tr>
+  <tr><td>email</td><td>邮箱</td></tr>
+  <tr><td>phone</td><td>电话</td></tr>
+  <tr><td>createdDate</td><td>注册日期</td></tr>
+  <tr><td>isActivated</td><td>状态</td></tr>
+</table>
+
+=== 2.5.2 角色列表 ===
+
+mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/RoleTables.js RoleTables.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/Role/searchAllRoleList</td><td>{}</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="2" align="center">角色列表</th></tr>
+  <tr><th>属性名</th><th>标签</th></tr>
+  <tr><td>ID</td></tr>
+  <tr><td>roleName</td><td>角色名</td></tr>
+  <tr><td>roleType</td><td>角色类型</td></tr>
+</table>
 
 = 3 开发相关资料 =
 
