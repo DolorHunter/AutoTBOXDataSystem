@@ -76,22 +76,14 @@ def save_warning_to_my_database(response):
 
 
 # 从我的数据库取出故障数据
-def get_my_warning_response(start_time, end_time):
+def get_my_warning_response(start_time, end_time, url):
     warning_input = {'sendingTime': start_time, 'remark': end_time}
+    if url == "1":
+        url = MY_WARNING_URL
+    elif url == "2":
+        url = MY_WARNING_CAR_URL
     # POST方式请求故障信息
-    response = requests.post(MY_WARNING_URL, json=warning_input, timeout=5)
-    if response.status_code != 200:
-        print(datetime.datetime.now(), response, "Get my warning response failed!!")
-        exit(response.status_code)
-    else:
-        return response.json()
-
-
-# 从我的数据库取出故障车辆数据(车辆名称, 4S店等信息)
-def get_my_warning_car_response(start_time, end_time):
-    warning_input = {'sendingTime': start_time, 'remark': end_time}
-    # POST方式请求故障信息
-    response = requests.post(MY_WARNING_CAR_URL, json=warning_input, timeout=5)
+    response = requests.post(url, json=warning_input, timeout=5)
     if response.status_code != 200:
         print(datetime.datetime.now(), response, "Get my warning response failed!!")
         exit(response.status_code)

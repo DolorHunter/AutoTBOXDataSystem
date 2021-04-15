@@ -1,39 +1,44 @@
-import React from "react";
-import {
-  withGoogleMap,
-  withScriptjs,
-  GoogleMap,
-  Marker,
-} from "react-google-maps";
+import React, { useState, useEffect } from 'react';
+import { ReactBingmaps } from 'react-bingmaps';
 
 // styles
 import useStyles from "./styles";
 
-const BasicMap = withScriptjs(
-  withGoogleMap(() => (
-    <GoogleMap
-      defaultZoom={12}
-      defaultCenter={{
-        lat: parseFloat(-37.813179),
-        lng: parseFloat(144.950259),
-      }}
-    >
-      <Marker position={{ lat: -37.813179, lng: 144.950259 }} />
-    </GoogleMap>
-  )),
-);
+import axios from 'axios';
 
-export default function Maps() {
+export default function General(props) {
   var classes = useStyles();
 
-  return (
-    <div className={classes.mapContainer}>
-      <BasicMap
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg"
-        loadingElement={<div style={{ height: "inherit", width: "inherit" }} />}
-        containerElement={<div style={{ height: "100%" }} />}
-        mapElement={<div style={{ height: "100%" }} />}
-      />
+	var [geoData, setGeoData] = useState([]);
+
+	useEffect(() => {
+		axios.post('/VisualChart/searchVisualChartByChartName',
+    { "chartName": "maps-daily-" + dailyTimestamp })
+    .then(res => {
+			if (res.status === 200 && Object.keys(res.request.response).length > 0) {
+				const data = JSON.parse(res.request.response);
+				let content = data.chartData.replace(/'/g, "\"");
+				content = JSON.parse(content);
+				setGeoData(content);
+      }
+    })
+  }, [])
+
+	return (
+		<div className={classes.mapContainer}>
+      <ReactBingmaps 
+        bingmapKey = "Asx36TsUff_hgZ9LdBbngk6EjwrxF95rLsV_j9ZhxeXQW90Oack_plqyIJfemQKO"
+        center = {[31.8557, 117.1461]} 
+        zoom = {5}
+        pushPins = {geoData}
+      > 
+      </ReactBingmaps>
     </div>
-  );
+	);
 }
+// #####################################################################
+var date = new Date();
+var year = date.getFullYear();
+const hasTimestamp = new Date() - new Date(year.toString());
+const hasDays = Math.ceil(hasTimestamp / 86400000);
+var dailyTimestamp = "" + year + hasDays;

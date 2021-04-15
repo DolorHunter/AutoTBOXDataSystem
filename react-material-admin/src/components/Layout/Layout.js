@@ -61,13 +61,8 @@ function Layout(props) {
               <Route path="/app/general" component={General} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/car/warningTables" component={CarWarningTables} />
-              <Route
-                exact
-                path="/app/ui"
-                render={() => <Redirect to="/app/ui/icons" />}
-              />
-              <Route path="/app/ui/maps" component={Maps} />
-              <Route path="/app/ui/icons" component={Icons} />
+              <Route path="/app/maps" component={Maps} />
+              <Route path="/app/icons" component={Icons} />
               <Route
                 exact
                 path="/app/car"

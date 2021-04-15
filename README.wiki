@@ -642,7 +642,7 @@ mui-table表格(Material UI), LineChart折线图, PieChart饼状图(recharts), C
   <tr><td>过去24h实时故障</td><td>-</td><td>-</td><td>统计过去24小时出现故障的时间, 车辆型号, 故障单元, 故障内容</td></tr>
 </table>
 
-== 2.2 概览 ==
+== 2.2 车辆故障概览 ==
 
 ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/dashboard/Dashboard.js Dashboard.js]
 
@@ -653,7 +653,7 @@ ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联�
 </table>
 
 <table>
-  <tr><th colspan="4" align="center">概览</th></tr>
+  <tr><th colspan="4" align="center">车辆故障概览</th></tr>
   <tr><th>图表名</th><th>x轴</th><th>y轴</th><th>意义</th></tr>
   <tr><td>单元并发故障次数分布</td><td>每个单元同时出现的故障数量</td><td>次数</td><td>每个单元可能会出现多个错误, 找到并发错误多且出现次数多的单元, 并对故障并发高的单元进行更严格的筛检</td></tr>
   <tr><td>车型/单元/故障占比</td><td>-</td><td>-</td><td>树状图下故障发生在哪些车型, 车型中的哪些单元, 即发生了哪些故障, 以及故障占比</td></tr>
@@ -661,7 +661,23 @@ ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联�
   <tr><td>4S店售出车辆故障单元</td><td>车型</td><td>故障单元</td><td>不同4S店售出车辆的故障单元的分布, 可对4S店优化单元(用于替换故障单元)的仓储状况</td></tr>
 </table>
 
-== 2.3 车辆故障信息表 ==
+== 2.3 车辆故障分布 ==
+
+Bingmaps必应地图(ReactBingmaps). 关联地图 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/maps/Maps.js Maps.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/VisualChart/searchVisualChartByChartName</td><td>{ "chartName": "maps-daily-" + dailyTimestamp }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">车辆故障分布</th></tr>
+  <tr><th>功能</th><th>意义</th></tr>
+  <tr><td>标记故障位置</td><td>标记出故障发生的位置与故障发生的次数, 可以在故障位置附近针对性的布设维修点</td></tr>
+</table>
+
+== 2.4 车辆故障信息表 ==
 
 mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarningTables.js CarWarningTables.js]
 
@@ -716,9 +732,9 @@ mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/Aut
   <tr><td>autoEmergencyBrakeSysFailure</td><td>自动紧急制动系统故障</td></tr>
 </table>
 
-== 2.4 车辆 ==
+== 2.5 车辆 ==
 
-=== 2.4.1 车辆列表 ===
+=== 2.5.1 车辆列表 ===
 
 mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarTables.js CarTable.js]
 
@@ -743,7 +759,7 @@ mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/Aut
   <tr><td>lastYearOfProduction</td><td>最后生产年份</td></tr>
 </table>
 
-=== 2.4.2 车辆日志列表 ===
+=== 2.5.2 车辆日志列表 ===
 
 mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarLogTables.js CarLogTable.js]
 
@@ -774,11 +790,11 @@ mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/Aut
   <tr><td>transmissionScore</td><td>传动分数</td></tr>
 </table>
 
-=== 2.4.3 车辆故障列表 ===
+=== 2.5.3 车辆故障列表 ===
 
-见 [[#2.3 车辆故障信息表]]
+见 [[#2.4 车辆故障信息表]]
 
-=== 2.4.4 车辆保固列表 ===
+=== 2.5.4 车辆保固列表 ===
 
 mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarrantyTables.js CarWarrantyTables.js]
 
@@ -809,9 +825,9 @@ mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/Aut
   <tr><td>transmissionScore</td><td>传动分数</td></tr>
 </table>
 
-== 2.5 用户 ==
+== 2.6 用户 ==
 
-=== 2.5.1 用户列表 ===
+=== 2.6.1 用户列表 ===
 
 mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/UserTables.js UserTables.js]
 
@@ -832,7 +848,7 @@ mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/Aut
   <tr><td>isActivated</td><td>状态</td></tr>
 </table>
 
-=== 2.5.2 角色列表 ===
+=== 2.6.2 角色列表 ===
 
 mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/RoleTables.js RoleTables.js]
 
@@ -921,6 +937,7 @@ root登录
 * APEXCharts图表 [https://apexcharts.com/docs/chart-types/line-chart/ APEXCharts]
 * Bootstrap Grids网格 [https://www.w3schools.com/bootstrap/bootstrap_grid_system.asp Bootstrap Grids]
 * react-grid-layout网格布局调整 [https://github.com/react-grid-layout/react-grid-layout react-grid-layout]
+* React-Bingmaps必应地图 [https://www.npmjs.com/package/react-bingmaps React-Bingmaps]
 
 == 3.5 Code Lib ==
 

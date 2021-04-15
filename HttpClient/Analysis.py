@@ -24,7 +24,7 @@ def yesterday_error_counter():
     localtime = time.localtime()
     end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
     start_time = end_time - 24 * 60 * 60 * 1000
-    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time, url="1")
     return error_digits_counter(data)
 
 
@@ -33,7 +33,7 @@ def weekly_error_counter():
     localtime = time.localtime()
     end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
     start_time = end_time - 7 * 24 * 60 * 60 * 1000
-    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time, url="1")
     return error_digits_counter(data)
 
 
@@ -43,7 +43,7 @@ def yearly_error_counter():
     tm_today = datetime.date.today().timetuple().tm_yday
     end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
     start_time = end_time - tm_today * 24 * 60 * 60 * 1000
-    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time, url="1")
     error = {}
     calender = []
     if data:
@@ -66,7 +66,7 @@ def yesterday_error_counter_hourly():
     for i in range(0, 24):
         start_time = yesterday + i * 60 * 60 * 1000
         end_time = start_time + 60 * 60 * 1000
-        data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+        data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time, url="1")
         counter = error_digits_counter(data)
         error_list['vin'].append({'value': counter['vin']})
         error_list['faultCategory'].append({'value': counter['faultCategory']})
@@ -82,7 +82,7 @@ def last_week_error_counter_daily():
     for i in range(0, 7):
         start_time = last_week + i * 24 * 60 * 60 * 1000
         end_time = start_time + 24 * 60 * 60 * 1000
-        data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+        data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time, url="1")
         counter = error_digits_counter(data)
         error_list.append({"date": str(datetime.datetime.fromtimestamp(start_time / 1000).date()),
                            "故障车辆": str(counter['vin']), "故障单元": str(counter['faultCategory']),
@@ -95,7 +95,7 @@ def fault_category_counter():
     localtime = time.localtime()
     end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
     start_time = end_time - 24 * 60 * 60 * 1000
-    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time)
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time, url="1")
     fault_category_dict = {}
     if data:
         for d in data:
@@ -154,12 +154,12 @@ def dashboard_daily_analysis():
     return error
 
 
-# 获取30天数据故障车辆
-def get_30days_data():
+# 获取30天数据故障
+def get_30days_data(url):
     localtime = time.localtime()
     end_time = int(time.time() - localtime.tm_hour * 3600 - localtime.tm_min * 60 - localtime.tm_sec) * 1000
     start_time = end_time - 30 * 24 * 60 * 60 * 1000
-    data = HttpUtil.get_my_warning_car_response(start_time=start_time, end_time=end_time)
+    data = HttpUtil.get_my_warning_response(start_time=start_time, end_time=end_time, url=url)
     return data
 
 
@@ -263,7 +263,7 @@ def gen_bar2(data):
 
 # 概览(general)的每日更新故障(散点图, 树形图)
 def general_daily_analysis():
-    data = get_30days_data()
+    data = get_30days_data(url="2")
     scatter_plot = gen_scatter_plot(data)
     treemap = gen_treemap(data)
     bar = gen_bar(data)
@@ -273,3 +273,30 @@ def general_daily_analysis():
              'bar': bar,
              'bar2': bar2}
     return error
+
+
+# 地图位置标记生成
+def gen_maps_pin(data):
+    error = {}
+    maps = []
+    if data:
+        for d in data:
+            latitude = d['latitude'][:-2]
+            longitude = d['longitude'][:-2]
+            if latitude and longitude:
+                if latitude + " " + longitude not in error.keys():
+                    error[latitude + " " + longitude] = 0
+                error[latitude + " " + longitude] += 1
+    for e in error.keys():
+        geo = str(e).split(" ")
+        latitude = geo[0]
+        longitude = geo[1]
+        counter = str(error[e])
+        maps.append({'location': [latitude, longitude], 'option': {'color': 'red', 'text': counter}})
+    return maps
+
+
+# 地图(maps)的每日更新故障(必应地图)
+def maps_daily_analysis():
+    data = get_30days_data(url="1")
+    return gen_maps_pin(data)

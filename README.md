@@ -30,9 +30,26 @@
 
 概览使用散列图对单元并发故障次数分布统计；使用树形图对车型/单元/故障占比统计；使用条形图对车型故障单元与4S店售出车辆故障单元统计。
 
+![maps](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1618469204/temp/2021-04-15_144109_rp9dey.webp)
+
+![maps2](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1618469678/temp/2021-04-15_145402_dlmrd8.webp)
+
+地图使用必应地图接口对故障发生的位置进行标记，相同座标的故障求和后显示在标记上。
+
 ![table](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162249_vwiity.webp)
 
 车辆故障信息表对数据库中的故障信息进行读取并且支持导出/下载。
+
+## 目录结构
+
+```plain
+AutoTBOXDataSystem （Spring后端服务与接口，Java）
+├ CarCrawlers （爬虫车辆信息数据采集，python）
+├ HttpClient （故障数据采集与分析，python）
+└ react-material-admin （react前端页面）
+```
+
+*注：MySQL搭建于服务器端，因此*.sql文件不在仓库内。*
 
 ## 使用
 
@@ -41,6 +58,8 @@
 后端：安装Maven（包管理工具），安装Spring包环境(刷新maven自动下载)，安装Tomcat（服务）。
 
 前端：安装Nodejs，安装yarn或npm。
+
+运行HttpClient中的main.py（数据采集与分析），生成visual chart数据，每天执行一次即可。
 
 分别启动Spring和React（命令如下）。
 
