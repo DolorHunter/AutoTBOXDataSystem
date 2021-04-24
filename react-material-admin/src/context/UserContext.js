@@ -1,5 +1,5 @@
 import React from "react";
-
+import md5 from 'js-md5';
 import axios from 'axios';
 
 var UserStateContext = React.createContext();
@@ -59,6 +59,7 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, regist
 function loginUser(dispatch, name, password, history, setIsLoading, setError) {
   setError(false);
   setIsLoading(true);
+  password = md5.hex(password);
 
   if (!!name && !!password) {
     var loginData = { 
@@ -81,6 +82,16 @@ function loginUser(dispatch, name, password, history, setIsLoading, setError) {
           alert(res.request.response);
         }
       })   
+
+      axios.post('/User/searchUserByUsername', {username: name})
+      .then(res => {
+        if (res.status === 200 && Object.keys(res.request.response).length > 0){
+          setTimeout(() => {
+            const data = JSON.parse(res.request.response);
+            localStorage.setItem('user', JSON.stringify(data));
+          }, 300);
+        }
+      })   
   } 
   dispatch({ type: "LOGIN_FAILURE" });
   setError(true);
@@ -89,6 +100,7 @@ function loginUser(dispatch, name, password, history, setIsLoading, setError) {
 
 function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
+  localStorage.removeItem("user");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
   history.push("/login");
 }

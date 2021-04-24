@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
     public boolean login(UserEntity userEntity) {
         String username = userEntity.getUsername();
         String password = userEntity.getPassword();
-        password = DigestUtils.md5DigestAsHex(password.getBytes());
 
         UserEntity user = userDAO.findByUsernameAndPassword(username, password);
         return user != null;
@@ -267,7 +266,6 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userDAO.findById(userEntity.getId()).get();
         String password = userEntity.getPassword();
         if (password != null && RegexUtil.isPassword(password)) {
-            password = DigestUtils.md5DigestAsHex(password.getBytes());
             user.setPassword(password);
             user.setLastUpdatedBy(userEntity.getLastUpdatedBy());
             user.setLastUpdatedDate(DateUtil.getCurDateTime());

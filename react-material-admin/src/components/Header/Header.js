@@ -288,15 +288,7 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              John Smith
-            </Typography>
-            <Typography
-              className={classes.profileMenuLink}
-              component="a"
-              color="primary"
-              href="https://flatlogic.com"
-            >
-              Flalogic.com
+              {showUsername(JSON.parse(localStorage.getItem("user")).username)}
             </Typography>
           </div>
           <MenuItem
@@ -305,7 +297,10 @@ export default function Header(props) {
               classes.headerMenuItem,
             )}
           >
-            <AccountIcon className={classes.profileMenuIcon} /> Profile
+            <AccountIcon className={classes.profileMenuIcon} /> 
+            <Typography component={Link} href="#/app/user/profile" color="primary">
+              个人资料
+            </Typography>
           </MenuItem>
           <MenuItem
             className={classNames(
@@ -329,11 +324,20 @@ export default function Header(props) {
               color="primary"
               onClick={() => signOut(userDispatch, props.history)}
             >
-              Sign Out
+              登出
             </Typography>
           </div>
         </Menu>
       </Toolbar>
     </AppBar>
   );
+}
+// ###########################################################################
+function showUsername(username) {
+  if (username !== null) {
+    return username
+  }
+  else {
+    window.location.reload();
+  }
 }
