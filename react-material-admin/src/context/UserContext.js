@@ -1,5 +1,6 @@
 import React from "react";
 import md5 from 'js-md5';
+import cookie from 'js-cookie';
 import axios from 'axios';
 
 var UserStateContext = React.createContext();
@@ -25,7 +26,7 @@ function userReducer(state, action) {
 
 function UserProvider({ children }) {
   var [state, dispatch] = React.useReducer(userReducer, {
-    isAuthenticated: !!localStorage.getItem("id_token"),
+    isAuthenticated: !!cookie.get("id_token"),
   });
 
   return (
@@ -71,7 +72,7 @@ function loginUser(dispatch, name, password, history, setIsLoading, setError) {
       .then(res => {
         if (res.request.response === "Succeed."){
           setTimeout(() => {
-            localStorage.setItem('id_token', 1)
+            cookie.set('id_token', 1, { expires: 30 })
             setError(null)
             setIsLoading(false)
             dispatch({ type: 'LOGIN_SUCCESS' })
@@ -88,7 +89,8 @@ function loginUser(dispatch, name, password, history, setIsLoading, setError) {
         if (res.status === 200 && Object.keys(res.request.response).length > 0){
           setTimeout(() => {
             const data = JSON.parse(res.request.response);
-            localStorage.setItem('user', JSON.stringify(data));
+            cookie.set('uuid', data.id, { expires: 30 });
+            cookie.set('username', data.username, { expires: 30 });
           }, 300);
         }
       })   
@@ -99,8 +101,9 @@ function loginUser(dispatch, name, password, history, setIsLoading, setError) {
 }
 
 function signOut(dispatch, history) {
-  localStorage.removeItem("id_token");
-  localStorage.removeItem("user");
+  cookie.remove("id_token");
+  cookie.remove('uuid');
+  cookie.remove('username');
   dispatch({ type: "SIGN_OUT_SUCCESS" });
   history.push("/login");
 }

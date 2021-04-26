@@ -7,6 +7,10 @@ import {
   Avatar,
 } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
+import { ArrowLeftRounded } from '@material-ui/icons';
+
+import cookie from 'js-cookie';
+import axios from 'axios';
 
 import Widget from "../../components/Widget/Widget";
 
@@ -20,9 +24,6 @@ import avatar3 from "./../../images/avatar/avatar_03.jpg";
 import avatar4 from "./../../images/avatar/avatar_04.jpg";
 import avatar5 from "./../../images/avatar/avatar_05.jpg";
 import avatar6 from "./../../images/avatar/avatar_06.jpg";
-
-import axios from 'axios';
-import { ArrowLeftRounded } from '@material-ui/icons';
 
 const avatars = [
   {
@@ -54,29 +55,32 @@ const avatars = [
 export default function Profile(props){
   const classes = useStyles();
 
+  var [profile, setProfile] = useState({
+    id: cookie.get('uuid'),
+    createdDate: '',
+    lastUpdatedDate: '',
+    username: cookie.get('username'),
+    email: '',
+    phone: '',
+    avatar: '1',
+  });
+
   useEffect(() => {
-    axios.post('/User/searchUserByUsername', {username: JSON.parse(localStorage.getItem("user")).username})
+    axios.post('/User/searchUserById', {id: cookie.get('uuid')})
       .then(res => {
         if (res.status === 200 && Object.keys(res.request.response).length > 0){
           setTimeout(() => {
             const data = JSON.parse(res.request.response);
-            localStorage.setItem('user', JSON.stringify(data));
+            setProfile({ ...profile, 
+              createdDate: data.createdDate,
+              lastUpdatedDate: data.lastUpdatedDate,
+              email: data.email, 
+              phone: data.phone,
+              avatar: data.avatar})
           }, 300);
         }
       })  
   }, [])
-
-  // 从服务器拉去新数据后重新赋值
-  var user = JSON.parse(localStorage.getItem("user"));
-  var [profile, setProfile] = useState({
-    id: user.id,
-    createdDate: user.createdDate,
-    lastUpdatedDate: user.lastUpdatedDate,
-    username: user.username,
-    email: user.email,
-    phone: user.phone,
-    avatar: user.avatar,
-  });
 
   return (
     <>
@@ -229,7 +233,6 @@ function validatePhone(phone) {
   return phone.match(/\d/g).length===11;
 }
 function updatePhone(profile) {
-  localStorage.setItem('user', JSON.stringify(profile));
   axios.post('/User/updatePhoneById', 
   {
     "id": profile.id,
@@ -243,7 +246,6 @@ function updatePhone(profile) {
   })
 }
 function updateEmail(profile) {
-  localStorage.setItem('user', JSON.stringify(profile));
   axios.post('/User/updateEmailById', 
   {
     "id": profile.id,
@@ -257,7 +259,6 @@ function updateEmail(profile) {
   })
 }
 function updateAvatar(profile) {
-  localStorage.setItem('user', JSON.stringify(profile));
   axios.post('/User/updateAvatarById', 
   {
     "id": profile.id,

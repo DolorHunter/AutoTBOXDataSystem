@@ -18,6 +18,7 @@ import {
   Send as SendIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
+import cookie from 'js-cookie';
 import classNames from "classnames";
 
 // styles
@@ -288,7 +289,7 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              {showUsername(JSON.parse(localStorage.getItem("user")).username)}
+              {cookie.get('username')}
             </Typography>
           </div>
           <MenuItem
@@ -331,13 +332,4 @@ export default function Header(props) {
       </Toolbar>
     </AppBar>
   );
-}
-// ###########################################################################
-function showUsername(username) {
-  if (username !== null) {
-    return username
-  }
-  else {
-    window.location.reload();
-  }
 }
