@@ -70,7 +70,7 @@ public class VisualChartServiceImpl implements VisualChartService{
         VisualChartEntity visualChart = visualChartDAO.findById(visualChartEntity.getId()).get();
         String remark = visualChartEntity.getRemark();
         if (remark != null) {
-            visualChart.setStatus(remark);
+            visualChart.setRemark(remark);
             visualChart.setLastUpdatedBy(visualChartEntity.getLastUpdatedBy());
             visualChart.setLastUpdatedDate(DateUtil.getCurDateTime());
             visualChartDAO.save(visualChart);

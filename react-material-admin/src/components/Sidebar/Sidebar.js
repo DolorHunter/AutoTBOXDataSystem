@@ -8,6 +8,7 @@ import {
   ArrowBack as ArrowBackIcon,
   DirectionsCar as CarIcon,
   SupervisorAccount as UserIcon,
+  Image as VisualChartIcon,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -28,9 +29,9 @@ import {
 
 const structure = [
   { id: 0, label: "数据面板", link: "/app/dashboard", icon: <HomeIcon /> },
-  { id: 1, label: "车辆故障概览", link: "/app/general", icon: <GeneralIcon /> },
-  { id: 2, label: "车辆故障分布", link: "/app/maps", icon: <MapIcon /> }, 
-  { id: 3, label: "车辆故障信息表", link: "/app/car/warningTables", icon: <TableIcon /> },
+  { id: 1, label: "故障概览", link: "/app/general", icon: <GeneralIcon /> },
+  { id: 2, label: "故障分布", link: "/app/maps", icon: <MapIcon /> }, 
+  { id: 3, label: "故障信息表", link: "/app/car/warningTables", icon: <TableIcon /> },
   {
     id: 4,
     label: "车辆",
@@ -38,9 +39,10 @@ const structure = [
     icon: <CarIcon />,
     children: [
       { label: "车辆列表", link: "/app/car/tables" },
-      { label: "车辆日志列表", link: "/app/car/logTables" },
-      { label: "车辆故障列表", link: "/app/car/warningTables" },
-      { label: "车辆保固列表", link: "/app/car/warrantyTables" },
+      { label: "日志列表", link: "/app/car/logTables" },
+      { label: "故障列表", link: "/app/car/warningTables" },
+      { label: "故障详细列表", link: "/app/car/warningDetailTables" },
+      { label: "保固列表", link: "/app/car/warrantyTables" },
     ],
   },
   {
@@ -50,9 +52,11 @@ const structure = [
     icon: <UserIcon />,
     children: [
       { label: "用户列表", link: "/app/user/tables" },
+      { label: "用户车辆列表", link: "/app/user/userCarTables" },
       { label: "角色列表", link: "/app/user/roleTables" },
     ],
   },
+  { id: 6, label: "视觉图表", link: "/app/visualChart/tables", icon: <VisualChartIcon /> },
 ];
 
 function Sidebar({ location }) {

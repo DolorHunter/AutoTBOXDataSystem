@@ -7,7 +7,6 @@ import {
   Avatar,
 } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
-import { ArrowLeftRounded } from '@material-ui/icons';
 
 import cookie from 'js-cookie';
 import axios from 'axios';
@@ -17,7 +16,7 @@ import Widget from "../../components/Widget/Widget";
 // styles
 import useStyles from "./styles";
 
-// logo
+// avatar
 import avatar1 from "./../../images/avatar/avatar_01.jpg";
 import avatar2 from "./../../images/avatar/avatar_02.jpg";
 import avatar3 from "./../../images/avatar/avatar_03.jpg";
@@ -233,41 +232,38 @@ function validatePhone(phone) {
   return phone.match(/\d/g).length===11;
 }
 function updatePhone(profile) {
-  axios.post('/User/updatePhoneById', 
-  {
+  axios.post('/User/updatePhoneById', {
     "id": profile.id,
     "phone": profile.phone,
     "lastUpdatedBy": profile.username,
   })
-  .then(res => {
-    if (res.request.response !== "Succeed."){
-      ArrowLeftRounded(res.request.response);
-    }
-  })
+    .then(res => {
+      if (res.request.response !== "Succeed."){
+        console.log(res.request.response);
+      }
+    })
 }
 function updateEmail(profile) {
-  axios.post('/User/updateEmailById', 
-  {
+  axios.post('/User/updateEmailById', {
     "id": profile.id,
     "email": profile.email,
     "lastUpdatedBy": profile.username,
   })
-  .then(res => {
-    if (res.request.response !== "Succeed."){
-      ArrowLeftRounded(res.request.response);
-    }
-  })
+    .then(res => {
+      if (res.request.response !== "Succeed."){
+        console.log(res.request.response);
+      }
+    })
 }
 function updateAvatar(profile) {
-  axios.post('/User/updateAvatarById', 
-  {
+  axios.post('/User/updateAvatarById', {
     "id": profile.id,
     "avatar": profile.avatar,
     "lastUpdatedBy": profile.username,
   })
-  .then(res => {
-    if (res.request.response !== "Succeed."){
-      ArrowLeftRounded(res.request.response);
-    }
-  })
+    .then(res => {
+      if (res.request.response !== "Succeed."){
+        console.log(res.request.response);
+      }
+    })
 }

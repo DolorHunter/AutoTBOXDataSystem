@@ -70,7 +70,7 @@ public class CarWarningServiceImpl implements CarWarningService {
         CarWarningEntity carWarning = carWarningDAO.findById(carWarningEntity.getId()).get();
         String remark = carWarningEntity.getRemark();
         if (remark != null) {
-            carWarning.setStatus(remark);
+            carWarning.setRemark(remark);
             carWarning.setLastUpdatedBy(carWarningEntity.getLastUpdatedBy());
             carWarning.setLastUpdatedDate(DateUtil.getCurDateTime());
             carWarningDAO.save(carWarning);

@@ -192,7 +192,7 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userDAO.findById(userEntity.getId()).get();
         user.setIsDeleted("0");
         user.setIsActivated("1");
-        user.setLastUpdatedBy(userEntity.getUsername());
+        user.setLastUpdatedBy(userEntity.getLastUpdatedBy());
         user.setLastUpdatedDate(DateUtil.getCurDateTime());
         userDAO.save(user);
     }

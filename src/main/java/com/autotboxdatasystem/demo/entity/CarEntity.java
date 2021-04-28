@@ -7,8 +7,6 @@ import javax.persistence.Column;
 public class CarEntity extends BaseEntity {
     @Column(nullable = false, columnDefinition = "VARCHAR(255) comment '车辆名'")
     private String carName;
-    @Column(columnDefinition = "VARCHAR(255) comment '图片'")
-    private String image;
     @Column(columnDefinition = "VARCHAR(64) comment '价格'")
     private String price;
     @Column(columnDefinition = "VARCHAR(64) comment '定期技术检查'")
@@ -157,14 +155,6 @@ public class CarEntity extends BaseEntity {
     private String generalWarranty;
     @Column(columnDefinition = "VARCHAR(64) comment '底盘保修'")
     private String chassisWarranty;
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public String getCarName() {
         return carName;

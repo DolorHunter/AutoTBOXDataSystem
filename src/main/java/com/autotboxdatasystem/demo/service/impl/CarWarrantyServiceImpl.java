@@ -64,7 +64,7 @@ public class CarWarrantyServiceImpl implements CarWarrantyService {
         CarWarrantyEntity userCarWarranty = carWarrantyDAO.findById(carWarrantyEntity.getId()).get();
         String remark = carWarrantyEntity.getRemark();
         if (remark != null) {
-            userCarWarranty.setStatus(remark);
+            userCarWarranty.setRemark(remark);
             userCarWarranty.setLastUpdatedBy(carWarrantyEntity.getLastUpdatedBy());
             userCarWarranty.setLastUpdatedDate(DateUtil.getCurDateTime());
             carWarrantyDAO.save(userCarWarranty);

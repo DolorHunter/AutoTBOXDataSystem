@@ -157,7 +157,6 @@ public class CarServiceImpl implements CarService {
     @Override
     public void updateGeneralById(CarEntity carEntity) {
         CarEntity car = carDAO.findById(carEntity.getId()).get();
-        String image = carEntity.getImage();
         String carName = carEntity.getCarName();
         String price = carEntity.getPrice();
         String periodicalTechnicalInspection = carEntity.getPeriodicalTechnicalInspection();
@@ -167,9 +166,6 @@ public class CarServiceImpl implements CarService {
         String seatsNumber = carEntity.getSeatsNumber();
         String firstYearOfProduction = carEntity.getFirstYearOfProduction();
         String lastYearOfProduction = carEntity.getLastYearOfProduction();
-        if (image != null) {
-            car.setImage(image);
-        }
         if (price != null) {
             car.setPrice(price);
         }

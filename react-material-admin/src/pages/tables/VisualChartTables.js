@@ -1,4 +1,4 @@
-import React, { Component } from 'react';import {
+import React, { Component } from 'react'; import {
   Grid,
   FormControlLabel,
   TextField,
@@ -19,69 +19,20 @@ export default class Tables extends Component {
         name: "id",
         label: "ID",
         options: {
-          display: "excluded",
-        },
+          display: "excluded"
+        }
       },
-      { 
-        name: "vin", 
-        label: "车辆识别号码" 
+      {
+        name: "chartName",
+        label: "图表名"
       },
-      { 
-        name: "generalComment", 
-        label: "整体评价" 
+      {
+        name: "chartType",
+        label: "图表类型"
       },
-      { 
-        name: "generalScore", 
-        label: "整体分数" 
-      },
-      { 
-        name: "driveComment", 
-        label: "驱动评价" 
-      },
-      { 
-        name: "driveScore", 
-        label: "驱动分数" 
-      },
-      { 
-        name: "fuelEngineComment", 
-        label: "燃油引擎评价" 
-      },
-      { 
-        name: "fuelEngineScore", 
-        label: "燃油引擎分数" 
-      },
-      { 
-        name: "performanceComment", 
-        label: "性能评价" 
-      },
-      { 
-        
-        name: "performanceScore", 
-        label: "性能分数" 
-      },
-      { 
-        name: "consumptionComment", 
-        label: "效能评价" 
-      },
-      { 
-        name: "consumptionScore", 
-        label: "效能分数" 
-      },
-      { 
-        name: "chassisComment", 
-        label: "车身评价" 
-      },
-      { 
-        name: "chassisScore", 
-        label: "车身分数" 
-      },
-      { 
-        name: "transmissionComment", 
-        label: "传动评价" 
-      },
-      { 
-        name: "transmissionScore", 
-        label: "传动分数" 
+      {
+        name: "chartData",
+        label: "图表数据"
       },
       {
         name: "status",
@@ -98,7 +49,7 @@ export default class Tables extends Component {
               }}
             />
           )
-        },
+        }
       },
       {
         name: "remark",
@@ -115,7 +66,7 @@ export default class Tables extends Component {
               }}
             />
           )
-        },
+        }
       },
       {
         name: "edit",
@@ -143,7 +94,7 @@ export default class Tables extends Component {
   }
 
   componentDidMount() {
-    axios.post('/CarWarranty/searchAllCarWarrantyList', {})
+    axios.post('/VisualChart/searchAllVisualChartList', {})
       .then(res => {
         if (res.status === 200 && Object.keys(res.request.response).length > 0) {
           const datatableData = JSON.parse(res.request.response);
@@ -158,23 +109,28 @@ export default class Tables extends Component {
         <Grid container spacing={4}>
           <Grid item xs={12}>
             <MUIDataTable
-              title="车辆保固列表"
+              title="视觉图表列表"
               data={this.state.datatableData}
               columns={this.state.columns}
               options={{
                 filterType: "checkbox",
-                onRowsDelete: (data) => { 
-                  for (var i=0; i<data.data.length; ++i){
+                onRowsDelete: (data) => {
+                  for (var i = 0; i < data.data.length; ++i) {
                     var index = data.data[i].dataIndex;
                     var id = this.state.datatableData[index].id;
-                    axios.post('/CarWarranty/deleteCarWarrantyById', {id: id})
+                    axios.post('/VisualChart/deleteVisualChartById', { id: id })
                       .then(res => {
                         if (res.request.response !== "Succeed.") {
                           console.log(res.request.response);
                         }
                       })
                   }
-                }, 
+                },
+                customToolbar: () => {
+                  return (
+                    <CustomToolbar />
+                  );
+                }
               }}
             />
           </Grid>
@@ -193,7 +149,7 @@ function updateRow(row) {
       status: row.status,
       lastUpdatedBy: cookie.get('username')
     }
-    axios.post('/CarWarranty/updateStatusById', data)
+    axios.post('/VisualChart/updateStatusById', data)
       .then(res => {
         if (res.request.response !== "Succeed.") {
           console.log(res.request.response);
@@ -207,7 +163,7 @@ function updateRow(row) {
       remark: row.remark,
       lastUpdatedBy: cookie.get('username')
     }
-    axios.post('/CarWarranty/updateRemarkById', data)
+    axios.post('/VisualChart/updateRemarkById', data)
       .then(res => {
         if (res.request.response !== "Succeed.") {
           console.log(res.request.response);

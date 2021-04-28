@@ -22,6 +22,10 @@
 
 登录与注册界面，沿用react-material-admin模板。
 
+![profile](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619434158/temp/2021-04-26_184844_tcdzmx.png)
+
+用户个人资料界面，可修改邮箱，电话，头像。支援6个可选头像。
+
 ![dashboard](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179632/blog/2021-03-31_160707_wfvliq.webp)
 
 数据面板/仪表盘对昨日故障，过去一周故障，本年度故障，过去24h实时故障做统计，并渲染图表。
@@ -36,9 +40,13 @@
 
 地图使用必应地图接口对故障发生的位置进行标记，相同座标的故障求和后显示在标记上。
 
-![table](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162249_vwiity.webp)
+![warningTable](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162249_vwiity.webp)
 
-车辆故障信息表对数据库中的故障信息进行读取并且支持导出/下载。
+车辆故障信息表对数据库中的故障信息进行增删查并且支持导出/下载。
+
+![userTable](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619592386/temp/2021-04-28_144436_vodqex.webp)
+
+用户信息表对数据库中的用户信息进行增删改查并且支持导出/下载。
 
 ## 目录结构
 

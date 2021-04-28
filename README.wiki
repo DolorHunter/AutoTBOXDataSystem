@@ -106,7 +106,6 @@
   <tr><th colspan="4" align="center">CarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>carName</td><td>车辆名</td></tr>
-  <tr><td>String</td><td>varchar(255)</td><td>image</td><td>图片</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>price</td><td>价格</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>periodicalTechnicalInspection</td><td>定期技术检查</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>roadTax3Months</td><td>道路税每三月</td></tr>
@@ -317,7 +316,7 @@
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>chartName</td><td>图表名</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>chartType</td><td>图表类型</td></tr>
-  <tr><td>String</td><td>blob</td><td>chartData</td><td>图表数据</td></tr>
+  <tr><td>String</td><td>varchar(8192</td><td>chartData</td><td>图表数据</td></tr>
 </table>
 
 == 1.2 Controller控制类设计 ==
@@ -328,28 +327,28 @@
 
 <table>
   <tr><th colspan="5" align="center">UserController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>register</td><td>/User/register</td><td>userEntity</td><td>x</td><td>用户注册</td></tr>
-  <tr><td>login</td><td>/User/login</td><td>userEntity</td><td>x</td><td>用户登录</td></tr>
-  <tr><td>addUser</td><td>/User/addUser</td><td>userEntity</td><td>x</td><td>添加用户</td></tr>
-  <tr><td>hardDeleteUserById</td><td>/User/hardDeleteUserById</td><td>userEntity</td><td>x</td><td>硬删除用户</td></tr>
-  <tr><td>softDeleteUserById</td><td>/User/softDeleteUserById</td><td>userEntity</td><td>x</td><td>软删除用户</td></tr>
-  <tr><td>restoreUserById</td><td>/User/restoreUserById</td><td>userEntity</td><td>x</td><td>恢复软删除用户</td></tr>
-  <tr><td>activateUserById</td><td>/User/activateUserById</td><td>userEntity</td><td>x</td><td>激活用户</td></tr>
-  <tr><td>deactivateUserById</td><td>/User/deactivateUserById</td><td>userEntity</td><td>x</td><td>禁用用户</td></tr>
-  <tr><td>updateStatusById</td><td>/User/updateStatusById</td><td>userEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/User/updateRemarkById</td><td>userEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>updateEmailById</td><td>/User/updateEmailById</td><td>userEntity</td><td>x</td><td>更新邮箱</td></tr>
-  <tr><td>updatePhoneById</td><td>/User/updatePhoneById</td><td>userEntity</td><td>x</td><td>更新电话</td></tr>
-  <tr><td>updatePasswordById</td><td>/User/updatePasswordById</td><td>userEntity</td><td>x</td><td>更新密码</td></tr>
-  <tr><td>updateAvatarById</td><td>/User/updateAvatarById</td><td>userEntity</td><td>x</td><td>更新头像</td></tr>
-  <tr><td>resetPasswordById</td><td>/User/resetPasswordById</td><td>userEntity</td><td>x</td><td>重置用户密码</td></tr>
-  <tr><td>searchUserById</td><td>/User/searchUserById</td><td>userEntity</td><td>x</td><td>ID查找用户</td></tr>
-  <tr><td>searchUserByUsername</td><td>/User/searchUserByUsername</td><td>userEntity</td><td>x</td><td>用户名查找用户</td></tr>
-  <tr><td>searchActivedUserList</td><td>/User/searchActivedUserList</td><td>userEntity</td><td>x</td><td>查找激活用户List</td></tr>
-  <tr><td>searchActivedUserPager</td><td>/User/searchActivedUserPager</td><td>userEntity</td><td>x</td><td>查找激活用户Pager</td></tr>
-  <tr><td>searchAllUserList</td><td>/User/searchAllUserList</td><td>userEntity</td><td>x</td><td>查找全部用户List</td></tr>
-  <tr><td>searchAllUserPager</td><td>/User/searchAllUserPager</td><td>userEntity</td><td>x</td><td>查找全部用户Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>register</td><td>/User/register</td><td>userEntity</td><td>用户注册</td></tr>
+  <tr><td>login</td><td>/User/login</td><td>userEntity</td><td>用户登录</td></tr>
+  <tr><td>addUser</td><td>/User/addUser</td><td>userEntity</td><td>添加用户</td></tr>
+  <tr><td>hardDeleteUserById</td><td>/User/hardDeleteUserById</td><td>userEntity</td><td>硬删除用户</td></tr>
+  <tr><td>softDeleteUserById</td><td>/User/softDeleteUserById</td><td>userEntity</td><td>软删除用户</td></tr>
+  <tr><td>restoreUserById</td><td>/User/restoreUserById</td><td>userEntity</td><td>恢复软删除用户</td></tr>
+  <tr><td>activateUserById</td><td>/User/activateUserById</td><td>userEntity</td><td>激活用户</td></tr>
+  <tr><td>deactivateUserById</td><td>/User/deactivateUserById</td><td>userEntity</td><td>禁用用户</td></tr>
+  <tr><td>updateStatusById</td><td>/User/updateStatusById</td><td>userEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/User/updateRemarkById</td><td>userEntity</td><td>更新备注</td></tr>
+  <tr><td>updateEmailById</td><td>/User/updateEmailById</td><td>userEntity</td><td>更新邮箱</td></tr>
+  <tr><td>updatePhoneById</td><td>/User/updatePhoneById</td><td>userEntity</td><td>更新电话</td></tr>
+  <tr><td>updatePasswordById</td><td>/User/updatePasswordById</td><td>userEntity</td><td>更新密码</td></tr>
+  <tr><td>updateAvatarById</td><td>/User/updateAvatarById</td><td>userEntity</td><td>更新头像</td></tr>
+  <tr><td>resetPasswordById</td><td>/User/resetPasswordById</td><td>userEntity</td><td>重置用户密码</td></tr>
+  <tr><td>searchUserById</td><td>/User/searchUserById</td><td>userEntity</td><td>ID查找用户</td></tr>
+  <tr><td>searchUserByUsername</td><td>/User/searchUserByUsername</td><td>userEntity</td><td>用户名查找用户</td></tr>
+  <tr><td>searchActivedUserList</td><td>/User/searchActivedUserList</td><td>userEntity</td><td>查找激活用户List</td></tr>
+  <tr><td>searchActivedUserPager</td><td>/User/searchActivedUserPager</td><td>userEntity</td><td>查找激活用户Pager</td></tr>
+  <tr><td>searchAllUserList</td><td>/User/searchAllUserList</td><td>userEntity</td><td>查找全部用户List</td></tr>
+  <tr><td>searchAllUserPager</td><td>/User/searchAllUserPager</td><td>userEntity</td><td>查找全部用户Pager</td></tr>
 </table>
 
 === 1.2.2 RoleController ===
@@ -358,22 +357,22 @@
 
 <table>
   <tr><th colspan="5" align="center">RoleController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addRole</td><td>/Role/addRole</td><td>roleEntity</td><td>x</td><td>添加角色</td></tr>
-  <tr><td>hardDeleteRoleById</td><td>/Role/hardDeleteRoleById</td><td>roleEntity</td><td>x</td><td>硬删除角色</td></tr>
-  <tr><td>softDeleteRoleById</td><td>/Role/softDeleteRoleById</td><td>roleEntity</td><td>x</td><td>软删除角色</td></tr>
-  <tr><td>restoreRoleById</td><td>/Role/restoreRoleById</td><td>roleEntity</td><td>x</td><td>恢复软删除角色</td></tr>
-  <tr><td>activateRoleById</td><td>/Role/activateRoleById</td><td>roleEntity</td><td>x</td><td>激活角色</td></tr>
-  <tr><td>deactivateRoleById</td><td>/Role/deactivateRoleById</td><td>roleEntity</td><td>x</td><td>禁用角色</td></tr>
-  <tr><td>updateStatusById</td><td>/Role/updateStatusById</td><td>roleEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/Role/updateRemarkById</td><td>roleEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>updateRoleById</td><td>/Role/updateRoleById</td><td>roleEntity</td><td>x</td><td>更新角色信息</td></tr>
-  <tr><td>searchRoleById</td><td>/Role/searchRoleById</td><td>roleEntity</td><td>x</td><td>ID查找角色</td></tr>
-  <tr><td>searchRoleByRoleName</td><td>/Role/searchRoleByRoleName</td><td>roleEntity</td><td>x</td><td>角色名查找角色</td></tr>
-  <tr><td>searchActivedRoleList</td><td>/Role/searchActivedRoleList</td><td>roleEntity</td><td>x</td><td>查找激活角色List</td></tr>
-  <tr><td>searchActivedRolePager</td><td>/Role/searchActivedRolePager</td><td>roleEntity</td><td>x</td><td>查找激活角色Pager</td></tr>
-  <tr><td>searchAllRoleList</td><td>/Role/searchAllRoleList</td><td>roleEntity</td><td>x</td><td>查找全部角色List</td></tr>
-  <tr><td>searchAllRolePager</td><td>/Role/searchAllRolePager</td><td>roleEntity</td><td>x</td><td>查找全部角色Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addRole</td><td>/Role/addRole</td><td>roleEntity</td><td>添加角色</td></tr>
+  <tr><td>hardDeleteRoleById</td><td>/Role/hardDeleteRoleById</td><td>roleEntity</td><td>硬删除角色</td></tr>
+  <tr><td>softDeleteRoleById</td><td>/Role/softDeleteRoleById</td><td>roleEntity</td><td>软删除角色</td></tr>
+  <tr><td>restoreRoleById</td><td>/Role/restoreRoleById</td><td>roleEntity</td><td>恢复软删除角色</td></tr>
+  <tr><td>activateRoleById</td><td>/Role/activateRoleById</td><td>roleEntity</td><td>激活角色</td></tr>
+  <tr><td>deactivateRoleById</td><td>/Role/deactivateRoleById</td><td>roleEntity</td><td>禁用角色</td></tr>
+  <tr><td>updateStatusById</td><td>/Role/updateStatusById</td><td>roleEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/Role/updateRemarkById</td><td>roleEntity</td><td>更新备注</td></tr>
+  <tr><td>updateRoleById</td><td>/Role/updateRoleById</td><td>roleEntity</td><td>更新角色信息</td></tr>
+  <tr><td>searchRoleById</td><td>/Role/searchRoleById</td><td>roleEntity</td><td>ID查找角色</td></tr>
+  <tr><td>searchRoleByRoleName</td><td>/Role/searchRoleByRoleName</td><td>roleEntity</td><td>角色名查找角色</td></tr>
+  <tr><td>searchActivedRoleList</td><td>/Role/searchActivedRoleList</td><td>roleEntity</td><td>查找激活角色List</td></tr>
+  <tr><td>searchActivedRolePager</td><td>/Role/searchActivedRolePager</td><td>roleEntity</td><td>查找激活角色Pager</td></tr>
+  <tr><td>searchAllRoleList</td><td>/Role/searchAllRoleList</td><td>roleEntity</td><td>查找全部角色List</td></tr>
+  <tr><td>searchAllRolePager</td><td>/Role/searchAllRolePager</td><td>roleEntity</td><td>查找全部角色Pager</td></tr>
 </table>
 
 === 1.2.3 MenuController ===
@@ -382,22 +381,22 @@
 
 <table>
   <tr><th colspan="5" align="center">MenuController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addMenu</td><td>/Menu/addMenu</td><td>menuEntity</td><td>x</td><td>添加菜单</td></tr>
-  <tr><td>hardDeleteMenuById</td><td>/Menu/hardDeleteMenuById</td><td>menuEntity</td><td>x</td><td>硬删除菜单</td></tr>
-  <tr><td>softDeleteMenuById</td><td>/Menu/softDeleteMenuById</td><td>menuEntity</td><td>x</td><td>软删除菜单</td></tr>
-  <tr><td>restoreMenuById</td><td>/Menu/restoreMenuById</td><td>menuEntity</td><td>x</td><td>恢复软删除菜单</td></tr>
-  <tr><td>activateMenuById</td><td>/Menu/activateMenuById</td><td>menuEntity</td><td>x</td><td>激活菜单</td></tr>
-  <tr><td>deactivateMenuById</td><td>/Menu/deactivateMenuById</td><td>menuEntity</td><td>x</td><td>禁用菜单</td></tr>
-  <tr><td>updateStatusById</td><td>/Menu/updateStatusById</td><td>menuEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/Menu/updateRemarkById</td><td>menuEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>updateMenuById</td><td>/Menu/updateMenuById</td><td>menuEntity</td><td>x</td><td>更新菜单信息</td></tr>
-  <tr><td>searchMenuById</td><td>/Menu/searchMenuById</td><td>menuEntity</td><td>x</td><td>ID查找菜单</td></tr>
-  <tr><td>searchMenuByMenuName</td><td>/Menu/searchMenuByMenuName</td><td>menuEntity</td><td>x</td><td>菜单名查找菜单</td></tr>
-  <tr><td>searchActivedMenuList</td><td>/Menu/searchActivedMenuList</td><td>menuEntity</td><td>x</td><td>查找激活菜单List</td></tr>
-  <tr><td>searchActivedMenuPager</td><td>/Menu/searchActivedMenuPager</td><td>menuEntity</td><td>x</td><td>查找激活菜单Pager</td></tr>
-  <tr><td>searchAllMenuList</td><td>/Menu/searchAllMenuList</td><td>menuEntity</td><td>x</td><td>查找全部菜单List</td></tr>
-  <tr><td>searchAllMenuPager</td><td>/Menu/searchAllMenuPager</td><td>menuEntity</td><td>x</td><td>查找全部菜单Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addMenu</td><td>/Menu/addMenu</td><td>menuEntity</td><td>添加菜单</td></tr>
+  <tr><td>hardDeleteMenuById</td><td>/Menu/hardDeleteMenuById</td><td>menuEntity</td><td>硬删除菜单</td></tr>
+  <tr><td>softDeleteMenuById</td><td>/Menu/softDeleteMenuById</td><td>menuEntity</td><td>软删除菜单</td></tr>
+  <tr><td>restoreMenuById</td><td>/Menu/restoreMenuById</td><td>menuEntity</td><td>恢复软删除菜单</td></tr>
+  <tr><td>activateMenuById</td><td>/Menu/activateMenuById</td><td>menuEntity</td><td>激活菜单</td></tr>
+  <tr><td>deactivateMenuById</td><td>/Menu/deactivateMenuById</td><td>menuEntity</td><td>禁用菜单</td></tr>
+  <tr><td>updateStatusById</td><td>/Menu/updateStatusById</td><td>menuEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/Menu/updateRemarkById</td><td>menuEntity</td><td>更新备注</td></tr>
+  <tr><td>updateMenuById</td><td>/Menu/updateMenuById</td><td>menuEntity</td><td>更新菜单信息</td></tr>
+  <tr><td>searchMenuById</td><td>/Menu/searchMenuById</td><td>menuEntity</td><td>ID查找菜单</td></tr>
+  <tr><td>searchMenuByMenuName</td><td>/Menu/searchMenuByMenuName</td><td>menuEntity</td><td>菜单名查找菜单</td></tr>
+  <tr><td>searchActivedMenuList</td><td>/Menu/searchActivedMenuList</td><td>menuEntity</td><td>查找激活菜单List</td></tr>
+  <tr><td>searchActivedMenuPager</td><td>/Menu/searchActivedMenuPager</td><td>menuEntity</td><td>查找激活菜单Pager</td></tr>
+  <tr><td>searchAllMenuList</td><td>/Menu/searchAllMenuList</td><td>menuEntity</td><td>查找全部菜单List</td></tr>
+  <tr><td>searchAllMenuPager</td><td>/Menu/searchAllMenuPager</td><td>menuEntity</td><td>查找全部菜单Pager</td></tr>
 </table>
 
 === 1.2.4 UserRoleController ===
@@ -406,25 +405,25 @@
 
 <table>
   <tr><th colspan="5" align="center">UserRoleController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addRole2User</td><td>/UserRole/addRole2User</td><td>userRoleEntity</td><td>x</td><td>为用户添加角色</td></tr>
-  <tr><td>deleteUserRoleByUserId</td><td>/UserRole/deleteUserRoleByUserId</td><td>userRoleEntity</td><td>x</td><td>用户ID硬删除用户角色</td></tr>
-  <tr><td>deleteUserRoleByUsername</td><td>/UserRole/deleteUserRoleByUsername</td><td>userRoleEntity</td><td>x</td><td>用户名硬删除用户角色</td></tr>
-  <tr><td>deleteUserRoleByRoleId</td><td>/UserRole/deleteUserRoleByRoleId</td><td>userRoleEntity</td><td>x</td><td>角色ID硬删除用户角色</td></tr>
-  <tr><td>deleteUserRoleByRoleName</td><td>/UserRole/deleteUserRoleByRoleName</td><td>userRoleEntity</td><td>x</td><td>角色名硬删除用户角色</td></tr>
-  <tr><td>updateStatusById</td><td>/UserRole/updateStatusById</td><td>userRoleEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/UserRole/updateRemarkById</td><td>userRoleEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchUserRoleById</td><td>/UserRole/searchUserRoleById</td><td>userRoleEntity</td><td>x</td><td>ID查找角用户角色</td></tr>
-  <tr><td>searchUserRoleByUserIdList</td><td>/UserRole/searchUserRoleByUserIdList</td><td>userRoleEntity</td><td>x</td><td>用户ID查找用户角色List</td></tr>
-  <tr><td>searchUserRoleByUserIdPager</td><td>/UserRole/searchUserRoleByUserIdPager</td><td>userRoleEntity</td><td>x</td><td>用户ID查找用户角色Pager</td></tr>
-  <tr><td>searchUserRoleByUsernameList</td><td>/UserRole/searchUserRoleByUsernameList</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色List</td></tr>
-  <tr><td>searchUserRoleByUsernamePager</td><td>/UserRole/searchUserRoleByUsernamePager</td><td>userRoleEntity</td><td>x</td><td>用户名查找用户角色Pager</td></tr>
-  <tr><td>searchUserRoleByRoleIdList</td><td>/UserRole/searchUserRoleByRoleIdList</td><td>userRoleEntity</td><td>x</td><td>角色ID查找用户角色List</td></tr>
-  <tr><td>searchUserRoleByRoleIdPager</td><td>/UserRole/searchUserRoleByRoleIdPager</td><td>userRoleEntity</td><td>x</td><td>角色ID查找用户角色Pager</td></tr>
-  <tr><td>searchUserRoleByRoleNameList</td><td>/UserRole/searchUserRoleByRoleNameList</td><td>userRoleEntity</td><td>x</td><td>角色名查找用户角色List</td></tr>
-  <tr><td>searchUserRoleByRoleNamePager</td><td>/UserRole/searchUserRoleByRoleNamePager</td><td>userRoleEntity</td><td>x</td><td>角色名查找用户角色Pager</td></tr>
-  <tr><td>searchAllUserRoleList</td><td>/UserRole/searchAllUserRoleList</td><td>userRoleEntity</td><td>x</td><td>查找全部用户角色List</td></tr>
-  <tr><td>searchAllUserRolePager</td><td>/UserRole/searchAllUserRolePager</td><td>userRoleEntity</td><td>x</td><td>查找全部用户角色Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addRole2User</td><td>/UserRole/addRole2User</td><td>userRoleEntity</td><td>为用户添加角色</td></tr>
+  <tr><td>deleteUserRoleByUserId</td><td>/UserRole/deleteUserRoleByUserId</td><td>userRoleEntity</td><td>用户ID硬删除用户角色</td></tr>
+  <tr><td>deleteUserRoleByUsername</td><td>/UserRole/deleteUserRoleByUsername</td><td>userRoleEntity</td><td>用户名硬删除用户角色</td></tr>
+  <tr><td>deleteUserRoleByRoleId</td><td>/UserRole/deleteUserRoleByRoleId</td><td>userRoleEntity</td><td>角色ID硬删除用户角色</td></tr>
+  <tr><td>deleteUserRoleByRoleName</td><td>/UserRole/deleteUserRoleByRoleName</td><td>userRoleEntity</td><td>角色名硬删除用户角色</td></tr>
+  <tr><td>updateStatusById</td><td>/UserRole/updateStatusById</td><td>userRoleEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/UserRole/updateRemarkById</td><td>userRoleEntity</td><td>更新备注</td></tr>
+  <tr><td>searchUserRoleById</td><td>/UserRole/searchUserRoleById</td><td>userRoleEntity</td><td>ID查找角用户角色</td></tr>
+  <tr><td>searchUserRoleByUserIdList</td><td>/UserRole/searchUserRoleByUserIdList</td><td>userRoleEntity</td><td>用户ID查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByUserIdPager</td><td>/UserRole/searchUserRoleByUserIdPager</td><td>userRoleEntity</td><td>用户ID查找用户角色Pager</td></tr>
+  <tr><td>searchUserRoleByUsernameList</td><td>/UserRole/searchUserRoleByUsernameList</td><td>userRoleEntity</td><td>用户名查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByUsernamePager</td><td>/UserRole/searchUserRoleByUsernamePager</td><td>userRoleEntity</td><td>用户名查找用户角色Pager</td></tr>
+  <tr><td>searchUserRoleByRoleIdList</td><td>/UserRole/searchUserRoleByRoleIdList</td><td>userRoleEntity</td><td>角色ID查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByRoleIdPager</td><td>/UserRole/searchUserRoleByRoleIdPager</td><td>userRoleEntity</td><td>角色ID查找用户角色Pager</td></tr>
+  <tr><td>searchUserRoleByRoleNameList</td><td>/UserRole/searchUserRoleByRoleNameList</td><td>userRoleEntity</td><td>角色名查找用户角色List</td></tr>
+  <tr><td>searchUserRoleByRoleNamePager</td><td>/UserRole/searchUserRoleByRoleNamePager</td><td>userRoleEntity</td><td>角色名查找用户角色Pager</td></tr>
+  <tr><td>searchAllUserRoleList</td><td>/UserRole/searchAllUserRoleList</td><td>userRoleEntity</td><td>查找全部用户角色List</td></tr>
+  <tr><td>searchAllUserRolePager</td><td>/UserRole/searchAllUserRolePager</td><td>userRoleEntity</td><td>查找全部用户角色Pager</td></tr>
 </table>
 
 === 1.2.5 RoleMenuController ===
@@ -433,25 +432,25 @@
 
 <table>
   <tr><th colspan="5" align="center">RoleMenuController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addMenu2Role</td><td>/RoleMenu/addMenu2Role</td><td>roleMenuEntity</td><td>x</td><td>为角色添加菜单</td></tr>
-  <tr><td>deleteRoleMenuByRoleId</td><td>/RoleMenu/deleteRoleMenuByRoleId</td><td>roleMenuEntity</td><td>x</td><td>角色ID硬删除角色菜单</td></tr>
-  <tr><td>deleteRoleMenuByRoleName</td><td>/RoleMenu/deleteRoleMenuByRoleName</td><td>roleMenuEntity</td><td>x</td><td>角色名硬删除角色菜单</td></tr>
-  <tr><td>deleteRoleMenuByMenuId</td><td>/RoleMenu/deleteRoleMenuByMenuId</td><td>roleMenuEntity</td><td>x</td><td>菜单ID硬删除角色菜单</td></tr>
-  <tr><td>deleteRoleMenuByMenuName</td><td>/RoleMenu/deleteRoleMenuByMenuName</td><td>roleMenuEntity</td><td>x</td><td>菜单名硬删除角色菜单</td></tr>
-  <tr><td>updateStatusById</td><td>/RoleMenu/updateStatusById</td><td>roleMenuEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/RoleMenu/updateRemarkById</td><td>roleMenuEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchRoleMenuById</td><td>/RoleMenu/searchRoleMenuById</td><td>roleMenuEntity</td><td>x</td><td>ID查找角色菜单</td></tr>
-  <tr><td>searchRoleMenuByRoleIdList</td><td>/RoleMenu/searchRoleMenuByRoleIdList</td><td>roleMenuEntity</td><td>x</td><td>角色ID查找角色菜单List</td></tr>
-  <tr><td>searchRoleMenuByRoleIdPager</td><td>/RoleMenu/searchRoleMenuByRoleIdPager</td><td>roleMenuEntity</td><td>x</td><td>角色ID查找角色菜单Pager</td></tr>
-  <tr><td>searchRoleMenuByRoleNameList</td><td>/RoleMenu/searchRoleMenuByRoleNameList</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单List</td></tr>
-  <tr><td>searchRoleMenuByRoleNamePager</td><td>/RoleMenu/searchRoleMenuByRoleNamePager</td><td>roleMenuEntity</td><td>x</td><td>角色名查找角色菜单Pager</td></tr>
-  <tr><td>searchRoleMenuByMenuIdList</td><td>/RoleMenu/searchRoleMenuByMenuIdList</td><td>roleMenuEntity</td><td>x</td><td>菜单ID查找角色菜单List</td></tr>
-  <tr><td>searchRoleMenuByMenuIdPager</td><td>/RoleMenu/searchRoleMenuByMenuIdPager</td><td>roleMenuEntity</td><td>x</td><td>菜单ID查找角色菜单Pager</td></tr>
-  <tr><td>searchRoleMenuByMenuNameList</td><td>/RoleMenu/searchRoleMenuByMenuNameList</td><td>roleMenuEntity</td><td>x</td><td>菜单名查找角色菜单List</td></tr>
-  <tr><td>searchRoleMenuByMenuNamePager</td><td>/RoleMenu/searchRoleMenuByMenuNamePager</td><td>roleMenuEntity</td><td>x</td><td>菜单名查找角色菜单Pager</td></tr>
-  <tr><td>searchAllRoleMenuList</td><td>/RoleMenu/searchAllRoleMenuList</td><td>roleMenuEntity</td><td>x</td><td>查找全部角色菜单List</td></tr>
-  <tr><td>searchAllRoleMenuPager</td><td>/RoleMenu/searchAllRoleMenuPager</td><td>roleMenuEntity</td><td>x</td><td>查找全部角色菜单Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addMenu2Role</td><td>/RoleMenu/addMenu2Role</td><td>roleMenuEntity</td><td>为角色添加菜单</td></tr>
+  <tr><td>deleteRoleMenuByRoleId</td><td>/RoleMenu/deleteRoleMenuByRoleId</td><td>roleMenuEntity</td><td>角色ID硬删除角色菜单</td></tr>
+  <tr><td>deleteRoleMenuByRoleName</td><td>/RoleMenu/deleteRoleMenuByRoleName</td><td>roleMenuEntity</td><td>角色名硬删除角色菜单</td></tr>
+  <tr><td>deleteRoleMenuByMenuId</td><td>/RoleMenu/deleteRoleMenuByMenuId</td><td>roleMenuEntity</td><td>菜单ID硬删除角色菜单</td></tr>
+  <tr><td>deleteRoleMenuByMenuName</td><td>/RoleMenu/deleteRoleMenuByMenuName</td><td>roleMenuEntity</td><td>菜单名硬删除角色菜单</td></tr>
+  <tr><td>updateStatusById</td><td>/RoleMenu/updateStatusById</td><td>roleMenuEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/RoleMenu/updateRemarkById</td><td>roleMenuEntity</td><td>更新备注</td></tr>
+  <tr><td>searchRoleMenuById</td><td>/RoleMenu/searchRoleMenuById</td><td>roleMenuEntity</td><td>ID查找角色菜单</td></tr>
+  <tr><td>searchRoleMenuByRoleIdList</td><td>/RoleMenu/searchRoleMenuByRoleIdList</td><td>roleMenuEntity</td><td>角色ID查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByRoleIdPager</td><td>/RoleMenu/searchRoleMenuByRoleIdPager</td><td>roleMenuEntity</td><td>角色ID查找角色菜单Pager</td></tr>
+  <tr><td>searchRoleMenuByRoleNameList</td><td>/RoleMenu/searchRoleMenuByRoleNameList</td><td>roleMenuEntity</td><td>角色名查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByRoleNamePager</td><td>/RoleMenu/searchRoleMenuByRoleNamePager</td><td>roleMenuEntity</td><td>角色名查找角色菜单Pager</td></tr>
+  <tr><td>searchRoleMenuByMenuIdList</td><td>/RoleMenu/searchRoleMenuByMenuIdList</td><td>roleMenuEntity</td><td>菜单ID查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByMenuIdPager</td><td>/RoleMenu/searchRoleMenuByMenuIdPager</td><td>roleMenuEntity</td><td>菜单ID查找角色菜单Pager</td></tr>
+  <tr><td>searchRoleMenuByMenuNameList</td><td>/RoleMenu/searchRoleMenuByMenuNameList</td><td>roleMenuEntity</td><td>菜单名查找角色菜单List</td></tr>
+  <tr><td>searchRoleMenuByMenuNamePager</td><td>/RoleMenu/searchRoleMenuByMenuNamePager</td><td>roleMenuEntity</td><td>菜单名查找角色菜单Pager</td></tr>
+  <tr><td>searchAllRoleMenuList</td><td>/RoleMenu/searchAllRoleMenuList</td><td>roleMenuEntity</td><td>查找全部角色菜单List</td></tr>
+  <tr><td>searchAllRoleMenuPager</td><td>/RoleMenu/searchAllRoleMenuPager</td><td>roleMenuEntity</td><td>查找全部角色菜单Pager</td></tr>
 </table>
 
 === 1.2.6 CarController ===
@@ -460,29 +459,29 @@
 
 <table>
   <tr><th colspan="5" align="center">CarController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addCar</td><td>/Car/addCar</td><td>carEntity</td><td>x</td><td>添加车辆</td></tr>
-  <tr><td>hardDeleteCarById</td><td>/Car/hardDeleteCarById</td><td>carEntity</td><td>x</td><td>硬删除车辆</td></tr>
-  <tr><td>softDeleteCarById</td><td>/Car/softDeleteCarById</td><td>carEntity</td><td>x</td><td>软删除车辆</td></tr>
-  <tr><td>restoreCarById</td><td>/Car/restoreCarById</td><td>carEntity</td><td>x</td><td>恢复软删除车辆</td></tr>
-  <tr><td>activateCarById</td><td>/Car/activateCarById</td><td>carEntity</td><td>x</td><td>激活车辆</td></tr>
-  <tr><td>deactivateCarById</td><td>/Car/deactivateCarById</td><td>carEntity</td><td>x</td><td>禁用车辆</td></tr>
-  <tr><td>updateStatusById</td><td>/Car/updateStatusById</td><td>carEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/Car/updateRemarkById</td><td>carEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>updateGeneralById</td><td>/Car/updateGeneralById</td><td>carEntity</td><td>x</td><td>更新车辆信息 GENERAL</td></tr>
-  <tr><td>updateDriveById</td><td>/Car/updateDriveById</td><td>carEntity</td><td>x</td><td>更新车辆信息 DRIVE</td></tr>
-  <tr><td>updateFuelEngineById</td><td>/Car/updateFuelEngineById</td><td>carEntity</td><td>x</td><td>更新车辆信息 FUEL ENGINE</td></tr>
-  <tr><td>updateElectroMotorById</td><td>/Car/updateElectroMotorById</td><td>carEntity</td><td>x</td><td>更新车辆信息 ELECTROMOTOR</td></tr>
-  <tr><td>updatePerformanceById</td><td>/Car/updatePerformanceById</td><td>carEntity</td><td>x</td><td>更新车辆信息 PERFORMANCE</td></tr>
-  <tr><td>updateChassisById</td><td>/Car/updateChassisById</td><td>carEntity</td><td>x</td><td>更新车辆信息 CHASSIS</td></tr>
-  <tr><td>updateTransmissionById</td><td>/Car/updateTransmissionById</td><td>carEntity</td><td>x</td><td>更新车辆信息 TRANSMISSION</td></tr>
-  <tr><td>updateServiceAndWarrantyById</td><td>/Car/updateServiceAndWarrantyById</td><td>carEntity</td><td>x</td><td>更新车辆信息 SERVICE AND WARRANTY</td></tr>
-  <tr><td>searchCarById</td><td>/Car/searchCarById</td><td>carEntity</td><td>x</td><td>ID查找车辆</td></tr>
-  <tr><td>searchCarByCarName</td><td>/Car/searchCarByCarName</td><td>carEntity</td><td>x</td><td>车辆名查找车辆</td></tr>
-  <tr><td>searchActivedCarList</td><td>/Car/searchActivedCarList</td><td>carEntity</td><td>x</td><td>查找激活车辆List</td></tr>
-  <tr><td>searchActivedCarPager</td><td>/Car/searchActivedCarPager</td><td>carEntity</td><td>x</td><td>查找激活车辆Pager</td></tr>
-  <tr><td>searchAllCarList</td><td>/Car/searchAllCarList</td><td>carEntity</td><td>x</td><td>查找全部车辆List</td></tr>
-  <tr><td>searchAllCarPager</td><td>/Car/searchAllCarPager</td><td>carEntity</td><td>x</td><td>查找全部车辆Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addCar</td><td>/Car/addCar</td><td>carEntity</td><td>添加车辆</td></tr>
+  <tr><td>hardDeleteCarById</td><td>/Car/hardDeleteCarById</td><td>carEntity</td><td>硬删除车辆</td></tr>
+  <tr><td>softDeleteCarById</td><td>/Car/softDeleteCarById</td><td>carEntity</td><td>软删除车辆</td></tr>
+  <tr><td>restoreCarById</td><td>/Car/restoreCarById</td><td>carEntity</td><td>恢复软删除车辆</td></tr>
+  <tr><td>activateCarById</td><td>/Car/activateCarById</td><td>carEntity</td><td>激活车辆</td></tr>
+  <tr><td>deactivateCarById</td><td>/Car/deactivateCarById</td><td>carEntity</td><td>禁用车辆</td></tr>
+  <tr><td>updateStatusById</td><td>/Car/updateStatusById</td><td>carEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/Car/updateRemarkById</td><td>carEntity</td><td>更新备注</td></tr>
+  <tr><td>updateGeneralById</td><td>/Car/updateGeneralById</td><td>carEntity</td><td>更新车辆信息 GENERAL</td></tr>
+  <tr><td>updateDriveById</td><td>/Car/updateDriveById</td><td>carEntity</td><td>更新车辆信息 DRIVE</td></tr>
+  <tr><td>updateFuelEngineById</td><td>/Car/updateFuelEngineById</td><td>carEntity</td><td>更新车辆信息 FUEL ENGINE</td></tr>
+  <tr><td>updateElectroMotorById</td><td>/Car/updateElectroMotorById</td><td>carEntity</td><td>更新车辆信息 ELECTROMOTOR</td></tr>
+  <tr><td>updatePerformanceById</td><td>/Car/updatePerformanceById</td><td>carEntity</td><td>更新车辆信息 PERFORMANCE</td></tr>
+  <tr><td>updateChassisById</td><td>/Car/updateChassisById</td><td>carEntity</td><td>更新车辆信息 CHASSIS</td></tr>
+  <tr><td>updateTransmissionById</td><td>/Car/updateTransmissionById</td><td>carEntity</td><td>更新车辆信息 TRANSMISSION</td></tr>
+  <tr><td>updateServiceAndWarrantyById</td><td>/Car/updateServiceAndWarrantyById</td><td>carEntity</td><td>更新车辆信息 SERVICE AND WARRANTY</td></tr>
+  <tr><td>searchCarById</td><td>/Car/searchCarById</td><td>carEntity</td><td>ID查找车辆</td></tr>
+  <tr><td>searchCarByCarName</td><td>/Car/searchCarByCarName</td><td>carEntity</td><td>车辆名查找车辆</td></tr>
+  <tr><td>searchActivedCarList</td><td>/Car/searchActivedCarList</td><td>carEntity</td><td>查找激活车辆List</td></tr>
+  <tr><td>searchActivedCarPager</td><td>/Car/searchActivedCarPager</td><td>carEntity</td><td>查找激活车辆Pager</td></tr>
+  <tr><td>searchAllCarList</td><td>/Car/searchAllCarList</td><td>carEntity</td><td>查找全部车辆List</td></tr>
+  <tr><td>searchAllCarPager</td><td>/Car/searchAllCarPager</td><td>carEntity</td><td>查找全部车辆Pager</td></tr>
 </table>
 
 === 1.2.7 UserCarController ===
@@ -491,28 +490,28 @@
 
 <table>
   <tr><th colspan="5" align="center">UserCarController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addCar2User</td><td>/UserCar/addCar2User</td><td>userCarEntity</td><td>x</td><td>为用户添加车辆</td></tr>
-  <tr><td>deleteUserCarById</td><td>/UserCar/deleteUserCarById</td><td>userCarEntity</td><td>x</td><td>ID硬删除用户车辆</td></tr>
-  <tr><td>deleteUserCarByUserId</td><td>/UserCar/deleteUserCarByUserId</td><td>userCarEntity</td><td>x</td><td>用户ID硬删除用户车辆</td></tr>
-  <tr><td>deleteUserCarByUsername</td><td>/UserCar/deleteUserCarByUsername</td><td>userCarEntity</td><td>x</td><td>用户名硬删除用户车辆</td></tr>
-  <tr><td>deleteUserCarByCarId</td><td>/UserCar/deleteUserCarByCarId</td><td>userCarEntity</td><td>x</td><td>车辆ID硬删除用户车辆</td></tr>
-  <tr><td>deleteUserCarByCarName</td><td>/UserCar/deleteUserCarByCarName</td><td>userCarEntity</td><td>x</td><td>车辆名硬删除用户车辆</td></tr>
-  <tr><td>deleteUserCarByVin</td><td>/UserCar/deleteUserCarByVin</td><td>userCarEntity</td><td>x</td><td>Vin硬删除用户车辆</td></tr>
-  <tr><td>updateStatusById</td><td>/UserCar/updateStatusById</td><td>userCarEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/UserCar/updateRemarkById</td><td>userCarEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchUserCarById</td><td>/UserCar/searchUserCarById</td><td>userCarEntity</td><td>x</td><td>ID查找用户车辆</td></tr>
-  <tr><td>searchUserCarByVin</td><td>/UserCar/searchUserCarByVin</td><td>userCarEntity</td><td>x</td><td>Vin查找用户车辆</td></tr>
-  <tr><td>searchUserCarByUserIdList</td><td>/UserCar/searchUserCarByUserIdList</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆List</td></tr>
-  <tr><td>searchUserCarByUserIdPager</td><td>/UserCar/searchUserCarByUserIdPager</td><td>userCarEntity</td><td>x</td><td>用户ID查找用户车辆Pager</td></tr>
-  <tr><td>searchUserCarByUsernameList</td><td>/UserCar/searchUserCarByUsernameList</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆List</td></tr>
-  <tr><td>searchUserCarByUsernamePager</td><td>/UserCar/searchUserCarByUsernamePager</td><td>userCarEntity</td><td>x</td><td>用户名查找用户车辆Pager</td></tr>
-  <tr><td>searchUserCarByCarIdList</td><td>/UserCar/searchUserCarByCarIdList</td><td>userCarEntity</td><td>x</td><td>车辆ID查找用户车辆List</td></tr>
-  <tr><td>searchUserCarByCarIdPager</td><td>/UserCar/searchUserCarByCarIdPager</td><td>userCarEntity</td><td>x</td><td>车辆ID查找用户车辆Pager</td></tr>
-  <tr><td>searchUserCarByCarNameList</td><td>/UserCar/searchUserCarByCarNameList</td><td>userCarEntity</td><td>x</td><td>车辆名查找用户车辆List</td></tr>
-  <tr><td>searchUserCarByCarNamePager</td><td>/UserCar/searchUserCarByCarNamePager</td><td>userCarEntity</td><td>x</td><td>车辆名查找用户车辆Pager</td></tr>
-  <tr><td>searchAllUserCarList</td><td>/UserCar/searchAllUserCarList</td><td>userCarEntity</td><td>x</td><td>查找全部用户车辆List</td></tr>
-  <tr><td>searchAllUserCarPager</td><td>/UserCar/searchAllUserCarPager</td><td>userCarEntity</td><td>x</td><td>查找全部用户车辆Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addCar2User</td><td>/UserCar/addCar2User</td><td>userCarEntity</td><td>为用户添加车辆</td></tr>
+  <tr><td>deleteUserCarById</td><td>/UserCar/deleteUserCarById</td><td>userCarEntity</td><td>ID硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByUserId</td><td>/UserCar/deleteUserCarByUserId</td><td>userCarEntity</td><td>用户ID硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByUsername</td><td>/UserCar/deleteUserCarByUsername</td><td>userCarEntity</td><td>用户名硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByCarId</td><td>/UserCar/deleteUserCarByCarId</td><td>userCarEntity</td><td>车辆ID硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByCarName</td><td>/UserCar/deleteUserCarByCarName</td><td>userCarEntity</td><td>车辆名硬删除用户车辆</td></tr>
+  <tr><td>deleteUserCarByVin</td><td>/UserCar/deleteUserCarByVin</td><td>userCarEntity</td><td>Vin硬删除用户车辆</td></tr>
+  <tr><td>updateStatusById</td><td>/UserCar/updateStatusById</td><td>userCarEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/UserCar/updateRemarkById</td><td>userCarEntity</td><td>更新备注</td></tr>
+  <tr><td>searchUserCarById</td><td>/UserCar/searchUserCarById</td><td>userCarEntity</td><td>ID查找用户车辆</td></tr>
+  <tr><td>searchUserCarByVin</td><td>/UserCar/searchUserCarByVin</td><td>userCarEntity</td><td>Vin查找用户车辆</td></tr>
+  <tr><td>searchUserCarByUserIdList</td><td>/UserCar/searchUserCarByUserIdList</td><td>userCarEntity</td><td>用户ID查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByUserIdPager</td><td>/UserCar/searchUserCarByUserIdPager</td><td>userCarEntity</td><td>用户ID查找用户车辆Pager</td></tr>
+  <tr><td>searchUserCarByUsernameList</td><td>/UserCar/searchUserCarByUsernameList</td><td>userCarEntity</td><td>用户名查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByUsernamePager</td><td>/UserCar/searchUserCarByUsernamePager</td><td>userCarEntity</td><td>用户名查找用户车辆Pager</td></tr>
+  <tr><td>searchUserCarByCarIdList</td><td>/UserCar/searchUserCarByCarIdList</td><td>userCarEntity</td><td>车辆ID查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByCarIdPager</td><td>/UserCar/searchUserCarByCarIdPager</td><td>userCarEntity</td><td>车辆ID查找用户车辆Pager</td></tr>
+  <tr><td>searchUserCarByCarNameList</td><td>/UserCar/searchUserCarByCarNameList</td><td>userCarEntity</td><td>车辆名查找用户车辆List</td></tr>
+  <tr><td>searchUserCarByCarNamePager</td><td>/UserCar/searchUserCarByCarNamePager</td><td>userCarEntity</td><td>车辆名查找用户车辆Pager</td></tr>
+  <tr><td>searchAllUserCarList</td><td>/UserCar/searchAllUserCarList</td><td>userCarEntity</td><td>查找全部用户车辆List</td></tr>
+  <tr><td>searchAllUserCarPager</td><td>/UserCar/searchAllUserCarPager</td><td>userCarEntity</td><td>查找全部用户车辆Pager</td></tr>
 </table>
 
 === 1.2.8 CarLogController ===
@@ -521,17 +520,17 @@
 
 <table>
   <tr><th colspan="5" align="center">CarLogController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addCarLog</td><td>/CarLog/addCarLog</td><td>carLogEntity</td><td>x</td><td>添加车辆日志</td></tr>
-  <tr><td>deleteCarLogById</td><td>/CarLog/deleteCarLogById</td><td>carLogEntity</td><td>x</td><td>日志ID硬删除日志</td></tr>
-  <tr><td>deleteCarLogByVIN</td><td>/CarLog/deleteCarLogByVIN</td><td>carLogEntity</td><td>x</td><td>车辆VIN硬删除日志</td></tr>
-  <tr><td>updateStatusById</td><td>/CarLog/updateStatusById</td><td>carLogEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/CarLog/updateRemarkById</td><td>carLogEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchCarLogById</td><td>/CarLog/searchCarLogById</td><td>carLogEntity</td><td>x</td><td>日志ID查找</td></tr>
-  <tr><td>searchCarLogByVINList</td><td>/CarLog/searchCarLogByVINList</td><td>carLogEntity</td><td>x</td><td>车辆VIN查找日志List</td></tr>
-  <tr><td>searchCarLogByVINPager</td><td>/CarLog/searchCarLogByVINPager</td><td>carLogEntity</td><td>x</td><td>车辆VIN查找日志Pager</td></tr>
-  <tr><td>searchAllCarLogList</td><td>/CarLog/searchAllCarLogList</td><td>carLogEntity</td><td>x</td><td>查找全部车辆日志List</td></tr>
-  <tr><td>searchAllCarLogPager</td><td>/CarLog/searchAllCarLogPager</td><td>carLogEntity</td><td>x</td><td>查找全部车辆日志Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addCarLog</td><td>/CarLog/addCarLog</td><td>carLogEntity</td><td>添加车辆日志</td></tr>
+  <tr><td>deleteCarLogById</td><td>/CarLog/deleteCarLogById</td><td>carLogEntity</td><td>日志ID硬删除日志</td></tr>
+  <tr><td>deleteCarLogByVIN</td><td>/CarLog/deleteCarLogByVIN</td><td>carLogEntity</td><td>车辆VIN硬删除日志</td></tr>
+  <tr><td>updateStatusById</td><td>/CarLog/updateStatusById</td><td>carLogEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarLog/updateRemarkById</td><td>carLogEntity</td><td>更新备注</td></tr>
+  <tr><td>searchCarLogById</td><td>/CarLog/searchCarLogById</td><td>carLogEntity</td><td>日志ID查找</td></tr>
+  <tr><td>searchCarLogByVINList</td><td>/CarLog/searchCarLogByVINList</td><td>carLogEntity</td><td>车辆VIN查找日志List</td></tr>
+  <tr><td>searchCarLogByVINPager</td><td>/CarLog/searchCarLogByVINPager</td><td>carLogEntity</td><td>车辆VIN查找日志Pager</td></tr>
+  <tr><td>searchAllCarLogList</td><td>/CarLog/searchAllCarLogList</td><td>carLogEntity</td><td>查找全部车辆日志List</td></tr>
+  <tr><td>searchAllCarLogPager</td><td>/CarLog/searchAllCarLogPager</td><td>carLogEntity</td><td>查找全部车辆日志Pager</td></tr>
 </table>
 
 === 1.2.9 CarWarningController ===
@@ -540,25 +539,25 @@
 
 <table>
   <tr><th colspan="5" align="center">CarWarningController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addCarWarning</td><td>/CarWarning/addCarWarning</td><td>carWarningEntity</td><td>x</td><td>添加车辆故障</td></tr>
-  <tr><td>deleteCarWarningById</td><td>/CarWarning/deleteCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID硬删除故障</td></tr>
-  <tr><td>deleteCarWarningByVin</td><td>/CarWarning/deleteCarWarningByVin</td><td>carWarningEntity</td><td>x</td><td>车辆Vin硬删除故障</td></tr>
-  <tr><td>updateStatusById</td><td>/CarWarning/updateStatusById</td><td>carWarningEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/CarWarning/updateRemarkById</td><td>carWarningEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchCarWarningById</td><td>/CarWarning/searchCarWarningById</td><td>carWarningEntity</td><td>x</td><td>故障ID查找</td></tr>
-  <tr><td>searchCarWarningByVinList</td><td>/CarWarning/searchCarWarningByVinList</td><td>carWarningEntity</td><td>x</td><td>车辆Vin查找故障List</td></tr>
-  <tr><td>searchCarWarningByVinPager</td><td>/CarWarning/searchCarWarningByVinPager</td><td>carWarningEntity</td><td>x</td><td>车辆Vin查找故障Pager</td></tr>
-  <tr><td>searchCarWarningByErrorContentList</td><td>/CarWarning/searchCarWarningByErrorContentList</td><td>carWarningEntity</td><td>x</td><td>错误内容查找故障List</td></tr>
-  <tr><td>searchCarWarningByErrorContentPager</td><td>/CarWarning/searchCarWarningByErrorContentPager</td><td>carWarningEntity</td><td>x</td><td>错误内容查找故障Pager</td></tr>
-  <tr><td>searchCarWarningByFaultCategoryList</td><td>/CarWarning/searchCarWarningByFaultCategoryList</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障List</td></tr>
-  <tr><td>searchCarWarningByFaultCategoryPager</td><td>/CarWarning/searchCarWarningByFaultCategoryPager</td><td>carWarningEntity</td><td>x</td><td>错误单元查找故障Pager</td></tr>
-  <tr><td>searchCarWarningBySendingTimeBetweenList</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenList</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障List</td></tr>
-  <tr><td>searchCarWarningBySendingTimeBetweenPager</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenPager</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆故障Pager</td></tr>
-  <tr><td>searchCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>x</td><td>查找时间内的故障详情List(CarWarningEntity, CarWarningDetailEntity多表查询)</td></tr>
-  <tr><td>searchUserCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchUserCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>x</td><td>查找时间内的车辆详情List(UserCarEntity, CarWarningEntity, CarWarningDetailEntity多表查询)</td></tr>
-  <tr><td>searchAllCarWarningList</td><td>/CarWarning/searchAllCarWarningList</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障List</td></tr>
-  <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>x</td><td>查找全部车辆故障Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addCarWarning</td><td>/CarWarning/addCarWarning</td><td>carWarningEntity</td><td>添加车辆故障</td></tr>
+  <tr><td>deleteCarWarningById</td><td>/CarWarning/deleteCarWarningById</td><td>carWarningEntity</td><td>故障ID硬删除故障</td></tr>
+  <tr><td>deleteCarWarningByVin</td><td>/CarWarning/deleteCarWarningByVin</td><td>carWarningEntity</td><td>车辆Vin硬删除故障</td></tr>
+  <tr><td>updateStatusById</td><td>/CarWarning/updateStatusById</td><td>carWarningEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarWarning/updateRemarkById</td><td>carWarningEntity</td><td>更新备注</td></tr>
+  <tr><td>searchCarWarningById</td><td>/CarWarning/searchCarWarningById</td><td>carWarningEntity</td><td>故障ID查找</td></tr>
+  <tr><td>searchCarWarningByVinList</td><td>/CarWarning/searchCarWarningByVinList</td><td>carWarningEntity</td><td>车辆Vin查找故障List</td></tr>
+  <tr><td>searchCarWarningByVinPager</td><td>/CarWarning/searchCarWarningByVinPager</td><td>carWarningEntity</td><td>车辆Vin查找故障Pager</td></tr>
+  <tr><td>searchCarWarningByErrorContentList</td><td>/CarWarning/searchCarWarningByErrorContentList</td><td>carWarningEntity</td><td>错误内容查找故障List</td></tr>
+  <tr><td>searchCarWarningByErrorContentPager</td><td>/CarWarning/searchCarWarningByErrorContentPager</td><td>carWarningEntity</td><td>错误内容查找故障Pager</td></tr>
+  <tr><td>searchCarWarningByFaultCategoryList</td><td>/CarWarning/searchCarWarningByFaultCategoryList</td><td>carWarningEntity</td><td>错误单元查找故障List</td></tr>
+  <tr><td>searchCarWarningByFaultCategoryPager</td><td>/CarWarning/searchCarWarningByFaultCategoryPager</td><td>carWarningEntity</td><td>错误单元查找故障Pager</td></tr>
+  <tr><td>searchCarWarningBySendingTimeBetweenList</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenList</td><td>carWarningEntity</td><td>查找时间内的车辆故障List</td></tr>
+  <tr><td>searchCarWarningBySendingTimeBetweenPager</td><td>/CarWarning/searchCarWarningBySendingTimeBetweenPager</td><td>carWarningEntity</td><td>查找时间内的车辆故障Pager</td></tr>
+  <tr><td>searchCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>查找时间内的故障详情List(CarWarningEntity, CarWarningDetailEntity多表查询)</td></tr>
+  <tr><td>searchUserCarWarningDetailBySendingTimeBetween</td><td>/CarWarning/searchUserCarWarningDetailBySendingTimeBetween</td><td>carWarningEntity</td><td>查找时间内的车辆详情List(UserCarEntity, CarWarningEntity, CarWarningDetailEntity多表查询)</td></tr>
+  <tr><td>searchAllCarWarningList</td><td>/CarWarning/searchAllCarWarningList</td><td>carWarningEntity</td><td>查找全部车辆故障List</td></tr>
+  <tr><td>searchAllCarWarningPager</td><td>/CarWarning/searchAllCarWarningPager</td><td>carWarningEntity</td><td>查找全部车辆故障Pager</td></tr>
 </table>
 
 === 1.2.9 CarWarningDetailController ===
@@ -567,18 +566,18 @@
 
 <table>
   <tr><th colspan="5" align="center">CarWarningDetailController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addCarWarningDetail</td><td>/CarWarningDetail/addCarWarningDetail</td><td>carWarningDetailEntity</td><td>x</td><td>添加车辆故障详情</td></tr>
-  <tr><td>deleteCarWarningDetailById</td><td>/CarWarningDetail/deleteCarWarningDetailById</td><td>carWarningDetailEntity</td><td>x</td><td>故障ID硬删除故障详情</td></tr>
-  <tr><td>deleteCarWarningDetailByCarType</td><td>/CarWarningDetail/deleteCarWarningDetailByCarType</td><td>carWarningDetailEntity</td><td>x</td><td>车辆类型硬删除故障详情</td></tr>
-  <tr><td>updateStatusById</td><td>/CarWarningDetail/updateStatusById</td><td>carWarningDetailEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/CarWarningDetail/updateRemarkById</td><td>carWarningDetailEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchCarWarningDetailById</td><td>/CarWarningDetail/searchCarWarningDetailById</td><td>carWarningDetailEntity</td><td>x</td><td>故障详情ID查找</td></tr>
-  <tr><td>searchCarWarningDetailByCarTypeAndErrorContent</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypeAndErrorContent</td><td>carWarningDetailEntity</td><td>x</td><td>车辆型号与故障内容查找故障</td></tr>
-  <tr><td>searchCarWarningDetailByCarTypeList</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypeList</td><td>carWarningDetailEntity</td><td>x</td><td>车辆类型查找List</td></tr>
-  <tr><td>searchCarWarningDetailByCarTypePager</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypePager</td><td>carWarningDetailEntity</td><td>x</td><td>车辆类型查找Pager</td></tr>
-  <tr><td>searchAllCarWarningDetailList</td><td>/CarWarningDetail/searchAllCarWarningDetailList</td><td>carWarningDetailEntity</td><td>x</td><td>查找全部车辆故障详情List</td></tr>
-  <tr><td>searchAllCarWarningDetailPager</td><td>/CarWarningDetail/searchAllCarWarningDetailPager</td><td>carWarningDetailEntity</td><td>x</td><td>查找全部车辆故障详情Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addCarWarningDetail</td><td>/CarWarningDetail/addCarWarningDetail</td><td>carWarningDetailEntity</td><td>添加车辆故障详情</td></tr>
+  <tr><td>deleteCarWarningDetailById</td><td>/CarWarningDetail/deleteCarWarningDetailById</td><td>carWarningDetailEntity</td><td>故障ID硬删除故障详情</td></tr>
+  <tr><td>deleteCarWarningDetailByCarType</td><td>/CarWarningDetail/deleteCarWarningDetailByCarType</td><td>carWarningDetailEntity</td><td>车辆类型硬删除故障详情</td></tr>
+  <tr><td>updateStatusById</td><td>/CarWarningDetail/updateStatusById</td><td>carWarningDetailEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarWarningDetail/updateRemarkById</td><td>carWarningDetailEntity</td><td>更新备注</td></tr>
+  <tr><td>searchCarWarningDetailById</td><td>/CarWarningDetail/searchCarWarningDetailById</td><td>carWarningDetailEntity</td><td>故障详情ID查找</td></tr>
+  <tr><td>searchCarWarningDetailByCarTypeAndErrorContent</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypeAndErrorContent</td><td>carWarningDetailEntity</td><td>车辆型号与故障内容查找故障</td></tr>
+  <tr><td>searchCarWarningDetailByCarTypeList</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypeList</td><td>carWarningDetailEntity</td><td>车辆类型查找List</td></tr>
+  <tr><td>searchCarWarningDetailByCarTypePager</td><td>/CarWarningDetail/searchCarWarningDetailByCarTypePager</td><td>carWarningDetailEntity</td><td>车辆类型查找Pager</td></tr>
+  <tr><td>searchAllCarWarningDetailList</td><td>/CarWarningDetail/searchAllCarWarningDetailList</td><td>carWarningDetailEntity</td><td>查找全部车辆故障详情List</td></tr>
+  <tr><td>searchAllCarWarningDetailPager</td><td>/CarWarningDetail/searchAllCarWarningDetailPager</td><td>carWarningDetailEntity</td><td>查找全部车辆故障详情Pager</td></tr>
 </table>
 
 === 1.2.11 CarWarrantyController ===
@@ -587,17 +586,17 @@
 
 <table>
   <tr><th colspan="5" align="center">CarWarrantyController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addCarWarranty</td><td>/CarWarranty/addCarWarranty</td><td>carWarrantyEntity</td><td>x</td><td>添加车辆保修</td></tr>
-  <tr><td>deleteCarWarrantyById</td><td>/CarWarranty/deleteCarWarrantyById</td><td>carWarrantyEntity</td><td>x</td><td>保修ID硬删除保修</td></tr>
-  <tr><td>deleteCarWarrantyByVIN</td><td>/CarWarranty/deleteCarWarrantyByVIN</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN硬删除保修</td></tr>
-  <tr><td>updateStatusById</td><td>/CarWarranty/updateStatusById</td><td>carWarrantyEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/CarWarranty/updateRemarkById</td><td>carWarrantyEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchCarWarrantyById</td><td>/CarWarranty/searchCarWarrantyById</td><td>carWarrantyEntity</td><td>x</td><td>保修ID查找</td></tr>
-  <tr><td>searchCarWarrantyByVINList</td><td>/CarWarranty/searchCarWarrantyByVINList</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN查找保修List</td></tr>
-  <tr><td>searchCarWarrantyByVINPager</td><td>/CarWarranty/searchCarWarrantyByVINPager</td><td>carWarrantyEntity</td><td>x</td><td>车辆VIN查找保修Pager</td></tr>
-  <tr><td>searchAllCarWarrantyList</td><td>/CarWarranty/searchAllCarWarrantyList</td><td>carWarrantyEntity</td><td>x</td><td>查找全部车辆保修List</td></tr>
-  <tr><td>searchAllCarWarrantyPager</td><td>/CarWarranty/searchAllCarWarrantyPager</td><td>carWarrantyEntity</td><td>x</td><td>查找全部车辆保修Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addCarWarranty</td><td>/CarWarranty/addCarWarranty</td><td>carWarrantyEntity</td><td>添加车辆保修</td></tr>
+  <tr><td>deleteCarWarrantyById</td><td>/CarWarranty/deleteCarWarrantyById</td><td>carWarrantyEntity</td><td>保修ID硬删除保修</td></tr>
+  <tr><td>deleteCarWarrantyByVIN</td><td>/CarWarranty/deleteCarWarrantyByVIN</td><td>carWarrantyEntity</td><td>车辆VIN硬删除保修</td></tr>
+  <tr><td>updateStatusById</td><td>/CarWarranty/updateStatusById</td><td>carWarrantyEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/CarWarranty/updateRemarkById</td><td>carWarrantyEntity</td><td>更新备注</td></tr>
+  <tr><td>searchCarWarrantyById</td><td>/CarWarranty/searchCarWarrantyById</td><td>carWarrantyEntity</td><td>保修ID查找</td></tr>
+  <tr><td>searchCarWarrantyByVINList</td><td>/CarWarranty/searchCarWarrantyByVINList</td><td>carWarrantyEntity</td><td>车辆VIN查找保修List</td></tr>
+  <tr><td>searchCarWarrantyByVINPager</td><td>/CarWarranty/searchCarWarrantyByVINPager</td><td>carWarrantyEntity</td><td>车辆VIN查找保修Pager</td></tr>
+  <tr><td>searchAllCarWarrantyList</td><td>/CarWarranty/searchAllCarWarrantyList</td><td>carWarrantyEntity</td><td>查找全部车辆保修List</td></tr>
+  <tr><td>searchAllCarWarrantyPager</td><td>/CarWarranty/searchAllCarWarrantyPager</td><td>carWarrantyEntity</td><td>查找全部车辆保修Pager</td></tr>
 </table>
 
 === 1.2.12 VisualChartController ===
@@ -606,16 +605,16 @@
 
 <table>
   <tr><th colspan="5" align="center">VisualChartController</th></tr>
-  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>验证</th><th>注释</th></tr>
-  <tr><td>addvisualChart</td><td>/VisualChart/addvisualChart</td><td>visualChartEntity</td><td>x</td><td>添加视觉图表</td></tr>
-  <tr><td>deletevisualChartById</td><td>/VisualChart/deletevisualChartById</td><td>visualChartEntity</td><td>x</td><td>视觉图表硬删除</td></tr>
-  <tr><td>deletevisualChartByChartName</td><td>/VisualChart/deletevisualChartByChartName</td><td>visualChartEntity</td><td>x</td><td>视觉图表名硬删除</td></tr>
-  <tr><td>updateStatusById</td><td>/VisualChart/updateStatusById</td><td>visualChartEntity</td><td>x</td><td>更新状态</td></tr>
-  <tr><td>updateRemarkById</td><td>/VisualChart/updateRemarkById</td><td>visualChartEntity</td><td>x</td><td>更新备注</td></tr>
-  <tr><td>searchvisualChartById</td><td>/VisualChart/searchvisualChartById</td><td>visualChartEntity</td><td>x</td><td>视觉图表ID查找</td></tr>
-  <tr><td>searchvisualChartByChartName</td><td>/VisualChart/searchvisualChartByChartName</td><td>visualChartEntity</td><td>x</td><td>视觉图表名查找</td></tr>
-  <tr><td>searchAllvisualChartList</td><td>/VisualChart/searchAllvisualChartList</td><td>visualChartEntity</td><td>x</td><td>查找全部视觉图表List</td></tr>
-  <tr><td>searchAllvisualChartPager</td><td>/VisualChart/searchAllvisualChartPager</td><td>visualChartEntity</td><td>x</td><td>查找全部视觉图表Pager</td></tr>
+  <tr><th>控制名</th><th>地址</th><th>输入属性</th><th>注释</th></tr>
+  <tr><td>addVisualChart</td><td>/VisualChart/addVisualChart</td><td>visualChartEntity</td><td>添加视觉图表</td></tr>
+  <tr><td>deleteVisualChartById</td><td>/VisualChart/deleteVisualChartById</td><td>visualChartEntity</td><td>视觉图表硬删除</td></tr>
+  <tr><td>deleteVisualChartByChartName</td><td>/VisualChart/deleteVisualChartByChartName</td><td>visualChartEntity</td><td>视觉图表名硬删除</td></tr>
+  <tr><td>updateStatusById</td><td>/VisualChart/updateStatusById</td><td>visualChartEntity</td><td>更新状态</td></tr>
+  <tr><td>updateRemarkById</td><td>/VisualChart/updateRemarkById</td><td>visualChartEntity</td><td>更新备注</td></tr>
+  <tr><td>searchVisualChartById</td><td>/VisualChart/searchVisualChartById</td><td>visualChartEntity</td><td>视觉图表ID查找</td></tr>
+  <tr><td>searchVisualChartByChartName</td><td>/VisualChart/searchVisualChartByChartName</td><td>visualChartEntity</td><td>视觉图表名查找</td></tr>
+  <tr><td>searchAllVisualChartList</td><td>/VisualChart/searchAllVisualChartList</td><td>visualChartEntity</td><td>查找全部视觉图表List</td></tr>
+  <tr><td>searchAllVisualChartPager</td><td>/VisualChart/searchAllVisualChartPager</td><td>visualChartEntity</td><td>查找全部视觉图表Pager</td></tr>
 </table>
 
 = 2 前端设计与实现 =
@@ -642,7 +641,7 @@ mui-table表格(Material UI), LineChart折线图, PieChart饼状图(recharts), C
   <tr><td>过去24h实时故障</td><td>-</td><td>-</td><td>统计过去24小时出现故障的时间, 车辆型号, 故障单元, 故障内容</td></tr>
 </table>
 
-== 2.2 车辆故障概览 ==
+== 2.2 故障概览 ==
 
 ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/dashboard/Dashboard.js Dashboard.js]
 
@@ -653,7 +652,7 @@ ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联�
 </table>
 
 <table>
-  <tr><th colspan="4" align="center">车辆故障概览</th></tr>
+  <tr><th colspan="4" align="center">故障概览</th></tr>
   <tr><th>图表名</th><th>x轴</th><th>y轴</th><th>意义</th></tr>
   <tr><td>单元并发故障次数分布</td><td>每个单元同时出现的故障数量</td><td>次数</td><td>每个单元可能会出现多个错误, 找到并发错误多且出现次数多的单元, 并对故障并发高的单元进行更严格的筛检</td></tr>
   <tr><td>车型/单元/故障占比</td><td>-</td><td>-</td><td>树状图下故障发生在哪些车型, 车型中的哪些单元, 即发生了哪些故障, 以及故障占比</td></tr>
@@ -661,7 +660,7 @@ ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联�
   <tr><td>4S店售出车辆故障单元</td><td>车型</td><td>故障单元</td><td>不同4S店售出车辆的故障单元的分布, 可对4S店优化单元(用于替换故障单元)的仓储状况</td></tr>
 </table>
 
-== 2.3 车辆故障分布 ==
+== 2.3 故障分布 ==
 
 Bingmaps必应地图(ReactBingmaps). 关联地图 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/maps/Maps.js Maps.js]
 
@@ -672,198 +671,516 @@ Bingmaps必应地图(ReactBingmaps). 关联地图 [https://github.com/DolorHunte
 </table>
 
 <table>
-  <tr><th colspan="4" align="center">车辆故障分布</th></tr>
+  <tr><th colspan="4" align="center">故障分布</th></tr>
   <tr><th>功能</th><th>意义</th></tr>
   <tr><td>标记故障位置</td><td>标记出故障发生的位置与故障发生的次数, 可以在故障位置附近针对性的布设维修点</td></tr>
 </table>
 
-== 2.4 车辆故障信息表 ==
+== 2.4 故障信息表 ==
 
-mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarningTables.js CarWarningTables.js]
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarningTables.js CarWarningTables.js]
 
 <table>
   <tr><th colspan="2" align="center">axios请求</th></tr>
   <tr><th>请求地址</th><th>请求参数</th></tr>
   <tr><td>/CarWarning/searchAllCarWarningList</td><td>{}</td></tr>
+  <tr><td>/CarWarning/deleteCarWarrantyById</td><td>{id: id}</td></tr>
+  <tr><td>/CarWarning/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/CarWarning/updateRemarkById</td><td>{
+      id: id,
+      status: rstatus,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
-  <tr><th colspan="2" align="center">车辆故障列表</th></tr>
-  <tr><th>属性名</th><th>标签</th></tr>
-  <tr><td>id</td><td>ID</td></tr>
-  <tr><td>blindSpotMonitoringSysFailure</td><td>车辆识别号码</td></tr>
-  <tr><td>blindSpotMonitoringSysFailure</td><td>盲点监控系统故障</td></tr>
-  <tr><td>engineTheftPreventionSysFailure</td><td>引擎防盗系统故障</td></tr>
-  <tr><td>batteryCharging</td><td>电池充电</td></tr>
-  <tr><td>altitude</td><td>高度</td></tr>
-  <tr><td>transmissionFailure</td><td>传输失败</td></tr>
-  <tr><td>powerSteeringSystemFailure</td><td>动力转向系统故障</td></tr>
-  <tr><td>autoParkingFailure</td><td>自动停车失败</td></tr>
-  <tr><td>adaptiveCruiseFault</td><td>自适应巡航故障</td></tr>
-  <tr><td>engineFailure</td><td>发动机故障</td></tr>
-  <tr><td>stabilitySystemShutdown</td><td>稳定系统关闭</td></tr>
-  <tr><td>oilPressure</td><td>油压</td></tr>
-  <tr><td>slopeSlowDownFault</td><td>斜坡减速故障</td></tr>
-  <tr><td>electronicParking</td><td>电子停车</td></tr>
-  <tr><td>vin</td><td>车辆识别号码</td></tr>
-  <tr><td>startStopSystemFailure</td><td>开始停止系统故障</td></tr>
-  <tr><td>windshieldSensorShield</td><td>挡风玻璃传感器护罩</td></tr>
-  <tr><td>longitude</td><td>经度</td></tr>
-  <tr><td>laneDepartureSysFailure</td><td>车道偏离系统故障</td></tr>
-  <tr><td>longitudeState</td><td>经度状态</td></tr>
-  <tr><td>direct</td><td>方向</td></tr>
-  <tr><td>tirePressureMonitoringSysFailure</td><td>胎压监测系统故障</td></tr>
-  <tr><td>engineExhaustSystemFailure</td><td>发动机排气系统故障</td></tr>
-  <tr><td>powerSteeringSystemInit</td><td>动力转向系统</td></tr>
-  <tr><td>autoBrakSystemStatus</td><td>自动刹车系统状态</td></tr>
-  <tr><td>latitudeState</td><td>纬度州</td></tr>
-  <tr><td>loc</td><td>位置</td></tr>
-  <tr><td>airbagFault</td><td>安全气囊故障</td></tr>
-  <tr><td>errorContent</td><td>错误内容</td></tr>
-  <tr><td>faultCategory</td><td>故障类别</td></tr>
-  <tr><td>errorListCount</td><td>错误列表计数 </td></tr>
-  <tr><td>electronicStabilitySysIndication</td><td>电子稳定系统指示</td></tr>
-  <tr><td>tirePressureAnomaly</td><td>轮胎压力异常</td></tr>
-  <tr><td>electronicParkingFailure</td><td>电子停车故障</td></tr>
-  <tr><td>gpsSpeed</td><td>gps速度</td></tr>
-  <tr><td>latitude</td><td>纬度</td></tr>
-  <tr><td>sendingTime</td><td>发送时间</td></tr>
-  <tr><td>startStopSystemNotWork</td><td>启动停止系统不起作用</td></tr>
-  <tr><td>autoEmergencyBrakeSysFailure</td><td>自动紧急制动系统故障</td></tr>
+  <tr><th colspan="4" align="center">故障列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>blindSpotMonitoringSysFailure</td><td>车辆识别号码</td><td>o</td><td>x</td></tr>
+  <tr><td>blindSpotMonitoringSysFailure</td><td>盲点监控系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>engineTheftPreventionSysFailure</td><td>引擎防盗系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>batteryCharging</td><td>电池充电</td><td>o</td><td>x</td></tr>
+  <tr><td>altitude</td><td>高度</td><td>o</td><td>x</td></tr>
+  <tr><td>transmissionFailure</td><td>传输失败</td><td>o</td><td>x</td></tr>
+  <tr><td>powerSteeringSystemFailure</td><td>动力转向系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>autoParkingFailure</td><td>自动停车失败</td><td>o</td><td>x</td></tr>
+  <tr><td>adaptiveCruiseFault</td><td>自适应巡航故障</td><td>o</td><td>x</td></tr>
+  <tr><td>engineFailure</td><td>发动机故障</td><td>o</td><td>x</td></tr>
+  <tr><td>stabilitySystemShutdown</td><td>稳定系统关闭</td><td>o</td><td>x</td></tr>
+  <tr><td>oilPressure</td><td>油压</td><td>o</td><td>x</td></tr>
+  <tr><td>slopeSlowDownFault</td><td>斜坡减速故障</td><td>o</td><td>x</td></tr>
+  <tr><td>electronicParking</td><td>电子停车</td><td>o</td><td>x</td></tr>
+  <tr><td>vin</td><td>车辆识别号码</td><td>o</td><td>x</td></tr>
+  <tr><td>startStopSystemFailure</td><td>开始停止系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>windshieldSensorShield</td><td>挡风玻璃传感器护罩</td><td>o</td><td>x</td></tr>
+  <tr><td>longitude</td><td>经度</td><td>o</td><td>x</td></tr>
+  <tr><td>laneDepartureSysFailure</td><td>车道偏离系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>longitudeState</td><td>经度状态</td><td>o</td><td>x</td></tr>
+  <tr><td>direct</td><td>方向</td><td>o</td><td>x</td></tr>
+  <tr><td>tirePressureMonitoringSysFailure</td><td>胎压监测系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>engineExhaustSystemFailure</td><td>发动机排气系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>powerSteeringSystemInit</td><td>动力转向系统</td><td>o</td><td>x</td></tr>
+  <tr><td>autoBrakSystemStatus</td><td>自动刹车系统状态</td><td>o</td><td>x</td></tr>
+  <tr><td>latitudeState</td><td>纬度州</td><td>o</td><td>x</td></tr>
+  <tr><td>loc</td><td>位置</td><td>o</td><td>x</td></tr>
+  <tr><td>airbagFault</td><td>安全气囊故障</td><td>o</td><td>x</td></tr>
+  <tr><td>errorContent</td><td>错误内容</td><td>o</td><td>x</td></tr>
+  <tr><td>faultCategory</td><td>故障类别</td><td>o</td><td>x</td></tr>
+  <tr><td>errorListCount</td><td>错误列表计数 </td><td>o</td><td>x</td></tr>
+  <tr><td>electronicStabilitySysIndication</td><td>电子稳定系统指示</td><td>o</td><td>x</td></tr>
+  <tr><td>tirePressureAnomaly</td><td>轮胎压力异常</td><td>o</td><td>x</td></tr>
+  <tr><td>electronicParkingFailure</td><td>电子停车故障</td><td>o</td><td>x</td></tr>
+  <tr><td>gpsSpeed</td><td>gps速度</td><td>o</td><td>x</td></tr>
+  <tr><td>latitude</td><td>纬度</td><td>o</td><td>x</td></tr>
+  <tr><td>sendingTime</td><td>发送时间</td><td>o</td><td>x</td></tr>
+  <tr><td>startStopSystemNotWork</td><td>启动停止系统不起作用</td><td>o</td><td>x</td></tr>
+  <tr><td>autoEmergencyBrakeSysFailure</td><td>自动紧急制动系统故障</td><td>o</td><td>x</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
 </table>
 
 == 2.5 车辆 ==
 
 === 2.5.1 车辆列表 ===
 
-mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarTables.js CarTable.js]
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarTables.js CarTable.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/Car/searchAllCarPager</td><td>page: {
+      "pageIndex": 0,
+      "pageSize": 30,
+    }</td></tr>
+  <tr><td>/Car/hardDeleteCarById</td><td>{id: id}</td></tr>
+  <tr><td>/Car/updateGeneralById</td><td>{
+    id: id,
+    carName: carName,
+    price: price,
+    periodicalTechnicalInspection: periodicalTechnicalInspection,
+    roadTax3Months: roadTax3Months,
+    carBody: carBody,
+    transmission: transmission,
+    seatsNumber: seatsNumber,
+    firstYearOfProduction: firstYearOfProduction,
+    lastYearOfProduction: lastYearOfProduction,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Car/deactivateCarById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Car/activateCarById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Car/restoreCarById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Car/softDeleteCarById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Car/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/Car/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">车辆列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>carName</td><td>车辆名</td><td>o</td><td>o</td></tr>
+  <tr><td>price</td><td>价格</td><td>o</td><td>o</td></tr>
+  <tr><td>periodicalTechnicalInspection</td><td>定期技术检查</td><td>o</td><td>o</td></tr>
+  <tr><td>roadTax3Months</td><td>道路税每三月</td><td>o</td><td>o</td></tr>
+  <tr><td>carBody</td><td>车身</td><td>o</td><td>o</td></tr>
+  <tr><td>transmission</td><td>变速箱</td><td>o</td><td>o</td></tr>
+  <tr><td>seatsNumber</td><td>座位数</td><td>o</td><td>o</td></tr>
+  <tr><td>firstYearOfProduction</td><td>首次生产年份</td><td>o</td><td>o</td></tr>
+  <tr><td>lastYearOfProduction</td><td>最后生产年份</td><td>o</td><td>o</td></tr>
+  <tr><td>isActivated</td><td>启用状态</td><td>o</td><td>o</td></tr>
+  <tr><td>isDeleted</td><td>删除状态</td><td>o</td><td>o</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
+</table>
+
+=== 2.5.2 日志列表 ===
+
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarLogTables.js CarLogTable.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/CarLog/searchAllCarLogList</td><td>{}</td></tr>
+  <tr><td>/CarLog/hardDeleteCarById</td><td>{id: id}</td></tr>
+  <tr><td>/CarLog/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/CarLog/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">日志列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>vin</td><td>车辆识别号码</td><td>o</td><td>x</td></tr>
+  <tr><td>generalComment</td><td>整体评价</td><td>o</td><td>x</td></tr>
+  <tr><td>generalScore</td><td>整体分数</td><td>o</td><td>x</td></tr>
+  <tr><td>driveComment</td><td>驱动评价</td><td>o</td><td>x</td></tr>
+  <tr><td>driveScore</td><td>驱动分数</td><td>o</td><td>x</td></tr>
+  <tr><td>fuelEngineComment</td><td>燃油引擎评价</td><td>o</td><td>x</td></tr>
+  <tr><td>fuelEngineScore</td><td>燃油引擎分数</td><td>o</td><td>x</td></tr>
+  <tr><td>performanceComment</td><td>性能评价</td><td>o</td><td>x</td></tr>
+  <tr><td>performanceScore</td><td>性能分数</td><td>o</td><td>x</td></tr>
+  <tr><td>consumptionComment</td><td>效能评价</td><td>o</td><td>x</td></tr>
+  <tr><td>consumptionScore</td><td>效能分数</td><td>o</td><td>x</td></tr>
+  <tr><td>chassisComment</td><td>车身评价</td><td>o</td><td>x</td></tr>
+  <tr><td>chassisScore</td><td>车身分数</td><td>o</td><td>x</td></tr>
+  <tr><td>transmissionComment</td><td>传动评价</td><td>o</td><td>x</td></tr>
+  <tr><td>transmissionScore</td><td>传动分数</td><td>o</td><td>x</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
+</table>
+
+=== 2.5.3 故障列表 ===
+
+见 [[#2.4-车辆故障信息表]]
+
+=== 2.5.4 故障详细列表 ===
+
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarningDetailTables.js CarWarningDetailTables.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/CarWarningDetail/searchAllCarWarningDetailList</td><td>{}</td></tr>
+  <tr><td>/CarWarningDetail/deleteCarWarningDetailById</td><td>{id: id}</td></tr>
+  <tr><td>/CarWarningDetail/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/CarWarningDetail/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">故障详细列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>carType</td><td>车辆型号(vin前六位)</td><td>o</td><td>x</td></tr>
+  <tr><td>faultCategory</td><td>整体评价</td><td>o</td><td>x</td></tr>
+  <tr><td>errorContent</td><td>整体分数</td><td>o</td><td>x</td></tr>
+  <tr><td>errorDetail</td><td>驱动评价</td><td>o</td><td>x</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
+</table>
+
+=== 2.5.5 保固列表 ===
+
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarrantyTables.js CarWarrantyTables.js]
 
 <table>
   <tr><th colspan="2" align="center">axios请求</th></tr>
   <tr><th>请求地址</th><th>请求参数</th></tr>
   <tr><td>/CarWarranty/searchAllCarWarrantyList</td><td>{}</td></tr>
+  <tr><td>/CarWarranty/deleteCarWarrantyById</td><td>{id: id}</td></tr>
+  <tr><td>/CarWarningDetail/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/CarWarningDetail/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
-  <tr><th colspan="2" align="center">车辆列表</th></tr>
-  <tr><th>属性名</th><th>标签</th></tr>
-  <tr><td>id</td><td>ID</td></tr>
-  <tr><td>carName</td><td>车辆名</td></tr>
-  <tr><td>price</td><td>价格</td></tr>
-  <tr><td>periodicalTechnicalInspection</td><td>定期技术检查</td></tr>
-  <tr><td>roadTax3Months</td><td>道路税每三月</td></tr>
-  <tr><td>carBody</td><td>车身</td></tr>
-  <tr><td>transmission</td><td>变速箱</td></tr>
-  <tr><td>seatsNumber</td><td>座位数</td></tr>
-  <tr><td>firstYearOfProduction</td><td>首次生产年份</td></tr>
-  <tr><td>lastYearOfProduction</td><td>最后生产年份</td></tr>
-</table>
-
-=== 2.5.2 车辆日志列表 ===
-
-mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarLogTables.js CarLogTable.js]
-
-<table>
-  <tr><th colspan="2" align="center">axios请求</th></tr>
-  <tr><th>请求地址</th><th>请求参数</th></tr>
-  <tr><td>/CarWarranty/searchAllCarWarrantyList</td><td>{}</td></tr>
-</table>
-
-<table>
-  <tr><th colspan="2" align="center">车辆日志列表</th></tr>
-  <tr><th>属性名</th><th>标签</th></tr>
-  <tr><td>id</td><td>ID</td></tr>
-  <tr><td>vin</td><td>车辆识别号码</td></tr>
-  <tr><td>generalComment</td><td>整体评价</td></tr>
-  <tr><td>generalScore</td><td>整体分数</td></tr>
-  <tr><td>driveComment</td><td>驱动评价</td></tr>
-  <tr><td>driveScore</td><td>驱动分数</td></tr>
-  <tr><td>fuelEngineComment</td><td>燃油引擎评价</td></tr>
-  <tr><td>fuelEngineScore</td><td>燃油引擎分数</td></tr>
-  <tr><td>performanceComment</td><td>性能评价</td></tr>
-  <tr><td>performanceScore</td><td>性能分数</td></tr>
-  <tr><td>consumptionComment</td><td>效能评价</td></tr>
-  <tr><td>consumptionScore</td><td>效能分数</td></tr>
-  <tr><td>chassisComment</td><td>车身评价</td></tr>
-  <tr><td>chassisScore</td><td>车身分数</td></tr>
-  <tr><td>transmissionComment</td><td>传动评价</td></tr>
-  <tr><td>transmissionScore</td><td>传动分数</td></tr>
-</table>
-
-=== 2.5.3 车辆故障列表 ===
-
-见 [[#2.4 车辆故障信息表]]
-
-=== 2.5.4 车辆保固列表 ===
-
-mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarrantyTables.js CarWarrantyTables.js]
-
-<table>
-  <tr><th colspan="2" align="center">axios请求</th></tr>
-  <tr><th>请求地址</th><th>请求参数</th></tr>
-  <tr><td>/CarWarranty/searchAllCarWarrantyList</td><td>{}</td></tr>
-</table>
-
-<table>
-  <tr><th colspan="2" align="center">车辆保固列表</th></tr>
-  <tr><th>属性名</th><th>标签</th></tr>
-  <tr><td>id</td><td>ID</td></tr>
-  <tr><td>vin</td><td>车辆识别号码</td></tr>
-  <tr><td>generalComment</td><td>整体评价</td></tr>
-  <tr><td>generalScore</td><td>整体分数</td></tr>
-  <tr><td>driveComment</td><td>驱动评价</td></tr>
-  <tr><td>driveScore</td><td>驱动分数</td></tr>
-  <tr><td>fuelEngineComment</td><td>燃油引擎评价</td></tr>
-  <tr><td>fuelEngineScore</td><td>燃油引擎分数</td></tr>
-  <tr><td>performanceComment</td><td>性能评价</td></tr>
-  <tr><td>performanceScore</td><td>性能分数</td></tr>
-  <tr><td>consumptionComment</td><td>效能评价</td></tr>
-  <tr><td>consumptionScore</td><td>效能分数</td></tr>
-  <tr><td>chassisComment</td><td>车身评价</td></tr>
-  <tr><td>chassisScore</td><td>车身分数</td></tr>
-  <tr><td>transmissionComment</td><td>传动评价</td></tr>
-  <tr><td>transmissionScore</td><td>传动分数</td></tr>
+  <tr><th colspan="4" align="center">保固列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>vin</td><td>车辆识别号码</td><td>o</td><td>x</td></tr>
+  <tr><td>generalComment</td><td>整体评价</td><td>o</td><td>x</td></tr>
+  <tr><td>generalScore</td><td>整体分数</td><td>o</td><td>x</td></tr>
+  <tr><td>driveComment</td><td>驱动评价</td><td>o</td><td>x</td></tr>
+  <tr><td>driveScore</td><td>驱动分数</td><td>o</td><td>x</td></tr>
+  <tr><td>fuelEngineComment</td><td>燃油引擎评价</td><td>o</td><td>x</td></tr>
+  <tr><td>fuelEngineScore</td><td>燃油引擎分数</td><td>o</td><td>x</td></tr>
+  <tr><td>performanceComment</td><td>性能评价</td><td>o</td><td>x</td></tr>
+  <tr><td>performanceScore</td><td>性能分数</td><td>o</td><td>x</td></tr>
+  <tr><td>consumptionComment</td><td>效能评价</td><td>o</td><td>x</td></tr>
+  <tr><td>consumptionScore</td><td>效能分数</td><td>o</td><td>x</td></tr>
+  <tr><td>chassisComment</td><td>车身评价</td><td>o</td><td>x</td></tr>
+  <tr><td>chassisScore</td><td>车身分数</td><td>o</td><td>x</td></tr>
+  <tr><td>transmissionComment</td><td>传动评价</td><td>o</td><td>x</td></tr>
+  <tr><td>transmissionScore</td><td>传动分数</td><td>o</td><td>x</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
 </table>
 
 == 2.6 用户 ==
 
 === 2.6.1 用户列表 ===
 
-mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/UserTables.js UserTables.js]
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/UserTables.js UserTables.js]
 
 <table>
   <tr><th colspan="2" align="center">axios请求</th></tr>
   <tr><th>请求地址</th><th>请求参数</th></tr>
   <tr><td>/User/searchAllUserList</td><td>{}</td></tr>
+  <tr><td>/User/resetPasswordById</td><td>{
+      id: id,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/User/hardDeleteUserById</td><td>{ id: id }</td></tr>
+  <tr><td>/User/updateEmailById</td><td>{
+      id: id,
+      email: email,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/User/updatePhoneById</td><td>{}</td></tr>
+  <tr><td>/User/updateAvatarById</td><td>{
+    id: id,
+    avatar: avatar,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/User/deactivateUserById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/User/activateUserById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/User/restoreUserById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/User/softDeleteUserById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/User/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/User/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
-  <tr><th colspan="2" align="center">用户列表</th></tr>
-  <tr><th>属性名</th><th>标签</th></tr>
-  <tr><td>ID</td></tr>
-  <tr><td>username</td><td>用户名</td></tr>
-  <tr><td>email</td><td>邮箱</td></tr>
-  <tr><td>phone</td><td>电话</td></tr>
-  <tr><td>createdDate</td><td>注册日期</td></tr>
-  <tr><td>isActivated</td><td>状态</td></tr>
+  <tr><th colspan="4" align="center">用户列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>username</td><td>用户名</td><td>o</td><td>x</td></tr>
+  <tr><td>email</td><td>邮箱</td><td>o</td><td>o</td></tr>
+  <tr><td>phone</td><td>电话</td><td>o</td><td>o</td></tr>
+  <tr><td>avatar</td><td>头像</td><td>o</td><td>o</td></tr>
+  <tr><td>createdDate</td><td>注册日期</td><td>o</td><td>x</td></tr>
+  <tr><td>isActivated</td><td>启用状态</td><td>o</td><td>o</td></tr>
+  <tr><td>isDeleted</td><td>删除状态</td><td>o</td><td>o</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
 </table>
 
-=== 2.6.2 角色列表 ===
+=== 2.6.2 用户车辆列表 ===
 
-mui-datatables(Material UI)表格. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/RoleTables.js RoleTables.js]
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/UserCarTables.js UserCarTables.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/UserCar/searchAllUserCarList</td><td>{}</td></tr>
+  <tr><td>/UserCar/deleteUserCarById</td><td>{id: id}</td></tr>
+  <tr><td>/UserCar/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/UserCar/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">角色列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>userId</td><td>用户ID</td><td>o</td><td>x</td></tr>
+  <tr><td>username</td><td>用户名</td><td>o</td><td>x</td></tr>
+  <tr><td>carId</td><td>车辆ID</td><td>o</td><td>x</td></tr>
+  <tr><td>carName</td><td>车辆名</td><td>o</td><td>x</td></tr>
+  <tr><td>vin</td><td>车辆识别号码</td><td>o</td><td>x</td></tr>
+  <tr><td>_4SShop</td><td>4S店名</td><td>o</td><td>x</td></tr>
+  <tr><td>saleLoc</td><td>销售位置</td><td>o</td><td>x</td></tr>
+  <tr><td>saleTime</td><td>销售时间</td><td>o</td><td>x</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
+</table>
+
+=== 2.6.3 角色列表 ===
+
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/RoleTables.js RoleTables.js]
 
 <table>
   <tr><th colspan="2" align="center">axios请求</th></tr>
   <tr><th>请求地址</th><th>请求参数</th></tr>
   <tr><td>/Role/searchAllRoleList</td><td>{}</td></tr>
+  <tr><td>/Role/hardDeleteRoleById</td><td>{id: id}</td></tr>
+  <tr><td>/Role/updateRoleById</td><td>{
+    id: id,
+    roleName: roleName,
+    fatherRoleId: fatherRoleId,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Role/deactivateRoleById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Role/activateRoleById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Role/restoreRoleById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Role/softDeleteRoleById</td><td>{
+    id: id,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/Role/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/Role/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
-  <tr><th colspan="2" align="center">角色列表</th></tr>
-  <tr><th>属性名</th><th>标签</th></tr>
-  <tr><td>ID</td></tr>
-  <tr><td>roleName</td><td>角色名</td></tr>
-  <tr><td>roleType</td><td>角色类型</td></tr>
+  <tr><th colspan="4" align="center">角色列表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>roleName</td><td>角色名</td><td>o</td><td>o</td></tr>
+  <tr><td>roleType</td><td>角色类型</td><td>o</td><td>o</td></tr>
+  <tr><td>fatherRoleId</td><td>父角色ID</td><td>o</td><td>o</td></tr>
+  <tr><td>isActivated</td><td>启用状态</td><td>o</td><td>o</td></tr>
+  <tr><td>isDeleted</td><td>删除状态</td><td>o</td><td>o</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
+</table>
+
+== 2.7 视觉图表 ==
+
+mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/VisualChartTables.js VisualChartTables.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/VisualChart/searchAllVisualChartList</td><td>{}</td></tr>
+  <tr><td>/VisualChart/deleteVisualChartById</td><td>{id: id}</td></tr>
+  <tr><td>/VisualChart/updateStatusById</td><td>{
+      id: id,
+      status: status,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/VisualChart/updateRemarkById</td><td>{
+      id: id,
+      remark: remark,
+      lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">视觉图表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>chartName</td><td>图表名</td><td>o</td><td>x</td></tr>
+  <tr><td>chartType</td><td>图表类型</td><td>o</td><td>x</td></tr>
+  <tr><td>chartData</td><td>图表数据</td><td>o</td><td>x</td></tr>
+  <tr><td>status</td><td>状态</td><td>o</td><td>o</td></tr>
+  <tr><td>remark</td><td>备注</td><td>o</td><td>o</td></tr>
+  <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
+</table>
+
+== 2.8 个人资料 ==
+
+mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/user/Profile.js Profile.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/User/searchUserById</td><td>{id: id}</td></tr>
+  <tr><td>/User/updatePhoneById</td><td>{
+    id: id,
+    phone: phone,
+    lastUpdatedBy: username,
+  }</td></tr>
+  <tr><td>/User/updateEmailById</td><td>{
+    id: id,
+    email: email,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+  <tr><td>/User/updateAvatarById</td><td>{
+    id: id,
+    avatar: avatar,
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">视觉图表</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>createdDate</td><td>注册日期</td><td>o</td><td>x</td></tr>
+  <tr><td>lastUpdatedDate</td><td>最后修改日期</td><td>o</td><td>x</td></tr>
+  <tr><td>username</td><td>用户名</td><td>o</td><td>x</td></tr>
+  <tr><td>email</td><td>邮箱</td><td>o</td><td>o</td></tr>
+  <tr><td>phone</td><td>电话</td><td>o</td><td>o</td></tr>
+  <tr><td>avatar</td><td>头像</td><td>o</td><td>o</td></tr>
 </table>
 
 = 3 开发相关资料 =
@@ -938,6 +1255,7 @@ root登录
 * Bootstrap Grids网格 [https://www.w3schools.com/bootstrap/bootstrap_grid_system.asp Bootstrap Grids]
 * react-grid-layout网格布局调整 [https://github.com/react-grid-layout/react-grid-layout react-grid-layout]
 * React-Bingmaps必应地图 [https://www.npmjs.com/package/react-bingmaps React-Bingmaps]
+* mui-datatables 示例代码 [https://github.com/gregnb/mui-datatables/tree/master/examples mui-datatables 示例代码]
 
 == 3.5 Code Lib ==
 
