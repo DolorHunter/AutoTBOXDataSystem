@@ -42,13 +42,11 @@ public class UserServiceImpl implements UserService {
         String password = userEntity.getPassword();
         String phone = userEntity.getPhone();
         String email = userEntity.getEmail();
+        String avatar = userEntity.getAvatar();
 
         if (username == null || password == null) {
             return "Username or Password is null.";
         } else {
-            if (!RegexUtil.isPassword(password)) {
-                return "Password illegal.";
-            }
             if (userDAO.findByUsername(username) != null) {
                 return "Username was taken.";
             }
@@ -69,13 +67,12 @@ public class UserServiceImpl implements UserService {
                 return "Phone was taken.";
             }
         }
+        if (avatar == null || avatar.equals("")) {
+            userEntity.setAvatar("1");
+        }
 
         userEntity.setIsActivated("1");
         userEntity.setIsDeleted("0");
-
-        password = DigestUtils.md5DigestAsHex(password.getBytes());
-        userEntity.setPassword(password);
-        userEntity.setAvatar("avatar_1.jpg");
 
         userEntity.setCreatedDate(DateUtil.getCurDateTime());
         userEntity.setLastUpdatedDate(DateUtil.getCurDateTime());
@@ -265,7 +262,7 @@ public class UserServiceImpl implements UserService {
     public boolean updatePasswordById(UserEntity userEntity) {
         UserEntity user = userDAO.findById(userEntity.getId()).get();
         String password = userEntity.getPassword();
-        if (password != null && RegexUtil.isPassword(password)) {
+        if (password != null) {
             user.setPassword(password);
             user.setLastUpdatedBy(userEntity.getLastUpdatedBy());
             user.setLastUpdatedDate(DateUtil.getCurDateTime());

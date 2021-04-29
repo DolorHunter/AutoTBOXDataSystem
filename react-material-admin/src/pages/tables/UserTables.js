@@ -5,14 +5,19 @@ import React, { Component } from 'react'; import {
   MenuItem,
   Button,
   Avatar,
+  IconButton,
+  Tooltip,
+  FormLabel,
 } from "@material-ui/core";
-import MUIDataTable from "mui-datatables";
 import {
   Save as SaveIcon,
+  Add as AddIcon,
   Undo as ResetPasswordIcon,
-} from "@material-ui/icons";
-import CustomToolbar from "./CustomToolbar";
+  Publish as PublishIcon,
+} from '@material-ui/icons';
+import MUIDataTable from "mui-datatables";
 
+import md5 from 'js-md5';
 import cookie from 'js-cookie';
 import axios from 'axios';
 
@@ -74,7 +79,30 @@ export default class Tables extends Component {
       },
       {
         name: "username",
-        label: "用户名"
+        label: "用户名",
+        options: {
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <FormLabel>
+                  {value}
+                </FormLabel>
+              )
+            } else {
+              return (
+                <FormControlLabel
+                  value={value}
+                  control={<TextField value={value} />}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    this.state.datatableData[rowId].username = e.target.value;
+                  }}
+                />
+              )
+            }
+          }
+        }
       },
       {
         name: "email",
@@ -151,29 +179,43 @@ export default class Tables extends Component {
           filter: false,
           sort: false,
           empty: true,
-          customBodyRenderLite: (dataIndex) => {
-            return (
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<ResetPasswordIcon />}
-                onClick={() => {
-                  var row = this.state.datatableData[dataIndex];
-                  axios.post('/User/resetPasswordById', {
-                    id: row.id,
-                    lastUpdatedBy: cookie.get('username')
-                  })
-                    .then(res => {
-                      if (res.request.response !== "Succeed.") {
-                        console.log(res.request.response);
-                      }
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<ResetPasswordIcon />}
+                  onClick={() => {
+                    var row = this.state.datatableData[rowId];
+                    axios.post('/User/resetPasswordById', {
+                      id: row.id,
+                      lastUpdatedBy: cookie.get('username')
                     })
-                }}
-              >
-                重置
-              </Button>
-            );
+                      .then(res => {
+                        if (res.request.response !== "Succeed.") {
+                          console.log(res.request.response);
+                        }
+                      })
+                  }}
+                >
+                  重置
+                </Button>
+              );
+            } else {
+              return (
+                <FormControlLabel
+                  value={value}
+                  control={<TextField value={value} type="password" />}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    this.state.datatableData[rowId].password = e.target.value;
+                  }}
+                />
+              );
+            }
           }
         }
       },
@@ -181,54 +223,73 @@ export default class Tables extends Component {
         name: "isActivated",
         label: "启用状态",
         options: {
-          customBodyRender: (value, tableMeta, updateValue) => (
-            <TextField
-              select
-              id="isActivated"
-              type="isActivated"
-              value={value}
-              onChange={e => {
-                updateValue(e.target.value);
-                const rowId = tableMeta.rowIndex;
-                this.state.datatableData[rowId].isActivated = e.target.value;
-              }}
-              margin="normal"
-              variant="outlined"
-            >
-              {isActivated.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          )
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <TextField
+                  select
+                  id="isActivated"
+                  type="isActivated"
+                  value={value}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    const rowId = tableMeta.rowIndex;
+                    this.state.datatableData[rowId].isActivated = e.target.value;
+                  }}
+                  margin="normal"
+                  variant="outlined"
+                >
+                  {isActivated.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )
+            } else {
+              return (
+                <FormLabel />
+              )
+            }
+          }
         }
       },
       {
         name: "isDeleted",
         label: "删除状态",
         options: {
-          customBodyRender: (value, tableMeta, updateValue) => (
-            <TextField
-              select
-              id="isDeleted"
-              type="isDeleted"
-              value={value}
-              onChange={e => {
-                updateValue(e.target.value);
-                const rowId = tableMeta.rowIndex;
-                this.state.datatableData[rowId].isDeleted = e.target.value;
-              }}
-              margin="normal"
-              variant="outlined"
-            >
-              {isDeleted.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          )
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <TextField
+                  select
+                  id="isDeleted"
+                  type="isDeleted"
+                  value={value}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    const rowId = tableMeta.rowIndex;
+                    this.state.datatableData[rowId].isDeleted = e.target.value;
+                  }}
+                  margin="normal"
+                  variant="outlined"
+                >
+                  {isDeleted.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )
+            } else {
+              return (
+                <FormLabel />
+              )
+            }
+
+          }
         }
       },
       {
@@ -273,17 +334,34 @@ export default class Tables extends Component {
           sort: false,
           empty: true,
           customBodyRenderLite: (dataIndex) => {
-            return (
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<SaveIcon />}
-                onClick={() => updateRow(this.state.datatableData[dataIndex])}
-              >
-                保存
-              </Button>
-            );
+            if ('id' in this.state.datatableData[dataIndex]) {
+              return (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<SaveIcon />}
+                  onClick={() => updateRow(this.state.datatableData[dataIndex])}
+                >
+                  保存
+                </Button>
+              );
+            } else {
+              return (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  startIcon={<PublishIcon />}
+                  onClick={() => {
+                    appendRow(this.state.datatableData[dataIndex]);
+                    window.location.reload();
+                  }}
+                >
+                  添加
+                </Button>
+              );
+            }
           }
         }
       },
@@ -323,6 +401,26 @@ export default class Tables extends Component {
                       })
                   }
                 },
+                customToolbar: () => {
+                  return (
+                    <React.Fragment>
+                      <Tooltip title={"Add Row"}>
+                        <IconButton onClick={() => {
+                          const column = this.state.columns;
+                          var row = new Object();
+                          for (var i = 1; i < column.length - 1; ++i) {
+                            var key = column[i].name;
+                            row[key] = "";
+                          }
+                          this.state.datatableData.unshift(row);
+                          this.setState(this.state.datatableData); // 利用setState重新渲染
+                        }}>
+                          <AddIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </React.Fragment>
+                  );
+                }
               }}
             />
           </Grid>
@@ -446,4 +544,22 @@ function updateRow(row) {
         }
       })
   }
+}
+function appendRow(row) {
+  var data = {
+    username: row.username,
+    password: md5(row.password),
+    email: row.email,
+    avatar: row.avatar,
+    status: row.status,
+    remark: row.remark,
+    createdBy: cookie.get('username'),
+    lastUpdatedBy: cookie.get('username')
+  }
+  axios.post('/User/addUser', data)
+    .then(res => {
+      if (res.request.response !== "Succeed.") {
+        alert(res.request.response);
+      }
+    })
 }

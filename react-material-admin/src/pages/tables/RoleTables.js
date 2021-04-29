@@ -5,10 +5,16 @@ import {
   TextField,
   MenuItem,
   Button,
+  IconButton,
+  Tooltip,
+  FormLabel,
 } from "@material-ui/core";
+import {
+  Save as SaveIcon,
+  Add as AddIcon,
+  Publish as PublishIcon,
+} from '@material-ui/icons';
 import MUIDataTable from "mui-datatables";
-import SaveIcon from '@material-ui/icons/Save';
-import CustomToolbar from "./CustomToolbar";
 
 import cookie from 'js-cookie';
 import axios from 'axios';
@@ -89,54 +95,72 @@ export default class Tables extends Component {
         name: "isActivated",
         label: "启用状态",
         options: {
-          customBodyRender: (value, tableMeta, updateValue) => (
-            <TextField
-              select
-              id="isActivated"
-              type="isActivated"
-              value={value}
-              onChange={e => {
-                updateValue(e.target.value);
-                const rowId = tableMeta.rowIndex;
-                this.state.datatableData[rowId].isActivated = e.target.value;
-              }}
-              margin="normal"
-              variant="outlined"
-            >
-              {isActivated.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          )
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <TextField
+                  select
+                  id="isActivated"
+                  type="isActivated"
+                  value={value}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    const rowId = tableMeta.rowIndex;
+                    this.state.datatableData[rowId].isActivated = e.target.value;
+                  }}
+                  margin="normal"
+                  variant="outlined"
+                >
+                  {isActivated.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )
+            } else {
+              return (
+                <FormLabel />
+              )
+            }
+          }
         }
       },
       {
         name: "isDeleted",
         label: "删除状态",
         options: {
-          customBodyRender: (value, tableMeta, updateValue) => (
-            <TextField
-              select
-              id="isDeleted"
-              type="isDeleted"
-              value={value}
-              onChange={e => {
-                updateValue(e.target.value);
-                const rowId = tableMeta.rowIndex;
-                this.state.datatableData[rowId].isDeleted = e.target.value;
-              }}
-              margin="normal"
-              variant="outlined"
-            >
-              {isDeleted.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          )
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <TextField
+                  select
+                  id="isDeleted"
+                  type="isDeleted"
+                  value={value}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    const rowId = tableMeta.rowIndex;
+                    this.state.datatableData[rowId].isDeleted = e.target.value;
+                  }}
+                  margin="normal"
+                  variant="outlined"
+                >
+                  {isDeleted.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )
+            } else {
+              return (
+                <FormLabel />
+              )
+            }
+          }
         }
       },
       {
@@ -181,17 +205,34 @@ export default class Tables extends Component {
           sort: false,
           empty: true,
           customBodyRenderLite: (dataIndex) => {
-            return (
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<SaveIcon />}
-                onClick={() => updateRow(this.state.datatableData[dataIndex])}
-              >
-                保存
-              </Button>
-            );
+            if ('id' in this.state.datatableData[dataIndex]) {
+              return (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<SaveIcon />}
+                  onClick={() => updateRow(this.state.datatableData[dataIndex])}
+                >
+                  保存
+                </Button>
+              );
+            } else {
+              return (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  startIcon={<PublishIcon />}
+                  onClick={() => {
+                    appendRow(this.state.datatableData[dataIndex]);
+                    window.location.reload();
+                  }}
+                >
+                  添加
+                </Button>
+              );
+            }
           }
         }
       }
@@ -231,6 +272,26 @@ export default class Tables extends Component {
                       })
                   }
                 },
+                customToolbar: () => {
+                  return (
+                    <React.Fragment>
+                      <Tooltip title={"Add Row"}>
+                        <IconButton onClick={() => {
+                          const column = this.state.columns;
+                          var row = new Object();
+                          for (var i = 1; i < column.length - 1; ++i) {
+                            var key = column[i].name;
+                            row[key] = "";
+                          }
+                          this.state.datatableData.unshift(row);
+                          this.setState(this.state.datatableData); // 利用setState重新渲染
+                        }}>
+                          <AddIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </React.Fragment>
+                  );
+                }
               }}
             />
           </Grid>
@@ -325,4 +386,21 @@ function updateRow(row) {
         }
       })
   }
+}
+function appendRow(row) {
+  var data = {
+    roleName: row.roleName,
+    roleType: row.roleType,
+    fatherRoleId: row.fatherRoleId,
+    status: row.status,
+    remark: row.remark,
+    createdBy: cookie.get('username'),
+    lastUpdatedBy: cookie.get('username')
+  }
+  axios.post('/Role/addRole', data)
+    .then(res => {
+      if (res.request.response !== "Succeed.") {
+        alert(res.request.response);
+      }
+    })
 }

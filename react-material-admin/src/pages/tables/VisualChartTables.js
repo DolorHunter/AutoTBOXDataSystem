@@ -3,10 +3,16 @@ import React, { Component } from 'react'; import {
   FormControlLabel,
   TextField,
   Button,
+  IconButton,
+  Tooltip,
+  FormLabel,
 } from "@material-ui/core";
+import {
+  Save as SaveIcon,
+  Add as AddIcon,
+  Publish as PublishIcon,
+} from '@material-ui/icons';
 import MUIDataTable from "mui-datatables";
-import SaveIcon from '@material-ui/icons/Save';
-import CustomToolbar from "./CustomToolbar";
 
 import cookie from 'js-cookie';
 import axios from 'axios';
@@ -24,15 +30,84 @@ export default class Tables extends Component {
       },
       {
         name: "chartName",
-        label: "图表名"
+        label: "图表名",
+        options: {
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <FormLabel>
+                  {value}
+                </FormLabel>
+              )
+            } else {
+              return (
+                <FormControlLabel
+                  value={value}
+                  control={<TextField value={value} />}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    this.state.datatableData[rowId].chartName = e.target.value;
+                  }}
+                />
+              )
+            }
+          }
+        }
       },
       {
         name: "chartType",
-        label: "图表类型"
+        label: "图表类型",
+        options: {
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <FormLabel>
+                  {value}
+                </FormLabel>
+              )
+            } else {
+              return (
+                <FormControlLabel
+                  value={value}
+                  control={<TextField value={value} />}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    this.state.datatableData[rowId].chartType = e.target.value;
+                  }}
+                />
+              )
+            }
+          }
+        }
       },
       {
         name: "chartData",
-        label: "图表数据"
+        label: "图表数据",
+        options: {
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <FormLabel>
+                  {value}
+                </FormLabel>
+              )
+            } else {
+              return (
+                <FormControlLabel
+                  value={value}
+                  control={<TextField value={value} />}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    this.state.datatableData[rowId].chartData = e.target.value;
+                  }}
+                />
+              )
+            }
+          }
+        }
       },
       {
         name: "status",
@@ -76,17 +151,34 @@ export default class Tables extends Component {
           sort: false,
           empty: true,
           customBodyRenderLite: (dataIndex) => {
-            return (
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<SaveIcon />}
-                onClick={() => updateRow(this.state.datatableData[dataIndex])}
-              >
-                保存
-              </Button>
-            );
+            if ('id' in this.state.datatableData[dataIndex]) {
+              return (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<SaveIcon />}
+                  onClick={() => updateRow(this.state.datatableData[dataIndex])}
+                >
+                  保存
+                </Button>
+              );
+            } else {
+              return (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  startIcon={<PublishIcon />}
+                  onClick={() => {
+                    appendRow(this.state.datatableData[dataIndex]);
+                    window.location.reload();
+                  }}
+                >
+                  添加
+                </Button>
+              );
+            }
           }
         }
       },
@@ -128,7 +220,22 @@ export default class Tables extends Component {
                 },
                 customToolbar: () => {
                   return (
-                    <CustomToolbar />
+                    <React.Fragment>
+                      <Tooltip title={"Add Row"}>
+                        <IconButton onClick={() => {
+                          const column = this.state.columns;
+                          var row = new Object();
+                          for (var i = 1; i < column.length - 1; ++i) {
+                            var key = column[i].name;
+                            row[key] = "";
+                          }
+                          this.state.datatableData.unshift(row);
+                          this.setState(this.state.datatableData); // 利用setState重新渲染
+                        }}>
+                          <AddIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </React.Fragment>
                   );
                 }
               }}
@@ -170,4 +277,21 @@ function updateRow(row) {
         }
       })
   }
+}
+function appendRow(row) {
+  var data = {
+    chartName: row.chartName,
+    chartType: row.chartType,
+    chartData: row.chartData,
+    status: row.status,
+    remark: row.remark,
+    createdBy: cookie.get('username'),
+    lastUpdatedBy: cookie.get('username')
+  }
+  axios.post('/VisualChart/addVisualChart', data)
+    .then(res => {
+      if (res.request.response !== "Succeed.") {
+        alert(res.request.response);
+      }
+    })
 }

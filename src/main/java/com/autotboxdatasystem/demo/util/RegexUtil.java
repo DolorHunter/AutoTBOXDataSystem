@@ -5,14 +5,6 @@ import java.util.regex.Matcher;
 
 public class RegexUtil {
 
-    public static boolean isPassword(String password) {
-        // 4~20位, 数字字母混合
-        String regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4,20}$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
-    }
-
     public static boolean isEmail(String email) {
         // e.g: user?name@domain.co.in
         String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";

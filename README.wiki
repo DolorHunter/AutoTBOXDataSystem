@@ -204,7 +204,7 @@
 车辆日志类, 关联用户车辆与车辆日志. 关联表car_log_entity.
 
 <table>
-  <tr><th colspan="4" align="center">CarEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><th colspan="4" align="center">CarLogEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
   <tr><td>String</td><td>int</td><td>VIN</td><td>车辆识别号码</td></tr>
   <tr><td>String</td><td>varchar(64)</td><td>bootTime</td><td>开机时间</td></tr>
@@ -312,7 +312,7 @@
 视觉图表类. 关联表visual_chart_warranty_entity.
 
 <table>
-  <tr><th colspan="4" align="center">CarWarrantyEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
+  <tr><th colspan="4" align="center">VisualChartEntity</th></tr><tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
   <tr><td colspan="4" align="center">BaseEntity</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>chartName</td><td>图表名</td></tr>
   <tr><td>String</td><td>varchar(255)</td><td>chartType</td><td>图表类型</td></tr>
@@ -695,6 +695,50 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       status: rstatus,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
+  <tr><td>/CarWarning/addCarWarning</td><td>{
+    blindSpotMonitoringSysFailure: blindSpotMonitoringSysFailure,
+    engineTheftPreventionSysFailure: engineTheftPreventionSysFailure,
+    batteryCharging: batteryCharging,
+    altitude: altitude,
+    transmissionFailure: transmissionFailure,
+    powerSteeringSystemFailure: powerSteeringSystemFailure,
+    autoParkingFailure: autoParkingFailure,
+    adaptiveCruiseFault: adaptiveCruiseFault,
+    engineFailure: engineFailure,
+    stabilitySystemShutdown: stabilitySystemShutdown,
+    oilPressure: oilPressure,
+    slopeSlowDownFault: slopeSlowDownFault,
+    electronicParking: electronicParking,
+    vin: vin,
+    startStopSystemFailure: startStopSystemFailure,
+    windshieldSensorShield: windshieldSensorShield,
+    longitude: longitude,
+    laneDepartureSysFailure: laneDepartureSysFailure,
+    longitudeState: longitudeState,
+    direct: direct,
+    tirePressureMonitoringSysFailure: tirePressureMonitoringSysFailure,
+    engineExhaustSystemFailure: engineExhaustSystemFailure,
+    powerSteeringSystemInit: powerSteeringSystemInit,
+    autoBrakSystemStatus: autoBrakSystemStatus,
+    latitudeState: latitudeState,
+    loc: loc,
+    airbagFault: airbagFault,
+    errorContent: errorContent,
+    faultCategory: faultCategory,
+    errorListCount: errorListCount,
+    electronicStabilitySysIndication: electronicStabilitySysIndication,
+    tirePressureAnomaly: tirePressureAnomaly,
+    electronicParkingFailure: electronicParkingFailure,
+    gpsSpeed: gpsSpeed,
+    latitude: latitude,
+    sendingTime: sendingTime,
+    startStopSystemNotWork: startStopSystemNotWork,
+    autoEmergencyBrakeSysFailure: autoEmergencyBrakeSysFailure,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
@@ -798,6 +842,21 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
+  <tr><td>/Car/addCar</td><td>{
+    carName: carName,
+    price: price,
+    periodicalTechnicalInspection: periodicalTechnicalInspection,
+    roadTax3Months: roadTax3Months,
+    carBody: carBody,
+    transmission: transmission,
+    seatsNumber: seatsNumber,
+    firstYearOfProduction: firstYearOfProduction,
+    lastYearOfProduction: lastYearOfProduction,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
@@ -838,6 +897,27 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       id: id,
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/CarLog/addCarLog</td><td>{
+    vin: vin,
+    bootTime: bootTime,
+    runTime: runTime,
+    gear: gear,
+    odometer: odometer,
+    odometerAcc: odometerAcc,
+    odometerRem: odometerRem,
+    fuelRem: fuelRem,
+    electroFuelRem: electroFuelRem,
+    speed: speed,
+    rpm: rpm,
+    location: location,
+    heading: heading,
+    altitude: altitude,
+    temperature: temperature,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
     }</td></tr>
 </table>
 
@@ -888,6 +968,18 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
+  <tr><td>/CarWarningDetail/addCarWarningDetail</td><td>{
+    carType: carType,
+    faultCategory: faultCategory,
+    errorContent: errorContent,
+    errorDetail: errorDetail,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+
+    
 </table>
 
 <table>
@@ -912,15 +1004,36 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
   <tr><th>请求地址</th><th>请求参数</th></tr>
   <tr><td>/CarWarranty/searchAllCarWarrantyList</td><td>{}</td></tr>
   <tr><td>/CarWarranty/deleteCarWarrantyById</td><td>{id: id}</td></tr>
-  <tr><td>/CarWarningDetail/updateStatusById</td><td>{
+  <tr><td>/CarWarranty/updateStatusById</td><td>{
       id: id,
       status: status,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
-  <tr><td>/CarWarningDetail/updateRemarkById</td><td>{
+  <tr><td>/CarWarranty/updateRemarkById</td><td>{
       id: id,
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/CarWarranty/addCarWarranty</td><td>{
+vin: vin,
+    generalComment: generalComment,
+    generalScore: generalScore,
+    driveComment: driveComment,
+    driveScore: driveScore,
+    fuelEngineComment: fuelEngineComment,
+    fuelEngineScore: fuelEngineScore,
+    performanceComment: performanceComment,
+    performanceScore: performanceScore,
+    consumptionComment: consumptionComment,
+    consumptionScore: consumptionScore,
+    chassisComment: chassisComment,
+    chassisScore: chassisScore,
+    transmissionComment: transmissionComment,
+    transmissionScore: transmissionScore,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
     }</td></tr>
 </table>
 
@@ -1000,6 +1113,16 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
+  <tr><td>/User/addUser</td><td>{
+    username: username,
+    password: password,
+    email: email,
+    avatar: avatar,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
@@ -1037,6 +1160,20 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
+  <tr><td>/UserCar/addCar2User</td><td>{
+    userId: userId,
+    username: username,
+    carId: carId,
+    carName: carName,
+    vin: vin,
+    _4SShop: _4SShop,
+    saleLoc: saleLoc,
+    saleTime: saleTime,
+    status: status,
+    remark: remark,
+    createdBy: createdBy
+    lastUpdatedBy: lastUpdatedBy
+  }</td></tr>
 </table>
 
 <table>
@@ -1097,6 +1234,15 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
+  <tr><td>/Role/addRole</td><td>{
+    roleName: roleName,
+    roleType: roleType,
+    fatherRoleId: fatherRoleId,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
 </table>
 
 <table>
@@ -1131,6 +1277,15 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
       id: id,
       remark: remark,
       lastUpdatedBy: lastUpdatedBy
+    }</td></tr>
+  <tr><td>/VisualChart/addVisualChart</td><td>{
+    chartName: chartName,
+    chartType: chartType,
+    chartData: chartData,
+    status: status,
+    remark: remark,
+    createdBy: createdBy,
+    lastUpdatedBy: lastUpdatedBy
     }</td></tr>
 </table>
 

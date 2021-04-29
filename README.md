@@ -16,37 +16,37 @@
 
 ## 预览
 
-![login](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162335_qvhgeh.webp)
+![login](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695879/temp/2021-03-31_162335_cksnwx.webp)
 
-![register](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162321_bfzbyb.webp)
+![register](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695879/temp/2021-03-31_162321_jwwjm1.webp)
 
 登录与注册界面，沿用react-material-admin模板。
 
-![profile](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619434158/temp/2021-04-26_184844_tcdzmx.png)
+![profile](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695879/temp/2021-04-29_192637_ubtiuy.webp)
 
 用户个人资料界面，可修改邮箱，电话，头像。支援6个可选头像。
 
-![dashboard](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179632/blog/2021-03-31_160707_wfvliq.webp)
+![dashboard](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695879/temp/2021-04-29_192506_t9z5kd.webp)
 
 数据面板/仪表盘对昨日故障，过去一周故障，本年度故障，过去24h实时故障做统计，并渲染图表。
 
-![general](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_160731_d7wnsr.webp)
+![general](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695879/temp/2021-04-29_192557_uwvhmy.webp)
 
 概览使用散列图对单元并发故障次数分布统计；使用树形图对车型/单元/故障占比统计；使用条形图对车型故障单元与4S店售出车辆故障单元统计。
 
-![maps](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1618469204/temp/2021-04-15_144109_rp9dey.webp)
+![maps](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695880/temp/2021-04-29_192335_n3vtsk.webp)
 
-![maps2](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1618469678/temp/2021-04-15_145402_dlmrd8.webp)
+![maps2](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695880/temp/2021-04-29_192418_cqlplx.webp)
 
 地图使用必应地图接口对故障发生的位置进行标记，相同座标的故障求和后显示在标记上。
 
-![warningTable](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1617179631/blog/2021-03-31_162249_vwiity.webp)
+![warningTable](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695881/temp/2021-04-29_192040_cympgk.webp)
 
-车辆故障信息表对数据库中的故障信息进行增删查并且支持导出/下载。
+车辆故障信息表对数据库中的故障信息进行增删改查并且支持导出/下载。
 
-![userTable](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619592386/temp/2021-04-28_144436_vodqex.webp)
+![userTable](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695879/temp/2021-04-29_191930_edfek1.webp)
 
-用户信息表对数据库中的用户信息进行增删改查并且支持导出/下载。
+用户信息表对数据库中的用户信息进行增删改查并且支持导出/下载。其他表格功能类似，也可用来实现基础信息维护。
 
 ## 目录结构
 
@@ -57,7 +57,7 @@ AutoTBOXDataSystem （Spring后端服务与接口，Java）
 └ react-material-admin （react前端页面）
 ```
 
-*注：MySQL搭建于服务器端，因此*.sql文件不在仓库内。*
+*注：MySQL搭建于服务器端，其中这是导出的 [SQL源文件](https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/AutoTBOXDataSystem.sql)。*
 
 ## 使用
 

@@ -5,10 +5,16 @@ import {
   TextField,
   MenuItem,
   Button,
+  IconButton,
+  Tooltip,
+  FormLabel,
 } from "@material-ui/core";
+import {
+  Save as SaveIcon,
+  Add as AddIcon,
+  Publish as PublishIcon,
+} from '@material-ui/icons';
 import MUIDataTable from "mui-datatables";
-import SaveIcon from '@material-ui/icons/Save';
-import CustomToolbar from "./CustomToolbar";
 
 import cookie from 'js-cookie';
 import axios from 'axios';
@@ -34,8 +40,8 @@ export default class Tables extends Component {
           display: "excluded",
         },
       },
-      { 
-        name: "carName", 
+      {
+        name: "carName",
         label: "车辆名",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -51,8 +57,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "price", 
+      {
+        name: "price",
         label: "价格",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -68,8 +74,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "periodicalTechnicalInspection", 
+      {
+        name: "periodicalTechnicalInspection",
         label: "定期技术检查",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -85,8 +91,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "roadTax3Months", 
+      {
+        name: "roadTax3Months",
         label: "道路税每三月",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -102,8 +108,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "carBody", 
+      {
+        name: "carBody",
         label: "车身",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -119,8 +125,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "transmission", 
+      {
+        name: "transmission",
         label: "变速箱",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -136,8 +142,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "seatsNumber", 
+      {
+        name: "seatsNumber",
         label: "座位数",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -153,8 +159,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "firstYearOfProduction", 
+      {
+        name: "firstYearOfProduction",
         label: "首次生产年份",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -170,8 +176,8 @@ export default class Tables extends Component {
           )
         }
       },
-      { 
-        name: "lastYearOfProduction", 
+      {
+        name: "lastYearOfProduction",
         label: "最后生产年份",
         options: {
           customBodyRender: (value, tableMeta, updateValue) => (
@@ -191,54 +197,72 @@ export default class Tables extends Component {
         name: "isActivated",
         label: "启用状态",
         options: {
-          customBodyRender: (value, tableMeta, updateValue) => (
-            <TextField
-              select
-              id="isActivated"
-              type="isActivated"
-              value={value}
-              onChange={e => {
-                updateValue(e.target.value);
-                const rowId = tableMeta.rowIndex;
-                this.state.datatableData[rowId].isActivated = e.target.value;
-              }}
-              margin="normal"
-              variant="outlined"
-            >
-              {isActivated.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          )
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <TextField
+                  select
+                  id="isActivated"
+                  type="isActivated"
+                  value={value}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    const rowId = tableMeta.rowIndex;
+                    this.state.datatableData[rowId].isActivated = e.target.value;
+                  }}
+                  margin="normal"
+                  variant="outlined"
+                >
+                  {isActivated.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )
+            } else {
+              return (
+                <FormLabel />
+              )
+            }
+          }
         }
       },
       {
         name: "isDeleted",
         label: "删除状态",
         options: {
-          customBodyRender: (value, tableMeta, updateValue) => (
-            <TextField
-              select
-              id="isDeleted"
-              type="isDeleted"
-              value={value}
-              onChange={e => {
-                updateValue(e.target.value);
-                const rowId = tableMeta.rowIndex;
-                this.state.datatableData[rowId].isDeleted = e.target.value;
-              }}
-              margin="normal"
-              variant="outlined"
-            >
-              {isDeleted.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          )
+          customBodyRender: (value, tableMeta, updateValue) => {
+            const rowId = tableMeta.rowIndex;
+            if ('id' in this.state.datatableData[rowId]) {
+              return (
+                <TextField
+                  select
+                  id="isDeleted"
+                  type="isDeleted"
+                  value={value}
+                  onChange={e => {
+                    updateValue(e.target.value);
+                    const rowId = tableMeta.rowIndex;
+                    this.state.datatableData[rowId].isDeleted = e.target.value;
+                  }}
+                  margin="normal"
+                  variant="outlined"
+                >
+                  {isDeleted.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )
+            } else {
+              return (
+                <FormLabel />
+              )
+            }
+          }
         }
       },
       {
@@ -283,17 +307,34 @@ export default class Tables extends Component {
           sort: false,
           empty: true,
           customBodyRenderLite: (dataIndex) => {
-            return (
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<SaveIcon />}
-                onClick={() => updateRow(this.state.datatableData[dataIndex])}
-              >
-                保存
-              </Button>
-            );
+            if ('id' in this.state.datatableData[dataIndex]) {
+              return (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<SaveIcon />}
+                  onClick={() => updateRow(this.state.datatableData[dataIndex])}
+                >
+                  保存
+                </Button>
+              );
+            } else {
+              return (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  startIcon={<PublishIcon />}
+                  onClick={() => {
+                    appendRow(this.state.datatableData[dataIndex]);
+                    window.location.reload();
+                  }}
+                >
+                  添加
+                </Button>
+              );
+            }
           }
         }
       }
@@ -337,6 +378,26 @@ export default class Tables extends Component {
                       })
                   }
                 },
+                customToolbar: () => {
+                  return (
+                    <React.Fragment>
+                      <Tooltip title={"Add Row"}>
+                        <IconButton onClick={() => {
+                          const column = this.state.columns;
+                          var row = new Object();
+                          for (var i = 1; i < column.length - 1; ++i) {
+                            var key = column[i].name;
+                            row[key] = "";
+                          }
+                          this.state.datatableData.unshift(row);
+                          this.setState(this.state.datatableData); // 利用setState重新渲染
+                        }}>
+                          <AddIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </React.Fragment>
+                  );
+                }
               }}
             />
           </Grid>
@@ -438,4 +499,27 @@ function updateRow(row) {
         }
       })
   }
+}
+function appendRow(row) {
+  var data = {
+    carName: row.carName,
+    price: row.price,
+    periodicalTechnicalInspection: row.periodicalTechnicalInspection,
+    roadTax3Months: row.roadTax3Months,
+    carBody: row.carBody,
+    transmission: row.transmission,
+    seatsNumber: row.seatsNumber,
+    firstYearOfProduction: row.firstYearOfProduction,
+    lastYearOfProduction: row.lastYearOfProduction,
+    status: row.status,
+    remark: row.remark,
+    createdBy: cookie.get('username'),
+    lastUpdatedBy: cookie.get('username')
+  }
+  axios.post('/Car/addCar', data)
+    .then(res => {
+      if (res.request.response !== "Succeed.") {
+        alert(res.request.response);
+      }
+    })
 }
