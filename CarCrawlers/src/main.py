@@ -79,10 +79,6 @@ def get_car_data(url):
         # 3 elem
         for elem in service_and_warranty:
             data.append("".join(elem).replace(",", "."))
-        # Image
-        image = soup.find("img")['src']
-        image_url = base_url + image
-        data.append(image_url)
         return data
 
 
