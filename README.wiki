@@ -621,7 +621,7 @@
 
 == 2.1 数据面板 ==
 
-mui-table表格(Material UI), LineChart折线图, PieChart饼状图(recharts), Calender日历(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/general/General.js General.js]
+mui-table表格(Material UI), LineChart折线图, PieChart饼状图(recharts), Calender日历(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/dashboard/Dashboard.js Dashboard.js]
 
 <table>
   <tr><th colspan="2" align="center">axios请求</th></tr>
@@ -643,7 +643,7 @@ mui-table表格(Material UI), LineChart折线图, PieChart饼状图(recharts), C
 
 == 2.2 故障概览 ==
 
-ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/dashboard/Dashboard.js Dashboard.js]
+ScatterPlot散列表(nivo), Treemap树形图(nivo), Bar条形图(nivo). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/general/General.js General.js]
 
 <table>
   <tr><th colspan="2" align="center">axios请求</th></tr>
@@ -1327,15 +1327,38 @@ mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://git
 </table>
 
 <table>
-  <tr><th colspan="4" align="center">视觉图表</th></tr>
+  <tr><th colspan="4" align="center">个人资料</th></tr>
   <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
-  <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
+  <tr><td>id</td><td>ID</td><td>o</td><td>x</td></tr>
   <tr><td>createdDate</td><td>注册日期</td><td>o</td><td>x</td></tr>
   <tr><td>lastUpdatedDate</td><td>最后修改日期</td><td>o</td><td>x</td></tr>
   <tr><td>username</td><td>用户名</td><td>o</td><td>x</td></tr>
   <tr><td>email</td><td>邮箱</td><td>o</td><td>o</td></tr>
   <tr><td>phone</td><td>电话</td><td>o</td><td>o</td></tr>
   <tr><td>avatar</td><td>头像</td><td>o</td><td>o</td></tr>
+</table>
+
+== 2.9 账户安全 ==
+
+mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/user/Security.js Security.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/User/updatePasswordById</td><td>{
+    id: id,
+    remark: remark,
+    password: password,
+    lastUpdatedBy: username,
+  }</td></tr>
+</table>
+
+<table>
+  <tr><th colspan="4" align="center">账户安全</th></tr>
+  <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
+  <tr><td>oldPassword</td><td>旧密码</td><td>o</td><td>o</td></tr>
+  <tr><td>newPassword</td><td>新密码</td><td>o</td><td>o</td></tr>
+  <tr><td>confirmNewPassword</td><td>确认密码</td><td>o</td><td>o</td></tr>
 </table>
 
 = 3 开发相关资料 =

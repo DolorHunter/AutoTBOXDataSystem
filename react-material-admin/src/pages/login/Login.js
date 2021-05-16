@@ -126,6 +126,7 @@ function Login(props) {
                   color="primary"
                   size="large"
                   className={classes.forgetButton}
+                  onClick={() => alert("请联系管理员重置密码.")}
                 >
                   忘记密码
                 </Button>

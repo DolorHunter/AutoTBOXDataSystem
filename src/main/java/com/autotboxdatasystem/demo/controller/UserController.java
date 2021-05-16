@@ -135,7 +135,7 @@ public class UserController {
     public @ResponseBody
     ResponseEntity<String> updatePasswordById(@RequestBody UserEntity userEntity) {
         if (!userService.updatePasswordById(userEntity)) {
-            return new ResponseEntity<>("Update Password Failed. Password was illegal or none.", HttpStatus.OK);
+            return new ResponseEntity<>("Update Password Failed. OldPassword was illegal or none.", HttpStatus.OK);
         }
         return new ResponseEntity<>("Succeed.", HttpStatus.OK);
     }

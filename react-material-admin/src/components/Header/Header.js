@@ -14,6 +14,7 @@ import {
   MailOutline as MailIcon,
   NotificationsNone as NotificationsIcon,
   Person as AccountIcon,
+  Security as SecurityIcon,
   Search as SearchIcon,
   Send as SendIcon,
   ArrowBack as ArrowBackIcon,
@@ -301,6 +302,17 @@ export default function Header(props) {
             <AccountIcon className={classes.profileMenuIcon} /> 
             <Typography component={Link} href="#/app/user/profile" color="primary">
               个人资料
+            </Typography>
+          </MenuItem>
+          <MenuItem
+            className={classNames(
+              classes.profileMenuItem,
+              classes.headerMenuItem,
+            )}
+          >
+            <SecurityIcon className={classes.profileMenuIcon} /> 
+            <Typography component={Link} href="#/app/user/security" color="primary">
+              账户安全
             </Typography>
           </MenuItem>
           <div className={classes.profileMenuUser}>

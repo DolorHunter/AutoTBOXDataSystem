@@ -26,6 +26,10 @@
 
 用户个人资料界面，可修改邮箱，电话，头像。支援6个可选头像。
 
+![security](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1621146897/temp/2021-05-16_142852_qavrsd.webp)
+
+用户账户安全界面，可修改密码。
+
 ![dashboard](https://res.cloudinary.com/dfb5w2ccj/image/upload/v1619695879/temp/2021-04-29_192506_t9z5kd.webp)
 
 数据面板/仪表盘对昨日故障，过去一周故障，本年度故障，过去24h实时故障做统计，并渲染图表。

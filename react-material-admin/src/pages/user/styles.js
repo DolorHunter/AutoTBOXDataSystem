@@ -4,6 +4,7 @@ export default makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    width: "100vw",
     marginBottom: theme.spacing(5),
   },
   left: {

@@ -261,9 +261,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean updatePasswordById(UserEntity userEntity) {
         UserEntity user = userDAO.findById(userEntity.getId()).get();
-        String password = userEntity.getPassword();
-        if (password != null) {
-            user.setPassword(password);
+        String oldPassword = userEntity.getRemark();
+        String newPassword = userEntity.getPassword();
+        if (oldPassword != null && newPassword != null &&
+                oldPassword.equals(user.getPassword())) {
+            user.setPassword(newPassword);
             user.setLastUpdatedBy(userEntity.getLastUpdatedBy());
             user.setLastUpdatedDate(DateUtil.getCurDateTime());
             userDAO.save(user);

@@ -35,6 +35,7 @@ import CarWarningTables from "../../pages/tables/CarWarningTables";
 import CarWarningDetailTables from "../../pages/tables/CarWarningDetailTables";
 import CarWarrantyTables from "../../pages/tables/CarWarrantyTables";
 import Profile from "../../pages/user/Profile";
+import Security from "../../pages/user/Security";
 import UserTables from "../../pages/tables/UserTables";
 import UserCarTables from "../../pages/tables/UserCarTables";
 import RoleTables from "../../pages/tables/RoleTables";
@@ -86,6 +87,7 @@ function Layout(props) {
               <Route path="/app/user/userCarTables" component={UserCarTables} />
               <Route path="/app/user/roleTables" component={RoleTables} />
               <Route path="/app/user/profile" component={Profile} />
+              <Route path="/app/user/security" component={Security} />
               <Route path="/app/visualChart/tables" component={VisualChartTables} />
             </Switch>
             <Box
