@@ -50,7 +50,7 @@ export default function General(props) {
 					</Widget>
 				</Grid>
 				<Grid item lg={6} md={8} sm={12} xs={24}>
-					<Widget title="车型/单元/故障占比" noBodyPadding upperTitle>
+					<Widget title="故障在车型与单元中的占比" noBodyPadding upperTitle>
             <Grid item xs={24}>
 							<ResponsiveContainer width="100%" height={350}>
 								<Treemap

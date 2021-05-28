@@ -42,7 +42,7 @@ const structure = [
       { label: "日志列表", link: "/app/car/logTables" },
       { label: "故障列表", link: "/app/car/warningTables" },
       { label: "故障详细列表", link: "/app/car/warningDetailTables" },
-      { label: "保固列表", link: "/app/car/warrantyTables" },
+      { label: "保修列表", link: "/app/car/warrantyTables" },
     ],
   },
   {

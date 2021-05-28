@@ -17,7 +17,7 @@
 <table>
   <tr><th colspan="4" align="center">BaseEntity</th></tr>
   <tr><th>Java实体属性类型</th><th>SQL表属性类型</th><th>Java实体属性名</th><th>注释</th></tr>
-  <tr><td>id</td><td>int</td><td>ID</td></tr>
+  <tr><td>Integer</td><td>int</td><td>id</td><td>ID</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>isActivated</td><td>启用状态</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>isDeleted</td><td>删除状态</td></tr>
   <tr><td>String</td><td>varchar(4)</td><td>status</td><td>状态</td></tr>
@@ -580,7 +580,7 @@
   <tr><td>searchAllCarWarningDetailPager</td><td>/CarWarningDetail/searchAllCarWarningDetailPager</td><td>carWarningDetailEntity</td><td>查找全部车辆故障详情Pager</td></tr>
 </table>
 
-=== 1.2.11 CarWarrantyController ===
+=== 1.2.10 CarWarrantyController ===
 
 车辆保修控制类.
 
@@ -692,7 +692,7 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
     }</td></tr>
   <tr><td>/CarWarning/updateRemarkById</td><td>{
       id: id,
-      status: rstatus,
+      status: status,
       lastUpdatedBy: lastUpdatedBy
     }</td></tr>
   <tr><td>/CarWarning/addCarWarning</td><td>{
@@ -798,9 +798,9 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
 <table>
   <tr><th colspan="2" align="center">axios请求</th></tr>
   <tr><th>请求地址</th><th>请求参数</th></tr>
-  <tr><td>/Car/searchAllCarPager</td><td>page: {
+  <tr><td>/Car/searchAllCarPager</td><td>{
       "pageIndex": 0,
-      "pageSize": 30,
+      "pageSize": 30
     }</td></tr>
   <tr><td>/Car/hardDeleteCarById</td><td>{id: id}</td></tr>
   <tr><td>/Car/updateGeneralById</td><td>{
@@ -995,7 +995,7 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
   <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
 </table>
 
-=== 2.5.5 保固列表 ===
+=== 2.5.5 保修列表 ===
 
 mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/tables/CarWarrantyTables.js CarWarrantyTables.js]
 
@@ -1038,7 +1038,7 @@ vin: vin,
 </table>
 
 <table>
-  <tr><th colspan="4" align="center">保固列表</th></tr>
+  <tr><th colspan="4" align="center">保修列表</th></tr>
   <tr><th>属性名</th><th>标签</th><th>可见</th><th>可编辑</th></tr>
   <tr><td>id</td><td>ID</td><td>x</td><td>x</td></tr>
   <tr><td>vin</td><td>车辆识别号码</td><td>o</td><td>x</td></tr>
@@ -1171,7 +1171,7 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
     saleTime: saleTime,
     status: status,
     remark: remark,
-    createdBy: createdBy
+    createdBy: createdBy,
     lastUpdatedBy: lastUpdatedBy
   }</td></tr>
 </table>
@@ -1301,7 +1301,9 @@ mui-datatables(Material UI)表格作为模板, 加入CRUD修改而成. 关联表
   <tr><td>edit</td><td>编辑</td><td>o</td><td>-</td></tr>
 </table>
 
-== 2.8 个人资料 ==
+== 2.8 个人 ==
+
+== 2.8.1 个人资料 ==
 
 mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/user/Profile.js Profile.js]
 
@@ -1338,7 +1340,7 @@ mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://git
   <tr><td>avatar</td><td>头像</td><td>o</td><td>o</td></tr>
 </table>
 
-== 2.9 账户安全 ==
+=== 2.8.2 账户安全 ===
 
 mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/user/Security.js Security.js]
 
@@ -1349,7 +1351,7 @@ mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://git
     id: id,
     remark: remark,
     password: password,
-    lastUpdatedBy: username,
+    lastUpdatedBy: lastUpdatedBy
   }</td></tr>
 </table>
 
@@ -1359,6 +1361,29 @@ mui-TextField配合其他元件组合而成(Material UI). 关联表 [https://git
   <tr><td>oldPassword</td><td>旧密码</td><td>o</td><td>o</td></tr>
   <tr><td>newPassword</td><td>新密码</td><td>o</td><td>o</td></tr>
   <tr><td>confirmNewPassword</td><td>确认密码</td><td>o</td><td>o</td></tr>
+</table>
+
+== 2.9 登录与注册 ==
+
+关联表 [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/pages/login/Login.js Login.js] & [https://github.com/DolorHunter/AutoTBOXDataSystem/blob/master/react-material-admin/src/context/UserContext.js UserContext.js]
+
+<table>
+  <tr><th colspan="2" align="center">axios请求</th></tr>
+  <tr><th>请求地址</th><th>请求参数</th></tr>
+  <tr><td>/User/login</td><td>{
+    username : username,
+    password : password
+  }</td></tr>
+  <tr><td>/User/searchUserByUsername</td><td>{
+    username : username
+  }</td></tr>
+  <tr><td>/User/register</td><td>{ 
+      email : email,
+      username : username,
+      password : password,
+      createdBy : createdBy,
+      lastUpdatedBy : lastUpdatedBy
+    }</td></tr>
 </table>
 
 = 3 开发相关资料 =

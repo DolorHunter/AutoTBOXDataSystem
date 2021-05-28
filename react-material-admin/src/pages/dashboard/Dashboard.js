@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Grid,
-  LinearProgress,
-} from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
-import {
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
+  Paper,
+  Grid,
+  LinearProgress,
 } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
 import {
   ResponsiveContainer,
   AreaChart,
@@ -29,6 +26,7 @@ import {
   Tooltip,
 } from "recharts";
 
+import { useTheme } from "@material-ui/styles";
 // styles
 import useStyles from "./styles";
 
