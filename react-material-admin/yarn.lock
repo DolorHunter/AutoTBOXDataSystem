@@ -1500,6 +1500,17 @@
     d3-time-format "^2.1.3"
     react-spring "9.0.0-rc.3"
 
+"@nivo/axes@0.71.0":
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/@nivo/axes/-/axes-0.71.0.tgz#f22b716e350a089158a552dadc3afbeace9ac515"
+  integrity sha512-jq/dxIewAVpri0AxuYzzQXOFiziXuIzEG/T72bkA/IVdO/mZwL+OrK6j8niO7jOd9dHNhcpf3W15E2fFoxHFxw==
+  dependencies:
+    "@nivo/scales" "0.71.0"
+    "@react-spring/web" "9.2.0"
+    d3-format "^1.4.4"
+    d3-time "^1.0.11"
+    d3-time-format "^3.0.0"
+
 "@nivo/bar@^0.67.0":
   version "0.67.0"
   resolved "https://registry.npm.taobao.org/@nivo/bar/download/@nivo/bar-0.67.0.tgz#b60b5f246014f09c32688e78adc0ffb33f841381"
@@ -1517,17 +1528,17 @@
     react-motion "^0.5.2"
     recompose "^0.30.0"
 
-"@nivo/bullet@^0.66.0":
-  version "0.66.0"
-  resolved "https://registry.npm.taobao.org/@nivo/bullet/download/@nivo/bullet-0.66.0.tgz#2125759ed8cf35a588bf5b8baa5df3dc3d29a65e"
-  integrity sha1-ISV1ntjPNaWIv1uLql3z3D0ppl4=
+"@nivo/bullet@^0.71.0":
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/@nivo/bullet/-/bullet-0.71.0.tgz#2b2e7e36c5bbf859d1b5b5fd860e4173c2da48c1"
+  integrity sha512-X6qUqe9zih5lcgEQcPSjriJuwcFXcNiwzcKP+uQlyg1G7p8ID0syYJ2/WPFwubKf6YDlDN2Tn5dbKzhrgGtAdA==
   dependencies:
-    "@nivo/axes" "0.66.0"
-    "@nivo/colors" "0.66.0"
-    "@nivo/legends" "0.66.0"
-    "@nivo/tooltip" "0.66.0"
-    d3-scale "^3.0.0"
-    react-spring "9.0.0-rc.3"
+    "@nivo/axes" "0.71.0"
+    "@nivo/colors" "0.71.0"
+    "@nivo/legends" "0.71.0"
+    "@nivo/tooltip" "0.71.0"
+    "@react-spring/web" "9.2.0"
+    d3-scale "^3.2.3"
 
 "@nivo/calendar@^0.66.0":
   version "0.66.0"
@@ -1565,6 +1576,17 @@
     lodash "^4.17.11"
     react-motion "^0.5.2"
 
+"@nivo/colors@0.71.0":
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/@nivo/colors/-/colors-0.71.0.tgz#93427314fb26d4dd6c23d1906ac540be1dc0d41c"
+  integrity sha512-B847RX5w7+82h8zDP/sS1UshHajcbzoS1fvbKg0MHd1YBLXJVh3/BIX2o0s57iufQKy3h0v2hcWBeYveytO/Cg==
+  dependencies:
+    d3-color "^2.0.0"
+    d3-scale "^3.2.3"
+    d3-scale-chromatic "^2.0.0"
+    lodash "^4.17.21"
+    react-motion "^0.5.2"
+
 "@nivo/core@^0.66.0":
   version "0.66.0"
   resolved "https://registry.npm.taobao.org/@nivo/core/download/@nivo/core-0.66.0.tgz#2f638909138555b302475e1e84cca897355b6f17"
@@ -1598,6 +1620,11 @@
   dependencies:
     lodash "^4.17.11"
     recompose "^0.30.0"
+
+"@nivo/legends@0.71.0":
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/@nivo/legends/-/legends-0.71.0.tgz#8ff492fb4fa44a1c5af791dcaf44497f7ea2c6ec"
+  integrity sha512-TVBi8KgGLrhQ5MGWhRc228oshQ0L/sReBkXavFOQfTBtAuvGxfbOaCPg6jC9gjH2b113tkYOPIAgomjEfb86Ag==
 
 "@nivo/marimekko@^0.66.0":
   version "0.66.0"
@@ -1642,6 +1669,16 @@
     d3-time-format "^2.1.3"
     lodash "^4.17.11"
 
+"@nivo/scales@0.71.0":
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/@nivo/scales/-/scales-0.71.0.tgz#1e7c064e7a0337f8f0479ed9c20dae169c4a7044"
+  integrity sha512-SUy/8Yb+Bm1sabQ7xVnagJg4EASow15f8W9KLIemn9Q3YJQneP0BC3I60SqMnWmj/Rmx8i27rSHHfnlEWxk50A==
+  dependencies:
+    d3-scale "^3.2.3"
+    d3-time "^1.0.11"
+    d3-time-format "^3.0.0"
+    lodash "^4.17.21"
+
 "@nivo/scatterplot@^0.66.0":
   version "0.66.0"
   resolved "https://registry.npm.taobao.org/@nivo/scatterplot/download/@nivo/scatterplot-0.66.0.tgz#0ff52a2c2c04a95fe64fa3213bedb875e456a7de"
@@ -1672,6 +1709,13 @@
   integrity sha1-yEmrej7oLYj/Y3aJSi3l7yZsjo0=
   dependencies:
     react-spring "9.0.0-rc.3"
+
+"@nivo/tooltip@0.71.0":
+  version "0.71.0"
+  resolved "https://registry.yarnpkg.com/@nivo/tooltip/-/tooltip-0.71.0.tgz#25c7ba3844b822de2bffc51df590ebaa3ed8ccfd"
+  integrity sha512-vWEmLM6wjW+AkW862fbpbYYozXU3GujSvi6FXmgTCrbpkdAB0SeEj6aNJZw9z1h895LP17RvRtcBwPBpv77/ZQ==
+  dependencies:
+    "@react-spring/web" "9.2.0"
 
 "@nivo/treemap@^0.66.0":
   version "0.66.0"
@@ -1722,6 +1766,14 @@
     "@react-spring/shared" "9.0.0-rc.3"
     react-layout-effect "^1.0.1"
 
+"@react-spring/animated@~9.2.0":
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.2.4.tgz#062ecc0fdfef89f2541a42d8500428b70035f879"
+  integrity sha512-AfV6ZM8pCCAT29GY5C8/1bOPjZrv/7kD0vedjiE/tEYvNDwg9GlscrvsTViWR2XykJoYrDfdkYArrldWpsCJ5g==
+  dependencies:
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
 "@react-spring/core@9.0.0-rc.3":
   version "9.0.0-rc.3"
   resolved "https://registry.npm.taobao.org/@react-spring/core/download/@react-spring/core-9.0.0-rc.3.tgz#c8e697573936c525bd0f6ca0c0869f75c86e8a83"
@@ -1732,6 +1784,15 @@
     "@react-spring/shared" "9.0.0-rc.3"
     react-layout-effect "^1.0.1"
     use-memo-one "^1.1.0"
+
+"@react-spring/core@~9.2.0":
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/@react-spring/core/-/core-9.2.4.tgz#275a4a065e3a315a4f5fb28c9a6f62ce718c25d6"
+  integrity sha512-R+PwyfsjiuYCWqaTTfCpYpRmsP0h87RNm7uxC1Uxy7QAHUfHEm2sAHn+AdHPwq/MbVwDssVT8C5yf2WGcqiXGg==
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
 
 "@react-spring/konva@9.0.0-rc.3":
   version "9.0.0-rc.3"
@@ -1753,6 +1814,11 @@
     "@react-spring/core" "9.0.0-rc.3"
     "@react-spring/shared" "9.0.0-rc.3"
 
+"@react-spring/rafz@~9.2.0":
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/@react-spring/rafz/-/rafz-9.2.4.tgz#44793e9adc14dd0dcd1573d094368af11a89d73a"
+  integrity sha512-SOKf9eue+vAX+DGo7kWYNl9i9J3gPUlQjifIcV9Bzw9h3i30wPOOP0TjS7iMG/kLp2cdHQYDNFte6nt23VAZkQ==
+
 "@react-spring/shared@9.0.0-rc.3":
   version "9.0.0-rc.3"
   resolved "https://registry.npm.taobao.org/@react-spring/shared/download/@react-spring/shared-9.0.0-rc.3.tgz#3f4c9d90accc20fef51a283a7806d78390b84161"
@@ -1762,6 +1828,14 @@
     "@babel/runtime" "^7.3.1"
     fluids "^0.1.6"
     tslib "^1.11.1"
+
+"@react-spring/shared@~9.2.0":
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/@react-spring/shared/-/shared-9.2.4.tgz#f9cc66ac5308a77293330a18518e34121f4008c1"
+  integrity sha512-ZEr4l2BxmyFRUvRA2VCkPfCJii4E7cGkwbjmTBx1EmcGrOnde/V2eF5dxqCTY3k35QuCegkrWe0coRJVkh8q2Q==
+  dependencies:
+    "@react-spring/rafz" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
 
 "@react-spring/three@9.0.0-rc.3":
   version "9.0.0-rc.3"
@@ -1773,6 +1847,11 @@
     "@react-spring/core" "9.0.0-rc.3"
     "@react-spring/shared" "9.0.0-rc.3"
 
+"@react-spring/types@~9.2.0":
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/@react-spring/types/-/types-9.2.4.tgz#2365ce9d761f548a9adcb2cd68714bf26765a5de"
+  integrity sha512-zHUXrWO8nweUN/ISjrjqU7GgXXvoEbFca1CgiE0TY0H/dqJb3l+Rhx8ecPVNYimzFg3ZZ1/T0egpLop8SOv4aA==
+
 "@react-spring/web@9.0.0-rc.3":
   version "9.0.0-rc.3"
   resolved "https://registry.npm.taobao.org/@react-spring/web/download/@react-spring/web-9.0.0-rc.3.tgz#da977382f91d9af4c400e4aa7dc37d3db07b87e0"
@@ -1782,6 +1861,16 @@
     "@react-spring/animated" "9.0.0-rc.3"
     "@react-spring/core" "9.0.0-rc.3"
     "@react-spring/shared" "9.0.0-rc.3"
+
+"@react-spring/web@9.2.0":
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/@react-spring/web/-/web-9.2.0.tgz#667f5e4e2226d1515e01b100c143093efab5943b"
+  integrity sha512-YWNPRCmC1MiCH+3MZQUTfhf4OzKR1w+0BVxpw7HkHgCz8lJNlvlDeiBdQzYhh+YmmbaF4y1swhCYmI0y4VCZXQ==
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/core" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
 
 "@react-spring/zdog@9.0.0-rc.3":
   version "9.0.0-rc.3"
@@ -4007,6 +4096,13 @@ d3-array@1, d3-array@^1.1.1, d3-array@^1.2.0:
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
   integrity sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==
 
+d3-array@2:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.12.1.tgz#e20b41aafcdffdf5d50928004ececf815a465e81"
+  integrity sha512-B0ErZK/66mHtEsR1TkPEEkwdy+WDesimkM5gpZr5Dsg54BiTA5RXtYW5qTLIAcekaS9xfZrzBLF/OAkB3Qn1YQ==
+  dependencies:
+    internmap "^1.0.0"
+
 d3-array@^2.3.0:
   version "2.12.0"
   resolved "https://registry.npm.taobao.org/d3-array/download/d3-array-2.12.0.tgz?cache=0&sync_timestamp=1615407348270&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fd3-array%2Fdownload%2Fd3-array-2.12.0.tgz#68a74d153e52d6bf4608d9f6388cca48b42a4c3f"
@@ -4142,6 +4238,17 @@ d3-scale@^3.0.0:
     d3-time "1 - 2"
     d3-time-format "2 - 3"
 
+d3-scale@^3.2.3:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-3.3.0.tgz#28c600b29f47e5b9cd2df9749c206727966203f3"
+  integrity sha512-1JGp44NQCt5d1g+Yy+GeOnZP7xHo0ii8zsQp6PGzd+C1/dl0KGsp9A7Mxwp+1D1o4unbTTxVdU/ZOIEBoeZPbQ==
+  dependencies:
+    d3-array "^2.3.0"
+    d3-format "1 - 2"
+    d3-interpolate "1.2.0 - 2"
+    d3-time "^2.1.1"
+    d3-time-format "2 - 3"
+
 d3-shape@^1.1.0, d3-shape@^1.2.0, d3-shape@^1.2.2, d3-shape@^1.3.5:
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.3.7.tgz#df63801be07bc986bc54f63789b4fe502992b5d7"
@@ -4156,7 +4263,7 @@ d3-time-format@2, d3-time-format@^2.1.3:
   dependencies:
     d3-time "1"
 
-"d3-time-format@2 - 3":
+"d3-time-format@2 - 3", d3-time-format@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/d3-time-format/download/d3-time-format-3.0.0.tgz#df8056c83659e01f20ac5da5fdeae7c08d5f1bb6"
   integrity sha1-34BWyDZZ4B8grF2l/ernwI1fG7Y=
@@ -4172,6 +4279,13 @@ d3-time@1, d3-time@^1.0.10, d3-time@^1.0.11:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/d3-time/download/d3-time-2.0.0.tgz#ad7c127d17c67bd57a4c61f3eaecb81108b1e0ab"
   integrity sha1-rXwSfRfGe9V6TGHz6uy4EQix4Ks=
+
+d3-time@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-2.1.1.tgz#e9d8a8a88691f4548e68ca085e5ff956724a6682"
+  integrity sha512-/eIQe/eR4kCQwq7yxi7z4c6qEXf2IYGcjoWB5OOQy4Tq9Uv39/947qlDcN2TLkiTzQWzvnsuYPB9TrWaNfipKQ==
+  dependencies:
+    d3-array "2"
 
 d3-voronoi@^1.1.2:
   version "1.1.4"
@@ -7646,6 +7760,11 @@ lodash.uniq@^4.5.0:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 loglevel@^1.6.8:
   version "1.7.0"
